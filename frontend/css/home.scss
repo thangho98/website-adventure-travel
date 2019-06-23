@@ -1,0 +1,601 @@
+$color: (
+  primary: #fff,
+  content-background: #d1d1d1,
+  xanh: #19a1e5,
+  xanh-dam: #0080c0,
+  nav-bg: #000,
+  tours-title: #2e2e2e,
+  tour-item-bg: #f1f1f1,
+  tour-title: #333333,
+  tour-content: #000,
+  tour-tag: #19a1e5,
+  tour-price: #ff6600,
+  box-shadow-hover: #5e5e5e
+);
+
+$font-size: (
+  nav-top: 14px,
+  nav-bot: 17px,
+  search-form: 17px,
+  tours-title: 25px,
+  tour-content: 13px,
+  tour-title: 16px,
+  activity-title: 27px
+);
+
+$size: (
+  activity-item-height: 200px
+);
+
+$margin: (
+  section: 30px,
+  title-section: 20px,
+  tours-list-bottom: 20px,
+  tourlist-btnmore: 20px
+);
+
+@function get-color($color-name) {
+  @return map-get($map: $color, $key: $color-name);
+}
+
+@function get-size($size-name) {
+  @return map-get($map: $size, $key: $size-name);
+}
+
+@function get-font-size($font-size-name) {
+  @return map-get($map: $font-size, $key: $font-size-name);
+}
+
+@function get-margin($margin-name) {
+  @return map-get($map: $margin, $key: $margin-name);
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background: url("../imgs/background.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  header {
+    nav {
+      #nav-top {
+        padding: 2px 0;
+        background-color: get-color(nav-bg);
+
+        .container {
+          display: flex;
+
+          #hotline {
+            padding: 5px 20px;
+            align-self: center;
+            font-size: get-font-size(nav-top);
+            color: #ffffff;
+
+            span#sdt {
+              font-size: 17px;
+              font-weight: 700;
+              color: get-color(xanh);
+            }
+
+            span#cuoc {
+              font-size: 12px;
+              font-weight: 400;
+            }
+
+            i {
+              padding: 5px;
+              color: get-color(xanh);
+            }
+          }
+
+          #user {
+            display: flex;
+            margin-left: auto;
+
+            #signup {
+              padding: 4px 20px;
+              border: solid 1.5px get-color(xanh);
+              border-radius: 5px;
+              align-self: center;
+              font-size: get-font-size(nav-top);
+              color: #ffffff;
+              transition: background-color 0.5s;
+            }
+
+            #signin {
+              margin-right: 5px;
+              padding: 5px 20px;
+              border-radius: 5px;
+              align-self: center;
+              font-size: get-font-size(nav-top);
+              color: #ffffff;
+              transition: background-color 0.5s;
+            }
+
+            .user-item:hover {
+              cursor: pointer;
+              background-color: get-color(xanh);
+              color: #000000;
+            }
+          }
+        }
+      }
+
+      #nav-bot {
+        background-color: #ffffff;
+
+        #logo-header img {
+          max-width: 80px;
+        }
+
+        #nav-links {
+          .navbar-nav {
+            margin-left: auto;
+          }
+
+          .nav-item {
+            padding-top: 5px;
+            border-bottom: solid 3px #ffffff;
+            -webkit-transition: border 0.5s;
+            transition: border 0.5s;
+          }
+
+          .nav-link {
+            font-size: get-font-size(nav-bot);
+            font-weight: 700;
+            color: #000000;
+            transition: color 0.5s;
+          }
+
+          .nav-item:hover {
+            border-color: get-color(xanh);
+          }
+
+          .nav-item:hover * {
+            color: get-color(xanh);
+          }
+        }
+      }
+    }
+
+    #slideshow {
+      height: 450px;
+      background-color: #5e5e5e;
+
+      img{
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+
+    #search-form {
+      margin-top: -30px;
+      margin-bottom: get-margin(section);
+
+      #search-trong-nuoc {
+        i {
+          background-color: #ffa31a;
+        }
+
+        span {
+          color: #ffa31a;
+        }
+      }
+
+      #search-nuoc-ngoai {
+        i {
+          background-color: #5cb1aa;
+        }
+
+        span {
+          color: #5cb1aa;
+        }
+      }
+
+      #search-da-dat {
+        i {
+          background-color: #1b448e;
+        }
+
+        span {
+          color: #1b448e;
+        }
+      }
+
+      .search-item {
+        display: flex;
+        margin-bottom: 5px;
+        padding: 15px;
+        box-shadow: 0 0 0px 1px #ececec;
+        background-color: #ffffff;
+        font-size: 17px;
+        cursor: pointer;
+        align-items: center;
+        transition: box-shadow 0.2s;
+
+        i {
+          padding: 10px;
+          border-radius: 50%;
+          color: #ffffff;
+        }
+
+        .search-title {
+          width: 100%;
+          text-align: center;
+        }
+      }
+
+      .search-item:hover {
+        box-shadow: 0 0 3px get-color(box-shadow-hover);
+      }
+    }
+  }
+
+  #content {
+    padding-top: 20px;
+    background: #ddffff;
+
+    .tours {
+      text-align: center;
+      .tours-title {
+        margin-bottom: get-margin(title-section);
+        a {
+          color: get-color(tours-title);
+          font-weight: 600;
+          font-size: get-font-size(tours-title);
+          transition: color 0.2s;
+        }
+
+        :hover {
+          color: get-color(xanh-dam);
+          text-decoration: none;
+        }
+      }
+
+      .tours-list {
+        margin-bottom: get-margin(tours-list-bottom);
+        padding: 20px 10px;
+        text-align: center;
+        background: get-color(primary);
+
+        .tour-item,
+        .activity-item {
+          padding: 0 5px;
+          text-align: left;
+          margin-bottom: get-margin(tourlist-btnmore);
+
+          .tour-item-wrapper {
+            background-color: get-color(tour-item-bg);
+
+            .tour-header {
+              position: relative;
+              overflow: hidden;
+
+              .tour-meta {
+                position: absolute;
+                width: 100%;
+                top: 8px;
+                display: flex;
+                justify-content: space-between;
+
+                .tour-tag {
+                  padding: 3px 10px;
+                  background: get-color(tour-tag);
+                  font-size: 13px;
+                  color: #ffffff;
+                }
+              }
+
+              img {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+              }
+            }
+
+            .tour-content {
+              padding: 10px;
+              font-size: get-font-size(tour-content);
+              line-height: 30px;
+              color: get-color(tour-content);
+
+              .tour-title {
+                a {
+                  color: get-color(tour-title);
+                  font-size: get-font-size(tour-title);
+                  font-weight: 600;
+                }
+
+                :hover {
+                  text-decoration: none;
+                }
+              }
+
+              .tour-info {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+
+                .left {
+                  .tour-price {
+                    font-size: 15px;
+                    color: get-color(tour-price);
+
+                    span {
+                      font-size: 13px;
+                      text-decoration: line-through;
+                      color: get-color(tour-content);
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .btn-more {
+          padding: 5px 10px;
+          border: none;
+          border-radius: 5px;
+          font-size: 13px;
+          background: get-color(xanh);
+          color: #fff;
+        }
+
+        .btn-more:hover {
+          background: get-color(xanh-dam);
+        }
+      }
+    }
+
+    #tours-gio-chot {
+      .tour-header {
+        padding: 0;
+      }
+
+      .tour-content {
+        padding: 20px;
+        .tour-title {
+          a {
+            font-size: 20px;
+          }
+        }
+
+        .tour-info-top {
+          display: flex;
+          flex-wrap: wrap;
+          margin-bottom: 20px;
+          width: 100%;
+          justify-content: space-between;
+        }
+
+        .tour-price {
+          font-size: 20px;
+          color: get-color(xanh);
+          span {
+            text-decoration: line-through;
+            font-size: 15px;
+            color: get-color(tour-content);
+          }
+        }
+
+        .tour-time-remain {
+          background: get-color(xanh-dam);
+          padding: 0 10px;
+          border-radius: 5px;
+          font-size: 13px;
+          align-self: center;
+          color: #fff;
+        }
+      }
+    }
+
+    #popular-activity {
+      .activity-wrapper {
+        .activity-item {
+          position: relative;
+          margin-bottom: get-margin(tourlist-btnmore);
+          height: get-size(activity-item-height);
+          .activity-img {
+            overflow: hidden;
+
+            img {
+              width: 100%;
+              height: get-size(activity-item-height);
+              object-fit: cover;
+            }
+          }
+
+          .activity-title {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+
+            .title {
+              font-size: get-font-size(activity-title);
+              color: #fff;
+            }
+          }
+
+          .btn-activity {
+            position: absolute;
+            top: 80%;
+            left: 50%;
+            transform: translate(-50%);
+            border-radius: 0px;
+            padding: 3px 15px;
+            font-size: 15px;
+            border: none;
+            background: get-color(xanh);
+            color: #fff;
+          }
+        }
+      }
+    }
+  }
+  #introduction {
+    margin-bottom: get-margin(section);
+    text-align: center;
+    .tours-title {
+      margin-bottom: get-margin(title-section);
+      a {
+        color: get-color(tours-title);
+        font-weight: 600;
+        font-size: get-font-size(tours-title);
+        transition: color 0.2s;
+      }
+
+      :hover {
+        color: get-color(xanh-dam);
+        text-decoration: none;
+      }
+    }
+
+    .item {
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+      .stt {
+        min-width: 30px;
+        border-radius: 50%;
+        background: #fff;
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 30px;
+      }
+
+      .content {
+        text-align: left;
+        padding: 5px 0 5px 10px;
+
+        .title {
+          color: get-color(xanh-dam);
+          font-size: 18px;
+          border-bottom: dotted 1px #000;
+          font-weight: 600;
+        }
+
+        .des {
+          margin-top: 10px;
+          color: #000;
+          font-size: 13px;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+
+  /*footer*/
+.footer-distributed{
+	background-color: #292c2f;
+    width: 100%;
+    padding: 30px
+}
+
+.footer-distributed h3{
+    color:  #ffffff;
+}
+
+/* Footer links */
+
+.footer-distributed .footer-links{
+	color:  #ffffff;
+	margin: 20px 0 12px;
+}
+
+.footer-distributed .footer-links a{
+	line-height: 1.8;
+	color:  #ffffff;
+}
+
+.footer-distributed .footer-company-name{
+	color:  #8f9296;
+	font-size: 14px;
+	font-weight: normal;
+}
+
+/* Footer Center */
+.footer-distributed{
+    margin: 0 !important;
+}
+.footer-distributed .footer-center i{
+	background-color:  #33383b;
+	color: #ffffff;
+	font-size: 25px;
+	width: 38px;
+	height: 38px;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 42px;  
+	margin: 10px 15px;
+}
+
+.footer-distributed .footer-center .item{
+	display: flex;
+    color: #ffffff;
+    align-items: center;
+}
+
+.footer-distributed .footer-center p a{
+	color:  #5383d3;
+}
+
+/* Footer Right */
+.footer-distributed .footer-company-about{
+	line-height: 20px;
+	color:  #92999f;
+	font-size: 13px;
+	font-weight: normal;
+}
+.footer-distributed .footer-company-about span{
+	display: block;
+	color:  #ffffff;
+	font-size: 14px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+.footer-distributed .footer-icons{
+	margin-top: 25px;
+}
+.footer-distributed .footer-icons a{
+	cursor: pointer;
+	background-color: #33383b;
+	border-radius: 2px;
+	font-size: 20px;
+	color: #ffffff;
+	text-align: center;
+	line-height: 35px;
+	margin-right: 3px;
+	margin-bottom: 5px;
+}
+
+/*footer end*/
+}
+
+body {
+  .ani-img-zoom {
+    transition: transform 0.3s;
+  }
+  .ani-img-zoom:hover {
+    transform: scale(1.1);
+  }
+
+  .wrapper {
+    margin: 0 100px;
+  }
+
+  @media only screen and (max-width: 1050px) {
+    .wrapper {
+      margin: 0 50px;
+    }
+  }
+
+  @media only screen and (max-width: 858px) {
+    .wrapper {
+      margin: 0;
+    }
+  }
+}
