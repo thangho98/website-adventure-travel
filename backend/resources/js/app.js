@@ -4,7 +4,7 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+// require('./bootstrap');
 
 window.Vue = require('vue');
 import moment from 'moment';
@@ -32,11 +32,11 @@ Vue.component(AlertErrors.name, AlertErrors)
 Vue.component(AlertSuccess.name, AlertSuccess)
 
 const routes = [
-    { path: '/dashboard', component: require('./components/Dashboard.vue').default },
-    { path: '/developer', component: require('./components/Developer.vue').default },
-    { path: '/users', component: require('./components/Users.vue').default },
-    { path: '/profile', component: require('./components/Profile.vue').default },
-    { path: '*', component: require('./components/NotFound.vue').default }
+    { path: 'admin/dashboard', component: require('./components/Dashboard.vue').default },
+    { path: 'admin/developer', component: require('./components/Developer.vue').default },
+    { path: 'admin/users', component: require('./components/Users.vue').default },
+    { path: 'admin/profile', component: require('./components/Profile.vue').default },
+    { path: 'admin/*', component: require('./components/NotFound.vue').default }
 ]
 
 const router = new VueRouter({
@@ -122,13 +122,13 @@ const app = new Vue({
     data: {
         search: ''
     },
-    methods: {
-        searchit: _.debounce(() => {
-            Fire.$emit('searching');
-        }, 1000),
+    // methods: {
+    //     searchit: _.debounce(() => {
+    //         Fire.$emit('searching');
+    //     }, 1000),
 
-        printme() {
-            window.print();
-        }
-    }
+    //     printme() {
+    //         window.print();
+    //     }
+    // }
 });
