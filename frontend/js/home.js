@@ -95,17 +95,17 @@ class User {
 
     AddEvents(btnUsers, userForms, backgroundBlur, btnCloses) {
 
-        AddEventBtnSignIn();
+        AddEventBtnUser();
         AddEventBackgroundBlur();
         AddEventBtnClose();
 
 
-        function AddEventBtnSignIn() {
+        function AddEventBtnUser() {
             for (let i = 0; i < btnUsers.length; i++) {
-                btnUsers[i].addEventListener('click', function () { BtnSignInClick(userForms[i]); });
+                btnUsers[i].addEventListener('click', function () { BtnUserClick(userForms[i]); });
             }
 
-            function BtnSignInClick(form) {
+            function BtnUserClick(form) {
                 ShowSignInForm(form);
             }
         }
@@ -126,22 +126,104 @@ class User {
             }
         }
 
-            function ShowSignInForm(form) {
-                form.style.display = "block";
-                form.style.zIndex = 9999;
-                Effects.fadeIn(form);
-                backgroundBlur.style.display = "block";
-                backgroundBlur.style.opacity = 0.8;
-            }
+        function ShowSignInForm(form) {
+            form.style.display = "block";
+            form.style.zIndex = 9999;
+            Effects.fadeIn(form);
+            backgroundBlur.style.display = "block";
+            backgroundBlur.style.opacity = 0.8;
+        }
 
-            function HideFormUser(form) {
-                Effects.fadeOut(backgroundBlur);
-                form.style.display = "none";
-                form.style.opacity = 0;
-                form.style.zIndex = 1;
-            }
+        function HideFormUser(form) {
+            Effects.fadeOut(backgroundBlur);
+            form.style.display = "none";
+            form.style.opacity = 0;
+            form.style.zIndex = 1;
         }
     }
+}
+
+class TourDetails {
+    constructor() {
+        this.titDay = document.getElementsByClassName("tit-day");
+        this.contDay = document.getElementsByClassName("cont-day");
+
+        this.stars = document.getElementById("input-stars").getElementsByTagName("i");
+        this.score = document.getElementById("id-score");
+        this.reviewStar = document.getElementsByClassName("review-star");
+
+        this.btnLove = document.getElementById("btn-love");
+
+        this.AddEvents(this.titDay, this.contDay, this.stars, this.score, this.btnLove);
+        this.CreateStars(this.reviewStar);
+
+    }
+
+    AddEvents(titDay, contDay, inputStars, score, btnLove) {
+        AddEventTitDay();
+        AddEventInputStars();
+        AddEventBtnLove();
+
+        function AddEventTitDay() {
+            for (let i = 0; i < titDay.length; i++) {
+                titDay[i].addEventListener("click", function () { TitDayOnClick(contDay[i]); });
+            }
+
+            function TitDayOnClick(cont) {
+                for (let i = 0; i < contDay.length; i++) {
+                    contDay[i].style.display = "none";
+                }
+                cont.style.display = "block";
+            }
+        }
+
+        function AddEventInputStars() {
+            for (let i = 0; i < inputStars.length; i++) {
+                inputStars[i].addEventListener('click', function () {
+                    for (let j = 0; j < inputStars.length; j++) {
+                        inputStars[j].classList.remove("yellow");
+                    }
+
+                    for (let j = 0; j <= i; j++) {
+                        inputStars[j].classList.add("yellow");
+                    }
+
+                    score.value = i + 1;
+                });
+            }
+        }
+
+        function AddEventBtnLove() {
+            const pink = "rgb(255, 0, 85)";
+            btnLove.addEventListener('click', function () {
+                let color = btnLove.style.color;
+                if (color != pink)
+                    btnLove.style.color = pink;
+                else
+                    btnLove.style.color = "#000";
+            });
+        }
+    }
+
+
+    CreateStars(reviewStar) {
+        const star = '<i class="fas fa-star"></i>';
+        const starYellow = '<i class="fas fa-star yellow"></i>'
+        for (let i = 0; i < reviewStar.length; i++) {
+            let count = reviewStar[i].getAttribute("aria-valuetext");
+
+            let strHTML = "";
+            for (let i = 0; i < 5; i++) {
+                if (i < count)
+                    strHTML += starYellow;
+                else
+                    strHTML += star;
+            }
+            reviewStar[i].innerHTML = strHTML;
+        }
+
+    }
+}
 
 
 
@@ -150,6 +232,7 @@ class User {
 function Main() {
     new SearchForm();
     new User();
+    new TourDetails();
 }
 
 document.addEventListener('loadend', Main());

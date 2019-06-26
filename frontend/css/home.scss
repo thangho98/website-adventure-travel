@@ -3,9 +3,10 @@ $color: (
   content-background: #ffffff,
   xanh: #19a1e5,
   xanh-dam: #0080c0,
+  vang: #fffb00,
   nav-bg: #000,
   tours-title: #2e2e2e,
-  tour-item-bg: #f2f3f5,
+  tour-item-bg: #f2f5f8,
   tour-title: #333333,
   tour-content: #000,
   tour-tag: #19a1e5,
@@ -57,6 +58,7 @@ $margin: (
   @return map-get($map: $margin, $key: $margin-name);
 }
 
+//home
 body {
   font-family: "Roboto", sans-serif;
   background: url("../imgs/background.jpg");
@@ -76,7 +78,8 @@ body {
     box-shadow: 0 0 5px get-color(box-shadow-hover);
     display: none;
     opacity: 0;
-    
+    min-width: 300px;
+
     .btn-close {
       text-align: right;
 
@@ -100,7 +103,7 @@ body {
       padding: 0 20px;
       input {
         width: 100%;
-        margin: 10px 0;
+        margin: 5px 0;
         border: solid 1px get-color(xanh);
         line-height: 30px;
         padding: 3px 5px;
@@ -112,13 +115,10 @@ body {
         font-size: 13px;
         span {
           color: get-color(xanh);
-
-          
         }
-        span:hover{
-            cursor: pointer;
-            color: get-color(xanh-dam);
-          
+        span:hover {
+          cursor: pointer;
+          color: get-color(xanh-dam);
         }
       }
     }
@@ -132,7 +132,7 @@ body {
       color: white;
       font-size: 14px;
       line-height: 30px;
-      margin-bottom: 5px;
+      margin: 10px 0;
     }
   }
 
@@ -215,7 +215,7 @@ body {
         background-color: #ffffff;
 
         #logo-header img {
-          max-height: 80px;
+          max-height: 60px;
         }
 
         #nav-links {
@@ -329,7 +329,6 @@ body {
           display: flex;
           flex-wrap: wrap;
           align-items: flex-end;
-          margin-bottom: 10px;
 
           .title {
             margin-bottom: 10px;
@@ -780,9 +779,7 @@ body {
       color: #ececec;
     }
   }
-}
 
-body {
   .ani-img-zoom {
     transition: transform 0.3s;
   }
@@ -792,18 +789,473 @@ body {
   }
 
   .wrapper {
-    margin: 0 100px;
+    padding: 0 100px !important;
   }
 
   @media only screen and (max-width: 1050px) {
     .wrapper {
-      margin: 0 50px;
+      padding: 0 50px !important;
     }
   }
 
   @media only screen and (max-width: 858px) {
     .wrapper {
-      margin: 0px;
+      padding: 10px !important;
+    }
+  }
+}
+
+// tour-detail
+body {
+  #nav-links-content {
+    ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      font-size: 13px;
+      line-height: 35px;
+      background: #f2f5f8;
+      li {
+        a {
+          text-decoration: none;
+          color: #666666;
+        }
+
+        a:hover {
+          color: get-color(xanh);
+        }
+
+        ::after {
+          content: "|";
+          padding: 0 5px;
+        }
+      }
+    }
+  }
+
+  #tour-wrapper {
+    .section {
+      margin-bottom: get-margin(section);
+    }
+
+    #basic-info {
+      background: get-color(tour-item-bg);
+
+      .head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        h1 {
+          padding: 15px;
+          font-size: 20px;
+          font-weight: 600;
+          color: get-color(xanh);
+          margin: 0;
+        }
+
+        #btn-love {
+          font-size: 30px;
+          margin-right: 10px;
+        }
+      }
+
+      #info-content {
+        .row {
+          margin: 0;
+        }
+        #tour-imgs {
+          padding: 0;
+
+          img {
+            height: 400px;
+            object-fit: cover;
+          }
+        }
+
+        #tour-content {
+          padding: 0 !important;
+          padding-right: 15px;
+          line-height: 30px;
+          font-size: 14px;
+
+          .info {
+            border-top: solid 1px #b4b4b4;
+            padding: 15px 0;
+          }
+
+          .meta {
+            border-top: solid 1px #b4b4b4;
+            padding: 15px 0;
+          }
+
+          .promotion {
+            border-top: solid 1px #b4b4b4;
+            padding: 15px 0;
+
+            span {
+              color: #c50000;
+            }
+          }
+
+          .booking {
+            border-top: solid 1px #b4b4b4;
+            padding: 15px 10px;
+            .price-slot {
+              padding: 0;
+              border: solid 1px #b4b4b4;
+              text-align: center;
+
+              .price {
+                border-bottom: solid 1px #b4b4b4;
+                color: #c50000;
+                font-size: 17px;
+
+                span {
+                  color: #000;
+                  font-size: 13px;
+                  text-decoration: line-through;
+                }
+              }
+
+              .slot {
+                span {
+                  color: #c50000;
+                }
+              }
+            }
+
+            .btn-booking {
+              background: #c50000;
+              color: #fff;
+              font-size: 20px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              line-height: 40px;
+            }
+
+            .btn-booking:hover {
+              cursor: pointer;
+              background: #e90000;
+            }
+          }
+        }
+      }
+    }
+
+    #content-wrapper {
+      nav {
+        background: #f2f5f8;
+        justify-content: space-between;
+        border-bottom: solid 2px get-color(xanh);
+        line-height: 25px;
+        padding: 0;
+        z-index: 9;
+
+        .nav-item {
+          .nav-link {
+            color: #000;
+            font-size: 14px;
+            font-weight: 500;
+            min-width: 100px;
+            text-align: center;
+          }
+
+          .active {
+            background: get-color(xanh);
+            color: #fff;
+          }
+        }
+
+        .left .nav-item {
+          .nav-link:hover {
+            background: get-color(xanh-dam);
+            color: #fff;
+          }
+        }
+
+        .right .nav-item {
+          .nav-link {
+            min-width: 200px;
+          }
+          .booking {
+            border-bottom: solid 2px #c50000;
+            background: #c50000;
+            color: #fff;
+            margin-bottom: -2px;
+          }
+          .booking:hover {
+            background: #e90000;
+          }
+
+          .contact {
+            background: get-color(xanh);
+            color: #fff;
+          }
+        }
+      }
+
+      .content-left {
+        .content-section {
+          padding: 10px 0;
+          .title {
+            color: get-color(xanh);
+            font-size: 18px;
+            line-height: 18px;
+            padding: 0 7px;
+            margin: 10px 0;
+            font-weight: 600;
+            border-left: solid 3px get-color(xanh-dam);
+            margin-bottom: 5px;
+          }
+
+          .content {
+            font-size: 14px;
+            text-align: justify;
+          }
+        }
+
+        #lich-trinh {
+          .list-day {
+            padding-left: 20px;
+            position: relative;
+
+            .day {
+              .tit-day {
+                font-weight: 600;
+                line-height: 50px;
+                position: relative;
+
+                ::before {
+                  content: "";
+                  position: absolute;
+                  width: 15px;
+                  height: 15px;
+                  border-radius: 100%;
+                  border: solid 1px get-color(xanh);
+                  top: 16px;
+                  left: -22px;
+                }
+
+                ::after {
+                  content: "";
+                  position: absolute;
+                  width: 7px;
+                  height: 7px;
+                  border-radius: 100%;
+                  background: get-color(xanh);
+                  top: 20px;
+                  left: -18px;
+                }
+
+                span {
+                  color: get-color(xanh);
+                }
+              }
+              .tit-day:hover {
+                cursor: pointer;
+              }
+
+              .cont-day {
+                display: none;
+              }
+            }
+          }
+
+          .list-day::before {
+            content: "";
+            position: absolute;
+            top: 20px;
+            left: 5.5px;
+            bottom: 0;
+            border-left: solid 1px #cecece;
+          }
+        }
+
+        #ngay-khac {
+          table {
+            font-size: 13px;
+          }
+        }
+
+        #binh-luan {
+          .reviews-box {
+            background-color: #f2f5f8;
+            padding: 10px;
+            margin-bottom: 10px;
+
+            .review-box-score {
+              * {
+                text-align: center;
+                padding: 10px;
+              }
+
+              .review-score {
+                font-size: 30px;
+                line-height: 30px;
+                color: #00b7ff;
+              }
+
+              .review-score-text {
+                font-size: 20px;
+              }
+            }
+
+            .review-sumary {
+              .item {
+                display: flex;
+                padding: 5px;
+                align-items: center;
+                font-size: 13px;
+
+                .label {
+                  width: 20%;
+                }
+
+                .progress {
+                  width: 75%;
+                  height: 5px;
+                }
+
+                .count-reviews {
+                  width: 5%;
+                  text-align: right;
+                }
+              }
+            }
+          }
+
+          .reviews-list {
+            .comment-item {
+              background-color: #f2f5f8;
+              padding: 10px;
+              margin-bottom: 5px;
+
+              .comment-item-head {
+                display: flex;
+                align-items: center;
+
+                .media-left {
+                  font-size: 30px;
+                  padding: 0 10px;
+                }
+
+                .media-body {
+                  .media-heading {
+                    font-size: 15px;
+                    color: get-color(xanh-dam);
+                  }
+
+                  .date {
+                    font-size: 11px;
+                  }
+                }
+
+                .media-right {
+                  .review-star {
+                    font-size: 11px;
+                  }
+                }
+              }
+
+              .comment-item-body {
+                .content {
+                  padding: 2px 10px;
+                  font-size: 13px;
+                }
+              }
+            }
+          }
+
+          .write-review {
+            padding: 10px;
+            background-color: #f2f5f8;
+
+            .heading {
+              font-size: 15px;
+              color: get-color(xanh-dam);
+              margin-bottom: 5px;
+            }
+            .form-comment-wrapper {
+              line-height: 25px;
+              text-align: right;
+              input,
+              textarea {
+                margin-bottom: 5px;
+                border: solid 1px get-color(xanh);
+                border-radius: 1px;
+                font-size: 13px;
+                width: 100%;
+                padding: 0 10px;
+              }
+
+              textarea {
+                height: 60px;
+              }
+
+              .stars {
+                font-size: 13px;
+                margin-bottom: 5px;
+                text-align: left;
+              }
+
+              .btn-comment {
+                background: get-color(xanh);
+                border: none;
+                color: #fff;
+                font-size: 13px;
+                border-radius: 1px;
+              }
+
+              .btn-comment:hover {
+                background: get-color(xanh-dam);
+              }
+            }
+          }
+        }
+      }
+
+      .content-right {
+        #suggestions {
+          padding: 10px 0;
+          .title {
+            color: get-color(xanh);
+            font-size: 18px;
+            line-height: 18px;
+            padding: 0 7px;
+            margin: 10px 0;
+            font-weight: 600;
+            margin-bottom: 5px;
+          }
+
+          .tours {
+            padding: 10px 0;
+            .tours-list {
+              padding: 0px;
+              .row {
+                margin: 0;
+              }
+
+              .tour-item {
+                padding: 0 10px;
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .review-star {
+      .yellow {
+        color: get-color(vang);
+      }
+    }
+  }
+
+  @media only screen and (max-width: 704px) {
+    #content-wrapper nav {
+      display: none;
     }
   }
 }
