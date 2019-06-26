@@ -76,14 +76,14 @@
                                 <i class="si si-envelope-open ml-1"></i>
                             </span>
                         </a>
-                        <a class="dropdown-item d-flex align-items-center justify-content-between"
-                            href="be_pages_generic_profile.html">
+                        <router-link class="dropdown-item d-flex align-items-center justify-content-between"
+                            to="/admin/profile">
                             <span>Hồ sơ</span>
                             <span>
                                 <span class="badge badge-pill badge-success">1</span>
                                 <i class="si si-user ml-1"></i>
                             </span>
-                        </a>
+                        </router-link>
                         <a class="dropdown-item d-flex align-items-center justify-content-between"
                             href="javascript:void(0)">
                             <span>Cài đặt</span>
@@ -199,13 +199,6 @@
             </div>
             <!-- END Notifications Dropdown -->
 
-            <!-- Toggle Side Overlay -->
-            <!-- Layout API, functionality initialized in Template._uiApiLayout() -->
-            <button type="button" class="btn btn-sm btn-dual ml-2" data-toggle="layout"
-                data-action="side_overlay_toggle">
-                <i class="fa fa-fw fa-list-ul fa-flip-horizontal"></i>
-            </button>
-            <!-- END Toggle Side Overlay -->
         </div>
         <!-- END Right Section -->
     </div>

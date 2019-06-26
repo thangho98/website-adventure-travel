@@ -20,6 +20,7 @@
     <meta property="og:type" content="website">
     <meta property="og:url" content="">
     <meta property="og:image" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Icons -->
     <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
@@ -30,11 +31,14 @@
 
     <!-- Stylesheets -->
     <!-- Fonts and OneUI framework -->
-    <link rel="stylesheet" href="/css/app.css">
+    
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
     <link rel="stylesheet" id="css-main" href="{{asset('assets/css/oneui.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/jquery-ui.min.css')}}">
+    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    
 </head>
 
 <body>
@@ -152,7 +156,7 @@
             <div class="content-side content-side-full">
                 <ul class="nav-main">
                     <li class="nav-main-item">
-                        <router-link to="admin/dashboard" class="nav-main-link">
+                        <router-link to="/admin/dashboard" class="nav-main-link">
                             <i class="nav-main-link-icon si si-speedometer"></i>
                             <span class="nav-main-link-name">Bảng điều khiển</span>
                         </router-link>
@@ -166,28 +170,23 @@
                         </a>
                         <ul class="nav-main-submenu">
                             <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_blocks_styles.html">
+                                <router-link to="/admin/category" class="nav-main-link">
                                     <span class="nav-main-link-name">Danh mục</span>
-                                </a>
+                                </router-link>
+                            </li>
+                            <li class="nav-main-item">
+                                <router-link to="/admin/location" class="nav-main-link">
+                                    <span class="nav-main-link-name">Địa điểm</span>
+                                </router-link>
+                            </li>
+                             <li class="nav-main-item">
+                                <router-link to="/admin/tourist-route" class="nav-main-link">
+                                    <span class="nav-main-link-name">Tuyến du lịch</span>
+                                </router-link>
                             </li>
                             <li class="nav-main-item">
                                 <a class="nav-main-link" href="be_blocks_options.html">
-                                    <span class="nav-main-link-name">Sản phẩm</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_blocks_forms.html">
-                                    <span class="nav-main-link-name">Thương hiệu</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_blocks_themed.html">
-                                    <span class="nav-main-link-name">Nhà cung cấp</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_blocks_api.html">
-                                    <span class="nav-main-link-name">Nhân viên</span>
+                                    <span class="nav-main-link-name">Chuyến du lịch</span>
                                 </a>
                             </li>
                             <li class="nav-main-item">
@@ -197,7 +196,12 @@
                             </li>
                             <li class="nav-main-item">
                                 <a class="nav-main-link" href="be_blocks_api.html">
-                                    <span class="nav-main-link-name">Đánh giá</span>
+                                    <span class="nav-main-link-name">Nhận xét khách hàng</span>
+                                </a>
+                            </li>
+                            <li class="nav-main-item">
+                                <a class="nav-main-link" href="be_blocks_api.html">
+                                    <span class="nav-main-link-name">Khuyến mãi</span>
                                 </a>
                             </li>
                         </ul>
@@ -243,88 +247,17 @@
                     </li>
                     <li class="nav-main-heading">Nhân viên</li>
                     <li class="nav-main-item">
-                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
-                            aria-expanded="false" href="#">
-                            <i class="nav-main-link-icon si si-credit-card"></i>
-                            <span class="nav-main-link-name">Bán hàng</span>
+                        <a class="nav-main-link" href="op_error_404.html">
+                            <span class="nav-main-link-name">Đặt tour</span>
                         </a>
-                        <ul class="nav-main-submenu">
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_ui_grid.html">
-                                    <span class="nav-main-link-name">Đặt hàng</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_ui_typography.html">
-                                    <span class="nav-main-link-name">Đơn hàng</span>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
                     <li class="nav-main-item">
-                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
-                            aria-expanded="false" href="#">
-                            <i class="nav-main-link-icon si si-grid"></i>
-                            <span class="nav-main-link-name">Bảo hành</span>
+                        <a class="nav-main-link" href="op_error_404.html">
+                            <span class="nav-main-link-name">Tin tức</span>
                         </a>
-                        <ul class="nav-main-submenu">
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_tables_styles.html">
-                                    <span class="nav-main-link-name">Danh sách bảo hành</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_tables_responsive.html">
-                                    <span class="nav-main-link-name">Thêm bảo hành</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-main-item">
-                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
-                            aria-expanded="false" href="#">
-                            <i class="nav-main-link-icon si si-note"></i>
-                            <span class="nav-main-link-name">Nhập hàng</span>
-                        </a>
-                        <ul class="nav-main-submenu">
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_forms_elements.html">
-                                    <span class="nav-main-link-name">Danh sách bảo hành</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_forms_custom_controls.html">
-                                    <span class="nav-main-link-name">Thêm bảo hành</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="nav-main-item">
-                        <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
-                            aria-expanded="false">
-                            <i class="nav-main-link-icon si si-layers"></i>
-                            <span class="nav-main-link-name">Kho hàng</span>
-                        </a>
-                        <ul class="nav-main-submenu">
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_comp_loaders.html">
-                                    <span class="nav-main-link-name">Nhập kho</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_comp_image_cropper.html">
-                                    <span class="nav-main-link-name">Lập báo cáo</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_comp_appear.html">
-                                    <span class="nav-main-link-name">Xuất kho</span>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
 
-                    <li class="nav-main-heading">Hệ thống</li>
+                    <li class="nav-main-heading">Cài đặt</li>
                     <li class="nav-main-item">
                         <div class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
                             aria-expanded="false">
@@ -333,37 +266,14 @@
                         </div>
                         <ul class="nav-main-submenu">
                             <li class="nav-main-item">
-                                <a class="nav-main-link" href="#">
-                                    <span class="nav-main-link-name">Cài đặt</span>
-                                </a>
-                            </li>
-                            <li class="nav-main-item">
-                                <router-link to="admin/users" class="nav-main-link">
-                                    <span class="nav-main-link-name">Người dùng</span>
+                                <router-link to="/admin/developer" class="nav-main-link">
+                                    <span class="nav-main-link-name">Developer</span>
                                 </router-link>
                             </li>
                             <li class="nav-main-item">
-                                <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu"
-                                    aria-haspopup="true" aria-expanded="false" href="#">
-                                    <span class="nav-main-link-name">Cửa hàng</span>
-                                </a>
-                                <ul class="nav-main-submenu">
-                                    <li class="nav-main-item">
-                                        <a class="nav-main-link" href="#">
-                                            <span class="nav-main-link-name">Thuế</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-main-item">
-                                        <a class="nav-main-link" href="#">
-                                            <span class="nav-main-link-name">Tình trạng kho</span>
-                                        </a>
-                                    </li>
-                                    <li class="nav-main-item">
-                                        <a class="nav-main-link" href="#">
-                                            <span class="nav-main-link-name">Tình trạng đơn hàng</span>
-                                        </a>
-                                    </li>
-                                </ul>
+                                <router-link to="/admin/users" class="nav-main-link">
+                                    <span class="nav-main-link-name">Người dùng</span>
+                                </router-link>
                             </li>
                         </ul>
                     </li>
@@ -402,14 +312,11 @@
         @include('admin.layouts.header')
         <!-- END Header -->
 
-        <!-- Main Container -->
-        <main id="main-container">
-            <!-- for example router view -->
-            <router-view></router-view>
-            <!-- set progressbar -->
-            <vue-progress-bar></vue-progress-bar>
-        </main>
-
+        <!-- for example router view -->
+        <router-view></router-view>
+        <!-- set progressbar -->
+        <vue-progress-bar></vue-progress-bar>
+        
         <!-- Footer -->
         @include('admin.layouts.footer')
         <!-- END Footer -->
@@ -490,12 +397,15 @@
         <!-- END Apps Modal -->
     </div>
 
-    <script src="{{asset('assets/js/oneui.core.min.js')}}"></script>
-
-    <script src="{{asset('assets/js/oneui.app.min.js')}}"></script>
-    <script src="{{asset('assets/js/jquery-ui.min.js')}}"></script>
+    @auth
+    <script>
+        window.user = @json(auth()->user())
+    </script>
+    @endauth
     <script src="/js/app.js"></script>
-    @yield('scriptjs')
+    <script src="{{asset('assets/js/oneui.core.min.js')}}"></script>
+    <script src="{{asset('assets/js/oneui.app.min.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 </body>
 
 </html>

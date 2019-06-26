@@ -4874,7 +4874,7 @@ a.close.disabled {
     background-color: #fff;
     background-clip: padding-box;
     border: 0 solid rgba(0, 0, 0, .2);
-    border-radius: 0;
+    border-radius: 0.3em;
     outline: 0
 }
 
@@ -4904,7 +4904,7 @@ a.close.disabled {
     -ms-flex-pack: justify;
     justify-content: space-between;
     padding: 1rem 1rem;
-    border-bottom: 0 solid #ebebeb;
+    border-bottom: 1px solid #ebebeb;
     border-top-left-radius: 0;
     border-top-right-radius: 0
 }
@@ -4934,7 +4934,7 @@ a.close.disabled {
     -ms-flex-pack: end;
     justify-content: flex-end;
     padding: 1rem;
-    border-top: 0 solid #ebebeb;
+    border-top: 1px solid #ebebeb;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0
 }

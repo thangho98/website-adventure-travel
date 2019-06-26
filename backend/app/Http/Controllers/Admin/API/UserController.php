@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\API;
+namespace App\Http\Controllers\Admin\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 
 use App\User;
+use Auth;
 
 class UserController extends Controller
 {
@@ -43,7 +44,6 @@ class UserController extends Controller
         $this->validate($request,[
             'name' => 'required|string|max:191',
             'email' => 'required|string|email|max:191|unique:users',
-            'password' => 'required|string|min:8',
             'type' => 'required',
         ]);
 
@@ -53,7 +53,7 @@ class UserController extends Controller
             'type' => $request['type'],
             'bio' => $request['bio'],
             //'photo' => $request['photo'],
-            'password' => Hash::make($request['password']),
+            'password' => Hash::make('123456'),
         ]);
     }
 
@@ -77,14 +77,14 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::findOrFail($id);
-        $this->validate($request,[
-            'name' => 'required|string|max:191',
-            'email' => 'required|string|email|max:191|unique:users,email,'.$user->id,
-            'password' => 'sometimes|min:6'
-        ]);
-        $user->update($request->all());
-        return ['message' => 'Updated the user info'];
+        // $user = User::findOrFail($id);
+        // $this->validate($request,[
+        //     'name' => 'required|string|max:191',
+        //     'email' => 'required|string|email|max:191|unique:users,email,'.$user->id,
+        //     'password' => 'sometimes|min:6'
+        // ]);
+        // $user->update($request->all());
+        // return ['message' => 'Updated the user info'];
     }
 
     /**
@@ -113,7 +113,6 @@ class UserController extends Controller
         $this->validate($request,[
             'name' => 'required|string|max:191',
             'email' => 'required|string|email|max:191|unique:users,email,'.$user->id,
-            'password' => 'sometimes|required|min:6'
         ]);
         $currentPhoto = $user->photo;
         if($request->photo != $currentPhoto){
@@ -126,10 +125,29 @@ class UserController extends Controller
                 @unlink($userPhoto);
             }
         }
-        if(!empty($request->password)){
-            $request->merge(['password' => Hash::make($request['password'])]);
-        }
+        // if(!empty($request->password)){
+        //     $request->merge(['password' => Hash::make($request['password'])]);
+        // }
         $user->update($request->all());
+        return ['message' => "Success"];
+    }
+
+    public function changPassword(Request $request)
+    {
+        $this->validate($request,[
+            'old_password' => 'required|old_password:' . Auth::user()->password,
+            'password' => 'string|required|min:6|confirmed',
+            'password_confirmation' => 'string|required|min:6',
+        ],
+        [
+            'old_password.old_password'=>'The old password does not match'
+        ]);
+
+        $user = Auth::user();
+        $user->password = bcrypt($request->password);
+        $user->save();
+        
+
         return ['message' => "Success"];
     }
 
