@@ -10,11 +10,9 @@ window.Vue = require('vue');
 import moment from 'moment';
 import VueProgressBar from 'vue-progressbar'
 import VueRouter from 'vue-router'
-
+//
 import Gate from "./Gate";
 Vue.prototype.$gate = new Gate(window.user);
-
-
 import {
     Form,
     HasError,
@@ -32,11 +30,14 @@ Vue.component(AlertErrors.name, AlertErrors)
 Vue.component(AlertSuccess.name, AlertSuccess)
 
 const routes = [
-    { path: '/dashboard', component: require('./components/Dashboard.vue').default },
-    { path: '/developer', component: require('./components/Developer.vue').default },
-    { path: '/users', component: require('./components/Users.vue').default },
-    { path: '/profile', component: require('./components/Profile.vue').default },
-    { path: '*', component: require('./components/NotFound.vue').default }
+    { path: '/admin/dashboard', component: require('./components/Dashboard.vue').default },
+    { path: '/admin/category', component: require('./components/Category.vue').default },
+    { path: '/admin/location', component: require('./components/Location.vue').default },
+    { path: '/admin/tourist-route', component: require('./components/TouristRoute.vue').default },
+    { path: '/admin/developer', component: require('./components/Developer.vue').default },
+    { path: '/admin/users', component: require('./components/Users.vue').default },
+    { path: '/admin/profile', component: require('./components/Profile.vue').default },
+    { path: '/admin/*', component: require('./components/NotFound.vue').default }
 ]
 
 const router = new VueRouter({
@@ -51,6 +52,10 @@ Vue.filter('upText', function (text) {
 
 Vue.filter('myDate', function (created) {
     return moment(created).format('MMMM Do YYYY');
+});
+
+Vue.filter('formatPrice', function (num) {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
 });
 
 window.Fire = new Vue();
@@ -116,19 +121,25 @@ Vue.component(
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+const api = 'http://localhost:8000/api';
+Vue.prototype.$Api = api;
+
+const host = 'http://localhost:8000';
+Vue.prototype.$Host = host;
+
 const app = new Vue({
     el: '#app',
     router,
     data: {
         search: ''
     },
-    methods: {
-        searchit: _.debounce(() => {
-            Fire.$emit('searching');
-        }, 1000),
+    // methods: {
+    //     searchit: _.debounce(() => {
+    //         Fire.$emit('searching');
+    //     }, 1000),
 
-        printme() {
-            window.print();
-        }
-    }
+    //     printme() {
+    //         window.print();
+    //     }
+    // }
 });
