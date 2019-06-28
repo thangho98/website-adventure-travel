@@ -19,9 +19,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::apiResources([
-    'user'=>'API\UserController',
+    'user'=>'Admin\API\UserController',
+    'category'=>'Admin\API\CategoryController',
+    'location'=>'Admin\API\LocationController',
 ]);
 
-Route::get('profile', 'API\UserController@profile');
-Route::put('profile', 'API\UserController@updateProfile');
-Route::get('findUser', 'API\UserController@search');
+Route::get('profile', 'Admin\API\UserController@profile');
+Route::put('profile', 'Admin\API\UserController@updateProfile');
+Route::put('profile/changepassword', 'Admin\API\UserController@changPassword');
+Route::get('findUser', 'Admin\API\UserController@search');
