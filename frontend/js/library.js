@@ -144,8 +144,8 @@ class User {
 }
 
 class TourDetails {
-   
-    Init(){
+
+    Init() {
         this.titDay = document.getElementsByClassName("tit-day");
         this.contDay = document.getElementsByClassName("cont-day");
 
@@ -224,7 +224,10 @@ class TourDetails {
 
     }
 
-    CreateStarsAllPage(){
+    CreateStarsAllPage() {
         this.CreateStars(document.getElementsByClassName("review-star"));
     }
+
+  
 }
+
