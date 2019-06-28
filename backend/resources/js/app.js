@@ -34,6 +34,7 @@ const routes = [
     { path: '/admin/category', component: require('./components/Category.vue').default },
     { path: '/admin/location', component: require('./components/Location.vue').default },
     { path: '/admin/tourist-route', component: require('./components/TouristRoute.vue').default },
+    { path: '/admin/tourist-route/add', component: require('./components/TouristRouteAdd.vue').default },
     { path: '/admin/developer', component: require('./components/Developer.vue').default },
     { path: '/admin/users', component: require('./components/Users.vue').default },
     { path: '/admin/profile', component: require('./components/Profile.vue').default },
@@ -82,6 +83,18 @@ window.Toast = Toast;
 
 Vue.component('pagination', require('laravel-vue-pagination'));
 
+import vSelect from 'vue-select'
+
+Vue.component('v-select', vSelect)
+
+
+import VueLazyload from 'vue-lazyload'
+
+Vue.use(VueLazyload)
+
+import VueUploadMultipleImage from 'vue-upload-multiple-image'
+Vue.component('vue-upload-multiple-image', VueUploadMultipleImage)
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -114,6 +127,17 @@ Vue.component(
     'not-found',
     require('./components/NotFound.vue').default
 );
+
+Vue.component(
+    'destination-add',
+    require('./components/tourist_route_add/DestinationsAddComponent.vue').default
+);
+
+Vue.component(
+    'tourist-route-detail-add',
+    require('./components/tourist_route_add/TouristRouteDetailAddComponent.vue').default
+);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

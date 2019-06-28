@@ -16,7 +16,7 @@ class LocationController extends Controller
      */
      public function __construct()
      {
-         $this->middleware('auth:api');
+        //$this->middleware('auth:api');
      }
 
     /**
@@ -113,5 +113,18 @@ class LocationController extends Controller
         // delete the user
         $location->delete();
         return ['message' => 'Location Deleted'];
+    }
+
+    public function searchSelect(){
+        if ($search = \Request::get('q')) {
+            $locations = Location::where(function($query) use ($search){
+                $query->where('loca_name','LIKE',"%$search%")
+                        ->orWhere('loca_id','LIKE',"%$search%")
+                        ->orWhere('loca_description','LIKE',"%$search%");
+            })->take(5)->get();
+        }else{
+            $locations = Location::take(5)->orderBy('loca_name','asc')->get();
+        }
+        return $locations;
     }
 }

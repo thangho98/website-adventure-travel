@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th6 24, 2019 lúc 05:33 PM
+-- Thời gian đã tạo: Th6 28, 2019 lúc 02:49 PM
 -- Phiên bản máy phục vụ: 10.3.15-MariaDB
 -- Phiên bản PHP: 7.3.6
 
@@ -56,6 +56,17 @@ CREATE TABLE `categories` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `categories`
+--
+
+INSERT INTO `categories` (`cate_id`, `cate_name`, `cate_image`, `created_at`, `updated_at`) VALUES
+(2, 'Nhảy dù', '1561535871.jpeg', '2019-06-26 07:57:52', '2019-06-26 07:57:52'),
+(3, 'Lặn biển', '1561535892.jpeg', '2019-06-26 07:58:12', '2019-06-26 07:58:12'),
+(4, 'Leo núi', '1561537121.jpeg', '2019-06-26 08:18:41', '2019-06-26 08:18:41'),
+(5, 'Khám phá hang động', '1561537148.jpeg', '2019-06-26 08:19:08', '2019-06-26 08:19:08'),
+(6, 'Cưỡi voi', '1561546323.jpeg', '2019-06-26 08:19:31', '2019-06-26 10:52:03');
+
 -- --------------------------------------------------------
 
 --
@@ -69,6 +80,13 @@ CREATE TABLE `destinations` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `destinations`
+--
+
+INSERT INTO `destinations` (`dest_id`, `dest_tourist_route`, `dest_location`, `created_at`, `updated_at`) VALUES
+(1, 1, 2, '2019-06-28 12:46:59', '2019-06-28 12:46:59');
 
 -- --------------------------------------------------------
 
@@ -108,9 +126,20 @@ CREATE TABLE `image_tourist_routes` (
   `itr_id` int(10) UNSIGNED NOT NULL,
   `itr_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `itr_tourist_route` int(11) NOT NULL,
+  `itr_highlight` tinyint(1) NOT NULL,
+  `itr_default` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `image_tourist_routes`
+--
+
+INSERT INTO `image_tourist_routes` (`itr_id`, `itr_name`, `itr_tourist_route`, `itr_highlight`, `itr_default`, `created_at`, `updated_at`) VALUES
+(1, '156172601915617260194155.jpeg', 1, 1, 1, '2019-06-28 12:46:59', '2019-06-28 12:46:59'),
+(2, '156172601915617260195336.jpeg', 1, 0, 0, '2019-06-28 12:46:59', '2019-06-28 12:46:59'),
+(3, '156172601915617260196150.jpeg', 1, 0, 0, '2019-06-28 12:46:59', '2019-06-28 12:46:59');
 
 -- --------------------------------------------------------
 
@@ -121,11 +150,22 @@ CREATE TABLE `image_tourist_routes` (
 CREATE TABLE `locations` (
   `loca_id` int(10) UNSIGNED NOT NULL,
   `loca_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `loca_desciption` mediumtext COLLATE utf8_unicode_ci NOT NULL,
+  `loca_description` mediumtext COLLATE utf8_unicode_ci NOT NULL,
   `loca_poster` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `locations`
+--
+
+INSERT INTO `locations` (`loca_id`, `loca_name`, `loca_description`, `loca_poster`, `created_at`, `updated_at`) VALUES
+(1, 'Lào Cai', 'Việt Nam', '1561546084.jpeg', '2019-06-26 10:48:04', '2019-06-26 10:48:04'),
+(2, 'Điện Biên Phủ', 'Việt Nam', '1561546123.jpeg', '2019-06-26 10:48:43', '2019-06-26 10:48:43'),
+(4, 'Lai Châu', 'Việt Nam', '1561546429.jpeg', '2019-06-26 10:49:48', '2019-06-26 10:53:49'),
+(5, 'Gia Lai', 'Việt Nam', '1561546453.jpeg', '2019-06-26 10:54:13', '2019-06-26 10:54:13'),
+(6, 'Cần Thơ', 'Việt Nam', '1561546476.jpeg', '2019-06-26 10:54:36', '2019-06-26 10:54:36');
 
 -- --------------------------------------------------------
 
@@ -324,6 +364,13 @@ CREATE TABLE `tourist_routes` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `tourist_routes`
+--
+
+INSERT INTO `tourist_routes` (`tr_id`, `tr_name`, `tr_category`, `tr_time`, `tr_original_price`, `tr_max_slot`, `tr_poster`, `tr_location`, `created_at`, `updated_at`) VALUES
+(1, 'Chèo đèo', 2, 2, 300000, 2, '1561726019.jpeg', 2, '2019-06-28 12:46:59', '2019-06-28 12:46:59');
+
 -- --------------------------------------------------------
 
 --
@@ -338,6 +385,14 @@ CREATE TABLE `tourist_route_details` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `tourist_route_details`
+--
+
+INSERT INTO `tourist_route_details` (`trd_id`, `trd_date`, `trd_description`, `trd_tourist_route`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Leo núi mệt quá', 1, '2019-06-28 12:46:59', '2019-06-28 12:46:59'),
+(2, 2, 'Chán đời thôi', 1, '2019-06-28 12:46:59', '2019-06-28 12:46:59');
 
 -- --------------------------------------------------------
 
@@ -382,7 +437,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `type`, `bio`, `photo`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@me.com', NULL, '$2y$10$nH3BOAnjbsd3j2UuatWLgOwbqEe1Srh7Bhw/acqktTTvtHb8DaCvC', 'admin', NULL, 'profile.png', '48DUVND54RUprlz9BegULuO4FRVvvOlXGytZO5OGeDzfYt8TUgps2R14y7ag', '2019-06-23 12:13:05', '2019-06-23 12:13:05');
+(1, 'admin', 'admin@me.com', NULL, '$2y$10$4A2amIGywuzvJTG5GVO/Ke48QYIUzk94CeztmzHXy7aYfMV0RzvGy', 'admin', NULL, 'profile.png', 'ygjk7H2N8kIMsYv02HylmfxVVdxdFlCfsuwYbGh92gw8SMv2OOgqBxrbCkf3', '2019-06-23 12:13:05', '2019-06-25 18:01:18'),
+(2, 'thang thai', 'thanglong2098@gmail.com', NULL, '$2y$10$sXqYm0BcJsQeynyGp5Q14O.w99Dn4SoZK8a4FzPfPjSfGq9/Fmihi', 'user', NULL, 'profile.png', NULL, '2019-06-25 10:05:18', '2019-06-25 10:05:18');
 
 -- --------------------------------------------------------
 
@@ -559,13 +615,13 @@ ALTER TABLE `booking_tours`
 -- AUTO_INCREMENT cho bảng `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `cate_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `cate_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `destinations`
 --
 ALTER TABLE `destinations`
-  MODIFY `dest_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `dest_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `favorite_tours`
@@ -583,13 +639,13 @@ ALTER TABLE `image_news`
 -- AUTO_INCREMENT cho bảng `image_tourist_routes`
 --
 ALTER TABLE `image_tourist_routes`
-  MODIFY `itr_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `itr_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `locations`
 --
 ALTER TABLE `locations`
-  MODIFY `loca_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `loca_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `migrations`
@@ -631,13 +687,13 @@ ALTER TABLE `reviews`
 -- AUTO_INCREMENT cho bảng `tourist_routes`
 --
 ALTER TABLE `tourist_routes`
-  MODIFY `tr_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `tr_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `tourist_route_details`
 --
 ALTER TABLE `tourist_route_details`
-  MODIFY `trd_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `trd_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `tours`
@@ -649,7 +705,7 @@ ALTER TABLE `tours`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `user_clients`

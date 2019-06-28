@@ -110,4 +110,8 @@ class CategoryController extends Controller
         $cate->delete();
         return ['message' => 'Category Deleted'];
     }
+
+    public function getListCategories(){
+        return Category::all();
+    }
 }

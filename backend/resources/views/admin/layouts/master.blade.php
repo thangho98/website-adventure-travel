@@ -405,7 +405,12 @@
     <script src="/js/app.js"></script>
     <script src="{{asset('assets/js/oneui.core.min.js')}}"></script>
     <script src="{{asset('assets/js/oneui.app.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/jquery-bootstrap-wizard/bs4/jquery.bootstrap.wizard.min.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    <script src="{{asset('assets/js/plugins/jquery-validation/jquery.validate.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/jquery-validation/additional-methods.js')}}"></script>
+    <!-- Page JS Code -->
+    <script src="{{asset('assets/js/pages/be_forms_wizard.min.js')}}"></script>
 </body>
 
 </html>
