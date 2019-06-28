@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Destination extends Model
 {
-    protected $table = 'promotion';
-    protected $primaryKey = 'prom_id';
+    protected $table = 'destinations';
+    protected $primaryKey = 'dest_id';
     protected $guarded = [];
 }

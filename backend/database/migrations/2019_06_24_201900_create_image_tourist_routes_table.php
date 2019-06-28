@@ -17,6 +17,8 @@ class CreateImageTouristRoutesTable extends Migration
             $table->increments('itr_id');
             $table->string('itr_name');
             $table->integer('itr_tourist_route');
+            $table->boolean('itr_highlight');
+            $table->boolean('itr_default');
             $table->timestamps();
         });
     }
