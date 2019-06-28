@@ -2444,12 +2444,6 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this7 = this;
 
-    Fire.$on("searching", function () {
-      var query = _this7.$parent.search;
-      axios.get(_this7.$Api + "/findUser?q=" + query).then(function (data) {
-        _this7.locations = data.data;
-      })["catch"](function () {});
-    });
     this.loadData();
     Fire.$on("reloadData", function () {
       _this7.loadData();
@@ -75495,13 +75489,14 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", [
                         _vm._v(
-                          _vm._s(_vm._f("formatPrice")(tr.tr_price)) + " VNĐ"
+                          _vm._s(_vm._f("formatPrice")(tr.tr_original_price)) +
+                            " VNĐ"
                         )
                       ]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(tr.tr_location))]),
                       _vm._v(" "),
-                      _c("td", [
+                      _c("td", { staticClass: "text-center" }, [
                         _c(
                           "a",
                           {

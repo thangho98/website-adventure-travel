@@ -305,16 +305,6 @@ export default {
     }
   },
   created() {
-    Fire.$on("searching", () => {
-      let query = this.$parent.search;
-      axios
-        .get(this.$Api + "/findUser?q=" + query)
-        .then(data => {
-          this.locations = data.data;
-        })
-        .catch(() => {});
-    });
-
     this.loadData();
     Fire.$on("reloadData", () => {
       this.loadData();

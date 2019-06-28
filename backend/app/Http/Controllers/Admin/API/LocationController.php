@@ -16,7 +16,7 @@ class LocationController extends Controller
      */
      public function __construct()
      {
-        //$this->middleware('auth:api');
+        $this->middleware('auth:api');
      }
 
     /**
@@ -29,6 +29,8 @@ class LocationController extends Controller
         if (\Gate::allows('isAdmin') || \Gate::allows('isAuthor')) {
             return Location::latest()->paginate(5);
         }
+        else
+            return ["message"=>"fail"];
     }
 
     /**

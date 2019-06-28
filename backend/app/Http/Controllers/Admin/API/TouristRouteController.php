@@ -28,7 +28,9 @@ class TouristRouteController extends Controller
      */
     public function index()
     {
-        //
+        if (\Gate::allows('isAdmin') || \Gate::allows('isAuthor')) {
+            return TouristRoute::latest()->paginate(5);
+        }
     }
 
     /**

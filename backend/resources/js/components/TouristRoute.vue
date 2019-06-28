@@ -58,9 +58,9 @@
                   <td>{{tr.tr_name}}</td>
                   <td>{{tr.tr_category}}</td>
                   <td>{{tr.tr_time}} ngày</td>
-                  <td>{{tr.tr_price | formatPrice}} VNĐ</td>
+                  <td>{{tr.tr_original_price | formatPrice}} VNĐ</td>
                   <td>{{tr.tr_location}}</td>
-                  <td>
+                  <td class="text-center">
                     <a href="#" @click="updateModal(tr)">
                       <i class="fa fa-edit blue"></i>
                     </a>
