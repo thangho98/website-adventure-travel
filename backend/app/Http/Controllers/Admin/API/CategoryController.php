@@ -61,7 +61,7 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        return Category::find($id);
     }
 
     /**
@@ -109,5 +109,9 @@ class CategoryController extends Controller
         // delete the user
         $cate->delete();
         return ['message' => 'Category Deleted'];
+    }
+
+    public function getListCategories(){
+        return Category::all();
     }
 }

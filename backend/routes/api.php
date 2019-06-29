@@ -22,9 +22,14 @@ Route::apiResources([
     'user'=>'Admin\API\UserController',
     'category'=>'Admin\API\CategoryController',
     'location'=>'Admin\API\LocationController',
+    'tourist-route'=>'Admin\API\TouristRouteController',
 ]);
 
 Route::get('profile', 'Admin\API\UserController@profile');
 Route::put('profile', 'Admin\API\UserController@updateProfile');
 Route::put('profile/changepassword', 'Admin\API\UserController@changPassword');
 Route::get('findUser', 'Admin\API\UserController@search');
+
+Route::get('category/get/all', 'Admin\API\CategoryController@getListCategories');
+
+Route::get('location/select/search', 'Admin\API\LocationController@searchSelect');
