@@ -35,6 +35,7 @@ const routes = [
     { path: '/admin/location', component: require('./components/Location.vue').default },
     { path: '/admin/tourist-route', component: require('./components/TouristRoute.vue').default },
     { path: '/admin/tourist-route/add', component: require('./components/TouristRouteAdd.vue').default },
+    { path: '/admin/tourist-route/edit/:tr_id', name: 'editTouristRoute', component: require('./components/TouristRouteEdit.vue').default, props: true, },
     { path: '/admin/developer', component: require('./components/Developer.vue').default },
     { path: '/admin/users', component: require('./components/Users.vue').default },
     { path: '/admin/profile', component: require('./components/Profile.vue').default },
@@ -48,7 +49,21 @@ const router = new VueRouter({
 
 
 Vue.filter('upText', function (text) {
-    return text.charAt(0).toUpperCase() + text.slice(1)
+    let res = text.split(" ");
+
+
+    for (let index = 0; index < res.length; index++) {
+        const element = res[index];
+        res[index] = element.charAt(0).toUpperCase() + element.slice(1).toLowerCase();
+    }
+
+    let result = "";
+    for (let index = 0; index < res.length - 1; index++) {
+        result = result + res[index] + " ";
+    }
+    result = result + res[res.length - 1];
+
+    return result;
 });
 
 Vue.filter('myDate', function (created) {
@@ -81,12 +96,31 @@ const Toast = Swal.mixin({
 
 window.Toast = Toast;
 
+const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+        confirmButton: 'btn btn-success mr-2',
+        cancelButton: 'btn btn-danger mr-2'
+    },
+    buttonsStyling: false,
+})
+
+window.swalWithBootstrapButtons = swalWithBootstrapButtons;
+
+
 Vue.component('pagination', require('laravel-vue-pagination'));
 
 import vSelect from 'vue-select'
 
 Vue.component('v-select', vSelect)
 
+vSelect.props.components.default = () => ({
+    Deselect: {
+        render: createElement => createElement('span', '❌'),
+    },
+    OpenIndicator: {
+        render: createElement => createElement('span', '🔽'),
+    },
+});
 
 import VueLazyload from 'vue-lazyload'
 

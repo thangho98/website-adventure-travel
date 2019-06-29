@@ -411,6 +411,7 @@
     <script src="{{asset('assets/js/plugins/jquery-validation/additional-methods.js')}}"></script>
     <!-- Page JS Code -->
     <script src="{{asset('assets/js/pages/be_forms_wizard.min.js')}}"></script>
+    
 </body>
 
 </html>

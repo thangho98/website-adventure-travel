@@ -27,6 +27,7 @@
       </div>
     </div>
     <!-- END Hero -->
+
     <form>
       <!-- Page Content -->
       <div class="content">
@@ -66,8 +67,7 @@
                       required
                       :options="categories"
                       label="cate_name"
-                      :reduce="cate => cate.cate_id"
-                    />
+                    ></v-select>
                     <has-error :form="form" field="tr_category"></has-error>
                   </div>
                 </div>
@@ -150,7 +150,6 @@
                       @search="onSearchLocation"
                       :options="locations"
                       label="loca_name"
-                      :reduce="location => location.loca_id"
                     ></v-select>
                     <has-error :form="form" field="tr_location"></has-error>
                   </div>
@@ -171,16 +170,7 @@
                       @search="onSearchLocation"
                       :options="locations"
                       label="loca_name"
-                      :reduce="location => location.loca_id"
-                    >
-                      <!-- <template slot="no-options">Chọn một địa điểm</template>
-                      <template slot="option" slot-scope="location">
-                        <div class="d-center">{{ location.loca_name }}</div>
-                      </template>
-                      <template slot="selected-option" slot-scope="location">
-                        <div class="selected d-center">{{ location.loca_name }}</div>
-                      </template>-->
-                    </v-select>
+                    ></v-select>
                     <has-error :form="form" field="tr_listDestinations"></has-error>
                   </div>
                 </div>
@@ -290,11 +280,11 @@
                 </button>
                 <button
                   type="button"
-                  @click.prevent="create()"
-                  class="btn btn-primary ml-2"
+                  @click.prevent="update()"
+                  class="btn btn-success ml-2"
                   data-wizard="finish"
                 >
-                  <i class="fa fa-check ml-1"></i> Thêm mới
+                  <i class="fa fa-check ml-1"></i> Cập nhật
                 </button>
               </div>
             </div>
@@ -302,7 +292,6 @@
         </div>
       </div>
     </form>
-    <!-- END Page Content -->
     <div v-if="!$gate.isAdminOrAuthor()">
       <not-found></not-found>
     </div>
@@ -311,7 +300,6 @@
 </template>
 
 <script>
-import { log } from "util";
 export default {
   data() {
     return {
@@ -320,19 +308,22 @@ export default {
       locations: [],
       images: [],
       form: new Form({
-        tr_id: "",
+        tr_id: this.$route.params.tr_id,
         tr_name: "",
-        tr_category: 0,
+        tr_category: {},
         tr_original_price: 100000,
         tr_max_slot: 1,
         tr_time: 1,
         tr_poster: "",
-        tr_location: 0,
+        tr_location: {},
         tr_listDestinations: [],
         tr_listTouristRouteDetails: [],
         tr_fileList: []
       })
     };
+  },
+  props: {
+    tr_id: ""
   },
   methods: {
     cancel() {
@@ -366,14 +357,47 @@ export default {
           }
         });
     },
+    loadData() {
+      axios.get(this.$Api + "/tourist-route/" + this.tr_id).then(response => {
+        console.log(response);
+        this.form.fill(response.data.tourist_route);
+        this.form.tr_listTouristRouteDetails =
+          response.data.list_tourist_route_details;
+        this.form.tr_listDestinations = response.data.list_destinations;
+        this.images = response.data.list_image_tourist;
+        // this.images.forEach(element => {
+        //   element.path = this.$Host + "/img/tourist-route/" + element.path;
+        // });
+      });
+    },
     changeTime() {
+      let temp = this.form.tr_listTouristRouteDetails;
       this.form.tr_listTouristRouteDetails = [];
-      for (let index = 0; index < this.form.tr_time; index++) {
-        this.form.tr_listTouristRouteDetails[index] = {
-          trd_date: index + 1,
-          trd_description: ""
-        };
+      console.log(
+        this.form.tr_time,
+        this.form.tr_listTouristRouteDetails.length
+      );
+
+      if (this.form.tr_time > temp.length) {
+        let n = this.form.tr_time - temp.length;
+        let start = temp.length;
+        for (let index = 0; index < n; index++) {
+          temp[start + index] = {
+            trd_date: start + index + 1,
+            trd_description: ""
+          };
+        }
+      } else if (this.form.tr_time < temp) {
+        let n = temp.length - this.form.tr_time;
+        for (let index = 0; index < n; index++) {
+          temp.pop();
+        }
       }
+      this.form.tr_listTouristRouteDetails = temp;
+      console.log(
+        this.form.tr_time,
+        this.form.tr_listTouristRouteDetails.length
+      );
     },
     uploadImageSuccess(formData, index, fileList) {
       console.log("data", formData, index, fileList);
@@ -430,7 +454,7 @@ export default {
         tr_poster =
           this.form.tr_poster.length > 200
             ? this.form.tr_poster
-            : this.$Host + "/img/tourist-route/" + this.form.tr_poster;
+            : this.$Host + "/img/tourist-route/poster/" + this.form.tr_poster;
       } else {
         tr_poster = this.$Host + "/assets/media/img/new_seo-10-75.png";
       }
@@ -453,18 +477,21 @@ export default {
       };
       reader.readAsDataURL(file);
     },
-    create() {
+    update() {
       this.$Progress.start();
+      // console.log('Editing data');
       this.form
-        .post(this.$Api + "/tourist-route")
+        .put(this.$Api + "/tourist-route/" + this.form.tr_id)
         .then(response => {
-          console.log(response);
+          // success
+          $("#addNew").modal("hide");
           Toast.fire({
             type: "success",
-            title: "Tạo mới thành công!"
+            title: "Thông tin đã được cập nhật!"
           });
           this.$Progress.finish();
           this.form.reset();
+          console.log(response);
           this.$router.push("/admin/tourist-route");
         })
         .catch(() => {
@@ -473,9 +500,9 @@ export default {
     }
   },
   created() {
+    this.loadData();
     this.loadListCategories();
     this.loadListLocations();
-    this.changeTime();
   }
 };
 </script>

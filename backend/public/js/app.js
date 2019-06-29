@@ -2936,6 +2936,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3329,55 +3331,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -3402,6 +3355,30 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    cancel: function cancel() {
+      var _this = this;
+
+      swalWithBootstrapButtons.fire({
+        title: "Bạn có chắc không?",
+        text: "Bạn sẽ không thể hoàn nguyên điều này!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Vâng, hủy nó đi!",
+        cancelButtonText: "Không, ở lại đây!",
+        reverseButtons: true
+      }).then(function (result) {
+        if (result.value) {
+          swalWithBootstrapButtons.fire("Đã hủy!", "Đối tượng đã được hủy bỏ", "error").then(function () {
+            _this.form.reset();
+
+            _this.$router.push("/admin/tourist-route");
+          });
+        } else if ( // Read more about handling dismissals
+        result.dismiss === Swal.DismissReason.cancel) {
+          swalWithBootstrapButtons.fire("Oke", "Đối tượng của bạn vẫn được giữ lại :))", "success");
+        }
+      });
+    },
     changeTime: function changeTime() {
       this.form.tr_listTouristRouteDetails = [];
 
@@ -3449,17 +3426,17 @@ __webpack_require__.r(__webpack_exports__);
       });
     }, 350),
     loadListLocations: function loadListLocations() {
-      var _this = this;
+      var _this2 = this;
 
       axios.get(this.$Api + "/location/select/search?q=").then(function (response) {
-        _this.locations = response.data;
+        _this2.locations = response.data;
       });
     },
     loadListCategories: function loadListCategories() {
-      var _this2 = this;
+      var _this3 = this;
 
       axios.get(this.$Api + "/category/get/all").then(function (response) {
-        _this2.categories = response.data;
+        _this3.categories = response.data;
       });
     },
     chooseImage: function chooseImage() {
@@ -3477,7 +3454,7 @@ __webpack_require__.r(__webpack_exports__);
       return tr_poster;
     },
     updateImage: function updateImage(e) {
-      var _this3 = this;
+      var _this4 = this;
 
       var file = e.target.files[0];
       var reader = new FileReader();
@@ -3493,13 +3470,13 @@ __webpack_require__.r(__webpack_exports__);
       }
 
       reader.onloadend = function (file) {
-        _this3.form.tr_poster = reader.result;
+        _this4.form.tr_poster = reader.result;
       };
 
       reader.readAsDataURL(file);
     },
     create: function create() {
-      var _this4 = this;
+      var _this5 = this;
 
       this.$Progress.start();
       this.form.post(this.$Api + "/tourist-route").then(function (response) {
@@ -3509,28 +3486,11 @@ __webpack_require__.r(__webpack_exports__);
           title: "Tạo mới thành công!"
         });
 
-        _this4.$Progress.finish(); //this.form.reset();
-
-      })["catch"](function () {
-        _this4.$Progress.fail();
-      });
-    },
-    update: function update() {
-      var _this5 = this;
-
-      this.$Progress.start(); // console.log('Editing data');
-
-      this.form.put(this.$Api + "/tourist-route/" + this.form.tr_id).then(function () {
-        // success
-        $("#addNew").modal("hide");
-        Toast.fire({
-          type: "success",
-          title: "Thông tin đã được cập nhật!"
-        });
-
         _this5.$Progress.finish();
 
-        Fire.$emit("reloadData");
+        _this5.form.reset();
+
+        _this5.$router.push("/admin/tourist-route");
       })["catch"](function () {
         _this5.$Progress.fail();
       });
@@ -3540,6 +3500,527 @@ __webpack_require__.r(__webpack_exports__);
     this.loadListCategories();
     this.loadListLocations();
     this.changeTime();
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TouristRouteEdit.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TouristRouteEdit.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      editMode: false,
+      categories: [],
+      locations: [],
+      images: [],
+      form: new Form({
+        tr_id: this.$route.params.tr_id,
+        tr_name: "",
+        tr_category: {},
+        tr_original_price: 100000,
+        tr_max_slot: 1,
+        tr_time: 1,
+        tr_poster: "",
+        tr_location: {},
+        tr_listDestinations: [],
+        tr_listTouristRouteDetails: [],
+        tr_fileList: []
+      })
+    };
+  },
+  props: {
+    tr_id: ""
+  },
+  methods: {
+    cancel: function cancel() {
+      var _this = this;
+
+      swalWithBootstrapButtons.fire({
+        title: "Bạn có chắc không?",
+        text: "Bạn sẽ không thể hoàn nguyên điều này!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Vâng, hủy nó đi!",
+        cancelButtonText: "Không, ở lại đây!",
+        reverseButtons: true
+      }).then(function (result) {
+        if (result.value) {
+          swalWithBootstrapButtons.fire("Đã hủy!", "Đối tượng đã được hủy bỏ", "error").then(function () {
+            _this.form.reset();
+
+            _this.$router.push("/admin/tourist-route");
+          });
+        } else if ( // Read more about handling dismissals
+        result.dismiss === Swal.DismissReason.cancel) {
+          swalWithBootstrapButtons.fire("Oke", "Đối tượng của bạn vẫn được giữ lại :))", "success");
+        }
+      });
+    },
+    loadData: function loadData() {
+      var _this2 = this;
+
+      axios.get(this.$Api + "/tourist-route/" + this.tr_id).then(function (response) {
+        console.log(response);
+
+        _this2.form.fill(response.data.tourist_route);
+
+        _this2.form.tr_listTouristRouteDetails = response.data.list_tourist_route_details;
+        _this2.form.tr_listDestinations = response.data.list_destinations;
+        _this2.images = response.data.list_image_tourist; // this.images.forEach(element => {
+        //   element.path = this.$Host + "/img/tourist-route/" + element.path;
+        // });
+      });
+    },
+    changeTime: function changeTime() {
+      var temp = this.form.tr_listTouristRouteDetails;
+      this.form.tr_listTouristRouteDetails = [];
+      console.log(this.form.tr_time, this.form.tr_listTouristRouteDetails.length);
+
+      if (this.form.tr_time > temp.length) {
+        var n = this.form.tr_time - temp.length;
+        var start = temp.length;
+
+        for (var index = 0; index < n; index++) {
+          temp[start + index] = {
+            trd_date: start + index + 1,
+            trd_description: ""
+          };
+        }
+      } else if (this.form.tr_time < temp) {
+        var _n = temp.length - this.form.tr_time;
+
+        for (var _index = 0; _index < _n; _index++) {
+          temp.pop();
+        }
+      }
+
+      this.form.tr_listTouristRouteDetails = temp;
+      console.log(this.form.tr_time, this.form.tr_listTouristRouteDetails.length);
+    },
+    uploadImageSuccess: function uploadImageSuccess(formData, index, fileList) {
+      console.log("data", formData, index, fileList); // Upload image api
+
+      this.form.tr_fileList = fileList; //   axios
+      //     .post(this.$Api + "/tourist-route/image/add/1", fileList)
+      //     .then(response => {
+      //       console.log(response);
+      //     });
+    },
+    beforeRemove: function beforeRemove(index, done, fileList) {
+      console.log("index", index, fileList);
+      var r = confirm("remove image");
+
+      if (r == true) {
+        done();
+      } else {}
+
+      this.form.tr_fileList = fileList;
+    },
+    editImage: function editImage(formData, index, fileList) {
+      console.log("edit data", formData, index, fileList);
+      this.form.tr_fileList = fileList;
+    },
+    onSearchLocation: function onSearchLocation(search, loading) {
+      loading(true);
+      this.search(loading, search, this);
+    },
+    search: _.debounce(function (loading, search, vm) {
+      fetch(vm.$Api + "/location/select/search?q=".concat(search)).then(function (res) {
+        res.json().then(function (json) {
+          vm.locations = json;
+          console.log(escape(search));
+        });
+        loading(false);
+      });
+    }, 350),
+    loadListLocations: function loadListLocations() {
+      var _this3 = this;
+
+      axios.get(this.$Api + "/location/select/search?q=").then(function (response) {
+        _this3.locations = response.data;
+      });
+    },
+    loadListCategories: function loadListCategories() {
+      var _this4 = this;
+
+      axios.get(this.$Api + "/category/get/all").then(function (response) {
+        _this4.categories = response.data;
+      });
+    },
+    chooseImage: function chooseImage() {
+      this.$refs.tr_poster.click();
+    },
+    getImageModal: function getImageModal() {
+      var tr_poster = "";
+
+      if (this.form.tr_poster.length != 0) {
+        tr_poster = this.form.tr_poster.length > 200 ? this.form.tr_poster : this.$Host + "/img/tourist-route/poster/" + this.form.tr_poster;
+      } else {
+        tr_poster = this.$Host + "/assets/media/img/new_seo-10-75.png";
+      }
+
+      return tr_poster;
+    },
+    updateImage: function updateImage(e) {
+      var _this5 = this;
+
+      var file = e.target.files[0];
+      var reader = new FileReader();
+      var limit = 1024 * 1024 * 2;
+
+      if (file["size"] > limit) {
+        Swal.fire({
+          type: "error",
+          title: "Rất tiếc ...",
+          text: "Bạn đang tải lên một tệp lớn"
+        });
+        return false;
+      }
+
+      reader.onloadend = function (file) {
+        _this5.form.tr_poster = reader.result;
+      };
+
+      reader.readAsDataURL(file);
+    },
+    update: function update() {
+      var _this6 = this;
+
+      this.$Progress.start(); // console.log('Editing data');
+
+      this.form.put(this.$Api + "/tourist-route/" + this.form.tr_id).then(function (response) {
+        // success
+        $("#addNew").modal("hide");
+        Toast.fire({
+          type: "success",
+          title: "Thông tin đã được cập nhật!"
+        });
+
+        _this6.$Progress.finish();
+
+        _this6.form.reset();
+
+        console.log(response);
+
+        _this6.$router.push("/admin/tourist-route");
+      })["catch"](function () {
+        _this6.$Progress.fail();
+      });
+    }
+  },
+  created: function created() {
+    this.loadData();
+    this.loadListCategories();
+    this.loadListLocations();
   }
 });
 
@@ -75483,7 +75964,9 @@ var render = function() {
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(tr.tr_name))]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(tr.tr_category))]),
+                      _c("td", [
+                        _vm._v(_vm._s(_vm._f("upText")(tr.cate_name)))
+                      ]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(tr.tr_time) + " ngày")]),
                       _vm._v(" "),
@@ -75494,35 +75977,55 @@ var render = function() {
                         )
                       ]),
                       _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(tr.tr_location))]),
+                      _c("td", [
+                        _vm._v(_vm._s(_vm._f("upText")(tr.loca_name)))
+                      ]),
                       _vm._v(" "),
-                      _c("td", { staticClass: "text-center" }, [
-                        _c(
-                          "a",
-                          {
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                return _vm.updateModal(tr)
+                      _c(
+                        "td",
+                        { staticClass: "text-center" },
+                        [
+                          _c(
+                            "a",
+                            {
+                              attrs: { href: "#" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.update(tr.tr_id)
+                                }
                               }
-                            }
-                          },
-                          [_c("i", { staticClass: "fa fa-edit blue" })]
-                        ),
-                        _vm._v("\n                  /\n                  "),
-                        _c(
-                          "a",
-                          {
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                return _vm.deleteObject(tr.tr_id)
+                            },
+                            [_c("i", { staticClass: "fa fa-eye orange" })]
+                          ),
+                          _vm._v("/\n                  "),
+                          _c(
+                            "router-link",
+                            {
+                              attrs: {
+                                to: {
+                                  name: "editTouristRoute",
+                                  params: { tr_id: tr.tr_id }
+                                }
                               }
-                            }
-                          },
-                          [_c("i", { staticClass: "fa fa-trash red" })]
-                        )
-                      ])
+                            },
+                            [_c("i", { staticClass: "fa fa-edit blue" })]
+                          ),
+                          _vm._v("/\n                  "),
+                          _c(
+                            "a",
+                            {
+                              attrs: { href: "#" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.deleteObject(tr.tr_id)
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fa fa-trash red" })]
+                          )
+                        ],
+                        1
+                      )
                     ])
                   }),
                   0
@@ -75531,17 +76034,19 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "card-footer" },
-            [
-              _c("pagination", {
-                attrs: { data: _vm.touristRoutes },
-                on: { "pagination-change-page": _vm.getResults }
-              })
-            ],
-            1
-          )
+          _vm.touristRoutes != ""
+            ? _c(
+                "div",
+                { staticClass: "card-footer" },
+                [
+                  _c("pagination", {
+                    attrs: { data: _vm.touristRoutes },
+                    on: { "pagination-change-page": _vm.getResults }
+                  })
+                ],
+                1
+              )
+            : _vm._e()
         ])
       ])
     ]),
@@ -75658,636 +76163,506 @@ var render = function() {
   return _c("main", { attrs: { id: "main-container" } }, [
     _vm._m(0),
     _vm._v(" "),
-    _c("div", { staticClass: "content" }, [
-      _c("div", { staticClass: "block" }, [
-        _c("div", { staticClass: "block-content" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-md-12" }, [
-              _c("div", { staticClass: "js-wizard-simple block block" }, [
-                _vm._m(1),
+    _c("form", [
+      _c("div", { staticClass: "content" }, [
+        _c("div", { staticClass: "block" }, [
+          _vm._m(1),
+          _vm._v(" "),
+          _c("div", { staticClass: "block-content block-content-full" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c("div", { staticClass: "form-row" }, [
+                  _c(
+                    "div",
+                    { staticClass: "form-group col-6" },
+                    [
+                      _vm._m(2),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.tr_name,
+                            expression: "form.tr_name"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        class: { "is-invalid": _vm.form.errors.has("tr_name") },
+                        attrs: { type: "text", name: "tr_name", required: "" },
+                        domProps: { value: _vm.form.tr_name },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "tr_name", $event.target.value)
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("has-error", {
+                        attrs: { form: _vm.form, field: "tr_name" }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "form-group col-6" },
+                    [
+                      _vm._m(3),
+                      _vm._v(" "),
+                      _c("v-select", {
+                        class: {
+                          "is-invalid": _vm.form.errors.has("tr_category")
+                        },
+                        attrs: {
+                          name: "tr_category",
+                          required: "",
+                          options: _vm.categories,
+                          label: "cate_name",
+                          reduce: function(cate) {
+                            return cate.cate_id
+                          }
+                        },
+                        model: {
+                          value: _vm.form.tr_category,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "tr_category", $$v)
+                          },
+                          expression: "form.tr_category"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("has-error", {
+                        attrs: { form: _vm.form, field: "tr_category" }
+                      })
+                    ],
+                    1
+                  )
+                ]),
                 _vm._v(" "),
+                _c("div", { staticClass: "form-row" }, [
+                  _c(
+                    "div",
+                    { staticClass: "form-group col-6" },
+                    [
+                      _vm._m(4),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-group" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.tr_time,
+                              expression: "form.tr_time"
+                            }
+                          ],
+                          staticClass: "form-control text-center",
+                          class: {
+                            "is-invalid": _vm.form.errors.has("tr_time")
+                          },
+                          attrs: {
+                            type: "number",
+                            name: "tr_time",
+                            min: "1",
+                            step: "1",
+                            required: ""
+                          },
+                          domProps: { value: _vm.form.tr_time },
+                          on: {
+                            change: _vm.changeTime,
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(_vm.form, "tr_time", $event.target.value)
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm._m(5)
+                      ]),
+                      _vm._v(" "),
+                      _c("has-error", {
+                        attrs: { form: _vm.form, field: "tr_time" }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "form-group col-6" },
+                    [
+                      _vm._m(6),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-group" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.tr_original_price,
+                              expression: "form.tr_original_price"
+                            }
+                          ],
+                          staticClass: "form-control text-center",
+                          class: {
+                            "is-invalid": _vm.form.errors.has(
+                              "tr_original_price"
+                            )
+                          },
+                          attrs: {
+                            type: "number",
+                            min: "0",
+                            step: "100000",
+                            name: "tr_original_price",
+                            required: ""
+                          },
+                          domProps: { value: _vm.form.tr_original_price },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.form,
+                                "tr_original_price",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm._m(7)
+                      ]),
+                      _vm._v(" "),
+                      _c("has-error", {
+                        attrs: { form: _vm.form, field: "tr_original_price" }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-row" }, [
+                  _c(
+                    "div",
+                    { staticClass: "form-group col-6" },
+                    [
+                      _vm._m(8),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.tr_max_slot,
+                            expression: "form.tr_max_slot"
+                          }
+                        ],
+                        staticClass: "form-control text-center",
+                        class: {
+                          "is-invalid": _vm.form.errors.has("tr_max_slot")
+                        },
+                        attrs: {
+                          type: "number",
+                          min: "1",
+                          step: "1",
+                          name: "tr_max_slot",
+                          required: ""
+                        },
+                        domProps: { value: _vm.form.tr_max_slot },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.form,
+                              "tr_max_slot",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("has-error", {
+                        attrs: { form: _vm.form, field: "tr_max_slot" }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "form-group col-6" },
+                    [
+                      _vm._m(9),
+                      _vm._v(" "),
+                      _c("v-select", {
+                        class: {
+                          "is-invalid": _vm.form.errors.has("tr_location")
+                        },
+                        attrs: {
+                          name: "tr_location",
+                          required: "",
+                          filterable: false,
+                          options: _vm.locations,
+                          label: "loca_name",
+                          reduce: function(location) {
+                            return location.loca_id
+                          }
+                        },
+                        on: { search: _vm.onSearchLocation },
+                        model: {
+                          value: _vm.form.tr_location,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "tr_location", $$v)
+                          },
+                          expression: "form.tr_location"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("has-error", {
+                        attrs: { form: _vm.form, field: "tr_location" }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-row" }, [
+                  _c(
+                    "div",
+                    { staticClass: "form-group col-12" },
+                    [
+                      _vm._m(10),
+                      _vm._v(" "),
+                      _c("v-select", {
+                        class: {
+                          "is-invalid": _vm.form.errors.has(
+                            "tr_listDestinations"
+                          )
+                        },
+                        attrs: {
+                          multiple: "",
+                          name: "tr_listDestinations",
+                          required: "",
+                          filterable: false,
+                          options: _vm.locations,
+                          label: "loca_name",
+                          reduce: function(location) {
+                            return location.loca_id
+                          }
+                        },
+                        on: { search: _vm.onSearchLocation },
+                        model: {
+                          value: _vm.form.tr_listDestinations,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "tr_listDestinations", $$v)
+                          },
+                          expression: "form.tr_listDestinations"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("has-error", {
+                        attrs: { form: _vm.form, field: "tr_listDestinations" }
+                      })
+                    ],
+                    1
+                  )
+                ])
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "content" }, [
+        _c("div", { staticClass: "block" }, [
+          _vm._m(11),
+          _vm._v(" "),
+          _c("div", { staticClass: "block-content block-content-full" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-12" }, [
                 _c(
-                  "form",
+                  "table",
                   {
-                    on: {
-                      submit: function($event) {
-                        $event.preventDefault()
-                        return _vm.create()
-                      }
-                    }
+                    staticClass:
+                      "table table-striped table-bordered table-hover"
                   },
                   [
-                    _vm._m(2),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass:
-                          "block-content block-content-full tab-content px-md-5",
-                        staticStyle: { "min-height": "300px" }
-                      },
-                      [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "tab-pane active",
-                            attrs: {
-                              id: "wizard-progress-step1",
-                              role: "tabpanel"
-                            }
-                          },
-                          [
-                            _c("div", { staticClass: "form-row" }, [
-                              _c(
-                                "div",
-                                { staticClass: "form-group col-6" },
-                                [
-                                  _vm._m(3),
-                                  _vm._v(" "),
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.form.tr_name,
-                                        expression: "form.tr_name"
-                                      }
-                                    ],
-                                    staticClass: "form-control",
-                                    class: {
-                                      "is-invalid": _vm.form.errors.has(
-                                        "tr_name"
-                                      )
-                                    },
-                                    attrs: {
-                                      type: "text",
-                                      name: "tr_name",
-                                      required: ""
-                                    },
-                                    domProps: { value: _vm.form.tr_name },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.form,
-                                          "tr_name",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("has-error", {
-                                    attrs: { form: _vm.form, field: "tr_name" }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "form-group col-6" },
-                                [
-                                  _vm._m(4),
-                                  _vm._v(" "),
-                                  _c("v-select", {
-                                    class: {
-                                      "is-invalid": _vm.form.errors.has(
-                                        "tr_category"
-                                      )
-                                    },
-                                    attrs: {
-                                      name: "tr_category",
-                                      required: "",
-                                      options: _vm.categories,
-                                      label: "cate_name",
-                                      reduce: function(cate) {
-                                        return cate.cate_id
-                                      }
-                                    },
-                                    model: {
-                                      value: _vm.form.tr_category,
-                                      callback: function($$v) {
-                                        _vm.$set(_vm.form, "tr_category", $$v)
-                                      },
-                                      expression: "form.tr_category"
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("has-error", {
-                                    attrs: {
-                                      form: _vm.form,
-                                      field: "tr_category"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "form-row" }, [
-                              _c(
-                                "div",
-                                { staticClass: "form-group col-6" },
-                                [
-                                  _vm._m(5),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "input-group" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.form.tr_time,
-                                          expression: "form.tr_time"
-                                        }
-                                      ],
-                                      staticClass: "form-control text-center",
-                                      class: {
-                                        "is-invalid": _vm.form.errors.has(
-                                          "tr_time"
-                                        )
-                                      },
-                                      attrs: {
-                                        type: "number",
-                                        name: "tr_time",
-                                        min: "1",
-                                        step: "1",
-                                        required: ""
-                                      },
-                                      domProps: { value: _vm.form.tr_time },
-                                      on: {
-                                        change: _vm.changeTime,
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
-                                          }
-                                          _vm.$set(
-                                            _vm.form,
-                                            "tr_time",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    }),
-                                    _vm._v(" "),
-                                    _vm._m(6)
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("has-error", {
-                                    attrs: { form: _vm.form, field: "tr_time" }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "form-group col-6" },
-                                [
-                                  _vm._m(7),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "input-group" }, [
-                                    _c("input", {
-                                      directives: [
-                                        {
-                                          name: "model",
-                                          rawName: "v-model",
-                                          value: _vm.form.tr_original_price,
-                                          expression: "form.tr_original_price"
-                                        }
-                                      ],
-                                      staticClass: "form-control text-center",
-                                      class: {
-                                        "is-invalid": _vm.form.errors.has(
-                                          "tr_original_price"
-                                        )
-                                      },
-                                      attrs: {
-                                        type: "number",
-                                        min: "0",
-                                        step: "100000",
-                                        name: "tr_original_price",
-                                        required: ""
-                                      },
-                                      domProps: {
-                                        value: _vm.form.tr_original_price
-                                      },
-                                      on: {
-                                        input: function($event) {
-                                          if ($event.target.composing) {
-                                            return
-                                          }
-                                          _vm.$set(
-                                            _vm.form,
-                                            "tr_original_price",
-                                            $event.target.value
-                                          )
-                                        }
-                                      }
-                                    }),
-                                    _vm._v(" "),
-                                    _vm._m(8)
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("has-error", {
-                                    attrs: {
-                                      form: _vm.form,
-                                      field: "tr_original_price"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "form-row" }, [
-                              _c(
-                                "div",
-                                { staticClass: "form-group col-6" },
-                                [
-                                  _vm._m(9),
-                                  _vm._v(" "),
-                                  _c("input", {
-                                    directives: [
-                                      {
-                                        name: "model",
-                                        rawName: "v-model",
-                                        value: _vm.form.tr_max_slot,
-                                        expression: "form.tr_max_slot"
-                                      }
-                                    ],
-                                    staticClass: "form-control text-center",
-                                    class: {
-                                      "is-invalid": _vm.form.errors.has(
-                                        "tr_max_slot"
-                                      )
-                                    },
-                                    attrs: {
-                                      type: "number",
-                                      min: "1",
-                                      step: "1",
-                                      name: "tr_max_slot",
-                                      required: ""
-                                    },
-                                    domProps: { value: _vm.form.tr_max_slot },
-                                    on: {
-                                      input: function($event) {
-                                        if ($event.target.composing) {
-                                          return
-                                        }
-                                        _vm.$set(
-                                          _vm.form,
-                                          "tr_max_slot",
-                                          $event.target.value
-                                        )
-                                      }
-                                    }
-                                  }),
-                                  _vm._v(" "),
-                                  _c("has-error", {
-                                    attrs: {
-                                      form: _vm.form,
-                                      field: "tr_max_slot"
-                                    }
-                                  })
-                                ],
-                                1
-                              ),
-                              _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "form-group col-6" },
-                                [
-                                  _vm._m(10),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-select",
-                                    {
-                                      class: {
-                                        "is-invalid": _vm.form.errors.has(
-                                          "tr_location"
-                                        )
-                                      },
-                                      attrs: {
-                                        name: "tr_location",
-                                        required: "",
-                                        filterable: false,
-                                        options: _vm.locations,
-                                        label: "loca_name",
-                                        reduce: function(location) {
-                                          return location.loca_id
-                                        }
-                                      },
-                                      on: { search: _vm.onSearchLocation },
-                                      scopedSlots: _vm._u([
-                                        {
-                                          key: "option",
-                                          fn: function(location) {
-                                            return [
-                                              _c(
-                                                "div",
-                                                { staticClass: "d-center" },
-                                                [
-                                                  _vm._v(
-                                                    _vm._s(location.loca_name)
-                                                  )
-                                                ]
-                                              )
-                                            ]
-                                          }
-                                        },
-                                        {
-                                          key: "selected-option",
-                                          fn: function(location) {
-                                            return [
-                                              _c(
-                                                "div",
-                                                {
-                                                  staticClass:
-                                                    "selected d-center"
-                                                },
-                                                [
-                                                  _vm._v(
-                                                    _vm._s(location.loca_name)
-                                                  )
-                                                ]
-                                              )
-                                            ]
-                                          }
-                                        }
-                                      ]),
-                                      model: {
-                                        value: _vm.form.tr_location,
-                                        callback: function($$v) {
-                                          _vm.$set(_vm.form, "tr_location", $$v)
-                                        },
-                                        expression: "form.tr_location"
-                                      }
-                                    },
-                                    [
-                                      _c("template", { slot: "no-options" }, [
-                                        _vm._v("Chọn một địa điểm")
-                                      ])
-                                    ],
-                                    2
-                                  ),
-                                  _vm._v(" "),
-                                  _c("has-error", {
-                                    attrs: {
-                                      form: _vm.form,
-                                      field: "tr_location"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("div", { staticClass: "form-row" }, [
-                              _c(
-                                "div",
-                                { staticClass: "form-group col-12" },
-                                [
-                                  _vm._m(11),
-                                  _vm._v(" "),
-                                  _c(
-                                    "v-select",
-                                    {
-                                      class: {
-                                        "is-invalid": _vm.form.errors.has(
-                                          "tr_listDestinations"
-                                        )
-                                      },
-                                      attrs: {
-                                        multiple: "",
-                                        name: "tr_listDestinations",
-                                        required: "",
-                                        filterable: false,
-                                        options: _vm.locations,
-                                        label: "loca_name",
-                                        reduce: function(location) {
-                                          return location.loca_id
-                                        }
-                                      },
-                                      on: { search: _vm.onSearchLocation },
-                                      scopedSlots: _vm._u([
-                                        {
-                                          key: "option",
-                                          fn: function(location) {
-                                            return [
-                                              _c(
-                                                "div",
-                                                { staticClass: "d-center" },
-                                                [
-                                                  _vm._v(
-                                                    _vm._s(location.loca_name)
-                                                  )
-                                                ]
-                                              )
-                                            ]
-                                          }
-                                        },
-                                        {
-                                          key: "selected-option",
-                                          fn: function(location) {
-                                            return [
-                                              _c(
-                                                "div",
-                                                {
-                                                  staticClass:
-                                                    "selected d-center"
-                                                },
-                                                [
-                                                  _vm._v(
-                                                    _vm._s(location.loca_name)
-                                                  )
-                                                ]
-                                              )
-                                            ]
-                                          }
-                                        }
-                                      ]),
-                                      model: {
-                                        value: _vm.form.tr_listDestinations,
-                                        callback: function($$v) {
-                                          _vm.$set(
-                                            _vm.form,
-                                            "tr_listDestinations",
-                                            $$v
-                                          )
-                                        },
-                                        expression: "form.tr_listDestinations"
-                                      }
-                                    },
-                                    [
-                                      _c("template", { slot: "no-options" }, [
-                                        _vm._v("Chọn một địa điểm")
-                                      ])
-                                    ],
-                                    2
-                                  ),
-                                  _vm._v(" "),
-                                  _c("has-error", {
-                                    attrs: {
-                                      form: _vm.form,
-                                      field: "tr_listDestinations"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ])
-                          ]
-                        ),
+                    _c("tbody", [
+                      _c("tr", [
+                        _vm._m(12),
                         _vm._v(" "),
                         _c(
-                          "div",
-                          {
-                            staticClass: "tab-pane",
-                            attrs: {
-                              id: "wizard-progress-step2",
-                              role: "tabpanel"
-                            }
-                          },
+                          "td",
+                          { staticClass: "text-left" },
                           [
-                            _c(
-                              "table",
-                              {
-                                staticClass:
-                                  "table table-striped table-bordered table-hover"
+                            _c("input", {
+                              ref: "tr_poster",
+                              staticClass: "form-input",
+                              class: {
+                                "is-invalid": _vm.form.errors.has("tr_poster")
                               },
-                              [
-                                _c("tbody", [
-                                  _c("tr", [
-                                    _vm._m(12),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      { staticClass: "text-left" },
-                                      [
-                                        _c("input", {
-                                          ref: "tr_poster",
-                                          staticClass: "form-input",
-                                          class: {
-                                            "is-invalid": _vm.form.errors.has(
-                                              "tr_poster"
-                                            )
-                                          },
-                                          attrs: {
-                                            hidden: "",
-                                            id: "tr_poster",
-                                            type: "file",
-                                            accept: "image/*",
-                                            name: "tr_poster"
-                                          },
-                                          on: { change: _vm.updateImage }
-                                        }),
-                                        _vm._v(" "),
-                                        _c("img", {
-                                          staticClass:
-                                            "thumbnail ml-2 border border-primary",
-                                          attrs: {
-                                            src: _vm.getImageModal(),
-                                            height: "75px;",
-                                            width: "150px;"
-                                          },
-                                          on: { click: _vm.chooseImage }
-                                        }),
-                                        _vm._v(" "),
-                                        _c("has-error", {
-                                          attrs: {
-                                            form: _vm.form,
-                                            field: "tr_poster"
-                                          }
-                                        })
-                                      ],
-                                      1
-                                    )
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("tr", [
-                                    _vm._m(13),
-                                    _vm._v(" "),
-                                    _c(
-                                      "td",
-                                      { staticClass: "text-left" },
-                                      [
-                                        _c("vue-upload-multiple-image", {
-                                          attrs: {
-                                            id: "tr_image",
-                                            "data-images": _vm.images
-                                          },
-                                          on: {
-                                            "upload-success":
-                                              _vm.uploadImageSuccess,
-                                            "before-remove": _vm.beforeRemove,
-                                            "edit-image": _vm.editImage
-                                          }
-                                        })
-                                      ],
-                                      1
-                                    )
-                                  ])
-                                ])
-                              ]
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "div",
-                          {
-                            staticClass: "tab-pane",
-                            attrs: {
-                              id: "wizard-progress-step3",
-                              role: "tabpanel"
-                            }
-                          },
-                          [
-                            _c(
-                              "table",
-                              {
-                                staticClass:
-                                  "table table-striped table-bordered table-hover",
-                                attrs: { id: "images" }
+                              attrs: {
+                                hidden: "",
+                                id: "tr_poster",
+                                type: "file",
+                                accept: "image/*",
+                                name: "tr_poster"
                               },
-                              [
-                                _vm._m(14),
-                                _vm._v(" "),
-                                _c(
-                                  "tbody",
-                                  _vm._l(
-                                    _vm.form.tr_listTouristRouteDetails,
-                                    function(item, index) {
-                                      return _c("tourist-route-detail-add", {
-                                        key: "trd" + index,
-                                        attrs: { trd: item, index: index },
-                                        on: {
-                                          "update:trd": function($event) {
-                                            item = $event
-                                          }
-                                        }
-                                      })
-                                    }
-                                  ),
-                                  1
-                                )
-                              ]
-                            )
-                          ]
+                              on: { change: _vm.updateImage }
+                            }),
+                            _vm._v(" "),
+                            _c("img", {
+                              staticClass:
+                                "thumbnail ml-2 border border-primary",
+                              attrs: {
+                                src: _vm.getImageModal(),
+                                height: "75px;",
+                                width: "150px;"
+                              },
+                              on: { click: _vm.chooseImage }
+                            }),
+                            _vm._v(" "),
+                            _c("has-error", {
+                              attrs: { form: _vm.form, field: "tr_poster" }
+                            })
+                          ],
+                          1
                         )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _vm._m(15)
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _vm._m(13),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          { staticClass: "text-left" },
+                          [
+                            _c("vue-upload-multiple-image", {
+                              attrs: {
+                                id: "tr_image",
+                                "data-images": _vm.images
+                              },
+                              on: {
+                                "upload-success": _vm.uploadImageSuccess,
+                                "before-remove": _vm.beforeRemove,
+                                "edit-image": _vm.editImage
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ])
+                    ])
                   ]
                 )
               ])
             ])
           ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "content" }, [
+        _c("div", { staticClass: "block" }, [
+          _vm._m(14),
+          _vm._v(" "),
+          _c("div", { staticClass: "block-content block-content-full" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c(
+                  "table",
+                  {
+                    staticClass:
+                      "table table-striped table-bordered table-hover",
+                    attrs: { id: "images" }
+                  },
+                  [
+                    _vm._m(15),
+                    _vm._v(" "),
+                    _c(
+                      "tbody",
+                      _vm._l(_vm.form.tr_listTouristRouteDetails, function(
+                        item,
+                        index
+                      ) {
+                        return _c("tourist-route-detail-add", {
+                          key: "trd" + index,
+                          attrs: { trd: item, index: index },
+                          on: {
+                            "update:trd": function($event) {
+                              item = $event
+                            }
+                          }
+                        })
+                      }),
+                      1
+                    )
+                  ]
+                )
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "content" }, [
+        _c("div", { staticClass: "block" }, [
+          _c(
+            "div",
+            {
+              staticClass:
+                "block-content block-content-sm block-content-full bg-body-light rounded-bottom"
+            },
+            [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-6 text-left" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger",
+                      attrs: { type: "button", "data-wizard": "next" },
+                      on: {
+                        click: function($event) {
+                          return _vm.cancel()
+                        }
+                      }
+                    },
+                    [
+                      _c("i", { staticClass: "fa fa-times ml-1" }),
+                      _vm._v("\n                Hủy\n              ")
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary ml-2",
+                      attrs: { type: "button", "data-wizard": "finish" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.create()
+                        }
+                      }
+                    },
+                    [
+                      _c("i", { staticClass: "fa fa-check ml-1" }),
+                      _vm._v(" Thêm mới\n              ")
+                    ]
+                  )
+                ])
+              ])
+            ]
+          )
         ])
       ])
     ]),
@@ -76357,74 +76732,10 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "ul",
-      {
-        staticClass: "nav nav-tabs nav-tabs-block nav-justified",
-        attrs: { role: "tablist" }
-      },
-      [
-        _c("li", { staticClass: "nav-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link active",
-              attrs: { href: "#wizard-progress-step1", "data-toggle": "tab" }
-            },
-            [_vm._v("1. Thông tin tuyến du lịch")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link",
-              attrs: { href: "#wizard-progress-step2", "data-toggle": "tab" }
-            },
-            [_vm._v("2. Hình ảnh")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("li", { staticClass: "nav-item" }, [
-          _c(
-            "a",
-            {
-              staticClass: "nav-link",
-              attrs: { href: "#wizard-progress-step3", "data-toggle": "tab" }
-            },
-            [_vm._v("3. Chi tiết tuyến du lịch")]
-          )
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "block-content block-content-sm" }, [
-      _c(
-        "div",
-        {
-          staticClass: "progress",
-          staticStyle: { height: "8px" },
-          attrs: { "data-wizard": "progress" }
-        },
-        [
-          _c("div", {
-            staticClass:
-              "progress-bar progress-bar-striped progress-bar-animated bg-primary",
-            staticStyle: { width: "30%" },
-            attrs: {
-              role: "progressbar",
-              "aria-valuenow": "30",
-              "aria-valuemin": "0",
-              "aria-valuemax": "100"
-            }
-          })
-        ]
-      )
+    return _c("div", { staticClass: "block-header" }, [
+      _c("h3", { staticClass: "block-title" }, [
+        _vm._v("1. Thông tin tuyến du lịch")
+      ])
     ])
   },
   function() {
@@ -76432,7 +76743,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "" } }, [
-      _vm._v("\n                          Tên\n                          "),
+      _vm._v("\n                    Tên\n                    "),
       _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   },
@@ -76441,9 +76752,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "" } }, [
-      _vm._v(
-        "\n                          Thể loại\n                          "
-      ),
+      _vm._v("\n                    Thể loại\n                    "),
       _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   },
@@ -76452,9 +76761,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "" } }, [
-      _vm._v(
-        "\n                          Thời gian\n                          "
-      ),
+      _vm._v("\n                    Thời gian\n                    "),
       _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   },
@@ -76473,7 +76780,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "" } }, [
-      _vm._v("\n                          Giá gốc\n                          "),
+      _vm._v("\n                    Giá gốc\n                    "),
       _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   },
@@ -76492,9 +76799,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "" } }, [
-      _vm._v(
-        "\n                          Số chỗ tối đa\n                          "
-      ),
+      _vm._v("\n                    Số chỗ tối đa\n                    "),
       _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   },
@@ -76503,9 +76808,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "" } }, [
-      _vm._v(
-        "\n                          Nơi khởi hành\n                          "
-      ),
+      _vm._v("\n                    Nơi khởi hành\n                    "),
       _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   },
@@ -76514,10 +76817,16 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "" } }, [
-      _vm._v(
-        "\n                          Các điểm đến\n                          "
-      ),
+      _vm._v("\n                    Các điểm đến\n                    "),
       _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "block-header" }, [
+      _c("h3", { staticClass: "block-title" }, [_vm._v("2. Hình ảnh")])
     ])
   },
   function() {
@@ -76548,11 +76857,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", [
-      _c("tr", [
-        _c("td", { staticStyle: { width: "20%" } }, [_vm._v("Ngày thứ")]),
-        _vm._v(" "),
-        _c("td", [_vm._v("Mô tả")])
+    return _c("div", { staticClass: "block-header" }, [
+      _c("h3", { staticClass: "block-title" }, [
+        _vm._v("3. Chi tiết tuyến du lịch")
       ])
     ])
   },
@@ -76560,58 +76867,741 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticClass:
-          "block-content block-content-sm block-content-full bg-body-light rounded-bottom"
-      },
-      [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-6" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-secondary",
-                attrs: { type: "button", "data-wizard": "prev" }
-              },
-              [
-                _c("i", { staticClass: "fa fa-angle-left mr-1" }),
-                _vm._v(" Trước\n                      ")
-              ]
-            )
-          ]),
+    return _c("thead", [
+      _c("tr", [
+        _c("td", { staticStyle: { width: "20%" } }, [_vm._v("Ngày thứ")]),
+        _vm._v(" "),
+        _c("td", [_vm._v("Mô tả")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TouristRouteEdit.vue?vue&type=template&id=86baaa68&scoped=true&":
+/*!*******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TouristRouteEdit.vue?vue&type=template&id=86baaa68&scoped=true& ***!
+  \*******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("main", { attrs: { id: "main-container" } }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("form", [
+      _c("div", { staticClass: "content" }, [
+        _c("div", { staticClass: "block" }, [
+          _vm._m(1),
           _vm._v(" "),
-          _c("div", { staticClass: "col-6 text-right" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-secondary",
-                attrs: { type: "button", "data-wizard": "next" }
-              },
-              [
-                _vm._v(
-                  "\n                        Kế tiếp\n                        "
-                ),
-                _c("i", { staticClass: "fa fa-angle-right ml-1" })
-              ]
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-primary d-none",
-                attrs: { type: "submit", "data-wizard": "finish" }
-              },
-              [
-                _c("i", { staticClass: "fa fa-check mr-1" }),
-                _vm._v(" Hoàn tất\n                      ")
-              ]
-            )
+          _c("div", { staticClass: "block-content block-content-full" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c("div", { staticClass: "form-row" }, [
+                  _c(
+                    "div",
+                    { staticClass: "form-group col-6" },
+                    [
+                      _vm._m(2),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.tr_name,
+                            expression: "form.tr_name"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        class: { "is-invalid": _vm.form.errors.has("tr_name") },
+                        attrs: { type: "text", name: "tr_name", required: "" },
+                        domProps: { value: _vm.form.tr_name },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "tr_name", $event.target.value)
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("has-error", {
+                        attrs: { form: _vm.form, field: "tr_name" }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "form-group col-6" },
+                    [
+                      _vm._m(3),
+                      _vm._v(" "),
+                      _c("v-select", {
+                        class: {
+                          "is-invalid": _vm.form.errors.has("tr_category")
+                        },
+                        attrs: {
+                          name: "tr_category",
+                          required: "",
+                          options: _vm.categories,
+                          label: "cate_name"
+                        },
+                        model: {
+                          value: _vm.form.tr_category,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "tr_category", $$v)
+                          },
+                          expression: "form.tr_category"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("has-error", {
+                        attrs: { form: _vm.form, field: "tr_category" }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-row" }, [
+                  _c(
+                    "div",
+                    { staticClass: "form-group col-6" },
+                    [
+                      _vm._m(4),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-group" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.tr_time,
+                              expression: "form.tr_time"
+                            }
+                          ],
+                          staticClass: "form-control text-center",
+                          class: {
+                            "is-invalid": _vm.form.errors.has("tr_time")
+                          },
+                          attrs: {
+                            type: "number",
+                            name: "tr_time",
+                            min: "1",
+                            step: "1",
+                            required: ""
+                          },
+                          domProps: { value: _vm.form.tr_time },
+                          on: {
+                            change: _vm.changeTime,
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(_vm.form, "tr_time", $event.target.value)
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm._m(5)
+                      ]),
+                      _vm._v(" "),
+                      _c("has-error", {
+                        attrs: { form: _vm.form, field: "tr_time" }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "form-group col-6" },
+                    [
+                      _vm._m(6),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "input-group" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.tr_original_price,
+                              expression: "form.tr_original_price"
+                            }
+                          ],
+                          staticClass: "form-control text-center",
+                          class: {
+                            "is-invalid": _vm.form.errors.has(
+                              "tr_original_price"
+                            )
+                          },
+                          attrs: {
+                            type: "number",
+                            min: "0",
+                            step: "100000",
+                            name: "tr_original_price",
+                            required: ""
+                          },
+                          domProps: { value: _vm.form.tr_original_price },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.form,
+                                "tr_original_price",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        }),
+                        _vm._v(" "),
+                        _vm._m(7)
+                      ]),
+                      _vm._v(" "),
+                      _c("has-error", {
+                        attrs: { form: _vm.form, field: "tr_original_price" }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-row" }, [
+                  _c(
+                    "div",
+                    { staticClass: "form-group col-6" },
+                    [
+                      _vm._m(8),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.tr_max_slot,
+                            expression: "form.tr_max_slot"
+                          }
+                        ],
+                        staticClass: "form-control text-center",
+                        class: {
+                          "is-invalid": _vm.form.errors.has("tr_max_slot")
+                        },
+                        attrs: {
+                          type: "number",
+                          min: "1",
+                          step: "1",
+                          name: "tr_max_slot",
+                          required: ""
+                        },
+                        domProps: { value: _vm.form.tr_max_slot },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.form,
+                              "tr_max_slot",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("has-error", {
+                        attrs: { form: _vm.form, field: "tr_max_slot" }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "form-group col-6" },
+                    [
+                      _vm._m(9),
+                      _vm._v(" "),
+                      _c("v-select", {
+                        class: {
+                          "is-invalid": _vm.form.errors.has("tr_location")
+                        },
+                        attrs: {
+                          name: "tr_location",
+                          required: "",
+                          filterable: false,
+                          options: _vm.locations,
+                          label: "loca_name"
+                        },
+                        on: { search: _vm.onSearchLocation },
+                        model: {
+                          value: _vm.form.tr_location,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "tr_location", $$v)
+                          },
+                          expression: "form.tr_location"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("has-error", {
+                        attrs: { form: _vm.form, field: "tr_location" }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-row" }, [
+                  _c(
+                    "div",
+                    { staticClass: "form-group col-12" },
+                    [
+                      _vm._m(10),
+                      _vm._v(" "),
+                      _c("v-select", {
+                        class: {
+                          "is-invalid": _vm.form.errors.has(
+                            "tr_listDestinations"
+                          )
+                        },
+                        attrs: {
+                          multiple: "",
+                          name: "tr_listDestinations",
+                          required: "",
+                          filterable: false,
+                          options: _vm.locations,
+                          label: "loca_name"
+                        },
+                        on: { search: _vm.onSearchLocation },
+                        model: {
+                          value: _vm.form.tr_listDestinations,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "tr_listDestinations", $$v)
+                          },
+                          expression: "form.tr_listDestinations"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("has-error", {
+                        attrs: { form: _vm.form, field: "tr_listDestinations" }
+                      })
+                    ],
+                    1
+                  )
+                ])
+              ])
+            ])
           ])
         ])
-      ]
-    )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "content" }, [
+        _c("div", { staticClass: "block" }, [
+          _vm._m(11),
+          _vm._v(" "),
+          _c("div", { staticClass: "block-content block-content-full" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c(
+                  "table",
+                  {
+                    staticClass:
+                      "table table-striped table-bordered table-hover"
+                  },
+                  [
+                    _c("tbody", [
+                      _c("tr", [
+                        _vm._m(12),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          { staticClass: "text-left" },
+                          [
+                            _c("input", {
+                              ref: "tr_poster",
+                              staticClass: "form-input",
+                              class: {
+                                "is-invalid": _vm.form.errors.has("tr_poster")
+                              },
+                              attrs: {
+                                hidden: "",
+                                id: "tr_poster",
+                                type: "file",
+                                accept: "image/*",
+                                name: "tr_poster"
+                              },
+                              on: { change: _vm.updateImage }
+                            }),
+                            _vm._v(" "),
+                            _c("img", {
+                              staticClass:
+                                "thumbnail ml-2 border border-primary",
+                              attrs: {
+                                src: _vm.getImageModal(),
+                                height: "75px;",
+                                width: "150px;"
+                              },
+                              on: { click: _vm.chooseImage }
+                            }),
+                            _vm._v(" "),
+                            _c("has-error", {
+                              attrs: { form: _vm.form, field: "tr_poster" }
+                            })
+                          ],
+                          1
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("tr", [
+                        _vm._m(13),
+                        _vm._v(" "),
+                        _c(
+                          "td",
+                          { staticClass: "text-left" },
+                          [
+                            _c("vue-upload-multiple-image", {
+                              attrs: {
+                                id: "tr_image",
+                                "data-images": _vm.images
+                              },
+                              on: {
+                                "upload-success": _vm.uploadImageSuccess,
+                                "before-remove": _vm.beforeRemove,
+                                "edit-image": _vm.editImage
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ])
+                    ])
+                  ]
+                )
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "content" }, [
+        _c("div", { staticClass: "block" }, [
+          _vm._m(14),
+          _vm._v(" "),
+          _c("div", { staticClass: "block-content block-content-full" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c(
+                  "table",
+                  {
+                    staticClass:
+                      "table table-striped table-bordered table-hover",
+                    attrs: { id: "images" }
+                  },
+                  [
+                    _vm._m(15),
+                    _vm._v(" "),
+                    _c(
+                      "tbody",
+                      _vm._l(_vm.form.tr_listTouristRouteDetails, function(
+                        item,
+                        index
+                      ) {
+                        return _c("tourist-route-detail-add", {
+                          key: "trd" + index,
+                          attrs: { trd: item, index: index },
+                          on: {
+                            "update:trd": function($event) {
+                              item = $event
+                            }
+                          }
+                        })
+                      }),
+                      1
+                    )
+                  ]
+                )
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "content" }, [
+        _c("div", { staticClass: "block" }, [
+          _c(
+            "div",
+            {
+              staticClass:
+                "block-content block-content-sm block-content-full bg-body-light rounded-bottom"
+            },
+            [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-6 text-left" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger",
+                      attrs: { type: "button", "data-wizard": "next" },
+                      on: {
+                        click: function($event) {
+                          return _vm.cancel()
+                        }
+                      }
+                    },
+                    [
+                      _c("i", { staticClass: "fa fa-times ml-1" }),
+                      _vm._v("\n                Hủy\n              ")
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-success ml-2",
+                      attrs: { type: "button", "data-wizard": "finish" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.update()
+                        }
+                      }
+                    },
+                    [
+                      _c("i", { staticClass: "fa fa-check ml-1" }),
+                      _vm._v(" Cập nhật\n              ")
+                    ]
+                  )
+                ])
+              ])
+            ]
+          )
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    !_vm.$gate.isAdminOrAuthor() ? _c("div", [_c("not-found")], 1) : _vm._e()
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "bg-body-light" }, [
+      _c("div", { staticClass: "content content-full" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center"
+          },
+          [
+            _c("h1", { staticClass: "flex-sm-fill h3 my-2" }, [
+              _vm._v("\n          Tuyến du lịch\n          "),
+              _c(
+                "small",
+                {
+                  staticClass:
+                    "d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted"
+                },
+                [_vm._v("Thêm tuyến du lịch")]
+              )
+            ]),
+            _vm._v(" "),
+            _c(
+              "nav",
+              {
+                staticClass: "flex-sm-00-auto ml-sm-3",
+                attrs: { "aria-label": "breadcrumb" }
+              },
+              [
+                _c("ol", { staticClass: "breadcrumb breadcrumb-alt" }, [
+                  _c("li", { staticClass: "breadcrumb-item" }, [
+                    _vm._v("Quản lý")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    {
+                      staticClass: "breadcrumb-item",
+                      attrs: { "aria-current": "page" }
+                    },
+                    [
+                      _c("a", { staticClass: "link-fx", attrs: { href: "" } }, [
+                        _vm._v("Tuyến du lịch")
+                      ])
+                    ]
+                  )
+                ])
+              ]
+            )
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "block-header" }, [
+      _c("h3", { staticClass: "block-title" }, [
+        _vm._v("1. Thông tin tuyến du lịch")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "" } }, [
+      _vm._v("\n                    Tên\n                    "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "" } }, [
+      _vm._v("\n                    Thể loại\n                    "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "" } }, [
+      _vm._v("\n                    Thời gian\n                    "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-append" }, [
+      _c("span", { staticClass: "input-group-text input-group-text-alt" }, [
+        _vm._v("Ngày")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "" } }, [
+      _vm._v("\n                    Giá gốc\n                    "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-append" }, [
+      _c("span", { staticClass: "input-group-text input-group-text-alt" }, [
+        _vm._v("VNĐ")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "" } }, [
+      _vm._v("\n                    Số chỗ tối đa\n                    "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "" } }, [
+      _vm._v("\n                    Nơi khởi hành\n                    "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "" } }, [
+      _vm._v("\n                    Các điểm đến\n                    "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "block-header" }, [
+      _c("h3", { staticClass: "block-title" }, [_vm._v("2. Hình ảnh")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { staticClass: "text-left" }, [
+      _c(
+        "label",
+        { staticClass: "control-label", attrs: { for: "tr_poster" } },
+        [_vm._v("Ảnh bìa")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { staticClass: "text-left" }, [
+      _c(
+        "label",
+        { staticClass: "control-label", attrs: { for: "tr_image" } },
+        [_vm._v("Hình ảnh bổ sung")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "block-header" }, [
+      _c("h3", { staticClass: "block-title" }, [
+        _vm._v("3. Chi tiết tuyến du lịch")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("td", { staticStyle: { width: "20%" } }, [_vm._v("Ngày thứ")]),
+        _vm._v(" "),
+        _c("td", [_vm._v("Mô tả")])
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -93921,6 +94911,11 @@ var routes = [{
   path: '/admin/tourist-route/add',
   component: __webpack_require__(/*! ./components/TouristRouteAdd.vue */ "./resources/js/components/TouristRouteAdd.vue")["default"]
 }, {
+  path: '/admin/tourist-route/edit/:tr_id',
+  name: 'editTouristRoute',
+  component: __webpack_require__(/*! ./components/TouristRouteEdit.vue */ "./resources/js/components/TouristRouteEdit.vue")["default"],
+  props: true
+}, {
   path: '/admin/developer',
   component: __webpack_require__(/*! ./components/Developer.vue */ "./resources/js/components/Developer.vue")["default"]
 }, {
@@ -93939,7 +94934,21 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_2__["default"]({
 
 });
 Vue.filter('upText', function (text) {
-  return text.charAt(0).toUpperCase() + text.slice(1);
+  var res = text.split(" ");
+
+  for (var index = 0; index < res.length; index++) {
+    var element = res[index];
+    res[index] = element.charAt(0).toUpperCase() + element.slice(1).toLowerCase();
+  }
+
+  var result = "";
+
+  for (var _index = 0; _index < res.length - 1; _index++) {
+    result = result + res[_index] + " ";
+  }
+
+  result = result + res[res.length - 1];
+  return result;
 });
 Vue.filter('myDate', function (created) {
   return moment__WEBPACK_IMPORTED_MODULE_0___default()(created).format('MMMM Do YYYY');
@@ -93963,9 +94972,33 @@ var Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_5___default.a.mixin({
   timer: 3000
 });
 window.Toast = Toast;
+var swalWithBootstrapButtons = sweetalert2__WEBPACK_IMPORTED_MODULE_5___default.a.mixin({
+  customClass: {
+    confirmButton: 'btn btn-success mr-2',
+    cancelButton: 'btn btn-danger mr-2'
+  },
+  buttonsStyling: false
+});
+window.swalWithBootstrapButtons = swalWithBootstrapButtons;
 Vue.component('pagination', __webpack_require__(/*! laravel-vue-pagination */ "./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.common.js"));
 
 Vue.component('v-select', vue_select__WEBPACK_IMPORTED_MODULE_6___default.a);
+
+vue_select__WEBPACK_IMPORTED_MODULE_6___default.a.props.components["default"] = function () {
+  return {
+    Deselect: {
+      render: function render(createElement) {
+        return createElement('span', '❌');
+      }
+    },
+    OpenIndicator: {
+      render: function render(createElement) {
+        return createElement('span', '🔽');
+      }
+    }
+  };
+};
+
 
 Vue.use(vue_lazyload__WEBPACK_IMPORTED_MODULE_7__["default"]);
 
@@ -94637,6 +95670,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TouristRouteAdd_vue_vue_type_template_id_72867362_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TouristRouteAdd_vue_vue_type_template_id_72867362_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/TouristRouteEdit.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/TouristRouteEdit.vue ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _TouristRouteEdit_vue_vue_type_template_id_86baaa68_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TouristRouteEdit.vue?vue&type=template&id=86baaa68&scoped=true& */ "./resources/js/components/TouristRouteEdit.vue?vue&type=template&id=86baaa68&scoped=true&");
+/* harmony import */ var _TouristRouteEdit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TouristRouteEdit.vue?vue&type=script&lang=js& */ "./resources/js/components/TouristRouteEdit.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _TouristRouteEdit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TouristRouteEdit_vue_vue_type_template_id_86baaa68_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _TouristRouteEdit_vue_vue_type_template_id_86baaa68_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "86baaa68",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/TouristRouteEdit.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/TouristRouteEdit.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/TouristRouteEdit.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TouristRouteEdit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./TouristRouteEdit.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TouristRouteEdit.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TouristRouteEdit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/TouristRouteEdit.vue?vue&type=template&id=86baaa68&scoped=true&":
+/*!*************************************************************************************************!*\
+  !*** ./resources/js/components/TouristRouteEdit.vue?vue&type=template&id=86baaa68&scoped=true& ***!
+  \*************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TouristRouteEdit_vue_vue_type_template_id_86baaa68_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./TouristRouteEdit.vue?vue&type=template&id=86baaa68&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TouristRouteEdit.vue?vue&type=template&id=86baaa68&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TouristRouteEdit_vue_vue_type_template_id_86baaa68_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TouristRouteEdit_vue_vue_type_template_id_86baaa68_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

@@ -56,15 +56,17 @@
                 <tr v-for="tr in touristRoutes.data" :key="tr.tr_id">
                   <td>{{tr.tr_id}}</td>
                   <td>{{tr.tr_name}}</td>
-                  <td>{{tr.tr_category}}</td>
+                  <td>{{tr.cate_name | upText}}</td>
                   <td>{{tr.tr_time}} ngày</td>
                   <td>{{tr.tr_original_price | formatPrice}} VNĐ</td>
-                  <td>{{tr.tr_location}}</td>
+                  <td>{{tr.loca_name | upText}}</td>
                   <td class="text-center">
-                    <a href="#" @click="updateModal(tr)">
+                    <a href="#" @click="update(tr.tr_id)">
+                      <i class="fa fa-eye orange"></i>
+                    </a>/
+                    <router-link :to="{ name:'editTouristRoute', params: { tr_id: tr.tr_id } }">
                       <i class="fa fa-edit blue"></i>
-                    </a>
-                    /
+                    </router-link>/
                     <a href="#" @click="deleteObject(tr.tr_id)">
                       <i class="fa fa-trash red"></i>
                     </a>
@@ -73,7 +75,7 @@
               </tbody>
             </table>
           </div>
-          <div class="card-footer">
+          <div v-if="touristRoutes != ''" class="card-footer">
             <pagination :data="touristRoutes" @pagination-change-page="getResults"></pagination>
           </div>
         </div>

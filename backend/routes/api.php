@@ -31,4 +31,5 @@ Route::put('profile/changepassword', 'Admin\API\UserController@changPassword');
 Route::get('findUser', 'Admin\API\UserController@search');
 
 Route::get('category/get/all', 'Admin\API\CategoryController@getListCategories');
+
 Route::get('location/select/search', 'Admin\API\LocationController@searchSelect');
