@@ -102,14 +102,20 @@ body {
       line-height: 30px;
       font-weight: 600;
       border-bottom: solid 2px get-color(xanh);
-      margin-bottom: 20px;
+      margin-bottom: 10px;
+    }
+
+    label {
+      font-size: 15px;
+      margin: 0;
+      margin-top: 5px;
     }
 
     .input {
       padding: 0 20px;
       input {
+        margin: 2px 0;
         width: 100%;
-        margin: 5px 0;
         border: solid 1px get-color(xanh);
         line-height: 30px;
         padding: 3px 5px;
@@ -127,6 +133,10 @@ body {
           color: get-color(xanh-dam);
         }
       }
+    }
+
+    .text-error {
+      color: #b40000;
     }
 
     .btn-submit {
@@ -212,6 +222,78 @@ body {
               cursor: pointer;
               background-color: get-color(xanh);
               color: #000000;
+            }
+
+            #user-menu {
+              position: relative;
+              color: #fff;
+              font-size: get-font-size(nav-top);
+
+              #welcome-user{
+                display: none;
+                flex-wrap: nowrap;
+                align-items: center;
+                height: 100%;
+
+                span{
+                  align-self: center;
+                }
+
+                i {
+                  padding: 5px;
+                  padding-right: 0;
+                  font-size: 17px;
+                  color: get-color(xanh);
+                }
+              }
+
+              #welcome-user:hover{
+                cursor: pointer;
+                color: get-color(xanh);
+              }
+              
+              #menu-user {
+                display: none;
+                opacity: 0;
+                position: absolute;
+                background: #fff !important;
+                padding: 10px;
+                box-shadow: 0 0 1px #5e5e5e;
+                border-radius: 5px;
+                z-index: 10;
+                width: 100%;
+                top: inherit;
+                right: 0px;
+                flex-wrap: nowrap;
+
+                ul {
+                  list-style: none;
+                  padding: 0;
+                  margin: 0;
+                  line-height: 30px;
+                  width: 100%;
+
+                  li {
+                    width: 100%;
+                    a {
+                      padding: 0 10px;
+                      text-decoration: none;
+                      color: #000;
+                    }
+                  }
+
+                  li:hover{
+                    background: #cecece;
+                    cursor: pointer;
+                    border-radius: 2px;
+                  }
+                }
+              }
+            }
+
+            #welcome:hover {
+              cursor: pointer;
+              color: get-color(xanh);
             }
           }
         }
@@ -1035,7 +1117,6 @@ body {
 
         #gioi-thieu {
           .location {
-
             .carousel-item {
               .list-imgs {
                 display: flex;
@@ -1064,20 +1145,17 @@ body {
                   }
                 }
               }
-              
             }
             .carousel-control-prev,
-              .carousel-control-next {
-                width: 10% !important;
-              }
+            .carousel-control-next {
+              width: 10% !important;
+            }
           }
 
-          .map{
+          .map {
             width: 100%;
-            
 
-            #map{
-              
+            #map {
               width: 100%;
               height: 400px;
             }
@@ -1142,14 +1220,13 @@ body {
         }
 
         #ngay-khac {
-          .content{
+          .content {
             overflow: scroll;
           }
 
           table {
-            
-            font-size: 13px;  
-            button{
+            font-size: 13px;
+            button {
               font-size: 13px;
             }
           }

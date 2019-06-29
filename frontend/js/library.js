@@ -90,15 +90,33 @@ class User {
         this.userForms = document.getElementsByClassName("user-form");
         this.backgroundBlur = document.getElementById("background-blur");
         this.btnCloses = document.getElementsByClassName("btn-close");
-        this.AddEvents(this.btnUsers, this.userForms, this.backgroundBlur, this.btnCloses);
+
+        this.welcomeUser = document.getElementById("welcome-user");
+        this.menuUser = document.getElementById("menu-user");
+
+
+        this.AddEvents(this.btnUsers, this.userForms, this.backgroundBlur, this.btnCloses, this.welcomeUser, this.menuUser);
     }
 
-    AddEvents(btnUsers, userForms, backgroundBlur, btnCloses) {
+    AddEvents(btnUsers, userForms, backgroundBlur, btnCloses, welcomeUser, menuUser) {
 
         AddEventBtnUser();
         AddEventBackgroundBlur();
         AddEventBtnClose();
+        AddEventWelcomeUser()
 
+        var isMenuUserShow = false;
+        function AddEventWelcomeUser(){
+            welcomeUser.addEventListener('click', function(){
+                if(!isMenuUserShow){
+                    ShowMenuUser();
+                    isMenuUserShow = true;
+                }else{
+                    HideMenuUser();
+                    isMenuUserShow = false;
+                }
+            });
+        }
 
         function AddEventBtnUser() {
             for (let i = 0; i < btnUsers.length; i++) {
@@ -139,6 +157,16 @@ class User {
             form.style.display = "none";
             form.style.opacity = 0;
             form.style.zIndex = 1;
+        }
+
+        function ShowMenuUser(){
+            menuUser.style.display = 'flex';
+            Effects.fadeIn(menuUser);
+        }
+
+        function HideMenuUser(){
+            Effects.fadeOut(menuUser);
+            menuUser.style.display = 'none';
         }
     }
 }
