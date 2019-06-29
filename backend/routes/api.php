@@ -23,6 +23,8 @@ Route::apiResources([
     'category'=>'Admin\API\CategoryController',
     'location'=>'Admin\API\LocationController',
     'tourist-route'=>'Admin\API\TouristRouteController',
+    'review'=>'Admin\API\ReviewController',
+    'promotion'=>'Admin\API\PromotionController',
 ]);
 
 Route::get('profile', 'Admin\API\UserController@profile');

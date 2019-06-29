@@ -66,7 +66,7 @@
                                     </div>
                                     <div class="block-content">
                                         <div class="p-sm-3 px-lg-4 py-lg-5">
-                                            <h1 class="mb-2">OneUI</h1>
+                                            <h1 class="mb-2">Admin UI</h1>
                                             <p>Welcome, please login.</p>
 
                                             <!-- Sign In Form -->
@@ -123,7 +123,7 @@
                         </div>
                     </div>
                     <div class="content content-full font-size-sm text-muted text-center">
-                        <strong>Team 14</strong> &copy; <span data-toggle="year-copy"></span>
+                        <strong>Team 13</strong> &copy; <span data-toggle="year-copy"></span>
                     </div>
                 </div>
             </div>

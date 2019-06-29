@@ -126,6 +126,7 @@
               <div class="form-group">
                 <textarea
                   v-model="form.loca_description"
+                  type="text"
                   name="loca_description"
                   class="form-control"
                   :class="{ 'is-invalid': form.errors.has('loca_description') }"

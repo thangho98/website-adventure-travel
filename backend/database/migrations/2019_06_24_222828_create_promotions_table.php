@@ -17,8 +17,8 @@ class CreatePromotionsTable extends Migration
             $table->increments('prom_id');
             $table->string('prom_name');
             $table->mediumText('prom_description');
-            $table->float('prom_percent_promotion');
-            $table->double('prom_banner');
+            $table->integer('prom_percent_promotion');
+            $table->string('prom_banner');
             $table->timestamps();
         });
     }

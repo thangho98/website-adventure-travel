@@ -185,24 +185,24 @@
                                 </router-link>
                             </li>
                             <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_blocks_options.html">
+                                <router-link to="/admin/tour" class="nav-main-link">
                                     <span class="nav-main-link-name">Chuyến du lịch</span>
-                                </a>
+                                </router-link>
                             </li>
                             <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_blocks_api.html">
+                                <router-link to="/admin/user-client" class="nav-main-link">
                                     <span class="nav-main-link-name">Khách hàng</span>
-                                </a>
+                                </router-link>
                             </li>
                             <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_blocks_api.html">
+                                <router-link to="/admin/reviews" class="nav-main-link">
                                     <span class="nav-main-link-name">Nhận xét khách hàng</span>
-                                </a>
+                                </router-link>
                             </li>
                             <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_blocks_api.html">
+                                <router-link to="/admin/promotion" class="nav-main-link">
                                     <span class="nav-main-link-name">Khuyến mãi</span>
-                                </a>
+                                </router-link>
                             </li>
                         </ul>
                     </li>
@@ -248,11 +248,13 @@
                     <li class="nav-main-heading">Nhân viên</li>
                     <li class="nav-main-item">
                         <a class="nav-main-link" href="op_error_404.html">
+                            <i class="nav-main-link-icon si si-credit-card"></i>
                             <span class="nav-main-link-name">Đặt tour</span>
                         </a>
                     </li>
                     <li class="nav-main-item">
                         <a class="nav-main-link" href="op_error_404.html">
+                            <i class="nav-main-link-icon si si-note"></i>
                             <span class="nav-main-link-name">Tin tức</span>
                         </a>
                     </li>
