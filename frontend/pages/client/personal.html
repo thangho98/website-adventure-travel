@@ -2,11 +2,10 @@
 <html lang="en">
 
 <head>
-    <base href="{{asset('client')}}/">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@yield('title')</title>
-    <link rel="icon" type="image/png" href="imgs/logo.png">
+    <title>Team13.com - Mạng bán tour du lịch mạo hiểm trực tuyến</title>
+    <link rel="icon" type="image/png" href="../../imgs/logo.png">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <!--Font Awesome's CDN-->
@@ -14,7 +13,7 @@
     <!--Font Roboto-->
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <!--Home CSS-->
-    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="../../css/home.css">
 </head>
 
 <body>
@@ -24,7 +23,7 @@
         <div class="form-wrapper">
             <div class="btn-close"><i class="fas fa-times"></i></div>
             <div class="title">ĐĂNG NHẬP</div>
-            <form action="{{route('loginClient')}}" method="post">
+            <form action="">
                 <div class="input">
                     <label for="sigin-email">Email</label>
                     <input type="text" id="signin-email" name="email" placeholder="Nhập email">
@@ -34,7 +33,6 @@
                     <div>Quên mật khẩu? <span class="reset-password">Lấy lại mật khẩu</span></div>
                     <button type="submit" class="btn-submit">Đăng nhập</button>
                 </div>
-                {{csrf_field()}}
             </form>
 
         </div>
@@ -44,39 +42,19 @@
         <div class="form-wrapper">
             <div class="btn-close"><i class="fas fa-times"></i></div>
             <div class="title">ĐĂNG KÝ</div>
-            <form action="{{route('registerClient')}}" method="post">
+            <form action="">
                 <div class="input">
                     <label for="signup-name">Họ và tên</label>
                     <input type="text" id="signup-name" name="name" placeholder="Nhập tên của bạn">
-                    @if($errors->has('name'))
-                    @foreach($errors->get('name') as $error)
-                    <div class="text-error">{{$error}}</div>
-                    @endforeach
-                    @endif
+                    <div class="text-error">Require</div>
                     <label for="signup-email">Email</label>
                     <input type="text" id="signup-email" name="email" placeholder="Nhập email của bạn">
-                    @if($errors->has('email'))
-                    @foreach($errors->get('email') as $error)
-                    <div class="text-error">{{$error}}</div>
-                    @endforeach
-                    @endif
                     <label for="signup-password">Mật khẩu</label>
                     <input type="password" id="signup-password" name="password" placeholder="Nhập password">
-                    @if($errors->has('password'))
-                    @foreach($errors->get('password') as $error)
-                    <div class="text-error">{{$error}}</div>
-                    @endforeach
-                    @endif
                     <label for="signup-re-password">Nhập lại mật khẩu</label>
                     <input type="password" id="signup-re-password" name="re_password" placeholder="Nhập lại password">
-                    @if($errors->has('re_password'))
-                    @foreach($errors->get('re_password') as $error)
-                    <div class="text-error">{{$error}}</div>
-                    @endforeach
-                    @endif
                     <button type="submit" class="btn-submit">Đăng ký</button>
                 </div>
-                {{csrf_field()}}
             </form>
 
         </div>
@@ -93,38 +71,33 @@
                                 364</span><span id="cuoc"> 1000đ/phút</span>
                         </div>
 
-                        @if(Route::has('login'))
                         <div id="user">
-                            @if(Auth::guard('client')->check())
+                            <div id="signin" class="user-item">Đăng nhập</div>
+                            <div id="signup" class="user-item">Đăng ký</div>
                             <div id="user-menu">
-                                <div id="welcome-user"><span>Xin chào {{Auth::guard('client')->user()->user_name}}</span><i class="fas fa-chevron-circle-down"></i></div>
+                                <div id="welcome-user"><span>Xin chào Lê Trọng Anh Đức</span><i
+                                        class="fas fa-chevron-circle-down"></i></div>
                                 <div id="menu-user">
                                     <ul>
                                         <li><a href="#">Trang cá nhân</a></li>
                                         <li><a href="#">Lịch sử đặt tour</a></li>
                                         <li><a href="#">Tours yêu thích</a></li>
-                                        <form action="{{route('logoutClient')}}" method="post">
-                                            <li id="logout"><button type="submit">Đăng xuất</button></li>
-                                            {{csrf_field()}}
-                                        </form>
+                                        <li id="logout"><a href="#">Đăng xuất</a></li>
                                     </ul>
                                 </div>
                             </div>
-                            @else
-                            <div id="signin" class="user-item">Đăng nhập</div>
-                            <div id="signup" class="user-item">Đăng ký</div>
-                            @endif
+
                         </div>
-                        @endif
                     </div>
                 </div>
 
                 <div id="nav-bot" class="navbar navbar-expand-lg">
                     <div class="container">
                         <div id="logo-header" class="navbar-brand">
-                            <a href="home.html"><img src="imgs/Logo2.png" alt="Team13.com"></a>
+                            <a href="home.html"><img src="../../imgs/Logo2.png" alt="Team13.com"></a>
                         </div>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-links" aria-controls="nav-links" aria-expanded="false">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-links"
+                            aria-controls="nav-links" aria-expanded="false">
                             <i class="fas fa-bars"></i>
                         </button>
                         <div id="nav-links" class="collapse navbar-collapse">
@@ -147,13 +120,13 @@
                 <div id="carousel-slideshow" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img class="d-block w-100" src="imgs/slide1.jpg" alt="First slide">
+                            <img class="d-block w-100" src="../../imgs/slide1.jpg" alt="First slide">
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block w-100" src="imgs/slide2.jpg" alt="Second slide">
+                            <img class="d-block w-100" src="../../imgs/slide2.jpg" alt="Second slide">
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block w-100" src="imgs/slide3.jpg" alt="Third slide">
+                            <img class="d-block w-100" src="../../imgs/slide3.jpg" alt="Third slide">
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#carousel-slideshow" role="button" data-slide="prev">
@@ -349,7 +322,52 @@
 
         </header>
 
-        @yield('content');
+        <div id="content">
+            <div id="prersonal" class="tours">
+                <div class="tours-title">
+                    <h2>TRANG CÁ NHÂN</h2>
+                </div>
+                <div class="tours-list">
+                    <div id="user-infomation">
+                        <div class="title">
+                            Thông tin của bạn
+                        </div>
+                        <div class="content">
+                            <div class="item">
+                                <label for="user_info_name">Họ và tên</label>
+                                <input type="text" placeholder="Nhập tên của bạn">
+                            </div>
+                            <div class="item">
+                                    <label for="user_info_name">Ngày sinh</label>
+                                    <input type="text" placeholder="Nhập tên của bạn">
+                                </div>
+                            <div class="item">
+                                <label for="user_info_name">Email</label>
+                                <input type="text" placeholder="Nhập tên của bạn">
+                            </div>
+                            <div class="item">
+                                <label for="user_info_name">Điện thoại</label>
+                                <input type="text" placeholder="Nhập tên của bạn">
+                            </div>
+                            <div class="item">
+                                <label for="user_info_name">Giới tính</label>
+                                <input type="text" placeholder="Nhập tên của bạn">
+                            </div>
+                            <div class="item">
+                                <label for="user_info_name">Địa chỉ</label>
+                                <input type="text" placeholder="Nhập tên của bạn">
+                            </div>
+                            
+                            <div class="item">
+                                <label for="user_info_name">Họ và tên</label>
+                                <input type="text" placeholder="Nhập tên của bạn">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
 
     </div>
 
@@ -549,12 +567,12 @@
                 <div class="col-md-3">
                     <div class="title">Chấp nhận thanh toán</div>
                     <div class="content">
-                        <img src="imgs/pay.png" alt="Chấp nhận thanh toán">
+                        <img src="../../imgs/pay.png" alt="Chấp nhận thanh toán">
                     </div>
                     <div class="title">Chứng nhận</div>
                     <div class="content">
-                        <p><img src="imgs/dmca.png" alt="DMCA"></p>
-                        <p><img src="imgs/congthuong.png" alt="Công thương"></p>
+                        <p><img src="../../imgs/dmca.png" alt="DMCA"></p>
+                        <p><img src="../../imgs/congthuong.png" alt="Công thương"></p>
 
                     </div>
 
@@ -583,7 +601,8 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <!-- my js-->
-    @yield('script')
+    <script src="../../js/library.js" type="text/javascript" async></script>
+    <script src="../../js/home.js" type="text/javascript" async></script>
 </body>
 
 </html>

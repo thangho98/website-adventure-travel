@@ -36,38 +36,16 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
-        $this->middleware('guest:web')->except('logout');
-        $this->middleware('guest:client')->except('logout');
+        
     }
 
     protected function guard(){
         return Auth::guard('client');
     }
 
-    protected function redirectTo($request)
-    {
-        return route('homeClient');
-    }
-
-    public function login(Request $request)
-    {
-        $remember = false;
-        if ($this->guard()->attempt(['user_email' => $request->email, 'password' => $request->password], $remember)) {
-            return redirect()->intended(route('homeClient'));
-        } else {
-            return back()->withInput($request->only('email', 'remember'));
-        }
-    }
-
     public function logout(Request $request)
     {
         $this->guard()->logout();
-
-        $request->session()->flush();
-
-        $request->session()->regenerate();
-
         return redirect()->intended(route('homeClient'));
     }
 }
