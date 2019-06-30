@@ -31,14 +31,14 @@
 
     <!-- Stylesheets -->
     <!-- Fonts and OneUI framework -->
-    
+
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
     <link rel="stylesheet" id="css-main" href="{{asset('assets/css/oneui.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/jquery-ui.min.css')}}">
     <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-    
+
 </head>
 
 <body>
@@ -87,27 +87,32 @@
                                 <i class="fa fa-circle text-default"></i>
                             </a>
                             <a class="dropdown-item d-flex align-items-center justify-content-between"
-                                data-toggle="theme" data-theme="{{asset('public/admin')}}/assets/css/themes/amethyst.min.css" href="#">
+                                data-toggle="theme"
+                                data-theme="{{asset('public/admin')}}/assets/css/themes/amethyst.min.css" href="#">
                                 <span>Amethyst</span>
                                 <i class="fa fa-circle text-amethyst"></i>
                             </a>
                             <a class="dropdown-item d-flex align-items-center justify-content-between"
-                                data-toggle="theme" data-theme="{{asset('public/admin')}}/assets/css/themes/city.min.css" href="#">
+                                data-toggle="theme"
+                                data-theme="{{asset('public/admin')}}/assets/css/themes/city.min.css" href="#">
                                 <span>City</span>
                                 <i class="fa fa-circle text-city"></i>
                             </a>
                             <a class="dropdown-item d-flex align-items-center justify-content-between"
-                                data-toggle="theme" data-theme="{{asset('public/admin')}}/assets/css/themes/flat.min.css" href="#">
+                                data-toggle="theme"
+                                data-theme="{{asset('public/admin')}}/assets/css/themes/flat.min.css" href="#">
                                 <span>Flat</span>
                                 <i class="fa fa-circle text-flat"></i>
                             </a>
                             <a class="dropdown-item d-flex align-items-center justify-content-between"
-                                data-toggle="theme" data-theme="{{asset('public/admin')}}/assets/css/themes/modern.min.css" href="#">
+                                data-toggle="theme"
+                                data-theme="{{asset('public/admin')}}/assets/css/themes/modern.min.css" href="#">
                                 <span>Modern</span>
                                 <i class="fa fa-circle text-modern"></i>
                             </a>
                             <a class="dropdown-item d-flex align-items-center justify-content-between"
-                                data-toggle="theme" data-theme="{{asset('public/admin')}}/assets/css/themes/smooth.min.css" href="#">
+                                data-toggle="theme"
+                                data-theme="{{asset('public/admin')}}/assets/css/themes/smooth.min.css" href="#">
                                 <span>Smooth</span>
                                 <i class="fa fa-circle text-smooth"></i>
                             </a>
@@ -179,7 +184,7 @@
                                     <span class="nav-main-link-name">Địa điểm</span>
                                 </router-link>
                             </li>
-                             <li class="nav-main-item">
+                            <li class="nav-main-item">
                                 <router-link to="/admin/tourist-route" class="nav-main-link">
                                     <span class="nav-main-link-name">Tuyến du lịch</span>
                                 </router-link>
@@ -318,7 +323,7 @@
         <router-view></router-view>
         <!-- set progressbar -->
         <vue-progress-bar></vue-progress-bar>
-        
+
         <!-- Footer -->
         @include('admin.layouts.footer')
         <!-- END Footer -->
@@ -397,11 +402,23 @@
             </div>
         </div>
         <!-- END Apps Modal -->
+        <div class="modal fade bd-example-modal-sm" id="progressModal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-sm modal-dialog-centered" role="status">
+                <div class="modal-content">
+                    <div class="row">
+                        <div class="col-12 d-flex justify-content-center">
+                            <i class="fa fa-10x fa-cog fa-spin text-warning"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     @auth
     <script>
-        window.user = @json(auth()->user())
+        window.user = @json(auth() -> user())
     </script>
     @endauth
     <script src="/js/app.js"></script>
@@ -413,7 +430,7 @@
     <script src="{{asset('assets/js/plugins/jquery-validation/additional-methods.js')}}"></script>
     <!-- Page JS Code -->
     <script src="{{asset('assets/js/pages/be_forms_wizard.min.js')}}"></script>
-    
+    <script src="{{asset('assets/js/pages/be_ui_progress.min.js')}}"></script>
 </body>
 
 </html>

@@ -5133,9 +5133,14 @@ __webpack_require__.r(__webpack_exports__);
     viewDetail: function viewDetail(id) {
       var _this = this;
 
+      $("#progressModal").modal("show");
       axios.get(this.$Api + "/user-client/" + id).then(function (response) {
         _this.user_info = response.data;
-        $("#showInfo").modal("show");
+        $("#progressModal").modal("hide");
+        $(".modal.show").modal("hide");
+        $("#progressModal").on("hidden.bs.modal", function () {
+          $("#showInfo").modal("show");
+        });
       });
     },
     getResults: function getResults() {

@@ -242,9 +242,14 @@ export default {
   },
   methods: {
     viewDetail(id) {
+      $("#progressModal").modal("show");
       axios.get(this.$Api + "/user-client/" + id).then(response => {
         this.user_info = response.data;
-        $("#showInfo").modal("show");
+        $("#progressModal").modal("hide");
+        $(".modal.show").modal("hide");
+        $("#progressModal").on("hidden.bs.modal", function() {
+          $("#showInfo").modal("show");
+        });
       });
     },
     getResults(page = 1) {
