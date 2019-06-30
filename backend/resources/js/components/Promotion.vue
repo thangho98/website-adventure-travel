@@ -8,16 +8,16 @@
           class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center"
         >
           <h1 class="flex-sm-fill h3 my-2">
-            Địa điểm
+            Khuyến mãi
             <small
               class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted"
-            >Danh sách địa điểm</small>
+            >Danh sách khuyến mãi</small>
           </h1>
           <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
             <ol class="breadcrumb breadcrumb-alt">
               <li class="breadcrumb-item">Quản lý</li>
               <li class="breadcrumb-item" aria-current="page">
-                <a class="link-fx" href>Địa điểm</a>
+                <a class="link-fx" href>Khuyến mãi</a>
               </li>
             </ol>
           </nav>
@@ -50,31 +50,33 @@
                   <th>Ảnh bìa</th>
                   <th>Tên</th>
                   <th>Mô tả</th>
+                  <th>Phần trăm khuyến mãi</th>
                   <th class="text-center" style="width: 150px;">Thao tác</th>
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="location in locations.data" :key="location.loca_id">
-                  <td>{{location.loca_id}}</td>
-                  <td v-if="location.loca_poster.length > 0">
-                    <a data-fancybox="gallery" :href="loadImage(location.loca_poster)">
+                <tr v-for="promotion in promotions.data" :key="promotion.prom_id">
+                  <td>{{promotion.prom_id}}</td>
+                  <td v-if="promotion.prom_banner.length > 0">
+                    <a data-fancybox="gallery" :href="loadImage(promotion.prom_banner)">
                       <img
                         class="thumbnail"
-                        :src="loadImage(location.loca_poster)"
+                        :src="loadImage(promotion.prom_banner)"
                         height="75px;"
                         width="150px;"
                       />
                     </a>
                   </td>
                   <td v-else class="font-w600 font-size-sm">Chưa có ảnh bìa</td>
-                  <td>{{location.loca_name}}</td>
-                  <td>{{location.loca_description}}</td>
+                  <td>{{promotion.prom_name}}</td>
+                  <td>{{promotion.prom_description}}</td>
+                  <td>{{promotion.prom_percent_promotion}} %</td>
                   <td>
-                    <a href="#" @click="updateModal(location)">
+                    <a href="#" @click="updateModal(promotion)">
                       <i class="fa fa-edit blue"></i>
                     </a>
                     /
-                    <a href="#" @click="deleteObject(location.loca_id)">
+                    <a href="#" @click="deleteObject(promotion.prom_id)">
                       <i class="fa fa-trash red"></i>
                     </a>
                   </td>
@@ -83,7 +85,7 @@
             </table>
           </div>
           <div class="card-footer">
-            <pagination :data="locations" @pagination-change-page="getResults"></pagination>
+            <pagination :data="promotions" @pagination-change-page="getResults"></pagination>
           </div>
         </div>
       </div>
@@ -114,35 +116,54 @@
             <div class="modal-body">
               <div class="form-group">
                 <input
-                  v-model="form.loca_name"
+                  v-model="form.prom_name"
                   type="text"
-                  name="loca_name"
+                  name="prom_name"
                   class="form-control"
-                  :class="{ 'is-invalid': form.errors.has('loca_name') }"
-                  placeholder="Tên địa điểm"
+                  :class="{ 'is-invalid': form.errors.has('prom_name') }"
+                  placeholder="Tên khuyến mãi"
                 />
-                <has-error :form="form" field="loca_name"></has-error>
+                <has-error :form="form" field="prom_name"></has-error>
               </div>
               <div class="form-group">
                 <textarea
-                  v-model="form.loca_description"
-                  name="loca_description"
+                  v-model="form.prom_description"
+                  name="prom_description"
                   class="form-control"
-                  :class="{ 'is-invalid': form.errors.has('loca_description') }"
+                  :class="{ 'is-invalid': form.errors.has('prom_description') }"
                   placeholder="Mô tả"
                 ></textarea>
-                <has-error :form="form" field="loca_description"></has-error>
+                <has-error :form="form" field="prom_description"></has-error>
               </div>
               <div class="form-group">
-                <label for="loca_poster" class="control-label">Ảnh bìa</label>
+                <div class="input-group">
+                  <input
+                    v-model="form.prom_percent_promotion"
+                    type="number"
+                    min="0"
+                    max="100"
+                    step="1"
+                    name="prom_percent_promotion"
+                    class="form-control"
+                    :class="{ 'is-invalid': form.errors.has('prom_percent_promotion') }"
+                    placeholder="Phần trăm khuyến mãi"
+                  />
+                  <div class="input-group-append">
+                    <span class="input-group-text input-group-text-alt">%</span>
+                  </div>
+                </div>
+                <has-error :form="form" field="prom_percent_promotion"></has-error>
+              </div>
+              <div class="form-group">
+                <label for="prom_banner" class="control-label">Ảnh bìa</label>
                 <br />
                 <input
                   hidden
-                  id="loca_poster"
-                  ref="loca_poster"
+                  id="prom_banner"
+                  ref="prom_banner"
                   type="file"
                   accept="image/*"
-                  name="loca_poster"
+                  name="prom_banner"
                   @change="updateImage"
                   class="form-input"
                 />
@@ -173,30 +194,31 @@ export default {
   data() {
     return {
       editMode: false,
-      locations: {},
+      promotions: {},
       form: new Form({
-        loca_id: "",
-        loca_name: "",
-        loca_poster: "",
-        loca_description: ""
+        prom_id: "",
+        prom_name: "",
+        prom_banner: "",
+        prom_description: "",
+        prom_percent_promotion: Number
       })
     };
   },
   methods: {
     chooseImage() {
-      this.$refs.loca_poster.click();
+      this.$refs.prom_banner.click();
     },
     getImageModal() {
-      let loca_poster = "";
-      if (this.form.loca_poster.length != 0) {
-        loca_poster =
-          this.form.loca_poster.length > 200
-            ? this.form.loca_poster
-            : this.$Host + "/img/location/" + this.form.loca_poster;
+      let prom_banner = "";
+      if (this.form.prom_banner.length != 0) {
+        prom_banner =
+          this.form.prom_banner.length > 200
+            ? this.form.prom_banner
+            : this.$Host + "/img/promotion/" + this.form.prom_banner;
       } else {
-        loca_poster = this.$Host + "/assets/media/img/new_seo-10-75.png";
+        prom_banner = this.$Host + "/assets/media/img/new_seo-10-75.png";
       }
-      return loca_poster;
+      return prom_banner;
     },
     updateImage(e) {
       let file = e.target.files[0];
@@ -211,24 +233,24 @@ export default {
         return false;
       }
       reader.onloadend = file => {
-        this.form.loca_poster = reader.result;
+        this.form.prom_banner = reader.result;
       };
       reader.readAsDataURL(file);
     },
     getResults(page = 1) {
-      axios.get(this.$Api + "/location?page=" + page).then(response => {
-        this.locations = response.data;
+      axios.get(this.$Api + "/promotion?page=" + page).then(response => {
+        this.promotions = response.data;
       });
     },
     loadData() {
       if (this.$gate.isAdminOrAuthor()) {
         axios
-          .get(this.$Api + "/location")
-          .then(({ data }) => (this.locations = data));
+          .get(this.$Api + "/promotion")
+          .then(({ data }) => (this.promotions = data));
       }
     },
     loadImage(imageName) {
-      return this.$Host + "/img/location/" + imageName;
+      return this.$Host + "/img/promotion/" + imageName;
     },
     newModal() {
       this.form.reset();
@@ -244,7 +266,7 @@ export default {
     create() {
       this.$Progress.start();
       this.form
-        .post(this.$Api + "/location")
+        .post(this.$Api + "/promotion")
         .then(() => {
           Fire.$emit("reloadData");
           $("#addNew").modal("hide");
@@ -263,7 +285,7 @@ export default {
       this.$Progress.start();
       // console.log('Editing data');
       this.form
-        .put(this.$Api + "/location/" + this.form.loca_id)
+        .put(this.$Api + "/promotion/" + this.form.prom_id)
         .then(() => {
           // success
           $("#addNew").modal("hide");
@@ -291,7 +313,7 @@ export default {
         // Send request to the server
         if (result.value) {
           this.form
-            .delete(this.$Api + "/location/" + id)
+            .delete(this.$Api + "/promotion/" + id)
             .then(() => {
               Swal.fire("Đã xóa!", "Đối tượng của bạn đã bị xóa.", "success");
               Fire.$emit("reloadData");

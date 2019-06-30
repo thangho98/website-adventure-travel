@@ -17,7 +17,7 @@ class CreateUserClientsTable extends Migration
             $table->increments('user_id');
             $table->string('user_name');
             $table->string('user_email')->unique();
-            $table->string('user_password');
+            $table->string('password');
             $table->string('user_phone');
             $table->boolean('user_gender');
             $table->date('user_birthday');

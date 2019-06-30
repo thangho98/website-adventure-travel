@@ -35,7 +35,11 @@ const routes = [
     { path: '/admin/location', component: require('./components/Location.vue').default },
     { path: '/admin/tourist-route', component: require('./components/TouristRoute.vue').default },
     { path: '/admin/tourist-route/add', component: require('./components/TouristRouteAdd.vue').default },
-    { path: '/admin/tourist-route/edit/:tr_id', name: 'editTouristRoute', component: require('./components/TouristRouteEdit.vue').default, props: true, },
+    { path: '/admin/tourist-route/edit/:tr_id', name: 'editTouristRoute', component: require('./components/TouristRouteEdit.vue').default, props: true },
+    { path: '/admin/tour', component: require('./components/Tour.vue').default },
+    { path: '/admin/user-client', component: require('./components/UserClient.vue').default },
+    { path: '/admin/reviews', component: require('./components/Reviews.vue').default },
+    { path: '/admin/promotion', component: require('./components/Promotion.vue').default },
     { path: '/admin/developer', component: require('./components/Developer.vue').default },
     { path: '/admin/users', component: require('./components/Users.vue').default },
     { path: '/admin/profile', component: require('./components/Profile.vue').default },
@@ -67,7 +71,7 @@ Vue.filter('upText', function (text) {
 });
 
 Vue.filter('myDate', function (created) {
-    return moment(created).format('MMMM Do YYYY');
+    return moment(created).format('HH:mm:ss DD-MM-YYYY');
 });
 
 Vue.filter('formatPrice', function (num) {

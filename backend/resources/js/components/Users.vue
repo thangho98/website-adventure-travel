@@ -108,7 +108,7 @@
                   class="form-control"
                   :class="{ 'is-invalid': form.errors.has('name') }"
                   placeholder="Tên"
-                >
+                />
                 <has-error :form="form" field="name"></has-error>
               </div>
               <div class="form-group">
@@ -119,7 +119,7 @@
                   class="form-control"
                   :class="{ 'is-invalid': form.errors.has('email') }"
                   placeholder="Địa chỉ email"
-                >
+                />
                 <has-error :form="form" field="email"></has-error>
               </div>
               <div class="form-group">
