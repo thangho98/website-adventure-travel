@@ -62,7 +62,7 @@
                         :src="loadImage(cate.cate_image)"
                         height="75px;"
                         width="150px;"
-                      >
+                      />
                     </a>
                   </td>
                   <td v-else class="font-w600 font-size-sm">Chưa có ảnh bìa</td>
@@ -118,12 +118,12 @@
                   class="form-control"
                   :class="{ 'is-invalid': form.errors.has('cate_name') }"
                   placeholder="Tên thể loại"
-                >
+                />
                 <has-error :form="form" field="cate_name"></has-error>
               </div>
               <div class="form-group">
                 <label for="cate_image" class="control-label">Ảnh bìa</label>
-                <br>
+                <br />
                 <input
                   hidden
                   id="cate_image"
@@ -133,14 +133,14 @@
                   name="cate_image"
                   @change="updateImage"
                   class="form-input"
-                >
+                />
                 <img
                   @click="chooseImage"
                   :src="getImageModal()"
                   class="thumbnail ml-2 border border-primary"
                   height="125px;"
                   width="250px;"
-                >
+                />
               </div>
             </div>
             <div class="modal-footer">

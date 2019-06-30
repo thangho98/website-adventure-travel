@@ -8,16 +8,16 @@
           class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center"
         >
           <h1 class="flex-sm-fill h3 my-2">
-            Địa điểm
+            Khách hàng
             <small
               class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted"
-            >Danh sách địa điểm</small>
+            >Danh sách tài khoản khách hàng</small>
           </h1>
           <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
             <ol class="breadcrumb breadcrumb-alt">
               <li class="breadcrumb-item">Quản lý</li>
               <li class="breadcrumb-item" aria-current="page">
-                <a class="link-fx" href>Địa điểm</a>
+                <a class="link-fx" href>Khách hàng</a>
               </li>
             </ol>
           </nav>
@@ -32,14 +32,7 @@
       <div class="block">
         <div class="block-header">
           <h3 class="block-title"></h3>
-          <div class="block-options">
-            <!-- <button type="button" class="btn-block-option">
-              <i class="si si-settings"></i>
-            </button>-->
-            <button class="btn btn-success" @click="newModal">
-              <i class="fas fa-plus white fa-fw"></i>
-            </button>
-          </div>
+          <div class="block-options"></div>
         </div>
         <div class="block-content">
           <div class="table-responsive">
@@ -47,43 +40,57 @@
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Ảnh bìa</th>
                   <th>Tên</th>
-                  <th>Mô tả</th>
+                  <th>Email</th>
+                  <th>Số điện thoại</th>
+                  <th>Giới tính</th>
+                  <th>Ngày sinh</th>
+                  <th>Địa chỉ</th>
                   <th class="text-center" style="width: 150px;">Thao tác</th>
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="location in locations.data" :key="location.loca_id">
-                  <td>{{location.loca_id}}</td>
-                  <td v-if="location.loca_poster.length > 0">
-                    <a data-fancybox="gallery" :href="loadImage(location.loca_poster)">
-                      <img
-                        class="thumbnail"
-                        :src="loadImage(location.loca_poster)"
-                        height="75px;"
-                        width="150px;"
-                      />
-                    </a>
+                <tr v-for="userClient in user_clients.data" :key="userClient.user_id">
+                  <td>{{userClient.user_id}}</td>
+                  <td>{{userClient.user_name}}</td>
+                  <td>{{userClient.user_email}}</td>
+                  <td>{{userClient.user_phone}}</td>
+                  <td v-show="userClient.user_gender == 1">
+                    <span class="badge badge-primary">Nam</span>
                   </td>
-                  <td v-else class="font-w600 font-size-sm">Chưa có ảnh bìa</td>
-                  <td>{{location.loca_name}}</td>
-                  <td>{{location.loca_description}}</td>
-                  <td>
-                    <a href="#" @click="updateModal(location)">
-                      <i class="fa fa-edit blue"></i>
-                    </a>
-                    /
-                    <a href="#" @click="deleteObject(location.loca_id)">
-                      <i class="fa fa-trash red"></i>
-                    </a>
+                  <td v-show="userClient.user_gender != 1">
+                    <span class="badge badge-danger">Nữ</span>
+                  </td>
+                  <td>{{userClient.user_birthday}}</td>
+                  <td>{{userClient.user_address}}</td>
+                  <td class="text-center">
+                    <div class="btn-group">
+                      <button
+                        type="button"
+                        class="btn btn-sm btn-light"
+                        data-toggle="tooltip"
+                        title="View Client"
+                        @click="viewDetail(userClient.user_id)"
+                      >
+                        <i class="fa fa-fw fa-eye"></i>
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-sm btn-light"
+                        data-toggle="tooltip"
+                        title="Remove Client"
+                        @click="deleteObject(userClient.user_id)"
+                      >
+                        <i class="fa fa-fw fa-times"></i>
+                      </button>
+                    </div>
                   </td>
                 </tr>
               </tbody>
             </table>
           </div>
           <div class="card-footer">
-            <pagination :data="locations" @pagination-change-page="getResults"></pagination>
+            <pagination :data="user_clients" @pagination-change-page="getResults"></pagination>
           </div>
         </div>
       </div>
@@ -94,74 +101,130 @@
       <not-found></not-found>
     </div>
     <div
-      class="modal fade"
-      id="addNew"
+      class="modal fade bd-example-modal-lg"
+      id="showInfo"
       tabindex="-1"
       role="dialog"
-      aria-labelledby="addNewLabel"
+      aria-labelledby="showInfoLabel"
       aria-hidden="true"
     >
-      <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" v-show="!editMode" id="addNewLabel">Tạo mới</h5>
-            <h5 class="modal-title" v-show="editMode" id="addNewLabel">Cập nhật</h5>
+            <h5 class="modal-title" id="showInfoLabel">Thông tin chi tiết về người dùng</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <form @submit.prevent="editMode ? update() : create()">
-            <div class="modal-body">
-              <div class="form-group">
-                <input
-                  v-model="form.loca_name"
-                  type="text"
-                  name="loca_name"
-                  class="form-control"
-                  :class="{ 'is-invalid': form.errors.has('loca_name') }"
-                  placeholder="Tên địa điểm"
-                />
-                <has-error :form="form" field="loca_name"></has-error>
+          <div class="modal-body">
+            <div v-if="user_info != null">
+              <div v-if="user_info.user_client != null" class="row">
+                <div class="col-6">
+                  <b>ID:</b>
+                  {{user_info.user_client.user_id}}
+                  <br />
+                  <b>Họ và tên:</b>
+                  {{user_info.user_client.user_name}}
+                  <br />
+                  <b>Ngày sinh:</b>
+                  {{user_info.user_client.user_birthday}}
+                  <br />
+                  <b>Giới tính:</b>
+                  <span
+                    v-show="user_info.user_client.user_gender == 1"
+                    class="badge badge-primary"
+                  >Nam</span>
+                  <span
+                    v-show="user_info.user_client.user_gender != 1"
+                    class="badge badge-danger"
+                  >Nữ</span>
+                  <br />
+                </div>
+                <div class="col-6">
+                  <b>SĐT:</b>
+                  {{user_info.user_client.user_phone}}
+                  <br />
+                  <b>Email:</b>
+                  {{user_info.user_client.user_email}}
+                  <br />
+                  <b>Địa chỉ:</b>
+                  {{user_info.user_client.user_email}}
+                  <br />
+                </div>
               </div>
-              <div class="form-group">
-                <textarea
-                  v-model="form.loca_description"
-                  type="text"
-                  name="loca_description"
-                  class="form-control"
-                  :class="{ 'is-invalid': form.errors.has('loca_description') }"
-                  placeholder="Mô tả"
-                ></textarea>
-                <has-error :form="form" field="loca_description"></has-error>
+              <div class="row my-3">
+                <h5 class="ml-3">Danh sách tour đã đặt</h5>
+                <div class="col-12">
+                  <div class="table-responsive">
+                    <table class="table table-vcenter table-hover table-striped">
+                      <thead class="thead-dark">
+                        <tr>
+                          <th>ID</th>
+                          <th>Mã tour</th>
+                          <th>Chuyến du lịch</th>
+                          <th>Số lượng trẻ em</th>
+                          <th>Số lượng người lớn</th>
+                          <th>Ngày đặt</th>
+                          <th>Tổng tiền</th>
+                          <th>Tình trạng</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr v-for="(item, index) in user_info.booking_tours" :key="'rowtour'+index">
+                          <th class="text-center" scope="row">{{item.bt_id}}</th>
+                          <td class="font-w600 font-size-sm">{{item.tour_code}}</td>
+                          <td class="d-none d-sm-table-cell">{{item.tr_name}}</td>
+                          <td class="d-none d-sm-table-cell">{{item.bt_num_child}}</td>
+                          <td class="d-none d-sm-table-cell">{{item.bt_num_adult}}</td>
+                          <td class="d-none d-sm-table-cell">{{item.bt_date | myDate}}</td>
+                          <td
+                            class="d-none d-sm-table-cell"
+                          >{{item.bt_total_price | formatPrice }} VNĐ</td>
+                          <td class="d-none d-sm-table-cell">{{item.bt_id}}</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
               </div>
-              <div class="form-group">
-                <label for="loca_poster" class="control-label">Ảnh bìa</label>
-                <br />
-                <input
-                  hidden
-                  id="loca_poster"
-                  ref="loca_poster"
-                  type="file"
-                  accept="image/*"
-                  name="loca_poster"
-                  @change="updateImage"
-                  class="form-input"
-                />
-                <img
-                  @click="chooseImage"
-                  :src="getImageModal()"
-                  class="thumbnail ml-2 border border-primary"
-                  height="125px;"
-                  width="250px;"
-                />
+              <div class="row">
+                <h5 class="ml-3">Danh sách các bình luận</h5>
+                <div class="col-12">
+                  <div class="table-responsive">
+                    <table class="table table-vcenter table-hover table-striped">
+                      <thead class="thead-dark">
+                        <tr>
+                          <th>ID</th>
+                          <th>Thời gian bình luận</th>
+                          <th>Chuyến du lịch</th>
+                          <th>Nội dung</th>
+                          <th>Điểm đánh giá</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr v-for="(item, index) in user_info.reviews" :key="'rowtour'+index">
+                          <th class="text-center" scope="row">{{item.revi_id}}</th>
+                          <td class="font-w600 font-size-sm">{{item.revi_time | myDate}}</td>
+                          <td class="d-none d-sm-table-cell">{{item.tr_name}}</td>
+                          <td class="d-none d-sm-table-cell">{{item.revi_content}}</td>
+                          <td class="d-none d-sm-table-cell">
+                            <i
+                              v-for="n in item.revi_star"
+                              :key="'star'+n"
+                              class="fa fa-star yellow"
+                            ></i>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
               </div>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
-              <button v-show="editMode" type="submit" class="btn btn-success">Cập nhật</button>
-              <button v-show="!editMode" type="submit" class="btn btn-primary">Tạo mới</button>
-            </div>
-          </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+          </div>
         </div>
       </div>
     </div>
@@ -173,111 +236,28 @@
 export default {
   data() {
     return {
-      editMode: false,
-      locations: {},
-      form: new Form({
-        loca_id: "",
-        loca_name: "",
-        loca_poster: "",
-        loca_description: ""
-      })
+      user_info: {},
+      user_clients: {}
     };
   },
   methods: {
-    chooseImage() {
-      this.$refs.loca_poster.click();
-    },
-    getImageModal() {
-      let loca_poster = "";
-      if (this.form.loca_poster.length != 0) {
-        loca_poster =
-          this.form.loca_poster.length > 200
-            ? this.form.loca_poster
-            : this.$Host + "/img/location/" + this.form.loca_poster;
-      } else {
-        loca_poster = this.$Host + "/assets/media/img/new_seo-10-75.png";
-      }
-      return loca_poster;
-    },
-    updateImage(e) {
-      let file = e.target.files[0];
-      let reader = new FileReader();
-      let limit = 1024 * 1024 * 2;
-      if (file["size"] > limit) {
-        Swal.fire({
-          type: "error",
-          title: "Rất tiếc ...",
-          text: "Bạn đang tải lên một tệp lớn"
-        });
-        return false;
-      }
-      reader.onloadend = file => {
-        this.form.loca_poster = reader.result;
-      };
-      reader.readAsDataURL(file);
+    viewDetail(id) {
+      axios.get(this.$Api + "/user-client/" + id).then(response => {
+        this.user_info = response.data;
+        $("#showInfo").modal("show");
+      });
     },
     getResults(page = 1) {
-      axios.get(this.$Api + "/location?page=" + page).then(response => {
-        this.locations = response.data;
+      axios.get(this.$Api + "/user-client?page=" + page).then(response => {
+        this.user_clients = response.data;
       });
     },
     loadData() {
       if (this.$gate.isAdminOrAuthor()) {
         axios
-          .get(this.$Api + "/location")
-          .then(({ data }) => (this.locations = data));
+          .get(this.$Api + "/user-client")
+          .then(({ data }) => (this.user_clients = data));
       }
-    },
-    loadImage(imageName) {
-      return this.$Host + "/img/location/" + imageName;
-    },
-    newModal() {
-      this.form.reset();
-      $("#addNew").modal("show");
-      this.editMode = false;
-    },
-    updateModal(object) {
-      this.editMode = true;
-      this.form.reset();
-      $("#addNew").modal("show");
-      this.form.fill(object);
-    },
-    create() {
-      this.$Progress.start();
-      this.form
-        .post(this.$Api + "/location")
-        .then(() => {
-          Fire.$emit("reloadData");
-          $("#addNew").modal("hide");
-          Toast.fire({
-            type: "success",
-            title: "Tạo mới thành công!"
-          });
-          this.$Progress.finish();
-          this.form.reset();
-        })
-        .catch(() => {
-          this.$Progress.fail();
-        });
-    },
-    update() {
-      this.$Progress.start();
-      // console.log('Editing data');
-      this.form
-        .put(this.$Api + "/location/" + this.form.loca_id)
-        .then(() => {
-          // success
-          $("#addNew").modal("hide");
-          Toast.fire({
-            type: "success",
-            title: "Thông tin đã được cập nhật!"
-          });
-          this.$Progress.finish();
-          Fire.$emit("reloadData");
-        })
-        .catch(() => {
-          this.$Progress.fail();
-        });
     },
     deleteObject: function(id) {
       Swal.fire({
@@ -292,7 +272,7 @@ export default {
         // Send request to the server
         if (result.value) {
           this.form
-            .delete(this.$Api + "/location/" + id)
+            .delete(this.$Api + "/user-client/" + id)
             .then(() => {
               Swal.fire("Đã xóa!", "Đối tượng của bạn đã bị xóa.", "success");
               Fire.$emit("reloadData");

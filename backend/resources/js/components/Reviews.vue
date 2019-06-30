@@ -56,7 +56,7 @@
                   <td>{{review.tr_name}}</td>
                   <td>{{review.revi_content}}</td>
                   <td>
-                    <i v-for="(n, i) in review.start" :key="'star'+i" class="fa fa-star yellow"></i>
+                    <i v-for="n in review.revi_star" :key="'star'+n" class="fa fa-star yellow"></i>
                   </td>
                   <td>
                     <a href="#" @click="deleteObject(review.revi_id)">
@@ -86,6 +86,7 @@
 export default {
   data() {
     return {
+      user_info: {},
       reviews: {}
     };
   },
