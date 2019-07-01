@@ -112,7 +112,6 @@ class LocationController extends Controller
     {
         $this->authorize('isAdmin');
         $location = Location::findOrFail($id);
-        // delete the user
         $location->delete();
         return ['message' => 'Location Deleted'];
     }

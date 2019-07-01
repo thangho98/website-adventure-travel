@@ -482,7 +482,6 @@ export default {
         .put(this.$Api + "/tourist-route/" + this.form.tr_id)
         .then(response => {
           // success
-          $("#addNew").modal("hide");
           Toast.fire({
             type: "success",
             title: "Thông tin đã được cập nhật!"

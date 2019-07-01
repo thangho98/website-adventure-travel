@@ -79,7 +79,6 @@ class ReviewController extends Controller
     {
         $this->authorize('isAdmin');
         $review = Review::findOrFail($id);
-        // delete the user
         $review->delete();
         return ['message' => 'Review Deleted'];
     }

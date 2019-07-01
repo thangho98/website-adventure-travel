@@ -297,7 +297,10 @@ class TouristRouteController extends Controller
      */
     public function destroy($id)
     {
-        
+        $this->authorize('isAdmin');
+        $tourist = TouristRoute::findOrFail($id);
+        $tourist->delete();
+        return ['message' => 'Tourist Route Deleted'];
     }
     public function searchSelect(){
         if ($search = \Request::get('q')) {

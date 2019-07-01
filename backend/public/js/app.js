@@ -3452,11 +3452,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      tours: {}
+      tours: {},
+      form: new Form({})
     };
   },
   methods: {
@@ -3772,6 +3772,270 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TourEdit.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TourEdit.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      touristRoutes: [],
+      promotions: [],
+      images: [],
+      form: new Form({
+        tour_id: this.$route.params.tour_id,
+        tour_tourist_route: {},
+        tour_promotion: {},
+        date: ""
+      })
+    };
+  },
+  methods: {
+    loadData: function loadData() {
+      var _this = this;
+
+      axios.get(this.$Api + "/tour/" + this.form.tour_id).then(function (response) {
+        //console.log(response);
+        var data = response.data;
+        _this.form.tour_promotion = data["tour_promotion"];
+        _this.form.tour_tourist_route = data["tour_tourist_route"];
+        _this.form.date = new Date(data["tour"]["tour_time_start"]);
+      });
+    },
+    cancel: function cancel() {
+      var _this2 = this;
+
+      swalWithBootstrapButtons.fire({
+        title: "Bạn có chắc không?",
+        text: "Bạn sẽ không thể hoàn nguyên điều này!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Vâng, hủy nó đi!",
+        cancelButtonText: "Không, ở lại đây!",
+        reverseButtons: true
+      }).then(function (result) {
+        if (result.value) {
+          swalWithBootstrapButtons.fire("Đã hủy!", "Đối tượng đã được hủy bỏ", "error").then(function () {
+            _this2.form.reset();
+
+            _this2.$router.push("/admin/tourist-route");
+          });
+        } else if ( // Read more about handling dismissals
+        result.dismiss === Swal.DismissReason.cancel) {
+          swalWithBootstrapButtons.fire("Oke", "Đối tượng của bạn vẫn được giữ lại :))", "success");
+        }
+      });
+    },
+    update: function update() {
+      var _this3 = this;
+
+      this.form.date = moment__WEBPACK_IMPORTED_MODULE_0___default()(this.form.date).format("YYYY-MM-DD");
+      this.$Progress.start();
+      this.form.put(this.$Api + "/tour/" + this.form.tour_id).then(function (response) {
+        console.log(response);
+        Toast.fire({
+          type: "success",
+          title: "Thông tin đã được cập nhật!"
+        });
+
+        _this3.$Progress.finish();
+
+        _this3.form.reset();
+
+        _this3.$router.push("/admin/tour");
+      })["catch"](function () {
+        _this3.$Progress.fail();
+      });
+    },
+    loadListTouristRoutes: function loadListTouristRoutes() {
+      var _this4 = this;
+
+      axios.get(this.$Api + "/tourist-route/select/search?q=").then(function (response) {
+        _this4.touristRoutes = response.data;
+      });
+    },
+    loadListPromotions: function loadListPromotions() {
+      var _this5 = this;
+
+      axios.get(this.$Api + "/promotion/select/search?q=").then(function (response) {
+        _this5.promotions = response.data;
+      });
+    },
+    onSearchTouristRoute: function onSearchTouristRoute(search, loading) {
+      loading(true);
+      this.searchTouristRoute(loading, search, this);
+    },
+    searchTouristRoute: _.debounce(function (loading, search, vm) {
+      console.log(search);
+      axios.get(vm.$Api + "/tourist-route/select/search?q=".concat(search)).then(function (response) {
+        vm.touristRoutes = response.data;
+        loading(false);
+      });
+    }, 350),
+    onSearchPromotion: function onSearchPromotion(search, loading) {
+      loading(true);
+      this.searchTouristRoute(loading, search, this);
+    },
+    searchPromotion: _.debounce(function (loading, search, vm) {
+      console.log(search);
+      axios.get(vm.$Api + "/promotion/select/search?q=".concat(search)).then(function (response) {
+        vm.promotions = response.data;
+        loading(false);
+      });
+    }, 350)
+  },
+  created: function created() {
+    this.loadData();
+    this.loadListTouristRoutes();
+    this.loadListPromotions();
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TouristRoute.vue?vue&type=script&lang=js&":
 /*!***********************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TouristRoute.vue?vue&type=script&lang=js& ***!
@@ -3876,7 +4140,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      touristRoutes: {}
+      touristRoutes: {},
+      form: new Form({})
     };
   },
   methods: {
@@ -4921,7 +5186,6 @@ __webpack_require__.r(__webpack_exports__);
 
       this.form.put(this.$Api + "/tourist-route/" + this.form.tr_id).then(function (response) {
         // success
-        $("#addNew").modal("hide");
         Toast.fire({
           type: "success",
           title: "Thông tin đã được cập nhật!"
@@ -78030,22 +78294,37 @@ var render = function() {
                         [_vm._v("Không có khuyến mãi")]
                       ),
                       _vm._v(" "),
-                      _c("td", [
-                        _vm._m(2, true),
-                        _vm._v("\n                  /\n                  "),
-                        _c(
-                          "a",
-                          {
-                            attrs: { href: "#" },
-                            on: {
-                              click: function($event) {
-                                return _vm.deleteObject(tour.tour_id)
+                      _c(
+                        "td",
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              attrs: {
+                                to: {
+                                  name: "editTour",
+                                  params: { tour_id: tour.tour_id }
+                                }
                               }
-                            }
-                          },
-                          [_c("i", { staticClass: "fa fa-trash red" })]
-                        )
-                      ])
+                            },
+                            [_c("i", { staticClass: "fa fa-edit blue" })]
+                          ),
+                          _vm._v("/\n                  "),
+                          _c(
+                            "a",
+                            {
+                              attrs: { href: "#" },
+                              on: {
+                                click: function($event) {
+                                  return _vm.deleteObject(tour.tour_id)
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fa fa-trash red" })]
+                          )
+                        ],
+                        1
+                      )
                     ])
                   }),
                   0
@@ -78154,14 +78433,6 @@ var staticRenderFns = [
           [_vm._v("Thao tác")]
         )
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("a", { attrs: { href: "#" } }, [
-      _c("i", { staticClass: "fa fa-edit blue" })
     ])
   }
 ]
@@ -78351,6 +78622,299 @@ var render = function() {
                     [
                       _c("i", { staticClass: "fa fa-check ml-1" }),
                       _vm._v(" Thêm mới\n              ")
+                    ]
+                  )
+                ])
+              ])
+            ]
+          )
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    !_vm.$gate.isAdminOrAuthor() ? _c("div", [_c("not-found")], 1) : _vm._e()
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "bg-body-light" }, [
+      _c("div", { staticClass: "content content-full" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center"
+          },
+          [
+            _c("h1", { staticClass: "flex-sm-fill h3 my-2" }, [
+              _vm._v("\n          Chuyến du lịch\n          "),
+              _c(
+                "small",
+                {
+                  staticClass:
+                    "d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted"
+                },
+                [_vm._v("Thêm chuyến du lịch")]
+              )
+            ]),
+            _vm._v(" "),
+            _c(
+              "nav",
+              {
+                staticClass: "flex-sm-00-auto ml-sm-3",
+                attrs: { "aria-label": "breadcrumb" }
+              },
+              [
+                _c("ol", { staticClass: "breadcrumb breadcrumb-alt" }, [
+                  _c("li", { staticClass: "breadcrumb-item" }, [
+                    _vm._v("Quản lý")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "li",
+                    {
+                      staticClass: "breadcrumb-item",
+                      attrs: { "aria-current": "page" }
+                    },
+                    [
+                      _c("a", { staticClass: "link-fx", attrs: { href: "" } }, [
+                        _vm._v("Chuyến du lịch")
+                      ])
+                    ]
+                  )
+                ])
+              ]
+            )
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "block-header" }, [
+      _c("h3", { staticClass: "block-title" }, [
+        _vm._v("1. Thông tin tuyến du lịch")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "" } }, [
+      _vm._v("\n                    Chuyến du lịch\n                    "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "" } }, [
+      _vm._v("\n                    Khuyến mãi\n                    "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "block-header" }, [
+      _c("h3", { staticClass: "block-title" }, [_vm._v("2. Lịch xếp tour")])
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TourEdit.vue?vue&type=template&id=353964ed&scoped=true&":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/TourEdit.vue?vue&type=template&id=353964ed&scoped=true& ***!
+  \***********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("main", { attrs: { id: "main-container" } }, [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("form", [
+      _c("div", { staticClass: "content" }, [
+        _c("div", { staticClass: "block" }, [
+          _vm._m(1),
+          _vm._v(" "),
+          _c("div", { staticClass: "block-content block-content-full" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-12" }, [
+                _c("div", { staticClass: "form-row" }, [
+                  _c(
+                    "div",
+                    { staticClass: "form-group col-6" },
+                    [
+                      _vm._m(2),
+                      _vm._v(" "),
+                      _c("v-select", {
+                        class: {
+                          "is-invalid": _vm.form.errors.has(
+                            "tour_tourist_route"
+                          )
+                        },
+                        attrs: {
+                          name: "tour_tourist_route",
+                          required: "",
+                          filterable: false,
+                          options: _vm.touristRoutes,
+                          label: "tr_name"
+                        },
+                        on: { search: _vm.onSearchTouristRoute },
+                        model: {
+                          value: _vm.form.tour_tourist_route,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "tour_tourist_route", $$v)
+                          },
+                          expression: "form.tour_tourist_route"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("has-error", {
+                        attrs: { form: _vm.form, field: "tour_tourist_route" }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "form-group col-6" },
+                    [
+                      _vm._m(3),
+                      _vm._v(" "),
+                      _c("v-select", {
+                        class: {
+                          "is-invalid": _vm.form.errors.has("tour_promotion")
+                        },
+                        attrs: {
+                          name: "tour_promotion",
+                          filterable: false,
+                          options: _vm.promotions,
+                          label: "prom_name"
+                        },
+                        on: { search: _vm.onSearchPromotion },
+                        model: {
+                          value: _vm.form.tour_promotion,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form, "tour_promotion", $$v)
+                          },
+                          expression: "form.tour_promotion"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("has-error", {
+                        attrs: { form: _vm.form, field: "tour_promotion" }
+                      })
+                    ],
+                    1
+                  )
+                ])
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "content" }, [
+        _c("div", { staticClass: "block" }, [
+          _vm._m(4),
+          _vm._v(" "),
+          _c("div", { staticClass: "block-content block-content-full" }, [
+            _c("div", { staticClass: "row" }, [
+              _c(
+                "div",
+                { staticClass: "col-md-12 d-flex justify-content-center" },
+                [
+                  _c("v-date-picker", {
+                    attrs: {
+                      locale: "vi-VN",
+                      masks: { data: "YYYY-MM-DD", input: "YYYY-MM-DD" },
+                      rows: 3,
+                      columns: 4,
+                      "is-inline": ""
+                    },
+                    model: {
+                      value: _vm.form.date,
+                      callback: function($$v) {
+                        _vm.$set(_vm.form, "date", $$v)
+                      },
+                      expression: "form.date"
+                    }
+                  })
+                ],
+                1
+              )
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "content" }, [
+        _c("div", { staticClass: "block" }, [
+          _c(
+            "div",
+            {
+              staticClass:
+                "block-content block-content-sm block-content-full bg-body-light rounded-bottom"
+            },
+            [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-6 text-left" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger",
+                      attrs: { type: "button", "data-wizard": "next" },
+                      on: {
+                        click: function($event) {
+                          return _vm.cancel()
+                        }
+                      }
+                    },
+                    [
+                      _c("i", { staticClass: "fa fa-times ml-1" }),
+                      _vm._v("\n                Hủy\n              ")
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-success ml-2",
+                      attrs: { type: "button", "data-wizard": "finish" },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.update()
+                        }
+                      }
+                    },
+                    [
+                      _c("i", { staticClass: "fa fa-check ml-1" }),
+                      _vm._v(" Cập nhật\n              ")
                     ]
                   )
                 ])
@@ -98168,6 +98732,10 @@ var routes = [{
   path: '/admin/tour/add',
   component: __webpack_require__(/*! ./components/TourAdd.vue */ "./resources/js/components/TourAdd.vue")["default"]
 }, {
+  path: '/admin/tour/edit/:tour_id',
+  name: 'editTour',
+  component: __webpack_require__(/*! ./components/TourEdit.vue */ "./resources/js/components/TourEdit.vue")["default"]
+}, {
   path: '/admin/user-client',
   component: __webpack_require__(/*! ./components/UserClient.vue */ "./resources/js/components/UserClient.vue")["default"]
 }, {
@@ -99064,6 +99632,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TourAdd_vue_vue_type_template_id_5f45c40e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TourAdd_vue_vue_type_template_id_5f45c40e_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/TourEdit.vue":
+/*!**********************************************!*\
+  !*** ./resources/js/components/TourEdit.vue ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _TourEdit_vue_vue_type_template_id_353964ed_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TourEdit.vue?vue&type=template&id=353964ed&scoped=true& */ "./resources/js/components/TourEdit.vue?vue&type=template&id=353964ed&scoped=true&");
+/* harmony import */ var _TourEdit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TourEdit.vue?vue&type=script&lang=js& */ "./resources/js/components/TourEdit.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _TourEdit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TourEdit_vue_vue_type_template_id_353964ed_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _TourEdit_vue_vue_type_template_id_353964ed_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "353964ed",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/TourEdit.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/TourEdit.vue?vue&type=script&lang=js&":
+/*!***********************************************************************!*\
+  !*** ./resources/js/components/TourEdit.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TourEdit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./TourEdit.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TourEdit.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TourEdit_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/TourEdit.vue?vue&type=template&id=353964ed&scoped=true&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/TourEdit.vue?vue&type=template&id=353964ed&scoped=true& ***!
+  \*****************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TourEdit_vue_vue_type_template_id_353964ed_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./TourEdit.vue?vue&type=template&id=353964ed&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/TourEdit.vue?vue&type=template&id=353964ed&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TourEdit_vue_vue_type_template_id_353964ed_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TourEdit_vue_vue_type_template_id_353964ed_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
