@@ -119,4 +119,16 @@ class PromotionController extends Controller
         $promotion->delete();
         return ['message' => 'Promotion Deleted'];
     }
+
+    public function searchSelect(){
+        if ($search = \Request::get('q')) {
+            $promotion = Promotion::where(function($query) use ($search){
+                $query->where('prom_name','LIKE',"%$search%")
+                        ->orWhere('prom_id','LIKE',"%$search%");
+            })->take(5)->get();
+        }else{
+            $promotion = Promotion::take(5)->orderBy('prom_name','asc')->get();
+        }
+        return $promotion;
+    }
 }

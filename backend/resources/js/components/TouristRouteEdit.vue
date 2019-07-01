@@ -303,7 +303,6 @@
 export default {
   data() {
     return {
-      editMode: false,
       categories: [],
       locations: [],
       images: [],
@@ -427,13 +426,12 @@ export default {
       this.search(loading, search, this);
     },
     search: _.debounce((loading, search, vm) => {
-      fetch(vm.$Api + `/location/select/search?q=${search}`).then(res => {
-        res.json().then(json => {
-          vm.locations = json;
-          console.log(escape(search));
+      axios
+        .get(vm.$Api + `/location/select/search?q=${search}`)
+        .then(response => {
+          vm.locations = response.data;
+          loading(false);
         });
-        loading(false);
-      });
     }, 350),
     loadListLocations() {
       axios.get(this.$Api + "/location/select/search?q=").then(response => {

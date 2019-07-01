@@ -31,7 +31,6 @@
 
     <!-- Stylesheets -->
     <!-- Fonts and OneUI framework -->
-
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
     <link rel="stylesheet" id="css-main" href="{{asset('assets/css/oneui.min.css')}}">
@@ -418,7 +417,8 @@
 
     @auth
     <script>
-        window.user = @json(auth() -> user())
+        window.user = @json(auth() -> user());
+        window.host = '{{url('/')}}'
     </script>
     @endauth
     <script src="/js/app.js"></script>
