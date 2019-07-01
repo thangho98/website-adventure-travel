@@ -486,6 +486,6 @@
 @stop
 
 @section('script')
-<script src="js/library.js" type="text/javascript" async></script>
-<script src="js/home.js" type="text/javascript" async></script>
+<script src="js/library.js" type="text/javascript"></script>
+<script src="js/home.js" type="text/javascript"></script>
 @stop
