@@ -299,4 +299,15 @@ class TouristRouteController extends Controller
     {
         
     }
+    public function searchSelect(){
+        if ($search = \Request::get('q')) {
+            $touristRoute = TouristRoute::where(function($query) use ($search){
+                $query->where('tr_name','LIKE',"%$search%")
+                        ->orWhere('tr_id','LIKE',"%$search%");
+            })->take(5)->get();
+        }else{
+            $touristRoute = TouristRoute::take(5)->orderBy('tr_name','asc')->get();
+        }
+        return $touristRoute;
+    }
 }

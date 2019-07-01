@@ -37,6 +37,7 @@ const routes = [
     { path: '/admin/tourist-route/add', component: require('./components/TouristRouteAdd.vue').default },
     { path: '/admin/tourist-route/edit/:tr_id', name: 'editTouristRoute', component: require('./components/TouristRouteEdit.vue').default, props: true },
     { path: '/admin/tour', component: require('./components/Tour.vue').default },
+    { path: '/admin/tour/add', component: require('./components/TourAdd.vue').default },
     { path: '/admin/user-client', component: require('./components/UserClient.vue').default },
     { path: '/admin/reviews', component: require('./components/Reviews.vue').default },
     { path: '/admin/promotion', component: require('./components/Promotion.vue').default },
@@ -71,7 +72,7 @@ Vue.filter('upText', function (text) {
 });
 
 Vue.filter('myDate', function (created) {
-    return moment(created).format('HH:mm:ss DD-MM-YYYY');
+    return moment(created).format('DD-MM-YYYY');
 });
 
 Vue.filter('formatPrice', function (num) {
@@ -133,6 +134,21 @@ Vue.use(VueLazyload)
 import VueUploadMultipleImage from 'vue-upload-multiple-image'
 Vue.component('vue-upload-multiple-image', VueUploadMultipleImage)
 
+import VCalendar from 'v-calendar';
+Vue.use(VCalendar, {
+    locales: {
+        'vi-VN': {
+            firstDayOfWeek: 1,
+            masks: {
+                L: 'YYYY-MM-DD',
+                data: 'YYYY-MM-DD',
+                input: 'YYYY-MM-DD'
+                // ...optional `title`, `weekdays`, `navMonths`, etc
+            }
+        }
+    }
+});
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -183,11 +199,10 @@ Vue.component(
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const api = 'http://localhost:8000/api';
+const api = window.host + '/api';
 Vue.prototype.$Api = api;
 
-const host = 'http://localhost:8000';
-Vue.prototype.$Host = host;
+Vue.prototype.$Host = window.host;
 
 const app = new Vue({
     el: '#app',

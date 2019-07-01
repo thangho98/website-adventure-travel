@@ -23,6 +23,7 @@ Route::apiResources([
     'category'=>'Admin\API\CategoryController',
     'location'=>'Admin\API\LocationController',
     'tourist-route'=>'Admin\API\TouristRouteController',
+    'tour'=>'Admin\API\TourController',
     'user-client'=>'Admin\API\UserClientController',
     'review'=>'Admin\API\ReviewController',
     'promotion'=>'Admin\API\PromotionController',
@@ -36,3 +37,7 @@ Route::get('findUser', 'Admin\API\UserController@search');
 Route::get('category/get/all', 'Admin\API\CategoryController@getListCategories');
 
 Route::get('location/select/search', 'Admin\API\LocationController@searchSelect');
+
+Route::get('tourist-route/select/search', 'Admin\API\TouristRouteController@searchSelect');
+
+Route::get('promotion/select/search', 'Admin\API\PromotionController@searchSelect');
