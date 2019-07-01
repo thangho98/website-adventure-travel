@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th6 28, 2019 lúc 02:49 PM
+-- Thời gian đã tạo: Th7 01, 2019 lúc 07:02 AM
 -- Phiên bản máy phục vụ: 10.3.15-MariaDB
 -- Phiên bản PHP: 7.3.6
 
@@ -33,7 +33,7 @@ CREATE TABLE `booking_tours` (
   `bt_num_child` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `bt_num_adult` date NOT NULL,
   `bt_total_price` int(11) NOT NULL,
-  `bt_date` date NOT NULL,
+  `bt_date` datetime NOT NULL,
   `bt_pay_status` int(11) NOT NULL,
   `bt_booking_status` int(11) NOT NULL,
   `bt_user_client` int(11) NOT NULL,
@@ -86,7 +86,17 @@ CREATE TABLE `destinations` (
 --
 
 INSERT INTO `destinations` (`dest_id`, `dest_tourist_route`, `dest_location`, `created_at`, `updated_at`) VALUES
-(1, 1, 2, '2019-06-28 12:46:59', '2019-06-28 12:46:59');
+(1, 1, 2, '2019-06-28 12:46:59', '2019-06-28 12:46:59'),
+(2, 2, 5, '2019-06-28 16:19:08', '2019-06-28 16:19:08'),
+(3, 2, 2, '2019-06-28 16:19:08', '2019-06-28 16:19:08'),
+(4, 2, 6, '2019-06-28 16:19:08', '2019-06-28 16:19:08'),
+(5, 2, 1, '2019-06-28 16:19:08', '2019-06-28 16:19:08'),
+(6, 3, 6, '2019-06-29 04:25:15', '2019-06-29 04:25:15'),
+(7, 3, 2, '2019-06-29 04:25:15', '2019-06-29 04:25:15'),
+(20, 4, 6, '2019-06-29 11:12:27', '2019-06-29 11:12:27'),
+(21, 4, 2, '2019-06-29 11:12:27', '2019-06-29 11:12:27'),
+(22, 4, 4, '2019-06-29 11:12:27', '2019-06-29 11:12:27'),
+(23, 4, 1, '2019-06-29 11:12:28', '2019-06-29 11:12:28');
 
 -- --------------------------------------------------------
 
@@ -139,7 +149,13 @@ CREATE TABLE `image_tourist_routes` (
 INSERT INTO `image_tourist_routes` (`itr_id`, `itr_name`, `itr_tourist_route`, `itr_highlight`, `itr_default`, `created_at`, `updated_at`) VALUES
 (1, '156172601915617260194155.jpeg', 1, 1, 1, '2019-06-28 12:46:59', '2019-06-28 12:46:59'),
 (2, '156172601915617260195336.jpeg', 1, 0, 0, '2019-06-28 12:46:59', '2019-06-28 12:46:59'),
-(3, '156172601915617260196150.jpeg', 1, 0, 0, '2019-06-28 12:46:59', '2019-06-28 12:46:59');
+(3, '156172601915617260196150.jpeg', 1, 0, 0, '2019-06-28 12:46:59', '2019-06-28 12:46:59'),
+(4, '156178231615617823161738.jpeg', 3, 1, 1, '2019-06-29 04:25:16', '2019-06-29 04:25:16'),
+(5, '156178231615617823163112.jpeg', 3, 0, 0, '2019-06-29 04:25:16', '2019-06-29 04:25:16'),
+(6, '156178231615617823164663.jpeg', 3, 0, 0, '2019-06-29 04:25:16', '2019-06-29 04:25:16'),
+(7, '1561806748.jpeg', 4, 1, 1, '2019-06-29 04:25:51', '2019-06-29 11:12:28'),
+(9, '156178235115617823515773.jpeg', 4, 0, 0, '2019-06-29 04:25:51', '2019-06-29 04:25:51'),
+(11, '156180674815618067485108.jpeg', 4, 0, 0, '2019-06-29 11:12:28', '2019-06-29 11:12:28');
 
 -- --------------------------------------------------------
 
@@ -322,11 +338,18 @@ CREATE TABLE `promotions` (
   `prom_id` int(10) UNSIGNED NOT NULL,
   `prom_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `prom_description` mediumtext COLLATE utf8_unicode_ci NOT NULL,
-  `prom_percent_promotion` double(8,2) NOT NULL,
-  `prom_banner` double NOT NULL,
+  `prom_percent_promotion` int(11) NOT NULL,
+  `prom_banner` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `promotions`
+--
+
+INSERT INTO `promotions` (`prom_id`, `prom_name`, `prom_description`, `prom_percent_promotion`, `prom_banner`, `created_at`, `updated_at`) VALUES
+(1, 'Chào mừng hè', 'Hè tới rồi đi du lịch thôi bạn ơi', 15, '1561819077.jpeg', '2019-06-29 14:37:57', '2019-06-29 14:37:57');
 
 -- --------------------------------------------------------
 
@@ -344,6 +367,13 @@ CREATE TABLE `reviews` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `reviews`
+--
+
+INSERT INTO `reviews` (`revi_id`, `revi_star`, `revi_content`, `revi_time`, `revi_tourist_route`, `revi_user_client`, `created_at`, `updated_at`) VALUES
+(1, 4, 'Tour này thật tuyệt vời :))', '2019-06-29 08:21:23', 1, 1, '2019-06-28 17:00:00', '2019-06-28 17:00:00');
 
 -- --------------------------------------------------------
 
@@ -369,7 +399,10 @@ CREATE TABLE `tourist_routes` (
 --
 
 INSERT INTO `tourist_routes` (`tr_id`, `tr_name`, `tr_category`, `tr_time`, `tr_original_price`, `tr_max_slot`, `tr_poster`, `tr_location`, `created_at`, `updated_at`) VALUES
-(1, 'Chèo đèo', 2, 2, 300000, 2, '1561726019.jpeg', 2, '2019-06-28 12:46:59', '2019-06-28 12:46:59');
+(1, 'Chèo đèo', 2, 2, 300000, 2, '1561726019.jpeg', 2, '2019-06-28 12:46:59', '2019-06-28 12:46:59'),
+(2, 'lala', 2, 2, 100000, 2, '1561738745.jpeg', 2, '2019-06-28 16:19:08', '2019-06-28 16:19:08'),
+(3, 'Vượt thác', 3, 3, 1000000, 10, '1561782315.jpeg', 1, '2019-06-29 04:25:15', '2019-06-29 04:25:15'),
+(4, 'Vượt thác', 5, 4, 1200000, 15, '1561806747.jpeg', 4, '2019-06-29 04:25:51', '2019-06-29 11:12:27');
 
 -- --------------------------------------------------------
 
@@ -392,7 +425,16 @@ CREATE TABLE `tourist_route_details` (
 
 INSERT INTO `tourist_route_details` (`trd_id`, `trd_date`, `trd_description`, `trd_tourist_route`, `created_at`, `updated_at`) VALUES
 (1, 1, 'Leo núi mệt quá', 1, '2019-06-28 12:46:59', '2019-06-28 12:46:59'),
-(2, 2, 'Chán đời thôi', 1, '2019-06-28 12:46:59', '2019-06-28 12:46:59');
+(2, 2, 'Chán đời thôi', 1, '2019-06-28 12:46:59', '2019-06-28 12:46:59'),
+(3, 1, 'lễ', 2, '2019-06-28 16:19:08', '2019-06-28 16:19:08'),
+(4, 2, 'lộc', 2, '2019-06-28 16:19:08', '2019-06-28 16:19:08'),
+(5, 1, 'Vui chơi cả ngày', 3, '2019-06-29 04:25:16', '2019-06-29 04:25:16'),
+(6, 2, 'Đập tan mùa hè', 3, '2019-06-29 04:25:16', '2019-06-29 04:25:16'),
+(7, 3, 'Chán đời', 3, '2019-06-29 04:25:16', '2019-06-29 04:25:16'),
+(15, 1, 'Vui chơi cả ngày', 4, '2019-06-29 11:12:28', '2019-06-29 11:12:28'),
+(16, 2, 'Đập tan mùa hè', 4, '2019-06-29 11:12:28', '2019-06-29 11:12:28'),
+(17, 3, 'Chán đời', 4, '2019-06-29 11:12:28', '2019-06-29 11:12:28'),
+(18, 4, 'Hế lô :))', 4, '2019-06-29 11:12:28', '2019-06-29 11:12:28');
 
 -- --------------------------------------------------------
 
@@ -404,13 +446,23 @@ CREATE TABLE `tours` (
   `tour_id` int(10) UNSIGNED NOT NULL,
   `tour_code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `tour_time_start` date NOT NULL,
-  `tour_slot_book` int(11) NOT NULL,
+  `tour_slot_book` int(11) DEFAULT 0,
   `tour_price` double NOT NULL,
   `tour_tourist_route` int(11) NOT NULL,
-  `tour_promotion` int(11) NOT NULL,
+  `tour_promotion` int(11) DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `tours`
+--
+
+INSERT INTO `tours` (`tour_id`, `tour_code`, `tour_time_start`, `tour_slot_book`, `tour_price`, `tour_tourist_route`, `tour_promotion`, `created_at`, `updated_at`) VALUES
+(1, '120190822', '2019-08-22', 0, 300000, 1, 0, '2019-07-01 04:16:33', '2019-07-01 04:16:33'),
+(2, '120190924', '2019-09-24', 0, 300000, 1, 0, '2019-07-01 04:16:33', '2019-07-01 04:16:33'),
+(3, '120191211', '2019-12-11', 0, 300000, 1, 0, '2019-07-01 04:16:33', '2019-07-01 04:16:33'),
+(4, '120200108', '2020-01-08', 0, 300000, 1, 0, '2019-07-01 04:16:33', '2019-07-01 04:16:33');
 
 -- --------------------------------------------------------
 
@@ -450,7 +502,7 @@ CREATE TABLE `user_clients` (
   `user_id` int(10) UNSIGNED NOT NULL,
   `user_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `user_email` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `user_password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `user_phone` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `user_gender` tinyint(1) NOT NULL,
   `user_birthday` date NOT NULL,
@@ -458,6 +510,13 @@ CREATE TABLE `user_clients` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `user_clients`
+--
+
+INSERT INTO `user_clients` (`user_id`, `user_name`, `user_email`, `password`, `user_phone`, `user_gender`, `user_birthday`, `user_address`, `created_at`, `updated_at`) VALUES
+(1, 'Hồ Thái Thăng', 'thanglong2098@gmail.com', '', '0147258369', 1, '1998-04-25', 'Ho Chi Minh City', '2019-06-28 17:00:00', '2019-06-28 17:00:00');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -585,7 +644,8 @@ ALTER TABLE `tourist_route_details`
 -- Chỉ mục cho bảng `tours`
 --
 ALTER TABLE `tours`
-  ADD PRIMARY KEY (`tour_id`);
+  ADD PRIMARY KEY (`tour_id`),
+  ADD UNIQUE KEY `tour_code` (`tour_code`);
 
 --
 -- Chỉ mục cho bảng `users`
@@ -621,7 +681,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT cho bảng `destinations`
 --
 ALTER TABLE `destinations`
-  MODIFY `dest_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `dest_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT cho bảng `favorite_tours`
@@ -639,7 +699,7 @@ ALTER TABLE `image_news`
 -- AUTO_INCREMENT cho bảng `image_tourist_routes`
 --
 ALTER TABLE `image_tourist_routes`
-  MODIFY `itr_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `itr_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT cho bảng `locations`
@@ -675,31 +735,31 @@ ALTER TABLE `oauth_personal_access_clients`
 -- AUTO_INCREMENT cho bảng `promotions`
 --
 ALTER TABLE `promotions`
-  MODIFY `prom_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `prom_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `reviews`
 --
 ALTER TABLE `reviews`
-  MODIFY `revi_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `revi_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `tourist_routes`
 --
 ALTER TABLE `tourist_routes`
-  MODIFY `tr_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `tr_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `tourist_route_details`
 --
 ALTER TABLE `tourist_route_details`
-  MODIFY `trd_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `trd_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT cho bảng `tours`
 --
 ALTER TABLE `tours`
-  MODIFY `tour_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `tour_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `users`
@@ -711,7 +771,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT cho bảng `user_clients`
 --
 ALTER TABLE `user_clients`
-  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
