@@ -34,25 +34,27 @@ Route::post('admin/password/reset', 'Auth\ResetPasswordController@reset');
 
 // Route::get('{path}','HomeController@index')->where( 'path', '([A-z\d\-/_.]+)?' );
 
-Route::get('invoice', function(){
+Route::get('invoice', function () {
     return view('invoice');
 });
 
 Route::group(['namespace' => 'Admin'], function () {
     Route::group(['prefix' => 'admin'], function () {
-        Route::get('home','HomeController@index')->name('admin/home');
-        Route::get('/','HomeController@returnHome');
-        Route::get('{path}','HomeController@index')->where( 'path', '([A-z\d\-/_.]+)?' );
+        Route::get('home', 'HomeController@index')->name('admin/home');
+        Route::get('/', 'HomeController@returnHome');
+        Route::get('{path}', 'HomeController@index')->where('path', '([A-z\d\-/_.]+)?');
     });
 });
 
 Route::group(['namespace' => 'Client'], function () {
     Route::group(['prefix' => 'clients'], function () {
-        Route::get('/','HomeController@Index')->name('homeClient');
-        
+
+        Route::get('/', 'HomeController@Index')->name('homeClient');
+        Route::get('/tour/{code}', 'TourDetailController@Index');
+        Route::post('/tour/comment/{code}', 'TourDetailController@postComment')->name('postComment');
     });
 });
 
 Route::post('clients/register', 'AuthClient\RegisterController@register')->name('registerClient');
-Route::post('clients/login','AuthClient\LoginController@login')->name('loginClient');
-Route::post('clients/logout','AuthClient\LoginController@logout')->name('logoutClient');
+Route::post('clients/login', 'AuthClient\LoginController@login')->name('loginClient');
+Route::post('clients/logout', 'AuthClient\LoginController@logout')->name('logoutClient');

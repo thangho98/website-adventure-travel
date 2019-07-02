@@ -122,7 +122,7 @@
                 <div id="nav-bot" class="navbar navbar-expand-lg">
                     <div class="container">
                         <div id="logo-header" class="navbar-brand">
-                            <a href="home.html"><img src="imgs/Logo2.png" alt="Team13.com"></a>
+                            <a href="{{asset(route('homeClient'))}}"><img src="imgs/Logo2.png" alt="Team13.com"></a>
                         </div>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-links" aria-controls="nav-links" aria-expanded="false">
                             <i class="fas fa-bars"></i>

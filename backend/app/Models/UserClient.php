@@ -20,8 +20,9 @@ class UserClient extends Authenticatable
      *
      * @var array
      */
+    
     protected $fillable = [
-        'user_name', 'user_email', 'password',
+        'user_name', 'email', 'password',
     ];
 
     /**
