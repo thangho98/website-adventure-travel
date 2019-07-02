@@ -33,7 +33,10 @@ $fa-font-path:"../webfonts";
     }
 }
 .router-link-exact-active{
-    color: #fff !important;
+    color: #fff !important; 
+}
+.dropdown-item {
+    color: #575757 !important;
 }
 
 @media print {

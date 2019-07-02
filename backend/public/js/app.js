@@ -2729,14 +2729,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -4525,6 +4517,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -4536,6 +4544,7 @@ __webpack_require__.r(__webpack_exports__);
         tr_id: "",
         tr_name: "",
         tr_category: 0,
+        tr_introduction: "",
         tr_original_price: 100000,
         tr_max_slot: 1,
         tr_time: 1,
@@ -5006,6 +5015,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -5016,6 +5041,7 @@ __webpack_require__.r(__webpack_exports__);
         tr_id: this.$route.params.tr_id,
         tr_name: "",
         tr_category: {},
+        tr_introduction: "",
         tr_original_price: 100000,
         tr_max_slot: 1,
         tr_time: 1,
@@ -76806,11 +76832,8 @@ var render = function() {
                     _c(
                       "div",
                       {
-                        staticClass: "tab-pane fade fade-right",
-                        attrs: {
-                          id: "btabs-animated-slideright-profile",
-                          role: "tabpanel"
-                        }
+                        staticClass: "tab-pane fade fade-right show active",
+                        attrs: { id: "btabsprofile", role: "tabpanel" }
                       },
                       [
                         _c("h4", { staticClass: "font-w400" }, [
@@ -77035,10 +77058,7 @@ var render = function() {
                       "div",
                       {
                         staticClass: "tab-pane fade fade-right",
-                        attrs: {
-                          id: "btabs-animated-slideright-settings",
-                          role: "tabpanel"
-                        }
+                        attrs: { id: "btabssetting", role: "tabpanel" }
                       },
                       [
                         _c("h4", { staticClass: "font-w400" }, [
@@ -77370,19 +77390,19 @@ var staticRenderFns = [
           _c(
             "a",
             {
-              staticClass: "nav-link active",
-              attrs: { href: "#btabs-animated-slideright-home" }
+              staticClass: "nav-link",
+              attrs: { href: "#btabsactivity", "data-toggle": "tab" }
             },
             [_vm._v("Hoạt động")]
           )
         ]),
         _vm._v(" "),
-        _c("li", { staticClass: "nav-item" }, [
+        _c("li", { staticClass: "nav-item active" }, [
           _c(
             "a",
             {
-              staticClass: "nav-link",
-              attrs: { href: "#btabs-animated-slideright-profile" }
+              staticClass: "nav-link active",
+              attrs: { href: "#btabsprofile", "data-toggle": "tab" }
             },
             [_vm._v("Hồ Sơ")]
           )
@@ -77394,9 +77414,9 @@ var staticRenderFns = [
             {
               staticClass: "nav-link",
               attrs: {
-                "data-toggle": "tooltip",
+                "data-toggle": "tab",
                 title: "Thay đổi mật khẩu",
-                href: "#btabs-animated-slideright-settings"
+                href: "#btabssetting"
               }
             },
             [_c("i", { staticClass: "si si-settings" })]
@@ -77412,8 +77432,8 @@ var staticRenderFns = [
     return _c(
       "div",
       {
-        staticClass: "tab-pane fade fade-right show active",
-        attrs: { id: "btabs-animated-slideright-home", role: "tabpanel" }
+        staticClass: "tab-pane fade fade-right",
+        attrs: { id: "btabsactivity", role: "tabpanel" }
       },
       [
         _c("h4", { staticClass: "font-w400" }, [_vm._v("Hoạt động")]),
@@ -79370,9 +79390,53 @@ var render = function() {
                 _c("div", { staticClass: "form-row" }, [
                   _c(
                     "div",
-                    { staticClass: "form-group col-6" },
+                    { staticClass: "form-group col-12" },
                     [
                       _vm._m(4),
+                      _vm._v(" "),
+                      _c("textarea", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.tr_introduction,
+                            expression: "form.tr_introduction"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        class: {
+                          "is-invalid": _vm.form.errors.has("tr_introduction")
+                        },
+                        attrs: { name: "tr_introduction", required: "" },
+                        domProps: { value: _vm.form.tr_introduction },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.form,
+                              "tr_introduction",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("has-error", {
+                        attrs: { form: _vm.form, field: "tr_introduction" }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-row" }, [
+                  _c(
+                    "div",
+                    { staticClass: "form-group col-6" },
+                    [
+                      _vm._m(5),
                       _vm._v(" "),
                       _c("div", { staticClass: "input-group" }, [
                         _c("input", {
@@ -79407,7 +79471,7 @@ var render = function() {
                           }
                         }),
                         _vm._v(" "),
-                        _vm._m(5)
+                        _vm._m(6)
                       ]),
                       _vm._v(" "),
                       _c("has-error", {
@@ -79421,7 +79485,7 @@ var render = function() {
                     "div",
                     { staticClass: "form-group col-6" },
                     [
-                      _vm._m(6),
+                      _vm._m(7),
                       _vm._v(" "),
                       _c("div", { staticClass: "input-group" }, [
                         _c("input", {
@@ -79461,7 +79525,7 @@ var render = function() {
                           }
                         }),
                         _vm._v(" "),
-                        _vm._m(7)
+                        _vm._m(8)
                       ]),
                       _vm._v(" "),
                       _c("has-error", {
@@ -79477,7 +79541,7 @@ var render = function() {
                     "div",
                     { staticClass: "form-group col-6" },
                     [
-                      _vm._m(8),
+                      _vm._m(9),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -79525,7 +79589,7 @@ var render = function() {
                     "div",
                     { staticClass: "form-group col-6" },
                     [
-                      _vm._m(9),
+                      _vm._m(10),
                       _vm._v(" "),
                       _c("v-select", {
                         class: {
@@ -79564,7 +79628,7 @@ var render = function() {
                     "div",
                     { staticClass: "form-group col-12" },
                     [
-                      _vm._m(10),
+                      _vm._m(11),
                       _vm._v(" "),
                       _c("v-select", {
                         class: {
@@ -79608,7 +79672,7 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "content" }, [
         _c("div", { staticClass: "block" }, [
-          _vm._m(11),
+          _vm._m(12),
           _vm._v(" "),
           _c("div", { staticClass: "block-content block-content-full" }, [
             _c("div", { staticClass: "row" }, [
@@ -79622,7 +79686,7 @@ var render = function() {
                   [
                     _c("tbody", [
                       _c("tr", [
-                        _vm._m(12),
+                        _vm._m(13),
                         _vm._v(" "),
                         _c(
                           "td",
@@ -79664,7 +79728,7 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("tr", [
-                        _vm._m(13),
+                        _vm._m(14),
                         _vm._v(" "),
                         _c(
                           "td",
@@ -79696,7 +79760,7 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "content" }, [
         _c("div", { staticClass: "block" }, [
-          _vm._m(14),
+          _vm._m(15),
           _vm._v(" "),
           _c("div", { staticClass: "block-content block-content-full" }, [
             _c("div", { staticClass: "row" }, [
@@ -79709,7 +79773,7 @@ var render = function() {
                     attrs: { id: "images" }
                   },
                   [
-                    _vm._m(15),
+                    _vm._m(16),
                     _vm._v(" "),
                     _c(
                       "tbody",
@@ -79876,6 +79940,15 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "" } }, [
       _vm._v("\n                    Thể loại\n                    "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "" } }, [
+      _vm._v("\n                    Giới thiệu\n                    "),
       _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   },
@@ -80104,9 +80177,53 @@ var render = function() {
                 _c("div", { staticClass: "form-row" }, [
                   _c(
                     "div",
-                    { staticClass: "form-group col-6" },
+                    { staticClass: "form-group col-12" },
                     [
                       _vm._m(4),
+                      _vm._v(" "),
+                      _c("textarea", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.tr_introduction,
+                            expression: "form.tr_introduction"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        class: {
+                          "is-invalid": _vm.form.errors.has("tr_introduction")
+                        },
+                        attrs: { name: "tr_introduction", required: "" },
+                        domProps: { value: _vm.form.tr_introduction },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.form,
+                              "tr_introduction",
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c("has-error", {
+                        attrs: { form: _vm.form, field: "tr_introduction" }
+                      })
+                    ],
+                    1
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "form-row" }, [
+                  _c(
+                    "div",
+                    { staticClass: "form-group col-6" },
+                    [
+                      _vm._m(5),
                       _vm._v(" "),
                       _c("div", { staticClass: "input-group" }, [
                         _c("input", {
@@ -80141,7 +80258,7 @@ var render = function() {
                           }
                         }),
                         _vm._v(" "),
-                        _vm._m(5)
+                        _vm._m(6)
                       ]),
                       _vm._v(" "),
                       _c("has-error", {
@@ -80155,7 +80272,7 @@ var render = function() {
                     "div",
                     { staticClass: "form-group col-6" },
                     [
-                      _vm._m(6),
+                      _vm._m(7),
                       _vm._v(" "),
                       _c("div", { staticClass: "input-group" }, [
                         _c("input", {
@@ -80195,7 +80312,7 @@ var render = function() {
                           }
                         }),
                         _vm._v(" "),
-                        _vm._m(7)
+                        _vm._m(8)
                       ]),
                       _vm._v(" "),
                       _c("has-error", {
@@ -80211,7 +80328,7 @@ var render = function() {
                     "div",
                     { staticClass: "form-group col-6" },
                     [
-                      _vm._m(8),
+                      _vm._m(9),
                       _vm._v(" "),
                       _c("input", {
                         directives: [
@@ -80259,7 +80376,7 @@ var render = function() {
                     "div",
                     { staticClass: "form-group col-6" },
                     [
-                      _vm._m(9),
+                      _vm._m(10),
                       _vm._v(" "),
                       _c("v-select", {
                         class: {
@@ -80295,7 +80412,7 @@ var render = function() {
                     "div",
                     { staticClass: "form-group col-12" },
                     [
-                      _vm._m(10),
+                      _vm._m(11),
                       _vm._v(" "),
                       _c("v-select", {
                         class: {
@@ -80336,7 +80453,7 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "content" }, [
         _c("div", { staticClass: "block" }, [
-          _vm._m(11),
+          _vm._m(12),
           _vm._v(" "),
           _c("div", { staticClass: "block-content block-content-full" }, [
             _c("div", { staticClass: "row" }, [
@@ -80350,7 +80467,7 @@ var render = function() {
                   [
                     _c("tbody", [
                       _c("tr", [
-                        _vm._m(12),
+                        _vm._m(13),
                         _vm._v(" "),
                         _c(
                           "td",
@@ -80392,7 +80509,7 @@ var render = function() {
                       ]),
                       _vm._v(" "),
                       _c("tr", [
-                        _vm._m(13),
+                        _vm._m(14),
                         _vm._v(" "),
                         _c(
                           "td",
@@ -80424,7 +80541,7 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "content" }, [
         _c("div", { staticClass: "block" }, [
-          _vm._m(14),
+          _vm._m(15),
           _vm._v(" "),
           _c("div", { staticClass: "block-content block-content-full" }, [
             _c("div", { staticClass: "row" }, [
@@ -80437,7 +80554,7 @@ var render = function() {
                     attrs: { id: "images" }
                   },
                   [
-                    _vm._m(15),
+                    _vm._m(16),
                     _vm._v(" "),
                     _c(
                       "tbody",
@@ -80604,6 +80721,15 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "" } }, [
       _vm._v("\n                    Thể loại\n                    "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "" } }, [
+      _vm._v("\n                    Giới thiệu\n                    "),
       _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   },

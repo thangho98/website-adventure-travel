@@ -6287,6 +6287,10 @@ readers do not read off random characters that represent icons */
   color: #fff !important;
 }
 
+.dropdown-item {
+  color: #575757 !important;
+}
+
 @media print {
   .nav.nav-tabs li:not(.active) {
     display: none;

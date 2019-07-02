@@ -73,6 +73,7 @@ class TouristRouteController extends Controller
         $touristRoute = new TouristRoute;
         $touristRoute->tr_name = $request['tr_name'];
         $touristRoute->tr_category = $request['tr_category'];
+        $touristRoute->tr_introduction = $request['tr_introduction'];
         $touristRoute->tr_time = $request['tr_time'];
         $touristRoute->tr_original_price = $request['tr_original_price'];
         $touristRoute->tr_max_slot = $request['tr_max_slot'];
@@ -196,6 +197,7 @@ class TouristRouteController extends Controller
 
         $touristRoute->tr_name = $request['tr_name'];
         $touristRoute->tr_category = $request['tr_category']['cate_id'];
+        $touristRoute->tr_introduction = $request['tr_introduction'];
         $touristRoute->tr_time = $request['tr_time'];
         $touristRoute->tr_original_price = $request['tr_original_price'];
         $touristRoute->tr_max_slot = $request['tr_max_slot'];

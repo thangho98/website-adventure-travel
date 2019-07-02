@@ -59,34 +59,30 @@
               <div class="block">
                 <ul class="nav nav-tabs nav-tabs-block" data-toggle="tabs" role="tablist">
                   <li class="nav-item">
-                    <a class="nav-link active" href="#btabs-animated-slideright-home">Hoạt động</a>
+                    <a class="nav-link" href="#btabsactivity" data-toggle="tab">Hoạt động</a>
                   </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#btabs-animated-slideright-profile">Hồ Sơ</a>
+                  <li class="nav-item active">
+                    <a class="nav-link active" href="#btabsprofile" data-toggle="tab">Hồ Sơ</a>
                   </li>
                   <li class="nav-item ml-auto">
                     <a
-                      data-toggle="tooltip"
+                      data-toggle="tab"
                       title="Thay đổi mật khẩu"
                       class="nav-link"
-                      href="#btabs-animated-slideright-settings"
+                      href="#btabssetting"
                     >
                       <i class="si si-settings"></i>
                     </a>
                   </li>
                 </ul>
                 <div class="block-content tab-content overflow-hidden">
-                  <div
-                    class="tab-pane fade fade-right show active"
-                    id="btabs-animated-slideright-home"
-                    role="tabpanel"
-                  >
+                  <div class="tab-pane fade fade-right" id="btabsactivity" role="tabpanel">
                     <h4 class="font-w400">Hoạt động</h4>
                     <p>Display User Activity.</p>
                   </div>
                   <div
-                    class="tab-pane fade fade-right"
-                    id="btabs-animated-slideright-profile"
+                    class="tab-pane fade fade-right show active"
+                    id="btabsprofile"
                     role="tabpanel"
                   >
                     <h4 class="font-w400">Thông tin hồ sơ</h4>
@@ -177,11 +173,7 @@
                       </div>
                     </form>
                   </div>
-                  <div
-                    class="tab-pane fade fade-right"
-                    id="btabs-animated-slideright-settings"
-                    role="tabpanel"
-                  >
+                  <div class="tab-pane fade fade-right" id="btabssetting" role="tabpanel">
                     <h4 class="font-w400">Thay đổi mật khẩu</h4>
                     <form class="form-horizontal">
                       <div class="row justify-content-center mt-5">

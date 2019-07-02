@@ -72,6 +72,22 @@
                   </div>
                 </div>
                 <div class="form-row">
+                  <div class="form-group col-12">
+                    <label for>
+                      Giới thiệu
+                      <span class="text-danger">*</span>
+                    </label>
+                    <textarea
+                      v-model="form.tr_introduction"
+                      name="tr_introduction"
+                      class="form-control"
+                      required
+                      :class="{ 'is-invalid': form.errors.has('tr_introduction') }"
+                    ></textarea>
+                    <has-error :form="form" field="tr_introduction"></has-error>
+                  </div>
+                </div>
+                <div class="form-row">
                   <div class="form-group col-6">
                     <label for>
                       Thời gian
@@ -310,6 +326,7 @@ export default {
         tr_id: this.$route.params.tr_id,
         tr_name: "",
         tr_category: {},
+        tr_introduction: "",
         tr_original_price: 100000,
         tr_max_slot: 1,
         tr_time: 1,
