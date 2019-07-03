@@ -78,7 +78,8 @@ Route::group(['namespace' => 'Client'], function () {
         Route::get('/', 'HomeController@Index')->name('homeClient');
         Route::get('/tour/{code}', 'TourDetailController@Index');
         Route::post('/tour/comment/{code}', 'TourDetailController@postComment')->name('postComment');
-        Route::get('/personal', 'PersonalCOntroller@Index')->name('personal');
+        Route::get('/personal', 'PersonalController@Index')->name('personal');
+        Route::post('/personal/update', "PersonalController@UpdateProfile")->name('personalUpdateProfile');
     });
 });
 

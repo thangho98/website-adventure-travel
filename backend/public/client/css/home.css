@@ -189,6 +189,8 @@ body #header nav #nav-top .container #user #user-menu {
 }
 
 body #header nav #nav-top .container #user #user-menu #welcome-user {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: nowrap;
       flex-wrap: nowrap;
@@ -1622,19 +1624,15 @@ body #content #search-filter .content .item .btn-submit button:hover {
   }
 }
 
-body #content .tours .tours-title {
-  padding: 0 10px;
-}
-
-body #content .tours .tours-list {
+body #content #booking-tour .list-tours {
   padding: 10px;
 }
 
-body #content .tours .tours-list .tour-table {
-  overflow: scroll;
+body #content #booking-tour .list-tours .tours-title {
+  padding: 0 10px;
 }
 
-body #content .tours .tours-list .title {
+body #content #booking-tour .list-tours .title {
   font-size: 20px;
   color: #19a1e5;
   border-left: solid 3px #0080c0;
@@ -1644,7 +1642,7 @@ body #content .tours .tours-list .title {
   text-align: left;
 }
 
-body #content .tours .tours-list .item {
+body #content #booking-tour .list-tours .item {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1656,13 +1654,13 @@ body #content .tours .tours-list .item {
       flex-wrap: wrap;
 }
 
-body #content .tours .tours-list .item label {
+body #content #booking-tour .list-tours .item label {
   font-size: 14px;
   margin: 0;
   line-height: 30px;
 }
 
-body #content .tours .tours-list .item input {
+body #content #booking-tour .list-tours .item input {
   width: -webkit-min-content;
   width: -moz-min-content;
   width: min-content;
@@ -1672,7 +1670,7 @@ body #content .tours .tours-list .item input {
   line-height: 20px;
 }
 
-body #content .tours .tours-list .item .group-input-count {
+body #content #booking-tour .list-tours .item .group-input-count {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1682,7 +1680,7 @@ body #content .tours .tours-list .item .group-input-count {
   width: 175px;
 }
 
-body #content .tours .tours-list .item .group-input-count input {
+body #content #booking-tour .list-tours .item .group-input-count input {
   width: 120px !important;
   text-align: center;
   font-size: 14px;
@@ -1691,7 +1689,7 @@ body #content .tours .tours-list .item .group-input-count input {
   line-height: 20px;
 }
 
-body #content .tours .tours-list .item button {
+body #content #booking-tour .list-tours .item button {
   width: 27px;
   border: none;
   background: #19a1e5;
@@ -1702,20 +1700,20 @@ body #content .tours .tours-list .item button {
   text-align: center;
 }
 
-body #content .tours .tours-list .item button:hover {
+body #content #booking-tour .list-tours .item button:hover {
   background: #0080c0;
 }
 
-body #content .tours .tours-list #price-sum {
+body #content #booking-tour .list-tours #price-sum {
   font-size: 20px;
   padding: 10px 5px;
 }
 
-body #content .tours .tours-list #price-sum span {
+body #content #booking-tour .list-tours #price-sum span {
   color: #b40000;
 }
 
-body #content .tours .tours-list #btn-book {
+body #content #booking-tour .list-tours #btn-book {
   border: none;
   background: #19a1e5;
   color: #fff;
@@ -1725,11 +1723,11 @@ body #content .tours .tours-list #btn-book {
   margin: 5px 5px;
 }
 
-body #content .tours .tours-list #btn-book:hover {
+body #content #booking-tour .list-tours #btn-book:hover {
   background: #0080c0;
 }
 
-body #content .tours .tours-list .tour {
+body #content #booking-tour .list-tours .tours .tour {
   text-align: left;
   background: #f2f5f8;
   font-size: 13px;
@@ -1738,11 +1736,11 @@ body #content .tours .tours-list .tour {
   margin-bottom: 20px;
 }
 
-body #content .tours .tours-list .tour .left {
+body #content #booking-tour .list-tours .tours .tour .left {
   border-right: dotted 1px #b4b4b4;
 }
 
-body #content .tours .tours-list .tour .title {
+body #content #booking-tour .list-tours .tours .tour .title {
   color: #19a1e5;
   font-size: 17px;
   font-weight: 600;
@@ -1750,38 +1748,38 @@ body #content .tours .tours-list .tour .title {
   border: none;
 }
 
-body #content .tours .tours-list .tour .tour-img img {
+body #content #booking-tour .list-tours .tours .tour .tour-img img {
   -o-object-fit: cover;
      object-fit: cover;
   width: 100%;
   height: 120px;
 }
 
-body #content .tours .tours-list .tour .promotion span {
+body #content #booking-tour .list-tours .tours .tour .promotion span {
   color: #c50000;
 }
 
-body #content .tours .tours-list .tour .booking {
+body #content #booking-tour .list-tours .tours .tour .booking {
   text-align: center;
 }
 
-body #content .tours .tours-list .tour .booking .price {
+body #content #booking-tour .list-tours .tours .tour .booking .price {
   color: #c50000;
   font-size: 17px;
   margin-bottom: 10px;
 }
 
-body #content .tours .tours-list .tour .booking .price div {
+body #content #booking-tour .list-tours .tours .tour .booking .price div {
   color: #000;
   font-size: 13px;
   text-decoration: line-through;
 }
 
-body #content .tours .tours-list .tour .booking .slot span {
+body #content #booking-tour .list-tours .tours .tour .booking .slot span {
   color: #c50000;
 }
 
-body #content .tours .tours-list .tour .booking .btn-booking {
+body #content #booking-tour .list-tours .tours .tour .booking .btn-booking {
   background: #c50000;
   color: #fff;
   font-size: 17px;
@@ -1797,7 +1795,7 @@ body #content .tours .tours-list .tour .booking .btn-booking {
   line-height: 40px;
 }
 
-body #content .tours .tours-list .tour .booking .btn-booking:hover {
+body #content #booking-tour .list-tours .tours .tour .booking .btn-booking:hover {
   cursor: pointer;
   background: #e90000;
 }

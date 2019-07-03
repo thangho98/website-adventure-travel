@@ -12,31 +12,45 @@
                 </div>
                 <div class="tours-list">
                     <div id="user-infomation">
-                        <div class="title">
-                            Thông tin của bạn
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="title">
+                                    Thông tin của bạn
+                                </div>
+                                <div class="content">
+                                    <form action="{{route('personalUpdateProfile')}}" method="post">
+                                        <div class="item">
+                                            <label for="user_info_name">Họ và tên</label>
+                                            <input type="text" name="name" placeholder="Nhập tên" value="{{$user->user_name}}">
+                                        </div>
+                                        <div class="item">
+                                            <label for="user_info_name">Ngày sinh</label>
+                                            <input type="date" name="birthday" value="{{$user->user_bitrhday}}">
+                                        </div>
+                                        <div class="item">
+                                            <label for="user_info_name">Email</label>
+                                            <input type="text" name="email" placeholder="Nhập email" value="{{$user->email}}">
+                                        </div>
+                                        <div class="item">
+                                            <label for="user_info_name">Điện thoại</label>
+                                            <input type="text" name="phone" placeholder="Nhập số điện thoại" value="{{$user->user_phone}}">
+                                        </div>
+                                        <div class="item">
+                                            <label for="user_info_name">Địa chỉ</label>
+                                            <input type="text" name="address" placeholder="Nhập địa chỉ" value="{{$user->user_address}}">
+                                        </div>
+                                        <div class="item">
+                                            <button type="submit">Cập nhật</button>
+                                        </div>
+                                        {{csrf_field()}}
+                                    </form>
+
+                                </div>
+                            </div>
+
+                            <div class="col-lg-7"></div>
                         </div>
-                        <div class="content">
-                            <div class="item">
-                                <label for="user_info_name">Họ và tên</label>
-                                <input type="text" placeholder="Nhập tên">
-                            </div>
-                            <div class="item">
-                                <label for="user_info_name">Ngày sinh</label>
-                                <input type="text" placeholder="Nhập ngày sinh">
-                            </div>
-                            <div class="item">
-                                <label for="user_info_name">Email</label>
-                                <input type="text" placeholder="Nhập emmail">
-                            </div>
-                            <div class="item">
-                                <label for="user_info_name">Điện thoại</label>
-                                <input type="text" placeholder="Nhập số điện thoại">
-                            </div>
-                            <div class="item">
-                                <label for="user_info_name">Địa chỉ</label>
-                                <input type="text" placeholder="Nhập địa chỉ">
-                            </div>
-                        </div>
+
                     </div>
 
                     <div id="tour-history" class="tour-table">
@@ -295,5 +309,5 @@
 
 @section('script')
 <script src="/client/js/library.js" type="text/javascript"></script>
-    <script src="/client/js/home.js" type="text/javascript"></script>
+<script src="/client/js/home.js" type="text/javascript"></script>
 @stop
