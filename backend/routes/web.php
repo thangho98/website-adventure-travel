@@ -74,7 +74,8 @@ Route::group(['namespace' => 'Admin'], function () {
 Route::group(['namespace' => 'Client'], function () {
     Route::group(['prefix' => 'clients'], function () {
         Route::get('/','HomeController@Index')->name('homeClient');
-        
+
+        Route::post('/search','SearchController@postSearch');
     });
 });
 
