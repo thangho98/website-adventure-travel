@@ -101,7 +101,7 @@
                                 <div id="welcome-user"><span>Xin chào {{Auth::guard('client')->user()->user_name}}</span><i class="fas fa-chevron-circle-down"></i></div>
                                 <div id="menu-user">
                                     <ul>
-                                        <li><a href="#">Trang cá nhân</a></li>
+                                        <li><a href="{{asset(route('personal'))}}">Trang cá nhân</a></li>
                                         <li><a href="#">Lịch sử đặt tour</a></li>
                                         <li><a href="#">Tours yêu thích</a></li>
                                         <form action="{{route('logoutClient')}}" method="post">

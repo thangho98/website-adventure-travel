@@ -34,40 +34,41 @@ Route::post('admin/password/reset', 'Auth\ResetPasswordController@reset');
 
 // Route::get('{path}','HomeController@index')->where( 'path', '([A-z\d\-/_.]+)?' );
 
-Route::get('invoice', function(){
+Route::get('invoice', function () {
     return view('invoice');
 });
 
 Route::group(['namespace' => 'Admin'], function () {
     Route::group(['prefix' => 'admin'], function () {
-        Route::get('home','HomeController@index')->name('admin/home');
-        Route::get('/','HomeController@returnHome');
         
-        Route::get('dashboard','HomeController@index');
-        Route::get('category','HomeController@index');
+        Route::get('home', 'HomeController@index')->name('admin/home');
+        Route::get('/', 'HomeController@returnHome');
+
+        Route::get('dashboard', 'HomeController@index');
+        Route::get('category', 'HomeController@index');
         Route::group(['prefix' => 'tourist-route'], function () {
-            Route::get('/','HomeController@index');
-            Route::get('/add','HomeController@index');
-            Route::get('/edit/{tr_id}','HomeController@index');
+            Route::get('/', 'HomeController@index');
+            Route::get('/add', 'HomeController@index');
+            Route::get('/edit/{tr_id}', 'HomeController@index');
         });
         Route::group(['prefix' => 'tour'], function () {
-            Route::get('/','HomeController@index');
-            Route::get('/add','HomeController@index');
-            Route::get('/edit/{tour_id}','HomeController@index');
+            Route::get('/', 'HomeController@index');
+            Route::get('/add', 'HomeController@index');
+            Route::get('/edit/{tour_id}', 'HomeController@index');
         });
         Route::group(['prefix' => 'news'], function () {
-            Route::get('/','HomeController@index');
-            Route::get('/add','HomeController@index');
-            Route::get('/edit/{news_id}','HomeController@index');
+            Route::get('/', 'HomeController@index');
+            Route::get('/add', 'HomeController@index');
+            Route::get('/edit/{news_id}', 'HomeController@index');
         });
-        
-        Route::get('user-client','HomeController@index');
-        Route::get('reviews','HomeController@index');
-        Route::get('promotion','HomeController@index');
-        Route::get('developer','HomeController@index');
-        Route::get('users','HomeController@index');
-        Route::get('profile','HomeController@index');
-        Route::get('{path}','HomeController@index')->where( 'path', '([A-z\d\-/_.]+)?' );
+
+        Route::get('user-client', 'HomeController@index');
+        Route::get('reviews', 'HomeController@index');
+        Route::get('promotion', 'HomeController@index');
+        Route::get('developer', 'HomeController@index');
+        Route::get('users', 'HomeController@index');
+        Route::get('profile', 'HomeController@index');
+        Route::get('{path}', 'HomeController@index')->where('path', '([A-z\d\-/_.]+)?');
     });
 });
 
@@ -76,9 +77,16 @@ Route::group(['namespace' => 'Client'], function () {
         Route::get('/','HomeController@Index')->name('homeClient');
 
         Route::post('/search','SearchController@postSearch');
+
+
+        Route::get('/', 'HomeController@Index')->name('homeClient');
+        Route::get('/tour/{code}', 'TourDetailController@Index');
+        Route::post('/tour/comment/{code}', 'TourDetailController@postComment')->name('postComment');
+        Route::get('/personal', 'PersonalCOntroller@Index')->name('personal');
+
     });
 });
 
 Route::post('clients/register', 'AuthClient\RegisterController@register')->name('registerClient');
-Route::post('clients/login','AuthClient\LoginController@login')->name('loginClient');
-Route::post('clients/logout','AuthClient\LoginController@logout')->name('logoutClient');
+Route::post('clients/login', 'AuthClient\LoginController@login')->name('loginClient');
+Route::post('clients/logout', 'AuthClient\LoginController@logout')->name('logoutClient');
