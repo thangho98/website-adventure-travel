@@ -1615,12 +1615,10 @@ body {
 body {
   #content {
     .tours {
-      text-align: left;
       .tours-title {
         padding: 0 10px;
       }
       .tours-list {
-        text-align: left;
         padding: 10px;
 
         .tour-table {
@@ -1634,6 +1632,8 @@ body {
           line-height: 20px;
           margin: 10px 0;
           padding: 0 5px;
+        text-align: left;
+
         }
 
         .item {

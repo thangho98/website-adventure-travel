@@ -2,11 +2,11 @@
 <html lang="en">
 
 <head>
-    <base href="{{asset('client')}}/">
+    {{-- <base href="{{asset('client')}}/"> --}}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
-    <link rel="icon" type="image/png" href="imgs/logo.png">
+    <link rel="icon" type="image/png" href="{{asset('/')}}client/imgs/logo.png">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <!--Font Awesome's CDN-->
@@ -14,7 +14,7 @@
     <!--Font Roboto-->
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <!--Home CSS-->
-    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="{{asset('/')}}client/css/home.css">
 </head>
 
 <body>
@@ -122,7 +122,7 @@
                 <div id="nav-bot" class="navbar navbar-expand-lg">
                     <div class="container">
                         <div id="logo-header" class="navbar-brand">
-                            <a href="{{asset(route('homeClient'))}}"><img src="imgs/Logo2.png" alt="Team13.com"></a>
+                            <a href="home.html"><img src="{{asset('/')}}client/imgs/Logo2.png" alt="Team13.com"></a>
                         </div>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-links" aria-controls="nav-links" aria-expanded="false">
                             <i class="fas fa-bars"></i>
@@ -147,13 +147,13 @@
                 <div id="carousel-slideshow" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img class="d-block w-100" src="imgs/slide1.jpg" alt="First slide">
+                            <img class="d-block w-100" src="{{asset('/')}}client/imgs/slide1.jpg" alt="First slide">
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block w-100" src="imgs/slide2.jpg" alt="Second slide">
+                            <img class="d-block w-100" src="{{asset('/')}}client/imgs/slide2.jpg" alt="Second slide">
                         </div>
                         <div class="carousel-item">
-                            <img class="d-block w-100" src="imgs/slide3.jpg" alt="Third slide">
+                            <img class="d-block w-100" src="{{asset('/')}}client/imgs/slide3.jpg" alt="Third slide">
                         </div>
                     </div>
                     <a class="carousel-control-prev" href="#carousel-slideshow" role="button" data-slide="prev">
@@ -549,12 +549,12 @@
                 <div class="col-md-3">
                     <div class="title">Chấp nhận thanh toán</div>
                     <div class="content">
-                        <img src="imgs/pay.png" alt="Chấp nhận thanh toán">
+                        <img src="{{asset('/')}}client/imgs/pay.png" alt="Chấp nhận thanh toán">
                     </div>
                     <div class="title">Chứng nhận</div>
                     <div class="content">
-                        <p><img src="imgs/dmca.png" alt="DMCA"></p>
-                        <p><img src="imgs/congthuong.png" alt="Công thương"></p>
+                        <p><img src="{{asset('/')}}client/imgs/dmca.png" alt="DMCA"></p>
+                        <p><img src="{{asset('/')}}client/imgs/congthuong.png" alt="Công thương"></p>
 
                     </div>
 

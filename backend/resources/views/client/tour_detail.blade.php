@@ -407,8 +407,8 @@
 @stop
 
 @section('script')
-<script src="js/library.js" type="text/javascript"></script>
-<script src="js/tour_detail.js" type="text/javascript"></script>
+<script src="/client/js/library.js" type="text/javascript"></script>
+<script src="/client/js/tour_detail.js" type="text/javascript"></script>
 <!-- google map -->
 <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2S_ftQJDQw1DyaYKIrr-34Hx8tUER0Yc&callback=initMap">
 </script> -->

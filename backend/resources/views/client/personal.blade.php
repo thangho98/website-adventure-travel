@@ -142,7 +142,7 @@
                                 <div class="tour-item col-lg-12 col-md-6">
                                     <div class="tour-item-wrapper">
                                         <div class="tour-header">
-                                            <a href=""><img class="ani-img-zoom" src="{{asset('/')clients/imgs/1.jpg" alt=""></a>
+                                            <a href=""><img class="ani-img-zoom" src="/client/imgs/1.jpg" alt=""></a>
                                             <div class="tour-meta">
                                                 <div class="tour-tag">Leo núi</div>
                                             </div>
@@ -176,43 +176,7 @@
                                 <div class="tour-item col-lg-12 col-md-6">
                                     <div class="tour-item-wrapper">
                                         <div class="tour-header">
-                                            <a href=""><img class="ani-img-zoom" src="{{asset('/')clients/imgs/5.jpg" alt=""></a>
-                                            <div class="tour-meta">
-                                                <div class="tour-tag">Leo núi</div>
-                                            </div>
-                                        </div>
-                                        <div class="tour-content">
-                                            <div class="tour-title">
-                                                <h5><a href="">Tour Hà Nội - Nga - Pháp - Anh</a></h5>
-                                            </div>
-                                            <div class="tour-info">
-                                                <div class="left">
-                                                    <div class="tour-start">
-                                                        01/07/2019 07:00
-                                                    </div>
-
-                                                    <div class="tour-price">
-                                                        <span>4.500.000</span> 3.500.000 đ
-                                                    </div>
-                                                </div>
-                                                <div class="right">
-                                                    <div class="tour-time">
-                                                        3 ngày
-                                                    </div>
-                                                    <div class="tour-slot">
-                                                        5 chổ
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tour-item col-lg-12 col-md-6">
-                                    <div class="tour-item-wrapper">
-                                        <div class="tour-header">
-                                            <a href=""><img class="ani-img-zoom" src="{{asset('/')clients/imgs/6.jpg" alt=""></a>
+                                            <a href=""><img class="ani-img-zoom" src="/client/imgs/5.jpg" alt=""></a>
                                             <div class="tour-meta">
                                                 <div class="tour-tag">Leo núi</div>
                                             </div>
@@ -248,7 +212,43 @@
                                 <div class="tour-item col-lg-12 col-md-6">
                                     <div class="tour-item-wrapper">
                                         <div class="tour-header">
-                                            <a href=""><img class="ani-img-zoom" src="{{asset('/')clients/imgs/3.jpg" alt=""></a>
+                                            <a href=""><img class="ani-img-zoom" src="/client/imgs/6.jpg" alt=""></a>
+                                            <div class="tour-meta">
+                                                <div class="tour-tag">Leo núi</div>
+                                            </div>
+                                        </div>
+                                        <div class="tour-content">
+                                            <div class="tour-title">
+                                                <h5><a href="">Tour Hà Nội - Nga - Pháp - Anh</a></h5>
+                                            </div>
+                                            <div class="tour-info">
+                                                <div class="left">
+                                                    <div class="tour-start">
+                                                        01/07/2019 07:00
+                                                    </div>
+
+                                                    <div class="tour-price">
+                                                        <span>4.500.000</span> 3.500.000 đ
+                                                    </div>
+                                                </div>
+                                                <div class="right">
+                                                    <div class="tour-time">
+                                                        3 ngày
+                                                    </div>
+                                                    <div class="tour-slot">
+                                                        5 chổ
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tour-item col-lg-12 col-md-6">
+                                    <div class="tour-item-wrapper">
+                                        <div class="tour-header">
+                                            <a href=""><img class="ani-img-zoom" src="/client/imgs/3.jpg" alt=""></a>
                                             <div class="tour-meta">
                                                 <div class="tour-tag">Leo núi</div>
                                             </div>
@@ -294,6 +294,6 @@
 @stop
 
 @section('script')
-<script src="{{asset('/')clients/js/library.js" type="text/javascript"></script>
-    <script src="{{asset('/')clients/js/home.js" type="text/javascript"></script>
+<script src="/client/js/library.js" type="text/javascript"></script>
+    <script src="/client/js/home.js" type="text/javascript"></script>
 @stop

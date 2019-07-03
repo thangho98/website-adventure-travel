@@ -1622,16 +1622,11 @@ body #content #search-filter .content .item .btn-submit button:hover {
   }
 }
 
-body #content .tours {
-  text-align: left;
-}
-
 body #content .tours .tours-title {
   padding: 0 10px;
 }
 
 body #content .tours .tours-list {
-  text-align: left;
   padding: 10px;
 }
 
@@ -1646,6 +1641,7 @@ body #content .tours .tours-list .title {
   line-height: 20px;
   margin: 10px 0;
   padding: 0 5px;
+  text-align: left;
 }
 
 body #content .tours .tours-list .item {

@@ -19,7 +19,7 @@
                 <div class="tour-item">
                     <div class="tour-item-wrapper row">
                         <div class="tour-header col-md-6">
-                            <a href=""><img class="ani-img-zoom" src="imgs/1.jpg" alt=""></a>
+                            <a href=""><img class="ani-img-zoom" src="/client/imgs/1.jpg" alt=""></a>
                             <div class="tour-meta">
                                 <div class="tour-tag">Leo núi</div>
                             </div>
@@ -101,7 +101,7 @@
 
                         </div>
                         <div class="tour-header col-md-6">
-                            <a href=""><img class="ani-img-zoom" src="imgs/2.jpg" alt=""></a>
+                            <a href=""><img class="ani-img-zoom" src="/client/imgs/2.jpg" alt=""></a>
                             <div class="tour-meta">
                                 <div class="tour-tag">Leo núi</div>
                             </div>
@@ -114,7 +114,7 @@
     </div>
 
     <div id="banner-khuyen-mai" class="tours">
-        <a href="#"><img src="imgs/slide2.jpg" alt="Khuyến mãi"></a>
+        <a href="#"><img src="/client/imgs/slide2.jpg" alt="Khuyến mãi"></a>
     </div>
 
     <div id="tours-dang-hot" class="tours">
@@ -180,7 +180,7 @@
                     <div class="tour-item col-lg-3 col-md-6">
                         <div class="tour-item-wrapper">
                             <div class="tour-header">
-                                <a href=""><img class="ani-img-zoom" src="imgs/1.jpg" alt=""></a>
+                                <a href=""><img class="ani-img-zoom" src="/client/imgs/1.jpg" alt=""></a>
                                 <div class="tour-meta">
                                     <div class="tour-tag">Leo núi</div>
                                 </div>
@@ -214,7 +214,7 @@
                     <div class="tour-item col-lg-3 col-md-6">
                         <div class="tour-item-wrapper">
                             <div class="tour-header">
-                                <a href=""><img class="ani-img-zoom" src="imgs/2.jpg" alt=""></a>
+                                <a href=""><img class="ani-img-zoom" src="/client/imgs/2.jpg" alt=""></a>
                                 <div class="tour-meta">
                                     <div class="tour-tag">Leo núi</div>
                                 </div>
@@ -248,7 +248,7 @@
                     <div class="tour-item col-lg-3 col-md-6">
                         <div class="tour-item-wrapper">
                             <div class="tour-header">
-                                <a href=""><img class="ani-img-zoom" src="imgs/3.jpg" alt=""></a>
+                                <a href=""><img class="ani-img-zoom" src="/client/imgs/3.jpg" alt=""></a>
                                 <div class="tour-meta">
                                     <div class="tour-tag">Leo núi</div>
                                 </div>
@@ -284,7 +284,7 @@
                     <div class="tour-item col-lg-3 col-md-6">
                         <div class="tour-item-wrapper">
                             <div class="tour-header">
-                                <a href=""><img class="ani-img-zoom" src="imgs/4.jpg" alt=""></a>
+                                <a href=""><img class="ani-img-zoom" src="/client/imgs/4.jpg" alt=""></a>
                                 <div class="tour-meta">
                                     <div class="tour-tag">Leo núi</div>
                                 </div>
@@ -351,6 +351,6 @@
 @stop
 
 @section('script')
-<script src="js/library.js" type="text/javascript"></script>
-<script src="js/home.js" type="text/javascript"></script>
+<script src="/client/js/library.js" type="text/javascript"></script>
+<script src="/client/js/home.js" type="text/javascript"></script>
 @stop
