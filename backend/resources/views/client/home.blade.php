@@ -19,7 +19,7 @@
                 <div class="tour-item">
                     <div class="tour-item-wrapper row">
                         <div class="tour-header col-md-6">
-                            <a href=""><img class="ani-img-zoom" src="imgs/1.jpg" alt=""></a>
+                            <a href=""><img class="ani-img-zoom" src="{{asset('/')}}client/imgs/1.jpg" alt=""></a>
                             <div class="tour-meta">
                                 <div class="tour-tag">Leo núi</div>
                             </div>
@@ -101,7 +101,7 @@
 
                         </div>
                         <div class="tour-header col-md-6">
-                            <a href=""><img class="ani-img-zoom" src="imgs/2.jpg" alt=""></a>
+                            <a href=""><img class="ani-img-zoom" src="{{asset('/')}}client/imgs/2.jpg" alt=""></a>
                             <div class="tour-meta">
                                 <div class="tour-tag">Leo núi</div>
                             </div>
@@ -114,7 +114,7 @@
     </div>
 
     <div id="banner-khuyen-mai" class="tours">
-        <a href="#"><img src="imgs/slide2.jpg" alt="Khuyến mãi"></a>
+        <a href="#"><img src="{{asset('/')}}client/imgs/slide2.jpg" alt="Khuyến mãi"></a>
     </div>
 
     <div id="tours-dang-hot" class="tours">
@@ -129,7 +129,7 @@
                     <div class="tour-item col-lg-3 col-md-6">
                         <div class="tour-item-wrapper">
                             <div class="tour-header">
-                                <a href=""><img class="ani-img-zoom" src="imgs/1.jpg" alt=""></a>
+                                <a href=""><img class="ani-img-zoom" src="{{asset('/')}}client/imgs/1.jpg" alt=""></a>
                                 <div class="tour-meta">
                                     <div class="tour-tag">Leo núi</div>
                                 </div>
@@ -163,43 +163,7 @@
                     <div class="tour-item col-lg-3 col-md-6">
                         <div class="tour-item-wrapper">
                             <div class="tour-header">
-                                <a href=""><img class="ani-img-zoom" src="imgs/5.jpg" alt=""></a>
-                                <div class="tour-meta">
-                                    <div class="tour-tag">Leo núi</div>
-                                </div>
-                            </div>
-                            <div class="tour-content">
-                                <div class="tour-title">
-                                    <h5><a href="">Tour Hà Nội - Nga - Pháp - Anh</a></h5>
-                                </div>
-                                <div class="tour-info">
-                                    <div class="left">
-                                        <div class="tour-start">
-                                            01/07/2019 07:00
-                                        </div>
-
-                                        <div class="tour-price">
-                                            <span>4.500.000</span> 3.500.000 đ
-                                        </div>
-                                    </div>
-                                    <div class="right">
-                                        <div class="tour-time">
-                                            3 ngày
-                                        </div>
-                                        <div class="tour-slot">
-                                            5 chổ
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tour-item col-lg-3 col-md-6">
-                        <div class="tour-item-wrapper">
-                            <div class="tour-header">
-                                <a href=""><img class="ani-img-zoom" src="imgs/6.jpg" alt=""></a>
+                                <a href=""><img class="ani-img-zoom" src="{{asset('/')}}client/imgs/5.jpg" alt=""></a>
                                 <div class="tour-meta">
                                     <div class="tour-tag">Leo núi</div>
                                 </div>
@@ -235,7 +199,43 @@
                     <div class="tour-item col-lg-3 col-md-6">
                         <div class="tour-item-wrapper">
                             <div class="tour-header">
-                                <a href=""><img class="ani-img-zoom" src="imgs/3.jpg" alt=""></a>
+                                <a href=""><img class="ani-img-zoom" src="{{asset('/')}}client/imgs/6.jpg" alt=""></a>
+                                <div class="tour-meta">
+                                    <div class="tour-tag">Leo núi</div>
+                                </div>
+                            </div>
+                            <div class="tour-content">
+                                <div class="tour-title">
+                                    <h5><a href="">Tour Hà Nội - Nga - Pháp - Anh</a></h5>
+                                </div>
+                                <div class="tour-info">
+                                    <div class="left">
+                                        <div class="tour-start">
+                                            01/07/2019 07:00
+                                        </div>
+
+                                        <div class="tour-price">
+                                            <span>4.500.000</span> 3.500.000 đ
+                                        </div>
+                                    </div>
+                                    <div class="right">
+                                        <div class="tour-time">
+                                            3 ngày
+                                        </div>
+                                        <div class="tour-slot">
+                                            5 chổ
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tour-item col-lg-3 col-md-6">
+                        <div class="tour-item-wrapper">
+                            <div class="tour-header">
+                                <a href=""><img class="ani-img-zoom" src="{{asset('/')}}client/imgs/3.jpg" alt=""></a>
                                 <div class="tour-meta">
                                     <div class="tour-tag">Leo núi</div>
                                 </div>
@@ -284,7 +284,7 @@
                     <div class="tour-item col-lg-3 col-md-6">
                         <div class="tour-item-wrapper">
                             <div class="tour-header">
-                                <a href=""><img class="ani-img-zoom" src="imgs/1.jpg" alt=""></a>
+                                <a href=""><img class="ani-img-zoom" src="{{asset('/')}}client/imgs/1.jpg" alt=""></a>
                                 <div class="tour-meta">
                                     <div class="tour-tag">Leo núi</div>
                                 </div>
@@ -318,7 +318,7 @@
                     <div class="tour-item col-lg-3 col-md-6">
                         <div class="tour-item-wrapper">
                             <div class="tour-header">
-                                <a href=""><img class="ani-img-zoom" src="imgs/2.jpg" alt=""></a>
+                                <a href=""><img class="ani-img-zoom" src="{{asset('/')}}client/imgs/2.jpg" alt=""></a>
                                 <div class="tour-meta">
                                     <div class="tour-tag">Leo núi</div>
                                 </div>
@@ -352,7 +352,7 @@
                     <div class="tour-item col-lg-3 col-md-6">
                         <div class="tour-item-wrapper">
                             <div class="tour-header">
-                                <a href=""><img class="ani-img-zoom" src="imgs/3.jpg" alt=""></a>
+                                <a href=""><img class="ani-img-zoom" src="{{asset('/')}}client/imgs/3.jpg" alt=""></a>
                                 <div class="tour-meta">
                                     <div class="tour-tag">Leo núi</div>
                                 </div>
@@ -388,7 +388,7 @@
                     <div class="tour-item col-lg-3 col-md-6">
                         <div class="tour-item-wrapper">
                             <div class="tour-header">
-                                <a href=""><img class="ani-img-zoom" src="imgs/4.jpg" alt=""></a>
+                                <a href=""><img class="ani-img-zoom" src="{{asset('/')}}client/imgs/4.jpg" alt=""></a>
                                 <div class="tour-meta">
                                     <div class="tour-tag">Leo núi</div>
                                 </div>
@@ -437,7 +437,7 @@
                     <div class="activity-item col-lg-3 col-md-6">
                         <a href="">
                             <div class="activity-img">
-                                <img class="ani-img-zoom" src="imgs/activity_lan.jpg" alt="Lặn">
+                                <img class="ani-img-zoom" src="{{asset('/')}}client/imgs/activity_lan.jpg" alt="Lặn">
                             </div>
                             <div class="activity-title">
                                 <h4 class="title">Lặn</h4>
@@ -448,7 +448,7 @@
                     <div class="activity-item col-lg-3 col-md-6">
                         <a href="">
                             <div class="activity-img">
-                                <img class="ani-img-zoom" src="imgs/activity_cuoi_voi.jpg" alt="Cưỡi voi">
+                                <img class="ani-img-zoom" src="{{asset('/')}}client/imgs/activity_cuoi_voi.jpg" alt="Cưỡi voi">
                             </div>
                             <div class="activity-title">
                                 <h4 class="title">Cưỡi voi</h4>
@@ -459,7 +459,7 @@
                     <div class="activity-item col-lg-3 col-md-6">
                         <a href="">
                             <div class="activity-img">
-                                <img class="ani-img-zoom" src="imgs/activity_nhay_du.jpg" alt="Nhảy dù">
+                                <img class="ani-img-zoom" src="{{asset('/')}}client/imgs/activity_nhay_du.jpg" alt="Nhảy dù">
                             </div>
                             <div class="activity-title">
                                 <h4 class="title">Nhảy dù</h4>
@@ -470,7 +470,7 @@
                     <div class="activity-item col-lg-3 col-md-6">
                         <a href="">
                             <div class="activity-img">
-                                <img class="ani-img-zoom" src="imgs/activity_hang_dong.jpg" alt="Khám phá hang động">
+                                <img class="ani-img-zoom" src="{{asset('/')}}client/imgs/activity_hang_dong.jpg" alt="Khám phá hang động">
                             </div>
                             <div class="activity-title">
                                 <h4 class="title">Khám phá hang động</h4>
@@ -486,6 +486,6 @@
 @stop
 
 @section('script')
-<script src="js/library.js" type="text/javascript"></script>
-<script src="js/home.js" type="text/javascript"></script>
+<script src="{{asset('/')}}client/js/library.js" type="text/javascript"></script>
+<script src="{{asset('/')}}client/js/home.js" type="text/javascript"></script>
 @stop
