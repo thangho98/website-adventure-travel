@@ -229,13 +229,13 @@ body {
               color: #fff;
               font-size: get-font-size(nav-top);
 
-              #welcome-user {
+              #welcome-user{
                 display: none;
                 flex-wrap: nowrap;
                 align-items: center;
                 height: 100%;
 
-                span {
+                span{
                   align-self: center;
                 }
 
@@ -247,11 +247,11 @@ body {
                 }
               }
 
-              #welcome-user:hover {
+              #welcome-user:hover{
                 cursor: pointer;
                 color: get-color(xanh);
               }
-
+              
               #menu-user {
                 display: none;
                 opacity: 0;
@@ -282,7 +282,7 @@ body {
                     }
                   }
 
-                  li:hover {
+                  li:hover{
                     background: #cecece;
                     cursor: pointer;
                     border-radius: 2px;
@@ -1605,90 +1605,6 @@ body {
           .time {
             background: get-color(xanh);
             width: inherit;
-          }
-        }
-      }
-    }
-  }
-}
-
-body {
-  #content {
-    .tours {
-      text-align: left;
-      .tours-title{
-        padding: 0 10px;
-      }
-      .tours-list {
-        text-align: left;
-        padding: 10px;
-
-        .tour-table{
-          overflow: scroll;
-        }
-
-        .title{
-          font-size: 20px;
-          color: get-color(xanh);
-          border-left: solid 3px get-color(xanh-dam);
-          line-height: 20px;
-          margin: 10px 0;
-          padding: 0 5px;
-        }
-
-        .item{
-          display: flex;
-          padding: 5px;
-
-          label{
-            width: 100px;
-            font-size: 14px;
-          }
-          input{
-            width: 200px;
-            font-size: 14px;
-            border: solid 1px get-color(xanh);
-            padding: 0 5px;
-            line-height: 20px;
-          }
-
-          button{
-            border: none;
-            background: get-color(xanh);
-            color: #fff;
-            border-radius: 1px;
-            font-size: 15px;
-            padding: 5px 10px;
-          }
-          button:hover{
-            background: get-color(xanh-dam);
-          }
-        }
-      }
-    }
-    #suggestions {
-      padding: 10px 0;
-      .title {
-        color: get-color(xanh);
-        font-size: 18px;
-        line-height: 18px;
-        padding: 0 7px;
-        margin: 10px 0;
-        font-weight: 600;
-        margin-bottom: 5px;
-      }
-
-      .tours {
-        padding: 10px 0;
-        .tours-list {
-          padding: 0px;
-          .row {
-            margin: 0;
-          }
-
-          .tour-item {
-            padding: 0 10px;
-            width: 100%;
           }
         }
       }

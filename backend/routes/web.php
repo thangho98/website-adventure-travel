@@ -70,3 +70,14 @@ Route::group(['namespace' => 'Admin'], function () {
         Route::get('{path}','HomeController@index')->where( 'path', '([A-z\d\-/_.]+)?' );
     });
 });
+
+Route::group(['namespace' => 'Client'], function () {
+    Route::group(['prefix' => 'clients'], function () {
+        Route::get('/','HomeController@Index')->name('homeClient');
+        
+    });
+});
+
+Route::post('clients/register', 'AuthClient\RegisterController@register')->name('registerClient');
+Route::post('clients/login','AuthClient\LoginController@login')->name('loginClient');
+Route::post('clients/logout','AuthClient\LoginController@logout')->name('logoutClient');
