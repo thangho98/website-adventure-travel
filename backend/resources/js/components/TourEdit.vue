@@ -140,7 +140,6 @@ export default {
     return {
       touristRoutes: [],
       promotions: [],
-      images: [],
       form: new Form({
         tour_id: this.$route.params.tour_id,
         tour_tourist_route: {},

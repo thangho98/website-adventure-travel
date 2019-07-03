@@ -141,7 +141,6 @@ export default {
     return {
       touristRoutes: [],
       promotions: [],
-      images: [],
       form: new Form({
         tour_tourist_route: {},
         tour_promotion: {},

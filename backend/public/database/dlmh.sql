@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th7 01, 2019 lúc 07:02 AM
+-- Thời gian đã tạo: Th7 03, 2019 lúc 06:12 AM
 -- Phiên bản máy phục vụ: 10.3.15-MariaDB
 -- Phiên bản PHP: 7.3.6
 
@@ -64,8 +64,7 @@ INSERT INTO `categories` (`cate_id`, `cate_name`, `cate_image`, `created_at`, `u
 (2, 'Nhảy dù', '1561535871.jpeg', '2019-06-26 07:57:52', '2019-06-26 07:57:52'),
 (3, 'Lặn biển', '1561535892.jpeg', '2019-06-26 07:58:12', '2019-06-26 07:58:12'),
 (4, 'Leo núi', '1561537121.jpeg', '2019-06-26 08:18:41', '2019-06-26 08:18:41'),
-(5, 'Khám phá hang động', '1561537148.jpeg', '2019-06-26 08:19:08', '2019-06-26 08:19:08'),
-(6, 'Cưỡi voi', '1561546323.jpeg', '2019-06-26 08:19:31', '2019-06-26 10:52:03');
+(5, 'Khám phá hang động', '1561537148.jpeg', '2019-06-26 08:19:08', '2019-06-26 08:19:08');
 
 -- --------------------------------------------------------
 
@@ -231,12 +230,21 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 CREATE TABLE `news` (
   `news_id` int(10) UNSIGNED NOT NULL,
   `news_title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `news_content` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `news_description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `news_poster` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `news_content` longtext COLLATE utf8_unicode_ci NOT NULL,
   `news_time_post` date NOT NULL,
   `news_user_admin` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `news`
+--
+
+INSERT INTO `news` (`news_id`, `news_title`, `news_description`, `news_poster`, `news_content`, `news_time_post`, `news_user_admin`, `created_at`, `updated_at`) VALUES
+(1, 'The three greatest things you learn from traveling 1998', 'Like all the great things on earth traveling teaches us by example. Here are some of the most precious lessons I’ve learned over the years of traveling 1998.', '1562125881.jpeg', '<h2>The three greatest things you learn from traveling</h2><p>Like all the great things on earth traveling teaches us by example. Here are some of the most precious lessons I’ve learned over the years of traveling.</p><figure class=\"media\"><oembed url=\"https://www.youtube.com/watch?v=BLJ4GKKaiXw\"></oembed></figure><h3>Appreciation of diversity</h3><p>Getting used to an entirely different culture can be challenging. While it’s also nice to learn about cultures online or from books, nothing comes close to experiencing cultural diversity in person. You learn to appreciate each and every single one of the differences while you become more culturally fluid.</p><blockquote><p>The real voyage of discovery consists not in seeking new landscapes, but having new eyes.</p><p><strong>Marcel Proust</strong></p></blockquote><h3>Improvisation</h3><p>Life doesn\'t allow us to execute every single plan perfectly. This especially seems to be the case when you travel. You plan it down to every minute with a big checklist; but when it comes to executing it, something always comes up and you’re left with your improvising skills. You learn to adapt as you go. Here’s how my travel checklist looks now:</p><ul><li>buy the ticket</li><li>start your adventure</li></ul><h3>Confidence</h3><p>Going to a new place can be quite terrifying. While change and uncertainty makes us scared, traveling teaches us how ridiculous it is to be afraid of something before it happens. The moment you face your fear and see there was nothing to be afraid of, is the moment you discover bliss.</p>', '2019-07-03', 1, '2019-07-03 02:59:51', '2019-07-03 03:51:22');
 
 -- --------------------------------------------------------
 
@@ -385,6 +393,7 @@ CREATE TABLE `tourist_routes` (
   `tr_id` int(10) UNSIGNED NOT NULL,
   `tr_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `tr_category` int(11) NOT NULL,
+  `tr_introduction` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `tr_time` int(11) NOT NULL,
   `tr_original_price` double NOT NULL,
   `tr_max_slot` int(11) NOT NULL,
@@ -398,11 +407,10 @@ CREATE TABLE `tourist_routes` (
 -- Đang đổ dữ liệu cho bảng `tourist_routes`
 --
 
-INSERT INTO `tourist_routes` (`tr_id`, `tr_name`, `tr_category`, `tr_time`, `tr_original_price`, `tr_max_slot`, `tr_poster`, `tr_location`, `created_at`, `updated_at`) VALUES
-(1, 'Chèo đèo', 2, 2, 300000, 2, '1561726019.jpeg', 2, '2019-06-28 12:46:59', '2019-06-28 12:46:59'),
-(2, 'lala', 2, 2, 100000, 2, '1561738745.jpeg', 2, '2019-06-28 16:19:08', '2019-06-28 16:19:08'),
-(3, 'Vượt thác', 3, 3, 1000000, 10, '1561782315.jpeg', 1, '2019-06-29 04:25:15', '2019-06-29 04:25:15'),
-(4, 'Vượt thác', 5, 4, 1200000, 15, '1561806747.jpeg', 4, '2019-06-29 04:25:51', '2019-06-29 11:12:27');
+INSERT INTO `tourist_routes` (`tr_id`, `tr_name`, `tr_category`, `tr_introduction`, `tr_time`, `tr_original_price`, `tr_max_slot`, `tr_poster`, `tr_location`, `created_at`, `updated_at`) VALUES
+(1, 'Chèo đèo', 2, 'haha', 2, 300000, 2, '1561726019.jpeg', 2, '2019-06-28 12:46:59', '2019-06-28 12:46:59'),
+(2, 'lala', 2, '', 2, 100000, 2, '1561738745.jpeg', 2, '2019-06-28 16:19:08', '2019-06-28 16:19:08'),
+(3, 'Vượt thác', 3, '', 3, 1000000, 10, '1561782315.jpeg', 1, '2019-06-29 04:25:15', '2019-06-29 04:25:15');
 
 -- --------------------------------------------------------
 
@@ -460,7 +468,7 @@ CREATE TABLE `tours` (
 
 INSERT INTO `tours` (`tour_id`, `tour_code`, `tour_time_start`, `tour_slot_book`, `tour_price`, `tour_tourist_route`, `tour_promotion`, `created_at`, `updated_at`) VALUES
 (1, '120190822', '2019-08-22', 0, 300000, 1, 0, '2019-07-01 04:16:33', '2019-07-01 04:16:33'),
-(2, '120190924', '2019-09-24', 0, 300000, 1, 0, '2019-07-01 04:16:33', '2019-07-01 04:16:33'),
+(2, '120190925', '2019-09-25', 0, 255000, 1, 1, '2019-07-01 04:16:33', '2019-07-01 06:51:53'),
 (3, '120191211', '2019-12-11', 0, 300000, 1, 0, '2019-07-01 04:16:33', '2019-07-01 04:16:33'),
 (4, '120200108', '2020-01-08', 0, 300000, 1, 0, '2019-07-01 04:16:33', '2019-07-01 04:16:33');
 
@@ -489,8 +497,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `type`, `bio`, `photo`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@me.com', NULL, '$2y$10$4A2amIGywuzvJTG5GVO/Ke48QYIUzk94CeztmzHXy7aYfMV0RzvGy', 'admin', NULL, 'profile.png', 'ygjk7H2N8kIMsYv02HylmfxVVdxdFlCfsuwYbGh92gw8SMv2OOgqBxrbCkf3', '2019-06-23 12:13:05', '2019-06-25 18:01:18'),
-(2, 'thang thai', 'thanglong2098@gmail.com', NULL, '$2y$10$sXqYm0BcJsQeynyGp5Q14O.w99Dn4SoZK8a4FzPfPjSfGq9/Fmihi', 'user', NULL, 'profile.png', NULL, '2019-06-25 10:05:18', '2019-06-25 10:05:18');
+(1, 'admin', 'admin@me.com', NULL, '$2y$10$4A2amIGywuzvJTG5GVO/Ke48QYIUzk94CeztmzHXy7aYfMV0RzvGy', 'admin', NULL, 'profile.png', 'bpHXEqHtW4E9Dl0bWK388Ulqisv2Zl4clZnrnyNb8CA5x1c4jtwm7MJdsxE5', '2019-06-23 12:13:05', '2019-06-25 18:01:18'),
+(2, 'thang thai', 'thanglong2098@gmail.com', NULL, '$2y$10$4A2amIGywuzvJTG5GVO/Ke48QYIUzk94CeztmzHXy7aYfMV0RzvGy', 'admin', NULL, 'profile.png', NULL, '2019-06-25 10:05:18', '2019-06-25 10:05:18');
 
 -- --------------------------------------------------------
 
@@ -717,7 +725,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT cho bảng `news`
 --
 ALTER TABLE `news`
-  MODIFY `news_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `news_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT cho bảng `oauth_clients`

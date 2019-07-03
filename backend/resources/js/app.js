@@ -45,6 +45,9 @@ const routes = [
     { path: '/admin/developer', component: require('./components/Developer.vue').default },
     { path: '/admin/users', component: require('./components/Users.vue').default },
     { path: '/admin/profile', component: require('./components/Profile.vue').default },
+    { path: '/admin/news', component: require('./components/News.vue').default },
+    { path: '/admin/news/add', component: require('./components/NewsAdd.vue').default },
+    { path: '/admin/news/edit/:news_id', name: 'editNews', component: require('./components/NewsEdit.vue').default },
     { path: '/admin/*', component: require('./components/NotFound.vue').default }
 ]
 
@@ -149,6 +152,12 @@ Vue.use(VCalendar, {
         }
     }
 });
+
+import CKEditor from '@ckeditor/ckeditor5-vue';
+
+Vue.use(CKEditor);
+
+
 
 /**
  * The following block of code may be used to automatically register your

@@ -55,6 +55,11 @@ Route::group(['namespace' => 'Admin'], function () {
             Route::get('/add','HomeController@index');
             Route::get('/edit/{tour_id}','HomeController@index');
         });
+        Route::group(['prefix' => 'news'], function () {
+            Route::get('/','HomeController@index');
+            Route::get('/add','HomeController@index');
+            Route::get('/edit/{news_id}','HomeController@index');
+        });
         
         Route::get('user-client','HomeController@index');
         Route::get('reviews','HomeController@index');
