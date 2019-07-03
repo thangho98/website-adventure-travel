@@ -25,4 +25,8 @@ export default class Gate {
         }
 
     }
+
+    getID() {
+        return this.user.id;
+    }
 }

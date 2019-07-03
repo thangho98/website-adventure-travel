@@ -106,7 +106,6 @@ class CategoryController extends Controller
     {
         $this->authorize('isAdmin');
         $cate = Category::findOrFail($id);
-        // delete the user
         $cate->delete();
         return ['message' => 'Category Deleted'];
     }

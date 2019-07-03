@@ -115,7 +115,6 @@ class PromotionController extends Controller
     {
         $this->authorize('isAdmin');
         $promotion = Promotion::findOrFail($id);
-        // delete the user
         $promotion->delete();
         return ['message' => 'Promotion Deleted'];
     }

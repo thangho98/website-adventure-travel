@@ -62,10 +62,9 @@
                   <td v-show="tour.prom_name != null">{{tour.prom_name}}</td>
                   <td v-show="tour.prom_name == null">Không có khuyến mãi</td>
                   <td>
-                    <a href="#">
+                    <router-link :to="{ name:'editTour', params: { tour_id: tour.tour_id } }">
                       <i class="fa fa-edit blue"></i>
-                    </a>
-                    /
+                    </router-link>/
                     <a href="#" @click="deleteObject(tour.tour_id)">
                       <i class="fa fa-trash red"></i>
                     </a>
@@ -93,7 +92,8 @@
 export default {
   data() {
     return {
-      tours: {}
+      tours: {},
+      form: new Form({})
     };
   },
   methods: {

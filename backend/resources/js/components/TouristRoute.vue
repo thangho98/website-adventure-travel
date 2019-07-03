@@ -94,7 +94,8 @@
 export default {
   data() {
     return {
-      touristRoutes: {}
+      touristRoutes: {},
+      form: new Form({})
     };
   },
   methods: {

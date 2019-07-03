@@ -251,16 +251,16 @@
                     </li>
                     <li class="nav-main-heading">Nhân viên</li>
                     <li class="nav-main-item">
-                        <a class="nav-main-link" href="op_error_404.html">
+                        <a class="nav-main-link">
                             <i class="nav-main-link-icon si si-credit-card"></i>
                             <span class="nav-main-link-name">Đặt tour</span>
                         </a>
                     </li>
                     <li class="nav-main-item">
-                        <a class="nav-main-link" href="op_error_404.html">
+                        <router-link to="/admin/news" class="nav-main-link">
                             <i class="nav-main-link-icon si si-note"></i>
                             <span class="nav-main-link-name">Tin tức</span>
-                        </a>
+                        </router-link>
                     </li>
 
                     <li class="nav-main-heading">Cài đặt</li>
@@ -421,6 +421,7 @@
         window.host = '{{url('/')}}'
     </script>
     @endauth
+    @include('ckfinder::setup')
     <script src="/js/app.js"></script>
     <script src="{{asset('assets/js/oneui.core.min.js')}}"></script>
     <script src="{{asset('assets/js/oneui.app.min.js')}}"></script>
@@ -431,6 +432,8 @@
     <!-- Page JS Code -->
     <script src="{{asset('assets/js/pages/be_forms_wizard.min.js')}}"></script>
     <script src="{{asset('assets/js/pages/be_ui_progress.min.js')}}"></script>
+    <script src="{{asset('/js/ckfinder/ckfinder.js')}}"></script>
+    {{-- <script>CKFinder.config( { connectorPath: '/ckfinder/connector' } );</script> --}}
 </body>
 
 </html>
