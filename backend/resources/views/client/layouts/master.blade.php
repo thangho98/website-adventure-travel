@@ -131,12 +131,13 @@
                         </button>
                         <div id="nav-links" class="collapse navbar-collapse">
                             <ul class="navbar-nav">
+                                <li class="nav-item"><a class="nav-link" href="{{route('homeClient')}}">TRANG CHỦ</a>
+                                </li>
                                 <li class="nav-item"><a class="nav-link" href="{{route('toursHot')}}">TOUR ĐANG HOT</a>
                                 </li>
                                 <li class="nav-item"><a class="nav-link" href="{{route('toursLatest')}}">TOUR MỚI NHẤT</a>
                                 </li>
-                                <li class="nav-item"><a class="nav-link">LOẠI HÌNH MẠO HIỂM</a></li>
-                                <li class="nav-item"><a class="nav-link" href="tin-tuc.html">TIN TỨC</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{route('news')}}">TIN TỨC</a></li>
                                 <li class="nav-item"><a class="nav-link" href="gioi-thieu.html">GIỚI THIỆU</a></li>
                             </ul>
                         </div>
@@ -171,45 +172,26 @@
             <div id="search">
                 <div id="search-btn" class="wrapper">
                     <div class="row">
-
+                        <div class="col-lg-4"></div>
                         <div class="col-lg-4">
                             <div id="search-trong-nuoc" class="search-item">
-                                <i class="fas fa-car"></i></i>
-                                <div class="search-title ">
-                                    TÌM TOUR <span>TRONG NƯỚC</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4">
-                            <div id="search-nuoc-ngoai" class="search-item">
-                                <i class="fas fa-plane"></i></i>
-                                <div class="search-title ">
-                                    TÌM TOUR <span>NƯỚC NGOÀI</span>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <div class="col-lg-4">
-                            <div id="search-tour-da-dat" class="search-item">
                                 <i class="fas fa-search-location"></i>
                                 <div class="search-title ">
-                                    TÌM TOUR <span>ĐÃ ĐẶT</span>
+                                    TÌM KIẾM TOURS DU LỊCH
                                 </div>
                             </div>
                         </div>
-
+                        <div class="col-lg-4"></div>
                     </div>
                 </div>
 
                 <div class="wrapper">
                     <div id="form-search-trong-nuoc" class="search-form">
-                        <form action="{{asset("clients/search/")}}" method="GET">
+                        <form action="{{asset('clients/search/')}}" method="GET">
                             <div class="row">
                                 <div class="item col-lg-2 col-md-4">
                                     <div class="title">NƠI KHỞI HÀNH</div>
-                                    <select name="starting_gate" >
+                                    <select name="starting_gate">
                                         <option value="all">Tất cả</option>
                                         @foreach ($data['list_all_locations'] as $item)
                                         <option value="{{$item->loca_id}}">{{$item->loca_name}}</option>
@@ -253,111 +235,6 @@
                                     <button type="submit">TÌM KIẾM</button>
                                 </div>
                             </div>
-
-                        </form>
-                    </div>
-                    <div id="form-search-nuoc-ngoai" class="search-form">
-                        <form action="{{asset("clients/search/")}}" method="GET">
-                            <div class="row">
-                                <div class="item col-lg-2 col-md-4">
-                                    <div class="title">NƠI KHỞI HÀNH</div>
-                                    <select name="starting_gate" >
-                                        <option value="all">Tất cả</option>
-                                        @foreach ($data['list_all_locations'] as $item)
-                                        <option value="{{$item->loca_id}}">{{$item->loca_name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="item col-lg-2 col-md-4">
-                                    <div class="title">NƠI ĐẾN</div>
-                                    <select name="destination">
-                                        <option value="all">Tất cả</option>
-                                        @foreach ($data['list_all_locations'] as $item)
-                                        <option value="{{$item->loca_id}}">{{$item->loca_name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="item col-lg-2 col-md-4">
-                                    <div class="title">NGÀY KHỞI HÀNH</div>
-                                    <input name="departure_date" type="date" value="{{ date('Y-m-d')}}" class="form-control">
-                                </div>
-                                <div class="item col-lg-2 col-md-4">
-                                    <div class="title">HOẠT ĐỘNG</div>
-                                    <select name="category">
-                                        <option value="all">Tất cả</option>
-                                        @foreach ($data['list_all_categories'] as $item)
-                                        <option value="{{$item->cate_id}}">{{$item->cate_name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="item col-lg-2 col-md-4">
-                                    <div class="title">GIÁ</div>
-                                    <select name="price">
-                                        <option value="all">Tất cả</option>
-                                        <option value="1000000-5000000">1.000.000 - 5.000.000</option>
-                                        <option value="5000000-10000000">5.000.000 - 10.000.000</option>
-                                        <option value="10000000-15000000">10.000.000 - 15.000.000</option>
-                                        <option value="15000000-20000000">15.000.000 - 20.000.000</option>
-                                        <option value=">20000000">20.000.000 trở lên</option>
-                                    </select>
-                                </div>
-                                <div class="item col-lg-2 col-md-4">
-                                    <button type="submit">TÌM KIẾM</button>
-                                </div>
-                            </div>
-
-                        </form>
-                    </div>
-                    <div id="form-search-tour-da-dat" class="search-form">
-                        <form action="{{asset("clients/search/")}}" method="GET">
-                            <div class="row">
-                                <div class="item col-lg-2 col-md-4">
-                                    <div class="title">NƠI KHỞI HÀNH</div>
-                                    <select name="starting_gate" >
-                                        <option value="all">Tất cả</option>
-                                        @foreach ($data['list_all_locations'] as $item)
-                                        <option value="{{$item->loca_id}}">{{$item->loca_name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="item col-lg-2 col-md-4">
-                                    <div class="title">NƠI ĐẾN</div>
-                                    <select name="destination">
-                                        <option value="all">Tất cả</option>
-                                        @foreach ($data['list_all_locations'] as $item)
-                                        <option value="{{$item->loca_id}}">{{$item->loca_name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="item col-lg-2 col-md-4">
-                                    <div class="title">NGÀY KHỞI HÀNH</div>
-                                    <input name="departure_date" type="date" value="{{ date('Y-m-d')}}" class="form-control">
-                                </div>
-                                <div class="item col-lg-2 col-md-4">
-                                    <div class="title">HOẠT ĐỘNG</div>
-                                    <select name="category">
-                                        <option value="all">Tất cả</option>
-                                        @foreach ($data['list_all_categories'] as $item)
-                                        <option value="{{$item->cate_id}}">{{$item->cate_name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="item col-lg-2 col-md-4">
-                                    <div class="title">GIÁ</div>
-                                    <select name="price">
-                                        <option value="all">Tất cả</option>
-                                        <option value="1000000-5000000">1.000.000 - 5.000.000</option>
-                                        <option value="5000000-10000000">5.000.000 - 10.000.000</option>
-                                        <option value="10000000-15000000">10.000.000 - 15.000.000</option>
-                                        <option value="15000000-20000000">15.000.000 - 20.000.000</option>
-                                        <option value=">20000000">20.000.000 trở lên</option>
-                                    </select>
-                                </div>
-                                <div class="item col-lg-2 col-md-4">
-                                    <button type="submit">TÌM KIẾM</button>
-                                </div>
-                            </div>
-
                         </form>
                     </div>
                 </div>
