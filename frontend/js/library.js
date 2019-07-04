@@ -103,7 +103,8 @@ class User {
         AddEventBtnUser();
         AddEventBackgroundBlur();
         AddEventBtnClose();
-        AddEventWelcomeUser()
+        if(welcomeUser!=null)
+            AddEventWelcomeUser()
 
         var isMenuUserShow = false;
         function AddEventWelcomeUser(){

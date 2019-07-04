@@ -1,3 +1,10 @@
+body #content a {
+  width: 100%;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+}
+
 body {
   font-family: "Roboto", sans-serif;
   background: url("../imgs/background.jpg");
@@ -257,6 +264,14 @@ body #header nav #nav-top .container #user #user-menu #menu-user ul li:hover {
   background: #cecece;
   cursor: pointer;
   border-radius: 2px;
+}
+
+body #header nav #nav-top .container #user #user-menu #menu-user ul #logout button {
+  border: none;
+  background: transparent;
+  padding: 0 10px;
+  width: 100%;
+  text-align: left;
 }
 
 body #header nav #nav-top .container #user #welcome:hover {
@@ -1628,7 +1643,8 @@ body #content .tour-table {
   overflow: scroll;
 }
 
-body #content #user-information .title, body #content .tour-table .title {
+body #content #user-information .title,
+body #content .tour-table .title {
   font-size: 20px;
   color: #19a1e5;
   border-left: solid 3px #0080c0;
@@ -1638,15 +1654,18 @@ body #content #user-information .title, body #content .tour-table .title {
   text-align: left;
 }
 
-body #content #user-information .table, body #content .tour-table .table {
+body #content #user-information .table,
+body #content .tour-table .table {
   font-size: 13px;
 }
 
-body #content #user-information .table button, body #content .tour-table .table button {
+body #content #user-information .table button,
+body #content .tour-table .table button {
   font-size: 13px;
 }
 
-body #content #user-information .item, body #content .tour-table .item {
+body #content #user-information .item,
+body #content .tour-table .item {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1658,13 +1677,15 @@ body #content #user-information .item, body #content .tour-table .item {
       flex-wrap: wrap;
 }
 
-body #content #user-information .item label, body #content .tour-table .item label {
+body #content #user-information .item label,
+body #content .tour-table .item label {
   font-size: 14px;
   margin: 0;
   line-height: 30px;
 }
 
-body #content #user-information .item input, body #content .tour-table .item input {
+body #content #user-information .item input,
+body #content .tour-table .item input {
   width: 200px;
   font-size: 14px;
   border: solid 1px #19a1e5;
@@ -1672,7 +1693,8 @@ body #content #user-information .item input, body #content .tour-table .item inp
   line-height: 20px;
 }
 
-body #content #user-information .item button, body #content .tour-table .item button {
+body #content #user-information .item button,
+body #content .tour-table .item button {
   width: 100px;
   border: none;
   background: #19a1e5;
@@ -1683,7 +1705,8 @@ body #content #user-information .item button, body #content .tour-table .item bu
   text-align: center;
 }
 
-body #content #user-information .item button:hover, body #content .tour-table .item button:hover {
+body #content #user-information .item button:hover,
+body #content .tour-table .item button:hover {
   background: #0080c0;
 }
 
@@ -1892,5 +1915,151 @@ body #content #suggestions .tours .tours-list .row {
 body #content #suggestions .tours .tours-list .tour-item {
   padding: 0 10px;
   width: 100%;
+}
+
+body #news .title {
+  color: #19a1e5;
+  font-size: 25px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+body #news .new-first {
+  margin-left: 10px;
+  margin-right: -10px;
+  margin-bottom: 10px;
+  background: #f2f5f8;
+  min-height: 450px;
+}
+
+body #news .new-first .head img {
+  width: 100%;
+  height: 250px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+body #news .new-first .body {
+  padding: 10px 20px 0px 20px;
+}
+
+body #news .new-first .body .title {
+  color: #000;
+  font-size: 23px;
+  font-weight: 600;
+}
+
+body #news .new-first .body .time {
+  padding: 5px 0;
+  font-size: 13px;
+}
+
+body #news .new-first .body .title:hover {
+  color: #19a1e5;
+}
+
+body #news .new-first .body .des {
+  padding: 5px 0;
+  font-size: 14px;
+}
+
+body #news .new-first .body .author {
+  padding-bottom: 5px;
+  text-align: right;
+  font-size: 13px;
+}
+
+body #news .new-second {
+  margin-left: -10px;
+  margin-bottom: 10px;
+  background: #f2f5f8;
+  min-height: 450px;
+}
+
+body #news .new-second .head img {
+  width: 100%;
+  height: 250px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+body #news .new-second .body {
+  padding: 10px 20px 0px 20px;
+}
+
+body #news .new-second .body .title {
+  color: #000;
+  font-size: 23px;
+  font-weight: 600;
+}
+
+body #news .new-second .body .time {
+  padding: 5px 0;
+  font-size: 13px;
+}
+
+body #news .new-second .body .title:hover {
+  color: #19a1e5;
+}
+
+body #news .new-second .body .des {
+  padding: 5px 0;
+  font-size: 14px;
+}
+
+body #news .new-second .body .author {
+  padding-bottom: 5px;
+  text-align: right;
+  font-size: 13px;
+}
+
+body #news .new {
+  margin-left: 10px;
+  margin-bottom: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: #f2f5f8;
+}
+
+body #news .new .head {
+  width: 290px;
+}
+
+body #news .new .head img {
+  width: 100%;
+  height: 170px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+body #news .new .body {
+  padding: 10px 20px 0px 20px;
+}
+
+body #news .new .body .title {
+  color: #000;
+  font-size: 23px;
+  font-weight: 600;
+}
+
+body #news .new .body .time {
+  padding: 5px 0;
+  font-size: 13px;
+}
+
+body #news .new .body .title:hover {
+  color: #19a1e5;
+}
+
+body #news .new .body .des {
+  padding: 7px 0;
+  font-size: 14px;
+}
+
+body #news .new .body .author {
+  text-align: right;
+  font-size: 13px;
 }
 /*# sourceMappingURL=home.css.map */

@@ -103,7 +103,8 @@ class User {
         AddEventBtnUser();
         AddEventBackgroundBlur();
         AddEventBtnClose();
-        AddEventWelcomeUser()
+        if(welcomeUser!=null)
+            AddEventWelcomeUser()
 
         var isMenuUserShow = false;
         function AddEventWelcomeUser(){
@@ -285,7 +286,7 @@ class BooingTour{
         }
 
         function btnAddOnClick(input, slot){
-            if(input.value <  Number(slot.innerHTML))
+            if(input.value < Number(slot.innerHTML))
                 input.value = Number(input.value) + 1;
         }
 

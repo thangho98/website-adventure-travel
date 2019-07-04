@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -95,6 +96,8 @@ Route::group(['namespace' => 'Client'], function () {
         Route::get('/tours-dang-hot',"HomeController@IndexToursHot")->name('toursHot');
         Route::get('/tours-moi-nhat',"HomeController@IndexToursLatest")->name('toursLatest');
         Route::get('/hoat-dong/{id}',"HomeController@IndexActivity");
+        Route::get('/personal', 'PersonalController@Index')->name('personal');
+        Route::get('/news', 'NewsController@Index')->name('news');
     });
 });
 
