@@ -167,7 +167,7 @@ export default {
         // Send request to the server
         if (result.value) {
           this.form
-            .delete(this.$Api + "/booking-tour/" + id)
+            .put(this.$Api + "/booking-tour/" + id)
             .then(() => {
               Swal.fire(
                 "Đã xóa!",
