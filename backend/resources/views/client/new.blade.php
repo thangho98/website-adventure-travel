@@ -10,53 +10,27 @@
 
     <div id="news">
         <div class="wrapper">
+
             <div class="row">
                 <div class="content-left col-lg-9">
-                    <div class="title">TIN TỨC</div>
-                    <div class="row">
-                        <div class="col-lg-7">
-                            <div class="new-first">
-                                <div class="head">
-                                    <img src="{{asset('/img/news/'.$news[0]->news_poster)}}" alt="{{$news[0]->news_title}}">
-                                </div>
-                                <div class="body">
-                                    <a class="title" href="{{asset('/clients/news/'.$news[0]->news_id)}}">{{$news[0]->news_title}}</a>
-                                    <div class="time"><i class="far fa-clock"></i> {{$news[0]->news_time_post}}</div>
-                                    <p class="des">{{$news[0]->news_description}}</p>
-                                    <div class="author"><i class="fas fa-user-edit"></i>{{$news[0]->name}}</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-5">
-                            <div class="new-second">
-                                <div class="head">
-                                    <img src="{{asset('/img/news/'.$news[1]->news_poster)}}" alt="{{$news[1]->news_title}}">
-                                </div>
-                                <div class="body">
-                                    <a class="title" href="{{asset('/clients/news/'.$news[1]->news_id)}}">{{$news[1]->news_title}}</a>
-                                    <div class="time"><i class="far fa-clock"></i> {{$news[1]->news_time_post}}</div>
-                                    <p class="des">{{$news[1]->news_description}}</p>
-                                    <div class="author"><i class="fas fa-user-edit"></i>{{$news[1]->name}}</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @for($i=2; $i < count($news); $i++) <div class="new">
-                        <div class="head">
-                            <img src="{{asset('/img/news/'.$news[$i]->news_poster)}}" alt="{{$news[$i]->news_title}}">
-                        </div>
-                        <div class="body">
-                            <a class="title" href="{{asset('/clients/news/'.$news[$i]->news_id)}}">{{$news[$i]->news_title}}</a>
-                            <div class="time"><i class="far fa-clock"></i> {{$news[$i]->news_time_post}}</div>
-                            <p class="des">{{$news[$i]->news_description}}</p>
-                            <div class="author"><i class="fas fa-user-edit"></i>{{$news[$i]->name}}</div>
-                        </div>
-                </div>
-                @endfor
-            </div>
+                    <div class="title">{{$new->news_title}}</div>
+                    <div class="time" style="font-size: 13px; font-weight: 600; padding: 10px;"><i class="far fa-clock"></i> Ngày đăng: {{$new->news_time_post}}</div>
+                    <div style="font-size: 15px; font-weight: 600; margin-bottom: 10px; padding: 10px;">{{$new->news_description}}</div>
 
-            <div class="content-right col-lg-3">
-            <div id="suggestions">
+                    <div style="text-align: center; padding: 10px;">
+                        <img src="{{asset('/img/news/'.$new->news_poster)}}" alt="" width="100%">
+
+                    </div>
+                    <div id="new-content" style="text-align: justify; padding: 5px;">
+                        {!!$new->news_content!!}
+                    </div>
+
+                    <div class="author" style="text-align: right; font-size: 13px;"><i class="fas fa-user-edit"></i>{{$new->name}}</div>
+                </div>
+
+
+                <div class="content-right col-lg-3">
+                <div id="suggestions">
                     <div class="title">CÁC TOUR ĐANG HOT</div>
                     <div class="tours">
                         <div class="tours-list">
@@ -102,16 +76,17 @@
                         </div>
                     </div>
                 </div>
+                </div>
             </div>
         </div>
-
-
     </div>
-</div>
 </div>
 @stop
 
 @section('script')
 <script src="/client/js/library.js" type="text/javascript"></script>
 <script src="/client/js/home.js" type="text/javascript"></script>
+<!-- <script>
+    document.getElementById('new-content').innerHTML();
+</script> -->
 @stop

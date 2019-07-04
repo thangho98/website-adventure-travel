@@ -62,7 +62,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-3">Khởi hành:</div>
-                                    <div class="col-sm-4">{{$tour_detail[0]->tour_time_start}}</div>
+                                    <div class="col-sm-4">{{\Carbon\Carbon::parse($tour_detail[0]->tour_time_start)->format('d/m/Y')}}</div>
                                     <div class="col-sm-5"><i class="far fa-calendar-alt"></i> Ngày khác</div>
                                 </div>
                                 <div class="row">
@@ -100,7 +100,12 @@
                                         <div class="price"><span>{{number_format($tour_detail[0]->tr_original_price,0,',','.')}} đ</span> {{number_format($tour_detail[0]->tour_price,0,',','.')}} đ</div>
                                         <div class="slot">Số chổ còn nhận: <span>{{$tour_detail[0]->tr_max_slot - $tour_detail[0]->tour_slot_book}}</span></div>
                                     </div>
-                                    <div class="btn-booking col-sm-5"><a href="{{asset('clients/booking/'.$code)}}">ĐẶT NGAY</a></div>
+                                    @if( $tour_detail[0]->tr_max_slot != $tour_detail[0]->tour_slot_book)
+                                        <div class="btn-booking col-sm-5"><a href="{{asset('clients/booking/'.$code)}}">ĐẶT NGAY</a></div>
+                                    @else
+                                       <div class="btn-booking col-sm-5"><a>ĐẶT NGAY</a></div>
+                                    @endif
+
                                 </div>
                             </div>
 
@@ -132,7 +137,11 @@
 
                 <ul class="right navbar-nav">
                     <li class="nav-item">
+                    @if( $tour_detail[0]->tr_max_slot != $tour_detail[0]->tour_slot_book)
                         <a class="booking nav-link" href="{{asset('clients/booking/'.$code)}}">ĐẶT NGAY</a>
+                    @else
+                    <a class="booking nav-link">ĐẶT NGAY</a>
+                    @endif  
                     </li>
                 </ul>
             </nav>
@@ -367,7 +376,7 @@
                                             <div class="tour-info">
                                                 <div class="left">
                                                     <div class="tour-start">
-                                                        {{$item->tour_time_start}}
+                                                        {{\Carbon\Carbon::parse($item->tour_time_start)->format('d/m/Y')}}
                                                     </div>
 
                                                     <div class="tour-price">

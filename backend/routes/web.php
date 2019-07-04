@@ -98,6 +98,7 @@ Route::group(['namespace' => 'Client'], function () {
         Route::get('/hoat-dong/{id}',"HomeController@IndexActivity");
         Route::get('/personal', 'PersonalController@Index')->name('personal');
         Route::get('/news', 'NewsController@Index')->name('news');
+        Route::get('/news/{id}', 'NewsController@IndexNew');
     });
 });
 

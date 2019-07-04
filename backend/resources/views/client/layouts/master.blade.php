@@ -103,8 +103,8 @@
                                 <div id="menu-user">
                                     <ul>
                                         <li><a href="{{asset(route('personal'))}}">Trang cá nhân</a></li>
-                                        <li><a href="#">Lịch sử đặt tour</a></li>
-                                        <li><a href="#">Tours yêu thích</a></li>
+                                        <!-- <li><a href="#">Lịch sử đặt tour</a></li>
+                                        <li><a href="#">Tours yêu thích</a></li> -->
                                         <form action="{{route('logoutClient')}}" method="post">
                                             <li id="logout"><button type="submit">Đăng xuất</button></li>
                                             {{csrf_field()}}

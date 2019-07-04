@@ -182,7 +182,7 @@ class TourDetails {
         this.score = document.getElementById("id-score");
         this.reviewStar = document.getElementsByClassName("review-star");
 
-        this.btnLove = document.getElementById("btn-love");
+        // this.btnLove = document.getElementById("btn-love");
 
         this.CreateStars(this.reviewStar);
         this.AddEvents(this.titDay, this.contDay, this.stars, this.score, this.btnLove);
@@ -191,7 +191,7 @@ class TourDetails {
     AddEvents(titDay, contDay, inputStars, score, btnLove) {
         AddEventTitDay();
         AddEventInputStars();
-        AddEventBtnLove();
+        // AddEventBtnLove();
 
         function AddEventTitDay() {
             for (let i = 0; i < titDay.length; i++) {
@@ -222,16 +222,16 @@ class TourDetails {
             }
         }
 
-        function AddEventBtnLove() {
-            const pink = "rgb(255, 0, 85)";
-            btnLove.addEventListener('click', function () {
-                let color = btnLove.style.color;
-                if (color != pink)
-                    btnLove.style.color = pink;
-                else
-                    btnLove.style.color = "#000";
-            });
-        }
+        // function AddEventBtnLove() {
+        //     const pink = "rgb(255, 0, 85)";
+        //     btnLove.addEventListener('click', function () {
+        //         let color = btnLove.style.color;
+        //         if (color != pink)
+        //             btnLove.style.color = pink;
+        //         else
+        //             btnLove.style.color = "#000";
+        //     });
+        // }
     }
 
 
