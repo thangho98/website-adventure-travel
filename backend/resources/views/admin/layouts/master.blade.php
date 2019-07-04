@@ -251,10 +251,10 @@
                     </li>
                     <li class="nav-main-heading">Nhân viên</li>
                     <li class="nav-main-item">
-                        <a class="nav-main-link">
+                        <router-link to="/admin/booking-tour" class="nav-main-link">
                             <i class="nav-main-link-icon si si-credit-card"></i>
                             <span class="nav-main-link-name">Đặt tour</span>
-                        </a>
+                        </router-link>
                     </li>
                     <li class="nav-main-item">
                         <router-link to="/admin/news" class="nav-main-link">

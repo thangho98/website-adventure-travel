@@ -134,9 +134,7 @@ class HomeController extends Controller
         return $data;
     }
 
-<<<<<<< HEAD
-}
-=======
+
     public function getReviewScore($code)
     {
         $data['score'] = DB::table('tours')
@@ -148,4 +146,3 @@ class HomeController extends Controller
             ->avg;
     }
 }
->>>>>>> client
