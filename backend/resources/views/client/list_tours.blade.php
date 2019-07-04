@@ -693,7 +693,7 @@
                             </div> -->
                         </div>
                     </div>
-
+<!-- 
                     <div class="nav-page">
                         <nav aria-label="Page navigation example">
                             <ul class="pagination">
@@ -714,7 +714,7 @@
                                 </li>
                             </ul>
                         </nav>
-                    </div>
+                    </div> -->
 
                 </div>
             </div>
@@ -744,7 +744,7 @@
                                 </div>
                             </div>
                         </div>
-
+<!-- 
                         <div class="item">
                             <div class="head">
                                 HOẠT ĐỘNG
@@ -771,7 +771,7 @@
                                     <div><input type="radio">Giảm dần</div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="item">
                             <div class="head">TÌNH TRẠNG</div>
