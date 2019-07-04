@@ -75,7 +75,7 @@ class NewsController extends Controller
      */
     public function show($id)
     {
-        return News::findOrFail($id);
+        return News::find($id);
     }
 
     /**
@@ -94,7 +94,7 @@ class NewsController extends Controller
             'news_content' => 'required|string'
         ]);
 
-        $news = News::findOrFail($id);
+        $news = News::find($id);
 
         $currentPhoto = $news->news_poster;
         if($request->news_poster != $currentPhoto){
@@ -128,7 +128,7 @@ class NewsController extends Controller
     public function destroy($id)
     {
         $this->authorize('isAdmin');
-        $news = News::findOrFail($id);
+        $news = News::find($id);
         $news->delete();
         return ['message' => 'News Deleted'];
     }

@@ -73,7 +73,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $cate = Category::findOrFail($id);
+        $cate = Category::find($id);
         $this->validate($request,[
             'cate_name' => 'required|string|max:191|unique:categories,cate_name,'.$id.',cate_id',
             'cate_image' => 'required|string'
@@ -105,7 +105,7 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $this->authorize('isAdmin');
-        $cate = Category::findOrFail($id);
+        $cate = Category::find($id);
         $cate->delete();
         return ['message' => 'Category Deleted'];
     }

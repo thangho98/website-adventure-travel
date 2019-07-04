@@ -74,6 +74,11 @@ Route::group(['namespace' => 'Admin'], function () {
 
 Route::group(['namespace' => 'Client'], function () {
     Route::group(['prefix' => 'clients'], function () {
+        Route::get('/','HomeController@Index')->name('homeClient');
+
+        Route::get('/search','SearchController@getSearch');
+        Route::get('/search/ajax','SearchController@getSearchAjax');
+
 
         Route::get('/', 'HomeController@Index')->name('homeClient');
         Route::get('/tour/{code}', 'TourDetailController@Index');
@@ -86,6 +91,8 @@ Route::group(['namespace' => 'Client'], function () {
         Route::get('/tours-dang-hot',"HomeController@IndexToursHot")->name('toursHot');
         Route::get('/tours-moi-nhat',"HomeController@IndexToursLatest")->name('toursLatest');
         Route::get('/hoat-dong/{id}',"HomeController@IndexActivity");
+        Route::get('/personal', 'PersonalCOntroller@Index')->name('personal');
+
     });
 });
 

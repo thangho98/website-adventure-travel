@@ -78,7 +78,7 @@ class LocationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $location = Location::findOrFail($id);
+        $location = Location::find($id);
         $this->validate($request,[
             'loca_name' => 'required|string|max:191',
             'loca_description' => 'required|string',
@@ -111,7 +111,7 @@ class LocationController extends Controller
     public function destroy($id)
     {
         $this->authorize('isAdmin');
-        $location = Location::findOrFail($id);
+        $location = Location::find($id);
         $location->delete();
         return ['message' => 'Location Deleted'];
     }

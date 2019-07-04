@@ -80,7 +80,7 @@ class PromotionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $promotion = Promotion::findOrFail($id);
+        $promotion = Promotion::find($id);
         $this->validate($request,[
             'prom_name' => 'required|string|max:191',
             'prom_description' => 'required|string',
@@ -114,7 +114,7 @@ class PromotionController extends Controller
     public function destroy($id)
     {
         $this->authorize('isAdmin');
-        $promotion = Promotion::findOrFail($id);
+        $promotion = Promotion::find($id);
         $promotion->delete();
         return ['message' => 'Promotion Deleted'];
     }
