@@ -20,9 +20,6 @@
             <div id="basic-info">
                 <div class="head">
                     <h1>{{$tour_detail[0]->tr_name}}</h1>
-                    <div id="btn-love">
-                        <i class="fas fa-heart"></i>
-                    </div>
                 </div>
                 <div id="info-content">
                     <div class="row">
@@ -90,7 +87,7 @@
                                             @if($tour_detail[0]->tour_promotion == 0)
                                                 Không có
                                             @else
-                                                $tour_detail[0]->tour_promotion
+                                            {{$tour_detail[0]->prom_name}} GIẢM {{$tour_detail[0]->prom_percent_promotion}}% giá tour
                                             @endif
                                         </span>
                                     </div>
@@ -100,10 +97,10 @@
                             <div class="booking">
                                 <div class="row">
                                     <div class="price-slot col-sm-7">
-                                        <div class="price"><span>{{number_format($tour_detail[0]->tr_original_price)}}</span> {{number_format($tour_detail[0]->tour_price)}} đ</div>
+                                        <div class="price"><span>{{number_format($tour_detail[0]->tr_original_price,0,',','.')}} đ</span> {{number_format($tour_detail[0]->tour_price,0,',','.')}} đ</div>
                                         <div class="slot">Số chổ còn nhận: <span>{{$tour_detail[0]->tr_max_slot - $tour_detail[0]->tour_slot_book}}</span></div>
                                     </div>
-                                    <div class="btn-booking col-sm-5">ĐẶT NGAY</div>
+                                    <div class="btn-booking col-sm-5"><a href="{{asset('clients/booking/'.$code)}}">ĐẶT NGAY</a></div>
                                 </div>
                             </div>
 
@@ -135,10 +132,7 @@
 
                 <ul class="right navbar-nav">
                     <li class="nav-item">
-                        <a class="booking nav-link" href="#">ĐẶT NGAY</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="contact nav-link" href="#">TƯ VẤN NGAY</a>
+                        <a class="booking nav-link" href="{{asset('clients/booking/'.$code)}}">ĐẶT NGAY</a>
                     </li>
                 </ul>
             </nav>
@@ -252,12 +246,12 @@
                                         @if($orther_days[$i]->tour_promotion == 0)
                                         Không có
                                         @else
-                                        $orther_days[$i]->tour_promotion
+                                            GIẢM {{$orther_days[$i]->prom_percent_promotion}}%
                                         @endif
                                     </td>
-                                    <td>{{$orther_days[$i]->tour_price}} đ</td>
+                                    <td>{{number_format($orther_days[$i]->tour_price,0,',','.')}} đ</td>
                                     <td>Còn {{$orther_days[$i]->tr_max_slot - $orther_days[$i]->tour_slot_book}} chổ</td>
-                                    <td><a href="{{asset('clients/tour/'.$orther_days[$i]->tour_code)}}"><button class="btn btn-danger">Book</button></a></td>
+                                    <td><a href="{{asset('clients/booking/'.$orther_days[$i]->tour_code)}}"><button class="btn btn-danger">Book</button></a></td>
                                     </tr>
                                     @endfor
                             </tbody>
@@ -377,7 +371,7 @@
                                                     </div>
 
                                                     <div class="tour-price">
-                                                        <span>{{number_format($item->tr_original_price)}}</span> {{number_format($item->tour_price)}} đ
+                                                        <span>{{number_format($item->tr_original_price,0,',','.')}} đ</span> {{number_format($item->tour_price,0,',','.')}} đ
                                                     </div>
                                                 </div>
                                                 <div class="right">

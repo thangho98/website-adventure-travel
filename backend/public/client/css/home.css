@@ -1624,6 +1624,69 @@ body #content #search-filter .content .item .btn-submit button:hover {
   }
 }
 
+body #content .tour-table {
+  overflow: scroll;
+}
+
+body #content #user-information .title, body #content .tour-table .title {
+  font-size: 20px;
+  color: #19a1e5;
+  border-left: solid 3px #0080c0;
+  line-height: 20px;
+  margin: 10px 0;
+  padding: 0 5px;
+  text-align: left;
+}
+
+body #content #user-information .table, body #content .tour-table .table {
+  font-size: 13px;
+}
+
+body #content #user-information .table button, body #content .tour-table .table button {
+  font-size: 13px;
+}
+
+body #content #user-information .item, body #content .tour-table .item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 5px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+body #content #user-information .item label, body #content .tour-table .item label {
+  font-size: 14px;
+  margin: 0;
+  line-height: 30px;
+}
+
+body #content #user-information .item input, body #content .tour-table .item input {
+  width: 200px;
+  font-size: 14px;
+  border: solid 1px #19a1e5;
+  padding: 0 5px;
+  line-height: 20px;
+}
+
+body #content #user-information .item button, body #content .tour-table .item button {
+  width: 100px;
+  border: none;
+  background: #19a1e5;
+  color: #fff;
+  border-radius: 1px;
+  font-size: 15px;
+  padding: 5px 10px;
+  text-align: center;
+}
+
+body #content #user-information .item button:hover, body #content .tour-table .item button:hover {
+  background: #0080c0;
+}
+
 body #content #booking-tour .list-tours {
   padding: 10px;
 }

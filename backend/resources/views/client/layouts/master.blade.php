@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    {{-- <base href="{{asset('client')}}/"> --}}
+    <!-- {{-- <base href="{{asset('client')}}/"> --}} -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>

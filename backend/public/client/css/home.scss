@@ -1614,7 +1614,62 @@ body {
 
 body {
   #content {
-    #booking-tour {
+
+    .tour-table{
+      overflow: scroll;
+    }
+
+    #user-information, .tour-table{
+      .title {
+        font-size: 20px;
+        color: get-color(xanh);
+        border-left: solid 3px get-color(xanh-dam);
+        line-height: 20px;
+        margin: 10px 0;
+        padding: 0 5px;
+        text-align: left;
+      }
+      .table {
+        font-size: 13px;
+        button {
+          font-size: 13px;
+        }
+      }
+      .item {
+        display: flex;
+        padding: 5px;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        label {
+          font-size: 14px;
+          margin: 0;
+          line-height: 30px;
+        }
+
+        input {
+          width: 200px;
+          font-size: 14px;
+          border: solid 1px get-color(xanh);
+          padding: 0 5px;
+          line-height: 20px;
+        }
+        button {
+          width: 100px;
+          border: none;
+          background: get-color(xanh);
+          color: #fff;
+          border-radius: 1px;
+          font-size: 15px;
+          padding: 5px 10px;
+          text-align: center;
+        }
+        button:hover {
+          background: get-color(xanh-dam);
+        }
+      }
+    }
+    #booking-tour{
       .list-tours {
         .tours-title {
           padding: 0 10px;
