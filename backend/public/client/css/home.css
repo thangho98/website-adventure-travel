@@ -1,3 +1,10 @@
+body #content a {
+  width: 100%;
+  color: #fff;
+  text-decoration: none;
+  text-align: center;
+}
+
 body {
   font-family: "Roboto", sans-serif;
   background: url("../imgs/background.jpg");

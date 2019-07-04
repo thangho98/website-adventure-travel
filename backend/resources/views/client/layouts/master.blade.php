@@ -129,12 +129,11 @@
                         </button>
                         <div id="nav-links" class="collapse navbar-collapse">
                             <ul class="navbar-nav">
-                                <li class="nav-item"><a class="nav-link" href="tour-trong-nuoc.html">TOUR TRONG NƯỚC</a>
+                                <li class="nav-item"><a class="nav-link" href="{{route('toursHot')}}">TOUR ĐANG HOT</a>
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="tour-nuoc-ngoai.html">TOUR NƯỚC NGOÀI</a>
+                                <li class="nav-item"><a class="nav-link" href="{{route('toursLatest')}}">TOUR MỚI NHẤT</a>
                                 </li>
-                                <li class="nav-item"><a class="nav-link" href="loai-hinh-mao-hiem.html">LOẠI HÌNH MẠO
-                                        HIỂM</a></li>
+                                <li class="nav-item"><a class="nav-link">LOẠI HÌNH MẠO HIỂM</a></li>
                                 <li class="nav-item"><a class="nav-link" href="tin-tuc.html">TIN TỨC</a></li>
                                 <li class="nav-item"><a class="nav-link" href="gioi-thieu.html">GIỚI THIỆU</a></li>
                             </ul>

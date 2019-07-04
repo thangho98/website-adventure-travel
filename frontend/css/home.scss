@@ -58,6 +58,17 @@ $margin: (
   @return map-get($map: $margin, $key: $margin-name);
 }
 
+body{
+  #content{
+    a{
+      width: 100%;
+      color: #fff;
+      text-decoration: none;
+      text-align: center;
+    }
+  }
+}
+
 //home
 body {
   font-family: "Roboto", sans-serif;
