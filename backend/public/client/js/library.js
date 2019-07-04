@@ -285,7 +285,7 @@ class BooingTour{
         }
 
         function btnAddOnClick(input, slot){
-            if(input.value < slot.innerHTML)
+            if(input.value <  Number(slot.innerHTML))
                 input.value = Number(input.value) + 1;
         }
 

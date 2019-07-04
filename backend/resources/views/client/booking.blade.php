@@ -1,25 +1,92 @@
 @extends('client.layouts.master')
 
-@section('title', 'Trang cá nhân')
+@section('title', 'Booking tour')
 
 @section('content')
 <div id="content">
     <div class="wrapper">
         <div class="row">
-            <div id="personal" class="tours col-lg-9">
+            <div id="booking-tour" class="tours col-lg-9">
                 <div class="tours-title">
-                    <h2>TRANG CÁ NHÂN</h2>
+                    <h2>ĐẶT TOUR</h2>
                 </div>
-               
-                    <div id="user-information">
-                    <div class="list-tours">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="title">
-                                    Thông tin của bạn
+                <div class="list-tours">
+                    <div class="tours">
+                        <div class="tour">
+                            <div class="title">{{$tour_detail[0]->tr_name}}</div>
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <div class="tour-img">
+                                        <img src="/client/imgs/1.jpg" alt="">
+                                    </div>
                                 </div>
-                                <div class="content">
-                                    <form action="{{route('personalUpdateProfile')}}" method="post">
+                                <div class="col-lg-9">
+                                    <div class="row">
+                                        <div class="col-md-8 left">
+                                            <div class="meta">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <span class="review-star" aria-valuetext="4">
+                                                        </span>{{round($review_score['score'], 2)}}/5 trong {{$review_score['count_comments']}} đánh giá
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="info">
+                                                <div class="row">
+                                                    <div class="col-sm-6">Khởi hành: {{$tour_detail[0]->tour_time_start}}</div>
+                                                    <div class="col-sm-6">Hoạt động: {{$tour_detail[0]->cate_name}}</div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-sm-6">Nơi khởi hành: {{$tour_detail[0]->loca_name}}</div>
+                                                    <div class="col-sm-6">Thời gian: {{$tour_detail[0]->tr_time}} ngày
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="promotion">
+                                                <div class="row">
+                                                    <div class="col-sm-6">Khuyến mãi:
+                                                        <span>
+                                                            @if($tour_detail[0]->tour_promotion == 0)
+                                                                Không có
+                                                            @else
+                                                                GIẢM {{$tour_detail[0]->prom_percent_promotion}}%
+                                                            @endif
+                                                        </span>
+                                                    </div>
+                                                    <div class="col-sm-6 slot">Số chổ còn nhận:
+                                                        <span id="slot-free">{{$tour_detail[0]->tr_max_slot - $tour_detail[0]->tour_slot_book}}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 right">
+                                            <div class="booking">
+                                                <div class="price">
+                                                {{number_format($tour_detail[0]->tour_price)}} đ
+                                                    <div>{{number_format($tour_detail[0]->tr_original_price)}} đ</div>
+                                                </div>
+
+                                                <div class="btn-booking"><a href="{{asset('clients/tour/'.$tour_detail[0]->tour_code)}}">CHI TIẾT</a></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form action="{{asset('clients/booking/book/'.$tour_detail[0]->tour_code)}}" method="post">
+                        <div class="row">
+
+                            <div class="col-lg-6">
+                                <div id="user-infomation">
+                                    <div class="title">
+                                        Thông tin của bạn
+                                    </div>
+                                    <div class="content">
                                         <div class="item">
                                             <label for="user_info_name">Họ và tên</label>
                                             <input type="text" name="name" placeholder="Nhập tên" value="{{$user->user_name}}">
@@ -40,111 +107,42 @@
                                             <label for="user_info_name">Địa chỉ</label>
                                             <input type="text" name="address" placeholder="Nhập địa chỉ" value="{{$user->user_address}}">
                                         </div>
-                                        <div class="item">
-                                            <button type="submit">Cập nhật</button>
-                                        </div>
-                                        {{csrf_field()}}
-                                    </form>
-
+                                    </div>
                                 </div>
                             </div>
 
-                            <div class="col-lg-6"></div>
-                        </div>
+                            <div class="col-lg-6">
+                                <div id="amount-people">
+                                    <div class="title">
+                                        Số lượng hành khách
+                                    </div>
+                                    <div class="content">
+                                        <div class="item group-input">
+                                            <label for="user_info_name">Trên 12 tuổi</label>
+                                            <div class="group-input-count">
+                                                <button type="button" class="btn-minus"> - </button>
+                                                <input name="num_adult" class="input-count" type="text" value="1">
+                                                <button type="button" class="btn-add">+</button>
+                                            </div>
 
-                    </div>
+                                        </div>
+                                        <div class="item group-input">
+                                            <label for="user_info_name">Dưới 12 tuổi</label>
+                                            <div class="group-input-count">
+                                                <button type="button" class="btn-minus">-</button>
+                                                <input name="num_child" class="input-count" type="text" value="0">
+                                                <button type="button" class="btn-add">+</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
-                    <div id="tour-history" class="tour-table">
-                        <div class="title">
-                            Tour đã đặt
+                                <div id="price-sum">TỔNG CỘNG: <span>20,500,000 đ</span></div>
+                                <button id="btn-book" type="submit">BOOK</button>
+                            </div>
                         </div>
-                        <div class="content">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">STT</th>
-                                        <th scope="col">Mã tour</th>
-                                        <th scope="col">Tên tour</th>
-                                        <th scope="col">Ngày khởi hành</th>
-                                        <th scope="col">Tình trạng</th>
-                                        <th scope="col">Công cụ</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>05/07/2019</td>
-                                        <td>Không có</td>
-                                        <td>11,990,000 đ</td>
-                                        <td>Đã đặt</td>
-                                        <td><button class="btn btn-info">Chi tiết</button><button class="btn btn-danger">Hủy</button></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>10/07/2019</td>
-                                        <td>Đã đi</td>
-                                        <td>11,990,000 đ</td>
-                                        <td>Đã đi</td>
-                                        <td><button class="btn btn-info">Chi tiết</button><button class="btn btn-danger" disabled>Hủy</button></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>15/07/2019</td>
-                                        <td>Giảm 2,000,000 đ</td>
-                                        <td>11,990,000 đ</td>
-                                        <td>Đã hủy</td>
-                                        <td><button class="btn btn-info">Chi tiết</button><button class="btn btn-danger" disabled>Hủy</button></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
-                    <div id="tour-favorite" class="tour-table">
-                        <div class="title">
-                            Tour yêu thích
-                        </div>
-                        <div class="content">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">STT</th>
-                                        <th scope="col">Mã tour</th>
-                                        <th scope="col">Tên tour</th>
-                                        <th scope="col">Ngày khởi hành</th>
-                                        <th scope="col">Tình trạng</th>
-                                        <th scope="col">Công cụ</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>05/07/2019</td>
-                                        <td>Không có</td>
-                                        <td>11,990,000 đ</td>
-                                        <td>Đã đặt</td>
-                                        <td><button class="btn btn-info">Chi tiết</button><button class="btn btn-danger">Book</button></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>10/07/2019</td>
-                                        <td>Đã đi</td>
-                                        <td>11,990,000 đ</td>
-                                        <td>Đã đi</td>
-                                        <td><button class="btn btn-info">Chi tiết</button><button class="btn btn-danger">Book</button></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>15/07/2019</td>
-                                        <td>Giảm 2,000,000 đ</td>
-                                        <td>11,990,000 đ</td>
-                                        <td>Đã hủy</td>
-                                        <td><button class="btn btn-info">Chi tiết</button><button class="btn btn-danger">Book</button></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                        {{csrf_field()}}
+                    </form>
                 </div>
             </div>
 
@@ -295,20 +293,16 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
-
-
 </div>
 @stop
 
 @section('script')
 <script src="/client/js/library.js" type="text/javascript"></script>
-<script src="/client/js/home.js" type="text/javascript"></script>
+<script src="/client/js/booking_tour.js" type="text/javascript"></script>
 @stop

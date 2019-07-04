@@ -83,8 +83,17 @@ Route::group(['namespace' => 'Client'], function () {
         Route::get('/', 'HomeController@Index')->name('homeClient');
         Route::get('/tour/{code}', 'TourDetailController@Index');
         Route::post('/tour/comment/{code}', 'TourDetailController@postComment')->name('postComment');
+
         Route::get('/personal', 'PersonalCOntroller@Index')->name('personal');
 
+        Route::get('/personal', 'PersonalController@Index')->name('personal');
+        Route::post('/personal/update', "PersonalController@UpdateProfile")->name('personalUpdateProfile');
+        Route::get('/booking/{code}',"BookingController@Index");
+        Route::post('/booking/book/{code}',"BookingController@BookTour");
+        Route::get('/tours-gio-chot',"HomeController@IndexToursLastHour")->name('toursLastHour');
+        Route::get('/tours-dang-hot',"HomeController@IndexToursHot")->name('toursHot');
+        Route::get('/tours-moi-nhat',"HomeController@IndexToursLatest")->name('toursLatest');
+        Route::get('/hoat-dong/{id}',"HomeController@IndexActivity");
     });
 });
 

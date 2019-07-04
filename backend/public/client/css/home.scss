@@ -1614,16 +1614,67 @@ body {
 
 body {
   #content {
-    .tours {
-      .tours-title {
-        padding: 0 10px;
-      }
-      .tours-list {
-        padding: 10px;
 
-        .tour-table {
-          overflow: scroll;
+    .tour-table{
+      overflow: scroll;
+    }
+
+    #user-information, .tour-table{
+      .title {
+        font-size: 20px;
+        color: get-color(xanh);
+        border-left: solid 3px get-color(xanh-dam);
+        line-height: 20px;
+        margin: 10px 0;
+        padding: 0 5px;
+        text-align: left;
+      }
+      .table {
+        font-size: 13px;
+        button {
+          font-size: 13px;
         }
+      }
+      .item {
+        display: flex;
+        padding: 5px;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        label {
+          font-size: 14px;
+          margin: 0;
+          line-height: 30px;
+        }
+
+        input {
+          width: 200px;
+          font-size: 14px;
+          border: solid 1px get-color(xanh);
+          padding: 0 5px;
+          line-height: 20px;
+        }
+        button {
+          width: 100px;
+          border: none;
+          background: get-color(xanh);
+          color: #fff;
+          border-radius: 1px;
+          font-size: 15px;
+          padding: 5px 10px;
+          text-align: center;
+        }
+        button:hover {
+          background: get-color(xanh-dam);
+        }
+      }
+    }
+    #booking-tour{
+      .list-tours {
+        .tours-title {
+          padding: 0 10px;
+        }
+        padding: 10px;
 
         .title {
           font-size: 20px;
@@ -1632,8 +1683,7 @@ body {
           line-height: 20px;
           margin: 10px 0;
           padding: 0 5px;
-        text-align: left;
-
+          text-align: left;
         }
 
         .item {
@@ -1703,78 +1753,79 @@ body {
           margin: 5px 5px;
         }
 
-        #btn-book:hover{
+        #btn-book:hover {
           background: get-color(xanh-dam);
         }
+        .tours{
+          .tour {
+            text-align: left;
+            background: #f2f5f8;
+            font-size: 13px;
+            padding: 10px;
+            line-height: 30px;
+            margin-bottom: 20px;
 
-        .tour {
-          text-align: left;
-          background: #f2f5f8;
-          font-size: 13px;
-          padding: 10px;
-          line-height: 30px;
-          margin-bottom: 20px;
-
-          .left {
-            border-right: dotted 1px #b4b4b4;
-          }
-
-          .title {
-            color: get-color(xanh);
-            font-size: 17px;
-            font-weight: 600;
-            margin: 5px 0 10px 0;
-            border: none;
-          }
-
-          .tour-img {
-            img {
-              object-fit: cover;
-              width: 100%;
-              height: 120px;
+            .left {
+              border-right: dotted 1px #b4b4b4;
             }
-          }
 
-          .promotion {
-            span {
-              color: #c50000;
-            }
-          }
-
-          .booking {
-            text-align: center;
-
-            .price {
-              color: #c50000;
+            .title {
+              color: get-color(xanh);
               font-size: 17px;
-              margin-bottom: 10px;
+              font-weight: 600;
+              margin: 5px 0 10px 0;
+              border: none;
+            }
 
-              div {
-                color: #000;
-                font-size: 13px;
-                text-decoration: line-through;
+            .tour-img {
+              img {
+                object-fit: cover;
+                width: 100%;
+                height: 120px;
               }
             }
 
-            .slot {
+            .promotion {
               span {
                 color: #c50000;
               }
             }
 
-            .btn-booking {
-              background: #c50000;
-              color: #fff;
-              font-size: 17px;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              line-height: 40px;
-            }
+            .booking {
+              text-align: center;
 
-            .btn-booking:hover {
-              cursor: pointer;
-              background: #e90000;
+              .price {
+                color: #c50000;
+                font-size: 17px;
+                margin-bottom: 10px;
+
+                div {
+                  color: #000;
+                  font-size: 13px;
+                  text-decoration: line-through;
+                }
+              }
+
+              .slot {
+                span {
+                  color: #c50000;
+                }
+              }
+
+              .btn-booking {
+                background: #c50000;
+                color: #fff;
+                font-size: 17px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                line-height: 40px;
+              }
+
+              .btn-booking:hover {
+                cursor: pointer;
+                background: #e90000;
+              }
             }
           }
         }

@@ -34,6 +34,7 @@ class TourDetailController extends Controller
             ->join('tourist_routes',  'tour_tourist_route', 'tr_id')
             ->join('categories', 'tr_category', 'cate_id')
             ->join('locations', 'tr_location', 'loca_id')
+            ->join('promotions', 'tour_promotion', 'prom_id')
             ->get();
         return $data;
     }
@@ -89,6 +90,7 @@ class TourDetailController extends Controller
         $data2 = DB::table('tours')
             ->where('tour_tourist_route', $data1->first()->tour_tourist_route)
             ->join('tourist_routes', 'tour_tourist_route', 'tr_id')
+            ->join('promotions', 'tour_promotion', 'prom_id')
             ->orderBy('tour_time_start')
             ->get();
 
@@ -163,7 +165,10 @@ class TourDetailController extends Controller
                 ->first()
                 ->count;
 
-            $data['review_chart'][$i]['percent'] = $data['review_chart'][$i]['count'] / $data['count_comments'] * 100;
+            if ($data['count_comments'] != 0)
+                $data['review_chart'][$i]['percent'] = $data['review_chart'][$i]['count'] / $data['count_comments'] * 100;
+            else
+                $data['review_chart'][$i]['percent'] = 0;
 
             if ($i == 1)
                 $data['review_chart'][$i]['text'] = 'Khủng khiếp';
