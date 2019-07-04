@@ -80,12 +80,12 @@ class TourController extends Controller
      */
     public function show($id)
     {
-        $data['tour'] = Tour::findOrFail($id);
-        $data['tour_tourist_route'] = TouristRoute::findOrFail($data['tour']['tour_tourist_route']);
+        $data['tour'] = Tour::find($id);
+        $data['tour_tourist_route'] = TouristRoute::find($data['tour']['tour_tourist_route']);
 
         $data['tour_promotion'] = null;
         if($data['tour']['tour_promotion'] != 0){
-            $data['tour_promotion'] = Promotion::findOrFail($data['tour']['tour_promotion']);
+            $data['tour_promotion'] = Promotion::find($data['tour']['tour_promotion']);
         }
        
 
@@ -105,7 +105,7 @@ class TourController extends Controller
         $tour_promotion = $request['tour_promotion'];
         $tour_tourist_route = $request['tour_tourist_route'];
 
-        $tour =  Tour::findOrFail($id);
+        $tour =  Tour::find($id);
         $tour->tour_code = $tour_tourist_route['tr_id'].date_format(date_create($date),"Ymd");;
         $tour->tour_tourist_route = $tour_tourist_route['tr_id'];
         $tour->tour_time_start = $date;
@@ -126,7 +126,7 @@ class TourController extends Controller
     public function destroy($id)
     {
         $this->authorize('isAdmin');
-        $tour = Tour::findOrFail($id);
+        $tour = Tour::find($id);
         $tour->delete();
         return ['message' => 'Tour Deleted'];
     }

@@ -16,6 +16,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <!--Home CSS-->
     <link rel="stylesheet" href="{{asset('/')}}client/css/home.css">
+    @yield('css')
 </head>
 
 <body>
@@ -123,7 +124,7 @@
                 <div id="nav-bot" class="navbar navbar-expand-lg">
                     <div class="container">
                         <div id="logo-header" class="navbar-brand">
-                            <a href="home.html"><img src="{{asset('/')}}client/imgs/Logo2.png" alt="Team13.com"></a>
+                            <a href="{{asset('/clients')}}"><img src="{{asset('/')}}client/imgs/Logo2.png" alt="Team13.com"></a>
                         </div>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-links" aria-controls="nav-links" aria-expanded="false">
                             <i class="fas fa-bars"></i>
@@ -205,42 +206,48 @@
 
                 <div class="wrapper">
                     <div id="form-search-trong-nuoc" class="search-form">
-                        <form action="">
+                        <form action="{{asset("clients/search/")}}" method="GET">
                             <div class="row">
                                 <div class="item col-lg-2 col-md-4">
                                     <div class="title">NƠI KHỞI HÀNH</div>
-                                    <select name="" id="">
-                                        <option value="1">Hồ Chí Minh</option>
-                                        <option value="2">Hà Nội</option>
-                                        <option value="3">Đà nẵng</option>
+                                    <select name="starting_gate" >
+                                        <option value="all">Tất cả</option>
+                                        @foreach ($data['list_all_locations'] as $item)
+                                        <option value="{{$item->loca_id}}">{{$item->loca_name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="item col-lg-2 col-md-4">
                                     <div class="title">NƠI ĐẾN</div>
-                                    <select name="" id="">
-                                        <option value="1">Hồ Chí Minh</option>
-                                        <option value="2">Hà Nội</option>
-                                        <option value="3">Đà nẵng</option>
+                                    <select name="destination">
+                                        <option value="all">Tất cả</option>
+                                        @foreach ($data['list_all_locations'] as $item)
+                                        <option value="{{$item->loca_id}}">{{$item->loca_name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="item col-lg-2 col-md-4">
                                     <div class="title">NGÀY KHỞI HÀNH</div>
-                                    <input type="date">
+                                    <input name="departure_date" type="date" value="{{ date('Y-m-d')}}" class="form-control">
                                 </div>
                                 <div class="item col-lg-2 col-md-4">
                                     <div class="title">HOẠT ĐỘNG</div>
-                                    <select name="" id="">
-                                        <option value="1">Hồ Chí Minh</option>
-                                        <option value="2">Hà Nội</option>
-                                        <option value="3">Đà nẵng</option>
+                                    <select name="category">
+                                        <option value="all">Tất cả</option>
+                                        @foreach ($data['list_all_categories'] as $item)
+                                        <option value="{{$item->cate_id}}">{{$item->cate_name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="item col-lg-2 col-md-4">
                                     <div class="title">GIÁ</div>
-                                    <select name="" id="">
-                                        <option value="1">Hồ Chí Minh</option>
-                                        <option value="2">Hà Nội</option>
-                                        <option value="3">Đà nẵng</option>
+                                    <select name="price">
+                                        <option value="all">Tất cả</option>
+                                        <option value="1000000-5000000">1.000.000 - 5.000.000</option>
+                                        <option value="5000000-10000000">5.000.000 - 10.000.000</option>
+                                        <option value="10000000-15000000">10.000.000 - 15.000.000</option>
+                                        <option value="15000000-20000000">15.000.000 - 20.000.000</option>
+                                        <option value=">20000000">20.000.000 trở lên</option>
                                     </select>
                                 </div>
                                 <div class="item col-lg-2 col-md-4">
@@ -251,42 +258,48 @@
                         </form>
                     </div>
                     <div id="form-search-nuoc-ngoai" class="search-form">
-                        <form action="">
+                        <form action="{{asset("clients/search/")}}" method="GET">
                             <div class="row">
                                 <div class="item col-lg-2 col-md-4">
                                     <div class="title">NƠI KHỞI HÀNH</div>
-                                    <select name="" id="">
-                                        <option value="1">Hồ Chí Minh</option>
-                                        <option value="2">Hà Nội</option>
-                                        <option value="3">Đà nẵng</option>
+                                    <select name="starting_gate" >
+                                        <option value="all">Tất cả</option>
+                                        @foreach ($data['list_all_locations'] as $item)
+                                        <option value="{{$item->loca_id}}">{{$item->loca_name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="item col-lg-2 col-md-4">
                                     <div class="title">NƠI ĐẾN</div>
-                                    <select name="" id="">
-                                        <option value="1">Hồ Chí Minh</option>
-                                        <option value="2">Hà Nội</option>
-                                        <option value="3">Đà nẵng</option>
+                                    <select name="destination">
+                                        <option value="all">Tất cả</option>
+                                        @foreach ($data['list_all_locations'] as $item)
+                                        <option value="{{$item->loca_id}}">{{$item->loca_name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="item col-lg-2 col-md-4">
                                     <div class="title">NGÀY KHỞI HÀNH</div>
-                                    <input type="date">
+                                    <input name="departure_date" type="date" value="{{ date('Y-m-d')}}" class="form-control">
                                 </div>
                                 <div class="item col-lg-2 col-md-4">
                                     <div class="title">HOẠT ĐỘNG</div>
-                                    <select name="" id="">
-                                        <option value="1">Hồ Chí Minh</option>
-                                        <option value="2">Hà Nội</option>
-                                        <option value="3">Đà nẵng</option>
+                                    <select name="category">
+                                        <option value="all">Tất cả</option>
+                                        @foreach ($data['list_all_categories'] as $item)
+                                        <option value="{{$item->cate_id}}">{{$item->cate_name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="item col-lg-2 col-md-4">
                                     <div class="title">GIÁ</div>
-                                    <select name="" id="">
-                                        <option value="1">Hồ Chí Minh</option>
-                                        <option value="2">Hà Nội</option>
-                                        <option value="3">Đà nẵng</option>
+                                    <select name="price">
+                                        <option value="all">Tất cả</option>
+                                        <option value="1000000-5000000">1.000.000 - 5.000.000</option>
+                                        <option value="5000000-10000000">5.000.000 - 10.000.000</option>
+                                        <option value="10000000-15000000">10.000.000 - 15.000.000</option>
+                                        <option value="15000000-20000000">15.000.000 - 20.000.000</option>
+                                        <option value=">20000000">20.000.000 trở lên</option>
                                     </select>
                                 </div>
                                 <div class="item col-lg-2 col-md-4">
@@ -297,42 +310,48 @@
                         </form>
                     </div>
                     <div id="form-search-tour-da-dat" class="search-form">
-                        <form action="">
+                        <form action="{{asset("clients/search/")}}" method="GET">
                             <div class="row">
                                 <div class="item col-lg-2 col-md-4">
                                     <div class="title">NƠI KHỞI HÀNH</div>
-                                    <select name="" id="">
-                                        <option value="1">Hồ Chí Minh</option>
-                                        <option value="2">Hà Nội</option>
-                                        <option value="3">Đà nẵng</option>
+                                    <select name="starting_gate" >
+                                        <option value="all">Tất cả</option>
+                                        @foreach ($data['list_all_locations'] as $item)
+                                        <option value="{{$item->loca_id}}">{{$item->loca_name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="item col-lg-2 col-md-4">
                                     <div class="title">NƠI ĐẾN</div>
-                                    <select name="" id="">
-                                        <option value="1">Hồ Chí Minh</option>
-                                        <option value="2">Hà Nội</option>
-                                        <option value="3">Đà nẵng</option>
+                                    <select name="destination">
+                                        <option value="all">Tất cả</option>
+                                        @foreach ($data['list_all_locations'] as $item)
+                                        <option value="{{$item->loca_id}}">{{$item->loca_name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="item col-lg-2 col-md-4">
                                     <div class="title">NGÀY KHỞI HÀNH</div>
-                                    <input type="date">
+                                    <input name="departure_date" type="date" value="{{ date('Y-m-d')}}" class="form-control">
                                 </div>
                                 <div class="item col-lg-2 col-md-4">
                                     <div class="title">HOẠT ĐỘNG</div>
-                                    <select name="" id="">
-                                        <option value="1">Hồ Chí Minh</option>
-                                        <option value="2">Hà Nội</option>
-                                        <option value="3">Đà nẵng</option>
+                                    <select name="category">
+                                        <option value="all">Tất cả</option>
+                                        @foreach ($data['list_all_categories'] as $item)
+                                        <option value="{{$item->cate_id}}">{{$item->cate_name}}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="item col-lg-2 col-md-4">
                                     <div class="title">GIÁ</div>
-                                    <select name="" id="">
-                                        <option value="1">Hồ Chí Minh</option>
-                                        <option value="2">Hà Nội</option>
-                                        <option value="3">Đà nẵng</option>
+                                    <select name="price">
+                                        <option value="all">Tất cả</option>
+                                        <option value="1000000-5000000">1.000.000 - 5.000.000</option>
+                                        <option value="5000000-10000000">5.000.000 - 10.000.000</option>
+                                        <option value="10000000-15000000">10.000.000 - 15.000.000</option>
+                                        <option value="15000000-20000000">15.000.000 - 20.000.000</option>
+                                        <option value=">20000000">20.000.000 trở lên</option>
                                     </select>
                                 </div>
                                 <div class="item col-lg-2 col-md-4">
@@ -343,9 +362,6 @@
                         </form>
                     </div>
                 </div>
-
-
-
             </div>
 
         </header>
@@ -574,9 +590,6 @@
                 31/12/2008 </p>
         </div>
     </div>
-
-
-
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Popper JS -->

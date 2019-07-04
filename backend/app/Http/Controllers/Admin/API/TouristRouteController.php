@@ -181,7 +181,7 @@ class TouristRouteController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $touristRoute = TouristRoute::findOrFail($id);
+        $touristRoute = TouristRoute::find($id);
         
         $currentPhoto = $touristRoute->tr_poster;
         if($request->tr_poster != $currentPhoto){
@@ -244,7 +244,7 @@ class TouristRouteController extends Controller
                 //lưu vết lại những đối tượng đã được chỉnh sửa
                 $his[$key] = $value['itr_id'];
 
-                $imageTouristRoute = ImageTouristRoute::findOrFail($value['itr_id']);
+                $imageTouristRoute = ImageTouristRoute::find($value['itr_id']);
 
                 $currentImage = $imageTouristRoute->itr_name;
                 //kiem tra chuoi mot co chua chuoi hai khong
@@ -300,7 +300,7 @@ class TouristRouteController extends Controller
     public function destroy($id)
     {
         $this->authorize('isAdmin');
-        $tourist = TouristRoute::findOrFail($id);
+        $tourist = TouristRoute::find($id);
         $tourist->delete();
         return ['message' => 'Tourist Route Deleted'];
     }

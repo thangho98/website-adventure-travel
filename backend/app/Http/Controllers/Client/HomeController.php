@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Client;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
+use DB;
 
 class HomeController extends Controller
 {
@@ -36,4 +36,5 @@ class HomeController extends Controller
 
         return $data;
     }
+
 }
