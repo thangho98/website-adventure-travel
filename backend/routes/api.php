@@ -28,6 +28,7 @@ Route::apiResources([
     'review'=>'Admin\API\ReviewController',
     'promotion'=>'Admin\API\PromotionController',
     'news'=>'Admin\API\NewsController',
+    'booking-tour'=>'Admin\API\BookingTourController',
 ]);
 
 Route::get('profile', 'Admin\API\UserController@profile');

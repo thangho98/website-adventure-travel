@@ -48,6 +48,7 @@ const routes = [
     { path: '/admin/news', component: require('./components/News.vue').default },
     { path: '/admin/news/add', component: require('./components/NewsAdd.vue').default },
     { path: '/admin/news/edit/:news_id', name: 'editNews', component: require('./components/NewsEdit.vue').default },
+    { path: '/admin/booking-tour', component: require('./components/BookingTour.vue').default },
     { path: '/admin/*', component: require('./components/NotFound.vue').default }
 ]
 

@@ -69,8 +69,7 @@ class BookingController extends Controller
         $book->bt_num_child = $request->num_child;
         $book->bt_num_adult = $request->num_adult;
         $book->bt_date = Carbon::now()->toDateTimeString();
-        $book->bt_pay_status = 0;
-        $book->bt_booking_status = 0;
+        $book->bt_status = 0;
         $book->bt_user_client = $this->getProfile()->user_id;
         $book->bt_tour = $this->getDetail($code)->first()->tour_id;
 

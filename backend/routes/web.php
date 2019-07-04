@@ -63,6 +63,7 @@ Route::group(['namespace' => 'Admin'], function () {
             Route::get('/edit/{news_id}', 'HomeController@index');
         });
 
+        Route::get('booking-tour', 'HomeController@index');
         Route::get('user-client', 'HomeController@index');
         Route::get('reviews', 'HomeController@index');
         Route::get('promotion', 'HomeController@index');
@@ -84,6 +85,9 @@ Route::group(['namespace' => 'Client'], function () {
         Route::get('/', 'HomeController@Index')->name('homeClient');
         Route::get('/tour/{code}', 'TourDetailController@Index');
         Route::post('/tour/comment/{code}', 'TourDetailController@postComment')->name('postComment');
+
+        Route::get('/personal', 'PersonalCOntroller@Index')->name('personal');
+
         Route::get('/personal', 'PersonalController@Index')->name('personal');
         Route::post('/personal/update', "PersonalController@UpdateProfile")->name('personalUpdateProfile');
         Route::get('/booking/{code}',"BookingController@Index");
