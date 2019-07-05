@@ -79,15 +79,15 @@
                       <i class="fa fa-check blue"></i>
                     </a>/
                     <a href="#" @click="updateStatusCancel(book.bt_id)">
-                      <i class="fa fa-trash red"></i>
+                      <i class="fa fa-times red"></i>
                     </a>
                   </td>
                   <td v-show="book.bt_status != 0">
-                    <a href disabled>
+                    <a href="#" disabled>
                       <i class="fa fa-check blue"></i>
                     </a>/
-                    <a href disabled>
-                      <i class="fa fa-trash red"></i>
+                    <a href="#" disabled>
+                      <i class="fa fa-times red"></i>
                     </a>
                   </td>
                 </tr>
@@ -167,7 +167,7 @@ export default {
         // Send request to the server
         if (result.value) {
           this.form
-            .delete(this.$Api + "/booking-tour/" + id)
+            .put(this.$Api + "/booking-tour/" + id)
             .then(() => {
               Swal.fire(
                 "Đã xóa!",
