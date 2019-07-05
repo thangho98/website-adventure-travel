@@ -18,7 +18,7 @@ class CreateBookingToursTable extends Migration
             $table->string('bt_num_child');
             $table->date('bt_num_adult');
             $table->integer('bt_total_price');
-            $table->date('bt_date');
+            $table->dateTime('bt_date');
             $table->integer('bt_pay_status');
             $table->integer('bt_booking_status');
             $table->integer('bt_user_client');

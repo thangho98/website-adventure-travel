@@ -63,7 +63,7 @@
                         :src="loadImage(location.loca_poster)"
                         height="75px;"
                         width="150px;"
-                      >
+                      />
                     </a>
                   </td>
                   <td v-else class="font-w600 font-size-sm">Chưa có ảnh bìa</td>
@@ -120,13 +120,12 @@
                   class="form-control"
                   :class="{ 'is-invalid': form.errors.has('loca_name') }"
                   placeholder="Tên địa điểm"
-                >
+                />
                 <has-error :form="form" field="loca_name"></has-error>
               </div>
               <div class="form-group">
                 <textarea
                   v-model="form.loca_description"
-                  type="text"
                   name="loca_description"
                   class="form-control"
                   :class="{ 'is-invalid': form.errors.has('loca_description') }"
@@ -136,7 +135,7 @@
               </div>
               <div class="form-group">
                 <label for="loca_poster" class="control-label">Ảnh bìa</label>
-                <br>
+                <br />
                 <input
                   hidden
                   id="loca_poster"
@@ -146,14 +145,14 @@
                   name="loca_poster"
                   @change="updateImage"
                   class="form-input"
-                >
+                />
                 <img
                   @click="chooseImage"
                   :src="getImageModal()"
                   class="thumbnail ml-2 border border-primary"
                   height="125px;"
                   width="250px;"
-                >
+                />
               </div>
             </div>
             <div class="modal-footer">
@@ -305,16 +304,6 @@ export default {
     }
   },
   created() {
-    Fire.$on("searching", () => {
-      let query = this.$parent.search;
-      axios
-        .get(this.$Api + "/findUser?q=" + query)
-        .then(data => {
-          this.locations = data.data;
-        })
-        .catch(() => {});
-    });
-
     this.loadData();
     Fire.$on("reloadData", () => {
       this.loadData();

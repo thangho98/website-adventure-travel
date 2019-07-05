@@ -17,6 +17,7 @@ class CreateTouristRoutesTable extends Migration
             $table->increments('tr_id');
             $table->string('tr_name');
             $table->integer('tr_category');
+            $table->string('tr_introduction');
             $table->integer('tr_time');
             $table->double('tr_original_price');
             $table->integer('tr_max_slot');

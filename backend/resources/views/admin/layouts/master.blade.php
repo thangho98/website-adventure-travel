@@ -31,14 +31,13 @@
 
     <!-- Stylesheets -->
     <!-- Fonts and OneUI framework -->
-    
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400italic,600,700%7COpen+Sans:300,400,400italic,600,700">
     <link rel="stylesheet" id="css-main" href="{{asset('assets/css/oneui.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/jquery-ui.min.css')}}">
     <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-    
+
 </head>
 
 <body>
@@ -87,27 +86,32 @@
                                 <i class="fa fa-circle text-default"></i>
                             </a>
                             <a class="dropdown-item d-flex align-items-center justify-content-between"
-                                data-toggle="theme" data-theme="{{asset('public/admin')}}/assets/css/themes/amethyst.min.css" href="#">
+                                data-toggle="theme"
+                                data-theme="{{asset('public/admin')}}/assets/css/themes/amethyst.min.css" href="#">
                                 <span>Amethyst</span>
                                 <i class="fa fa-circle text-amethyst"></i>
                             </a>
                             <a class="dropdown-item d-flex align-items-center justify-content-between"
-                                data-toggle="theme" data-theme="{{asset('public/admin')}}/assets/css/themes/city.min.css" href="#">
+                                data-toggle="theme"
+                                data-theme="{{asset('public/admin')}}/assets/css/themes/city.min.css" href="#">
                                 <span>City</span>
                                 <i class="fa fa-circle text-city"></i>
                             </a>
                             <a class="dropdown-item d-flex align-items-center justify-content-between"
-                                data-toggle="theme" data-theme="{{asset('public/admin')}}/assets/css/themes/flat.min.css" href="#">
+                                data-toggle="theme"
+                                data-theme="{{asset('public/admin')}}/assets/css/themes/flat.min.css" href="#">
                                 <span>Flat</span>
                                 <i class="fa fa-circle text-flat"></i>
                             </a>
                             <a class="dropdown-item d-flex align-items-center justify-content-between"
-                                data-toggle="theme" data-theme="{{asset('public/admin')}}/assets/css/themes/modern.min.css" href="#">
+                                data-toggle="theme"
+                                data-theme="{{asset('public/admin')}}/assets/css/themes/modern.min.css" href="#">
                                 <span>Modern</span>
                                 <i class="fa fa-circle text-modern"></i>
                             </a>
                             <a class="dropdown-item d-flex align-items-center justify-content-between"
-                                data-toggle="theme" data-theme="{{asset('public/admin')}}/assets/css/themes/smooth.min.css" href="#">
+                                data-toggle="theme"
+                                data-theme="{{asset('public/admin')}}/assets/css/themes/smooth.min.css" href="#">
                                 <span>Smooth</span>
                                 <i class="fa fa-circle text-smooth"></i>
                             </a>
@@ -179,30 +183,30 @@
                                     <span class="nav-main-link-name">Địa điểm</span>
                                 </router-link>
                             </li>
-                             <li class="nav-main-item">
+                            <li class="nav-main-item">
                                 <router-link to="/admin/tourist-route" class="nav-main-link">
                                     <span class="nav-main-link-name">Tuyến du lịch</span>
                                 </router-link>
                             </li>
                             <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_blocks_options.html">
+                                <router-link to="/admin/tour" class="nav-main-link">
                                     <span class="nav-main-link-name">Chuyến du lịch</span>
-                                </a>
+                                </router-link>
                             </li>
                             <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_blocks_api.html">
+                                <router-link to="/admin/user-client" class="nav-main-link">
                                     <span class="nav-main-link-name">Khách hàng</span>
-                                </a>
+                                </router-link>
                             </li>
                             <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_blocks_api.html">
+                                <router-link to="/admin/reviews" class="nav-main-link">
                                     <span class="nav-main-link-name">Nhận xét khách hàng</span>
-                                </a>
+                                </router-link>
                             </li>
                             <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_blocks_api.html">
+                                <router-link to="/admin/promotion" class="nav-main-link">
                                     <span class="nav-main-link-name">Khuyến mãi</span>
-                                </a>
+                                </router-link>
                             </li>
                         </ul>
                     </li>
@@ -247,14 +251,16 @@
                     </li>
                     <li class="nav-main-heading">Nhân viên</li>
                     <li class="nav-main-item">
-                        <a class="nav-main-link" href="op_error_404.html">
+                        <router-link to="/admin/booking-tour" class="nav-main-link">
+                            <i class="nav-main-link-icon si si-credit-card"></i>
                             <span class="nav-main-link-name">Đặt tour</span>
-                        </a>
+                        </router-link>
                     </li>
                     <li class="nav-main-item">
-                        <a class="nav-main-link" href="op_error_404.html">
+                        <router-link to="/admin/news" class="nav-main-link">
+                            <i class="nav-main-link-icon si si-note"></i>
                             <span class="nav-main-link-name">Tin tức</span>
-                        </a>
+                        </router-link>
                     </li>
 
                     <li class="nav-main-heading">Cài đặt</li>
@@ -316,7 +322,7 @@
         <router-view></router-view>
         <!-- set progressbar -->
         <vue-progress-bar></vue-progress-bar>
-        
+
         <!-- Footer -->
         @include('admin.layouts.footer')
         <!-- END Footer -->
@@ -395,17 +401,39 @@
             </div>
         </div>
         <!-- END Apps Modal -->
+        <div class="modal fade bd-example-modal-sm" id="progressModal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-sm modal-dialog-centered" role="status">
+                <div class="modal-content">
+                    <div class="row">
+                        <div class="col-12 d-flex justify-content-center">
+                            <i class="fa fa-10x fa-cog fa-spin text-warning"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     @auth
     <script>
-        window.user = @json(auth()->user())
+        window.user = @json(auth() -> user());
+        window.host = '{{url('/')}}'
     </script>
     @endauth
+    @include('ckfinder::setup')
     <script src="/js/app.js"></script>
     <script src="{{asset('assets/js/oneui.core.min.js')}}"></script>
     <script src="{{asset('assets/js/oneui.app.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/jquery-bootstrap-wizard/bs4/jquery.bootstrap.wizard.min.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    <script src="{{asset('assets/js/plugins/jquery-validation/jquery.validate.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/jquery-validation/additional-methods.js')}}"></script>
+    <!-- Page JS Code -->
+    <script src="{{asset('assets/js/pages/be_forms_wizard.min.js')}}"></script>
+    <script src="{{asset('assets/js/pages/be_ui_progress.min.js')}}"></script>
+    <script src="{{asset('/js/ckfinder/ckfinder.js')}}"></script>
+    {{-- <script>CKFinder.config( { connectorPath: '/ckfinder/connector' } );</script> --}}
 </body>
 
 </html>

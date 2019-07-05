@@ -103,7 +103,8 @@ class User {
         AddEventBtnUser();
         AddEventBackgroundBlur();
         AddEventBtnClose();
-        AddEventWelcomeUser()
+        if(welcomeUser!=null)
+            AddEventWelcomeUser()
 
         var isMenuUserShow = false;
         function AddEventWelcomeUser(){
@@ -259,3 +260,39 @@ class TourDetails {
   
 }
 
+class BooingTour{
+    Init(){
+        this.btnMinus = document.getElementsByClassName('btn-minus');
+        this.btnAdds = document.getElementsByClassName('btn-add');
+        this.inputCounts = document.getElementsByClassName('input-count');
+        this.slotFree = document.getElementById('slot-free');
+
+        this.AddEvents(this.btnAdds, this.btnMinus, this.inputCounts, this.slotFree);
+    }
+
+    AddEvents(btnAdds, btnMinus, inputCounts, slotFree){
+        AddEventBtn()
+
+        function AddEventBtn(){
+            for(let i = 0; i < btnAdds.length; i++){
+                btnAdds[i].addEventListener('click', function(){
+                    btnAddOnClick(inputCounts[i], slotFree);
+                });
+
+                btnMinus[i].addEventListener('click', function(){
+                    btnMinuOnClick(inputCounts[i]);
+                });
+            }
+        }
+
+        function btnAddOnClick(input, slot){
+            if(input.value < Number(slot.innerHTML))
+                input.value = Number(input.value) + 1;
+        }
+
+        function btnMinuOnClick(input){
+            if(input.value > 0)
+                input.value = Number(input.value) - 1;
+        }
+    }
+}

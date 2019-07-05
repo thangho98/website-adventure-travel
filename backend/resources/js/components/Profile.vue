@@ -1,12 +1,4 @@
 <style lang="scss" scoped>
-.widget-user-header {
-  background-position: center center;
-  background-size: cover;
-  height: 250px !important;
-}
-.widget-user .card-footer {
-  padding: 0;
-}
 </style>  
 <template>
   <!-- Main Container -->
@@ -16,7 +8,7 @@
       <div class="bg-black-50">
         <div class="content content-full text-center">
           <div class="my-3">
-            <img class="img-avatar img-avatar-thumb" :src="getProfilePhoto()" alt>
+            <img class="img-avatar img-avatar-thumb" :src="getProfilePhoto()" alt />
           </div>
           <h1 class="h2 text-white mb-0">{{this.form.name}}</h1>
           <span class="text-white-75">{{this.form.type}}</span>
@@ -64,87 +56,94 @@
         <div class="block-content">
           <div class="row">
             <div class="col-md-12">
-              <div class="card">
-                <div class="card-header p-2">
-                  <ul class="nav nav-pills">
-                    <li class="nav-item">
-                      <a class="nav-link" href="#activity" data-toggle="tab">Hoạt động</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link active show" href="#settings" data-toggle="tab">Hồ Sơ</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link" href="#changePassword" data-toggle="tab">Thay đổi mật khẩu</a>
-                    </li>
-                  </ul>
-                </div>
-                <!-- /.card-header -->
-                <div class="card-body">
-                  <div class="tab-content">
-                    <!-- Activity Tab -->
-                    <div class="tab-pane" id="activity">
-                      <h3 class="text-center">Display User Activity</h3>
-                    </div>
-                    <!-- Setting Tab -->
-                    <div class="tab-pane active show" id="settings">
-                      <form class="form-horizontal">
-                        <div class="form-group">
-                          <label for="inputName" class="col-sm-2 control-label">Name</label>
-                          <div class="col-sm-12">
-                            <input
-                              type
-                              v-model="form.name"
-                              class="form-control"
-                              id="inputName"
-                              placeholder="Name"
-                              :class="{ 'is-invalid': form.errors.has('name') }"
-                            >
-                            <has-error :form="form" field="name"></has-error>
-                          </div>
+              <div class="block">
+                <ul class="nav nav-tabs nav-tabs-block" data-toggle="tabs" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#btabsactivity" data-toggle="tab">Hoạt động</a>
+                  </li>
+                  <li class="nav-item active">
+                    <a class="nav-link active" href="#btabsprofile" data-toggle="tab">Hồ Sơ</a>
+                  </li>
+                  <li class="nav-item ml-auto">
+                    <a
+                      data-toggle="tab"
+                      title="Thay đổi mật khẩu"
+                      class="nav-link"
+                      href="#btabssetting"
+                    >
+                      <i class="si si-settings"></i>
+                    </a>
+                  </li>
+                </ul>
+                <div class="block-content tab-content overflow-hidden">
+                  <div class="tab-pane fade fade-right" id="btabsactivity" role="tabpanel">
+                    <h4 class="font-w400">Hoạt động</h4>
+                    <p>Display User Activity.</p>
+                  </div>
+                  <div
+                    class="tab-pane fade fade-right show active"
+                    id="btabsprofile"
+                    role="tabpanel"
+                  >
+                    <h4 class="font-w400">Thông tin hồ sơ</h4>
+                    <form class="form-horizontal">
+                      <div class="form-group">
+                        <label for="inputName" class="col-sm-2 control-label">Name</label>
+                        <div class="col-sm-12">
+                          <input
+                            type
+                            v-model="form.name"
+                            class="form-control"
+                            id="inputName"
+                            placeholder="Name"
+                            :class="{ 'is-invalid': form.errors.has('name') }"
+                          />
+                          <has-error :form="form" field="name"></has-error>
                         </div>
-                        <div class="form-group">
-                          <label for="inputEmail" class="col-sm-2 control-label">Email</label>
-                          <div class="col-sm-12">
-                            <input
-                              type="email"
-                              v-model="form.email"
-                              class="form-control"
-                              id="inputEmail"
-                              placeholder="Email"
-                              :class="{ 'is-invalid': form.errors.has('email') }"
-                            >
-                            <has-error :form="form" field="email"></has-error>
-                          </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="inputEmail" class="col-sm-2 control-label">Email</label>
+                        <div class="col-sm-12">
+                          <input
+                            type="email"
+                            v-model="form.email"
+                            class="form-control"
+                            id="inputEmail"
+                            placeholder="Email"
+                            :class="{ 'is-invalid': form.errors.has('email') }"
+                          />
+                          <has-error :form="form" field="email"></has-error>
                         </div>
+                      </div>
 
-                        <div class="form-group">
-                          <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
+                      <div class="form-group">
+                        <label for="inputExperience" class="col-sm-2 control-label">Experience</label>
 
-                          <div class="col-sm-12">
-                            <textarea
-                              v-model="form.bio"
-                              class="form-control"
-                              id="inputExperience"
-                              placeholder="Experience"
-                              :class="{ 'is-invalid': form.errors.has('bio') }"
-                            ></textarea>
-                            <has-error :form="form" field="bio"></has-error>
-                          </div>
+                        <div class="col-sm-12">
+                          <textarea
+                            v-model="form.bio"
+                            class="form-control"
+                            id="inputExperience"
+                            placeholder="Experience"
+                            :class="{ 'is-invalid': form.errors.has('bio') }"
+                          ></textarea>
+                          <has-error :form="form" field="bio"></has-error>
                         </div>
-                        <div class="form-group">
-                          <label for="photo" class="col-sm-2 control-label">Profile Photo</label>
-                          <div class="col-sm-12">
-                            <input
-                              type="file"
-                              accept="image/*"
-                              name="photo"
-                              @change="updateProfile"
-                              class="form-input"
-                            >
-                          </div>
+                      </div>
+                      <div class="form-group">
+                        <label for="photo" class="col-sm-2 control-label">Profile Photo</label>
+                        <div class="col-sm-12">
+                          <input
+                            type="file"
+                            accept="image/*"
+                            name="photo"
+                            @change="updateProfile"
+                            class="form-input"
+                          />
                         </div>
+                      </div>
 
-                        <!-- <div class="form-group">
+                      <!-- <div class="form-group">
                           <label
                             for="password"
                             class="col-sm-12 control-label"
@@ -161,76 +160,73 @@
                             >
                             <has-error :form="form" field="password"></has-error>
                           </div>
-                        </div>-->
+                      </div>-->
 
-                        <div class="form-group">
-                          <div class="col-sm-offset-2 col-sm-12">
-                            <button
-                              @click.prevent="updateInfo"
-                              type="submit"
-                              class="btn btn-success"
-                            >Cập nhật</button>
-                          </div>
+                      <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-12">
+                          <button
+                            @click.prevent="updateInfo"
+                            type="submit"
+                            class="btn btn-success"
+                          >Cập nhật</button>
                         </div>
-                      </form>
-                    </div>
-                    <div class="tab-pane" id="changePassword">
-                      <form class="form-horizontal">
-                        <div class="row justify-content-center mt-5">
-                          <div class="col-lg-8 col-xl-5">
-                            <div class="form-group">
-                              <label for="old_password" class="col-sm-12 control-label">Mật khẩu cũ</label>
-                              <input
-                                type="password"
-                                v-model="formPas.old_password"
-                                class="form-control"
-                                id="old_password"
-                                :class="{ 'is-invalid': formPas.errors.has('old_password') }"
-                              >
-                              <has-error :form="formPas" field="old_password"></has-error>
-                            </div>
-                            <div class="form-group">
-                              <label for="password" class="col-sm-12 control-label">Mật khẩu mới</label>
-                              <input
-                                type="password"
-                                v-model="formPas.password"
-                                class="form-control"
-                                id="password"
-                                :class="{ 'is-invalid': formPas.errors.has('password') }"
-                              >
-                              <has-error :form="formPas" field="password"></has-error>
-                            </div>
-                            <div class="form-group">
-                              <label
-                                for="password_confirmation"
-                                class="col-sm-12 control-label"
-                              >Xác nhận mật khẩu mới</label>
-                              <input
-                                type="password"
-                                v-model="formPas.password_confirmation"
-                                class="form-control"
-                                id="password_confirmation"
-                                :class="{ 'is-invalid': formPas.errors.has('password_confirmation') }"
-                              >
-                              <has-error :form="formPas" field="password_confirmation"></has-error>
-                            </div>
-                            <div class="form-group">
-                              <button
-                                id="btnReset"
-                                class="btn btn-danger mr-3"
-                                type="submit"
-                                @click.prevent="changPassword()"
-                              >Thay đổi mật khẩu</button>
-                            </div>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                    <!-- /.tab-pane -->
+                      </div>
+                    </form>
                   </div>
-                  <!-- /.tab-content -->
+                  <div class="tab-pane fade fade-right" id="btabssetting" role="tabpanel">
+                    <h4 class="font-w400">Thay đổi mật khẩu</h4>
+                    <form class="form-horizontal">
+                      <div class="row justify-content-center mt-5">
+                        <div class="col-lg-8 col-xl-5">
+                          <div class="form-group">
+                            <label for="old_password" class="col-sm-12 control-label">Mật khẩu cũ</label>
+                            <input
+                              type="password"
+                              v-model="formPas.old_password"
+                              class="form-control"
+                              id="old_password"
+                              :class="{ 'is-invalid': formPas.errors.has('old_password') }"
+                            />
+                            <has-error :form="formPas" field="old_password"></has-error>
+                          </div>
+                          <div class="form-group">
+                            <label for="password" class="col-sm-12 control-label">Mật khẩu mới</label>
+                            <input
+                              type="password"
+                              v-model="formPas.password"
+                              class="form-control"
+                              id="password"
+                              :class="{ 'is-invalid': formPas.errors.has('password') }"
+                            />
+                            <has-error :form="formPas" field="password"></has-error>
+                          </div>
+                          <div class="form-group">
+                            <label
+                              for="password_confirmation"
+                              class="col-sm-12 control-label"
+                            >Xác nhận mật khẩu mới</label>
+                            <input
+                              type="password"
+                              v-model="formPas.password_confirmation"
+                              class="form-control"
+                              id="password_confirmation"
+                              :class="{ 'is-invalid': formPas.errors.has('password_confirmation') }"
+                            />
+                            <has-error :form="formPas" field="password_confirmation"></has-error>
+                          </div>
+                          <div class="form-group">
+                            <button
+                              id="btnReset"
+                              class="btn btn-danger mr-3"
+                              type="submit"
+                              @click.prevent="changPassword()"
+                            >Thay đổi mật khẩu</button>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
                 </div>
-                <!-- /.card-body -->
               </div>
               <!-- /.nav-tabs-custom -->
             </div>

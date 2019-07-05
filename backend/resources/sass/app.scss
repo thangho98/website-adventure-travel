@@ -13,6 +13,8 @@ $fa-font-path:"../webfonts";
 @import "~@fortawesome/fontawesome-free/scss/solid.scss";
 @import "~@fortawesome/fontawesome-free/scss/brands.scss";
 
+@import "vue-select/src/scss/vue-select.scss";
+
 .user {
     @extend %fa-icon;
     @extend .fas;
@@ -31,7 +33,10 @@ $fa-font-path:"../webfonts";
     }
 }
 .router-link-exact-active{
-    color: #fff !important;
+    color: #fff !important; 
+}
+.dropdown-item {
+    color: #575757 !important;
 }
 
 @media print {

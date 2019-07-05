@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team13.com - Mạng bán tour du lịch mạo hiểm trực tuyến</title>
+    <link rel="icon" type="image/png" href="../../imgs/logo.png">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!--Font Awesome's CDN-->
+    <script src="https://kit.fontawesome.com/810701e39f.js"></script>
+    <!--Font Roboto-->
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <!--Home CSS-->
+    <link rel="stylesheet" href="../../css/home.css">
+</head>
+
+<body>
+
+    <div id="background-blur"></div>
+    <div id="signin-form" class="user-form">
+        <div class="form-wrapper">
+            <div class="btn-close"><i class="fas fa-times"></i></div>
+            <div class="title">ĐĂNG NHẬP</div>
+            <form action="">
+                <div class="input">
+                    <label for="sigin-email">Email</label>
+                    <input type="text" id="signin-email" name="email" placeholder="Nhập email">
+                    <label for="sigin-password">Mật khẩu</label>
+                    <input type="password" id="signin-password" name="password" placeholder="Nhập password">
+                    <div>Bạn chưa có tài khoản? <span class="signup-now">Đăng ký ngay</span></div>
+                    <div>Quên mật khẩu? <span class="reset-password">Lấy lại mật khẩu</span></div>
+                    <button type="submit" class="btn-submit">Đăng nhập</button>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+    <div id="signup-form" class="user-form">
+        <div class="form-wrapper">
+            <div class="btn-close"><i class="fas fa-times"></i></div>
+            <div class="title">ĐĂNG KÝ</div>
+            <form action="">
+                <div class="input">
+                    <label for="signup-name">Họ và tên</label>
+                    <input type="text" id="signup-name" name="name" placeholder="Nhập tên của bạn">
+                    <div class="text-error">Require</div>
+                    <label for="signup-email">Email</label>
+                    <input type="text" id="signup-email" name="email" placeholder="Nhập email của bạn">
+                    <label for="signup-password">Mật khẩu</label>
+                    <input type="password" id="signup-password" name="password" placeholder="Nhập password">
+                    <label for="signup-re-password">Nhập lại mật khẩu</label>
+                    <input type="password" id="signup-re-password" name="re_password" placeholder="Nhập lại password">
+                    <button type="submit" class="btn-submit">Đăng ký</button>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+    <div id="full-container">
+
+        <header id="header">
+            <nav>
+                <div id="nav-top">
+                    <div class="container">
+                        <div id="hotline">
+                            <i class="fas fa-phone-square-alt"></i>Hotline hỗ trợ: <span id="sdt">0968 775
+                                364</span><span id="cuoc"> 1000đ/phút</span>
+                        </div>
+
+                        <div id="user">
+                            <div id="signin" class="user-item">Đăng nhập</div>
+                            <div id="signup" class="user-item">Đăng ký</div>
+                            <div id="user-menu">
+                                <div id="welcome-user"><span>Xin chào Lê Trọng Anh Đức</span><i
+                                        class="fas fa-chevron-circle-down"></i></div>
+                                <div id="menu-user">
+                                    <ul>
+                                        <li><a href="#">Trang cá nhân</a></li>
+                                        <li><a href="#">Lịch sử đặt tour</a></li>
+                                        <li><a href="#">Tours yêu thích</a></li>
+                                        <li id="logout"><a href="#">Đăng xuất</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div id="nav-bot" class="navbar navbar-expand-lg">
+                    <div class="container">
+                        <div id="logo-header" class="navbar-brand">
+                            <a href="home.html"><img src="../../imgs/Logo2.png" alt="Team13.com"></a>
+                        </div>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nav-links"
+                            aria-controls="nav-links" aria-expanded="false">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        <div id="nav-links" class="collapse navbar-collapse">
+                            <ul class="navbar-nav">
+                                <li class="nav-item"><a class="nav-link" href="tour-trong-nuoc.html">TOUR TRONG NƯỚC</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link" href="tour-nuoc-ngoai.html">TOUR NƯỚC NGOÀI</a>
+                                </li>
+                                <li class="nav-item"><a class="nav-link" href="loai-hinh-mao-hiem.html">LOẠI HÌNH MẠO
+                                        HIỂM</a></li>
+                                <li class="nav-item"><a class="nav-link" href="tin-tuc.html">TIN TỨC</a></li>
+                                <li class="nav-item"><a class="nav-link" href="gioi-thieu.html">GIỚI THIỆU</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <div id="slideshow">
+                <div id="carousel-slideshow" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img class="d-block w-100" src="../../imgs/slide1.jpg" alt="First slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block w-100" src="../../imgs/slide2.jpg" alt="Second slide">
+                        </div>
+                        <div class="carousel-item">
+                            <img class="d-block w-100" src="../../imgs/slide3.jpg" alt="Third slide">
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#carousel-slideshow" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carousel-slideshow" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+
+            <div id="search">
+                <div id="search-btn" class="wrapper">
+                    <div class="row">
+
+                        <div class="col-lg-4">
+                            <div id="search-trong-nuoc" class="search-item">
+                                <i class="fas fa-car"></i></i>
+                                <div class="search-title ">
+                                    TÌM TOUR <span>TRONG NƯỚC</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div id="search-nuoc-ngoai" class="search-item">
+                                <i class="fas fa-plane"></i></i>
+                                <div class="search-title ">
+                                    TÌM TOUR <span>NƯỚC NGOÀI</span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div id="search-tour-da-dat" class="search-item">
+                                <i class="fas fa-search-location"></i>
+                                <div class="search-title ">
+                                    TÌM TOUR <span>ĐÃ ĐẶT</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="wrapper">
+                    <div id="form-search-trong-nuoc" class="search-form">
+                        <form action="">
+                            <div class="row">
+                                <div class="item col-lg-2 col-md-4">
+                                    <div class="title">NƠI KHỞI HÀNH</div>
+                                    <select name="" id="">
+                                        <option value="1">Hồ Chí Minh</option>
+                                        <option value="2">Hà Nội</option>
+                                        <option value="3">Đà nẵng</option>
+                                    </select>
+                                </div>
+                                <div class="item col-lg-2 col-md-4">
+                                    <div class="title">NƠI ĐẾN</div>
+                                    <select name="" id="">
+                                        <option value="1">Hồ Chí Minh</option>
+                                        <option value="2">Hà Nội</option>
+                                        <option value="3">Đà nẵng</option>
+                                    </select>
+                                </div>
+                                <div class="item col-lg-2 col-md-4">
+                                    <div class="title">NGÀY KHỞI HÀNH</div>
+                                    <input type="date">
+                                </div>
+                                <div class="item col-lg-2 col-md-4">
+                                    <div class="title">HOẠT ĐỘNG</div>
+                                    <select name="" id="">
+                                        <option value="1">Hồ Chí Minh</option>
+                                        <option value="2">Hà Nội</option>
+                                        <option value="3">Đà nẵng</option>
+                                    </select>
+                                </div>
+                                <div class="item col-lg-2 col-md-4">
+                                    <div class="title">GIÁ</div>
+                                    <select name="" id="">
+                                        <option value="1">Hồ Chí Minh</option>
+                                        <option value="2">Hà Nội</option>
+                                        <option value="3">Đà nẵng</option>
+                                    </select>
+                                </div>
+                                <div class="item col-lg-2 col-md-4">
+                                    <button type="submit">TÌM KIẾM</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div id="form-search-nuoc-ngoai" class="search-form">
+                        <form action="">
+                            <div class="row">
+                                <div class="item col-lg-2 col-md-4">
+                                    <div class="title">NƠI KHỞI HÀNH</div>
+                                    <select name="" id="">
+                                        <option value="1">Hồ Chí Minh</option>
+                                        <option value="2">Hà Nội</option>
+                                        <option value="3">Đà nẵng</option>
+                                    </select>
+                                </div>
+                                <div class="item col-lg-2 col-md-4">
+                                    <div class="title">NƠI ĐẾN</div>
+                                    <select name="" id="">
+                                        <option value="1">Hồ Chí Minh</option>
+                                        <option value="2">Hà Nội</option>
+                                        <option value="3">Đà nẵng</option>
+                                    </select>
+                                </div>
+                                <div class="item col-lg-2 col-md-4">
+                                    <div class="title">NGÀY KHỞI HÀNH</div>
+                                    <input type="date">
+                                </div>
+                                <div class="item col-lg-2 col-md-4">
+                                    <div class="title">HOẠT ĐỘNG</div>
+                                    <select name="" id="">
+                                        <option value="1">Hồ Chí Minh</option>
+                                        <option value="2">Hà Nội</option>
+                                        <option value="3">Đà nẵng</option>
+                                    </select>
+                                </div>
+                                <div class="item col-lg-2 col-md-4">
+                                    <div class="title">GIÁ</div>
+                                    <select name="" id="">
+                                        <option value="1">Hồ Chí Minh</option>
+                                        <option value="2">Hà Nội</option>
+                                        <option value="3">Đà nẵng</option>
+                                    </select>
+                                </div>
+                                <div class="item col-lg-2 col-md-4">
+                                    <button type="submit">TÌM KIẾM</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                    <div id="form-search-tour-da-dat" class="search-form">
+                        <form action="">
+                            <div class="row">
+                                <div class="item col-lg-2 col-md-4">
+                                    <div class="title">NƠI KHỞI HÀNH</div>
+                                    <select name="" id="">
+                                        <option value="1">Hồ Chí Minh</option>
+                                        <option value="2">Hà Nội</option>
+                                        <option value="3">Đà nẵng</option>
+                                    </select>
+                                </div>
+                                <div class="item col-lg-2 col-md-4">
+                                    <div class="title">NƠI ĐẾN</div>
+                                    <select name="" id="">
+                                        <option value="1">Hồ Chí Minh</option>
+                                        <option value="2">Hà Nội</option>
+                                        <option value="3">Đà nẵng</option>
+                                    </select>
+                                </div>
+                                <div class="item col-lg-2 col-md-4">
+                                    <div class="title">NGÀY KHỞI HÀNH</div>
+                                    <input type="date">
+                                </div>
+                                <div class="item col-lg-2 col-md-4">
+                                    <div class="title">HOẠT ĐỘNG</div>
+                                    <select name="" id="">
+                                        <option value="1">Hồ Chí Minh</option>
+                                        <option value="2">Hà Nội</option>
+                                        <option value="3">Đà nẵng</option>
+                                    </select>
+                                </div>
+                                <div class="item col-lg-2 col-md-4">
+                                    <div class="title">GIÁ</div>
+                                    <select name="" id="">
+                                        <option value="1">Hồ Chí Minh</option>
+                                        <option value="2">Hà Nội</option>
+                                        <option value="3">Đà nẵng</option>
+                                    </select>
+                                </div>
+                                <div class="item col-lg-2 col-md-4">
+                                    <button type="submit">TÌM KIẾM</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+        </header>
+
+        <div id="content">
+            <div class="wrapper">
+                <div class="row">
+                    <div id="booking-tour" class="tours col-lg-9">
+                        <div class="tours-title">
+                            <h2>ĐẶT TOUR</h2>
+                        </div>
+                        <div class="list-tours">
+                            <div class="tours">
+                                <div class="tour">
+                                    <div class="title">Hà Nội - Lào Cai - Sapa - Fansipan - Chợ Phiên
+                                        Bắc Hà - Yên Tử
+                                        - Hạ Long</div>
+                                    <div class="row">
+                                        <div class="col-lg-3">
+                                            <div class="tour-img">
+                                                <img src="../../imgs/1.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-9">
+                                            <div class="row">
+                                                <div class="col-md-8 left">
+                                                    <div class="meta">
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <span class="review-star" aria-valuetext="4">
+                                                                </span> 4/5 trong 369 đánh giá
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="info">
+                                                        <div class="row">
+                                                            <div class="col-sm-7">Khởi hành: 05/07/2019
+                                                                | 07:00</div>
+                                                            <div class="col-sm-5">Hoạt động: Lặn</div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-7">Nơi khởi hành: Hồ Chí
+                                                                Minh</div>
+                                                            <div class="col-sm-5">Thời gian: 4 ngày
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="promotion">
+                                                        <div class="row">
+                                                            <div class="col-sm-7">Khuyến mãi: <span>Giảm
+                                                                    2,000,000
+                                                                    đ</span>
+                                                            </div>
+                                                            <div class="col-sm-5 slot">Số chổ còn nhận:
+                                                                <span id="slot-free">5</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-4 right">
+                                                    <div class="booking">
+                                                        <div class="price">
+                                                            11,990,000 đ
+                                                            <div>13,990,000</div>
+                                                        </div>
+
+                                                        <div class="btn-booking">CHI TIẾT</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <form action="" method="post">
+                                <div class="row">
+
+                                    <div class="col-lg-6">
+                                        <div id="user-infomation">
+                                            <div class="title">
+                                                Thông tin của bạn
+                                            </div>
+                                            <div class="content">
+                                                <div class="item">
+                                                    <label for="user_info_name">Họ và tên</label>
+                                                    <input type="text" placeholder="Nhập tên">
+                                                </div>
+                                                <div class="item">
+                                                    <label for="user_info_name">Ngày sinh</label>
+                                                    <input type="text" placeholder="Nhập ngày sinh">
+                                                </div>
+                                                <div class="item">
+                                                    <label for="user_info_name">Email</label>
+                                                    <input type="text" placeholder="Nhập emmail">
+                                                </div>
+                                                <div class="item">
+                                                    <label for="user_info_name">Điện thoại</label>
+                                                    <input type="text" placeholder="Nhập số điện thoại">
+                                                </div>
+                                                <div class="item">
+                                                    <label for="user_info_name">Địa chỉ</label>
+                                                    <input type="text" placeholder="Nhập địa chỉ">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+
+
+                                        <div id="amount-people">
+                                            <div class="title">
+                                                Số lượng hành khách
+                                            </div>
+                                            <div class="content">
+                                                <div class="item group-input">
+                                                    <label for="user_info_name">Trên 12 tuổi</label>
+                                                    <div class="group-input-count">
+                                                        <button class="btn-minus"> - </button>
+                                                        <input class="input-count" type="text" value="1" disabled>
+                                                        <button class="btn-add">+</button>
+                                                    </div>
+
+                                                </div>
+                                                <div class="item group-input">
+                                                    <label for="user_info_name">Dưới 12 tuổi</label>
+                                                    <div class="group-input-count">
+                                                        <button class="btn-minus">-</button>
+                                                        <input class="input-count" type="text" value="0" disabled>
+                                                        <button class="btn-add">+</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div id="price-sum">TỔNG CỘNG: <span>20,500,000 đ</span></div>
+                                        <button id="btn-book" type="submit">BOOK</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="content-right col-lg-3">
+                        <div id="suggestions">
+                            <div class="title">CÓ THỂ BẠN SẼ THÍCH</div>
+                            <div class="tours">
+                                <div class="tours-list">
+                                    <div class="row">
+                                        <div class="tour-item col-lg-12 col-md-6">
+                                            <div class="tour-item-wrapper">
+                                                <div class="tour-header">
+                                                    <a href=""><img class="ani-img-zoom" src="../../imgs/1.jpg"
+                                                            alt=""></a>
+                                                    <div class="tour-meta">
+                                                        <div class="tour-tag">Leo núi</div>
+                                                    </div>
+                                                </div>
+                                                <div class="tour-content">
+                                                    <div class="tour-title">
+                                                        <h5><a href="">Tour Hà Nội - Nga - Pháp - Anh</a></h5>
+                                                    </div>
+                                                    <div class="tour-info">
+                                                        <div class="left">
+                                                            <div class="tour-start">
+                                                                01/07/2019 07:00
+                                                            </div>
+
+                                                            <div class="tour-price">
+                                                                <span>4.500.000</span> 3.500.000 đ
+                                                            </div>
+                                                        </div>
+                                                        <div class="right">
+                                                            <div class="tour-time">
+                                                                3 ngày
+                                                            </div>
+                                                            <div class="tour-slot">
+                                                                5 chổ
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tour-item col-lg-12 col-md-6">
+                                            <div class="tour-item-wrapper">
+                                                <div class="tour-header">
+                                                    <a href=""><img class="ani-img-zoom" src="../../imgs/5.jpg"
+                                                            alt=""></a>
+                                                    <div class="tour-meta">
+                                                        <div class="tour-tag">Leo núi</div>
+                                                    </div>
+                                                </div>
+                                                <div class="tour-content">
+                                                    <div class="tour-title">
+                                                        <h5><a href="">Tour Hà Nội - Nga - Pháp - Anh</a></h5>
+                                                    </div>
+                                                    <div class="tour-info">
+                                                        <div class="left">
+                                                            <div class="tour-start">
+                                                                01/07/2019 07:00
+                                                            </div>
+
+                                                            <div class="tour-price">
+                                                                <span>4.500.000</span> 3.500.000 đ
+                                                            </div>
+                                                        </div>
+                                                        <div class="right">
+                                                            <div class="tour-time">
+                                                                3 ngày
+                                                            </div>
+                                                            <div class="tour-slot">
+                                                                5 chổ
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tour-item col-lg-12 col-md-6">
+                                            <div class="tour-item-wrapper">
+                                                <div class="tour-header">
+                                                    <a href=""><img class="ani-img-zoom" src="../../imgs/6.jpg"
+                                                            alt=""></a>
+                                                    <div class="tour-meta">
+                                                        <div class="tour-tag">Leo núi</div>
+                                                    </div>
+                                                </div>
+                                                <div class="tour-content">
+                                                    <div class="tour-title">
+                                                        <h5><a href="">Tour Hà Nội - Nga - Pháp - Anh</a></h5>
+                                                    </div>
+                                                    <div class="tour-info">
+                                                        <div class="left">
+                                                            <div class="tour-start">
+                                                                01/07/2019 07:00
+                                                            </div>
+
+                                                            <div class="tour-price">
+                                                                <span>4.500.000</span> 3.500.000 đ
+                                                            </div>
+                                                        </div>
+                                                        <div class="right">
+                                                            <div class="tour-time">
+                                                                3 ngày
+                                                            </div>
+                                                            <div class="tour-slot">
+                                                                5 chổ
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tour-item col-lg-12 col-md-6">
+                                            <div class="tour-item-wrapper">
+                                                <div class="tour-header">
+                                                    <a href=""><img class="ani-img-zoom" src="../../imgs/3.jpg"
+                                                            alt=""></a>
+                                                    <div class="tour-meta">
+                                                        <div class="tour-tag">Leo núi</div>
+                                                    </div>
+                                                </div>
+                                                <div class="tour-content">
+                                                    <div class="tour-title">
+                                                        <h5><a href="">Tour Hà Nội - Nga - Pháp - Anh</a></h5>
+                                                    </div>
+                                                    <div class="tour-info">
+                                                        <div class="left">
+                                                            <div class="tour-start">
+                                                                01/07/2019 07:00
+                                                            </div>
+
+                                                            <div class="tour-price">
+                                                                <span>4.500.000</span> 3.500.000 đ
+                                                            </div>
+                                                        </div>
+                                                        <div class="right">
+                                                            <div class="tour-time">
+                                                                3 ngày
+                                                            </div>
+                                                            <div class="tour-slot">
+                                                                5 chổ
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+    <div id="introduction">
+        <div class="tours-title">
+            <h2>VÌ SAO CHỌN TEAM13.COM</h2>
+        </div>
+        <div class="wrapper">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="item">
+                        <div class="stt">1</div>
+                        <div class="content">
+                            <div class="title">MẠNG BÁN TOUR</div>
+                            <div class="des">Số 1 tại Việt Nam, ứng dụng công nghệ mới nhất</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="item">
+                        <div class="stt">2</div>
+                        <div class="content">
+                            <div class="title">THANH TOÁN</div>
+                            <div class="des">An toàn và linh hoạt, liên kết với các tổ chức tài chính</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="item">
+                        <div class="stt">3</div>
+                        <div class="content">
+                            <div class="title">GIÁ CẢ</div>
+                            <div class="des">Luôn có mức giá tốt nhất, bảo đảm giá tốt</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="item">
+                        <div class="stt">4</div>
+                        <div class="content">
+                            <div class="title">SẢN PHẨM</div>
+                            <div class="des">Đa dạng, chất lượng, đạt chất lượng tốt nhất</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-0"></div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="item">
+                        <div class="stt">5</div>
+                        <div class="content">
+                            <div class="title">ĐẶT TOUR</div>
+                            <div class="des">Dễ dàng và nhanh chóng, đặt tour chỉ với 3 bước</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="item">
+                        <div class="stt">6</div>
+                        <div class="content">
+                            <div class="title">HỖ TRỢ</div>
+                            <div class="des">24/7, Hotline và hỗ trợ trực tuyến</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="reviews">
+        <div class="wrapper">
+            <div class="row">
+                <div class="head col-md-3">
+                    <h2>Ý KIẾN KHÁCH HÀNG</h2>
+                </div>
+                <div class="body col-md-9">
+                    <div id="carousel-reviews" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="title">
+                                    CHIA SẺ CỦA KHÁCH HÀNG NGUYỄN ĐẶNG HIỀN , TOUR NHẬT BẢN NGÀY 16/03/2019
+                                </div>
+                                <div class="date-time">
+                                    <i class="fas fa-calendar-alt"></i> 01/04/19 11:24:10
+                                </div>
+                                <p>Tôi khá hài lòng về chuyến đi Nhật Bản ngày 16/03/2019. Điều ấn tượng nhất về
+                                    chuyến
+                                    đi là được nhìn thấy về đất nước và con người Nhật Bản. Đặc biệt hơn cả là
+                                    sự
+                                    chia
+                                    sẻ nhiệt tình và sự quan tâm chu đáo của HDV chị Lư Ngọc Liên và HDV địa
+                                    phương
+                                    cô
+                                    JJ. Tôi thực sự rất cảm kích bởi họ đã có “tuổi” nhưng lúc nào cũng giữ được
+                                    sự
+                                    lạc
+                                    quan, vui vẻ và một nguồn năng lượng tuyệt vời.</p>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="title">
+                                    CHIA SẺ CỦA KHÁCH HÀNG NGUYỄN ĐẶNG HIỀN , TOUR NHẬT BẢN NGÀY 16/03/2019
+                                </div>
+                                <div class="date-time">
+                                    <i class="fas fa-calendar-alt"></i> 01/04/19 11:24:10
+                                </div>
+                                <p>Tôi khá hài lòng về chuyến đi Nhật Bản ngày 16/03/2019. Điều ấn tượng nhất về
+                                    chuyến
+                                    đi là được nhìn thấy về đất nước và con người Nhật Bản. Đặc biệt hơn cả là
+                                    sự
+                                    chia
+                                    sẻ nhiệt tình và sự quan tâm chu đáo của HDV chị Lư Ngọc Liên và HDV địa
+                                    phương
+                                    cô
+                                    JJ. Tôi thực sự rất cảm kích bởi họ đã có “tuổi” nhưng lúc nào cũng giữ được
+                                    sự
+                                    lạc
+                                    quan, vui vẻ và một nguồn năng lượng tuyệt vời.</p>
+                            </div>
+                            <div class="carousel-item">
+                                <div class="title">
+                                    CHIA SẺ CỦA KHÁCH HÀNG NGUYỄN ĐẶNG HIỀN , TOUR NHẬT BẢN NGÀY 16/03/2019
+                                </div>
+                                <div class="date-time">
+                                    <i class="fas fa-calendar-alt"></i> 01/04/19 11:24:10
+                                </div>
+                                <p>Tôi khá hài lòng về chuyến đi Nhật Bản ngày 16/03/2019. Điều ấn tượng nhất về
+                                    chuyến
+                                    đi là được nhìn thấy về đất nước và con người Nhật Bản. Đặc biệt hơn cả là
+                                    sự
+                                    chia
+                                    sẻ nhiệt tình và sự quan tâm chu đáo của HDV chị Lư Ngọc Liên và HDV địa
+                                    phương
+                                    cô
+                                    JJ. Tôi thực sự rất cảm kích bởi họ đã có “tuổi” nhưng lúc nào cũng giữ được
+                                    sự
+                                    lạc
+                                    quan, vui vẻ và một nguồn năng lượng tuyệt vời.</p>
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carousel-reviews" role="button" data-slide="prev">
+                            <i class="fas fa-chevron-left"></i>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carousel-reviews" role="button" data-slide="next">
+                            <i class="fas fa-chevron-right"></i>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer id="footer">
+        <div class="wrapper">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="title">MẠNG BÁN TOUUR DU LỊCH MẠO HIỂM Team13.COM</div>
+                    <div class="content">
+                        <p><strong>Đại diện:</strong> Ông Trần Văn Long - Chủ tịch HĐQT kiêm Tổng giám đốc</p>
+                        <p><strong>Trụ sở chính:</strong> 95B-97-99 Trần Hưng Đạo, Quận 1, TP. Hồ Chí Minh.</p>
+                        <p><strong>Chi nhánh Hà Nội:</strong> 66 Trần Hưng Đạo, Quận Hoàn Kiếm, Hà Nội</p>
+                        <p><strong>Điện thoại:</strong> 0984567669 | <strong>Hotline:</strong> 0968775364</p>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div class="title">Góc khách hàng</div>
+                    <div class="content">
+                        <div><a href="#">Chính sách đặt tour</a></div>
+                        <div><a href="">Chính sách bảo mật</a></div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="title">Đăng ký nhận thông tin khuyến mãi</div>
+                    <div class="content">
+                        <p>Nhập email để có cơ hội giảm 50% cho chuyến đi tiếp theo của Quý khách</p>
+                        <div class="form">
+                            <form action="">
+                                <input type="text" placeholder="Email của bạn">
+                                <button type="submit"><i class="fas fa-envelope"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="title">Kết nối với chúng tôi</div>
+                    <div class="content">
+                        <div class="links">
+                            <a href="#" class="fb"><i class="fab fa-facebook-square"></i></a>
+                            <a href="#" class="gg"><i class="fab fa-google-plus-square"></i></a>
+                            <a href="#" class="tw"><i class="fab fa-twitter-square"></i></a>
+                            <a href="#" class="yt"><i class="fab fa-youtube-square"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-3">
+                    <div class="title">Chấp nhận thanh toán</div>
+                    <div class="content">
+                        <img src="../../imgs/pay.png" alt="Chấp nhận thanh toán">
+                    </div>
+                    <div class="title">Chứng nhận</div>
+                    <div class="content">
+                        <p><img src="../../imgs/dmca.png" alt="DMCA"></p>
+                        <p><img src="../../imgs/congthuong.png" alt="Công thương"></p>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div id="copyright">
+        <div class="wrapper">
+            <p>Copyright © 2019 Team13.com. Bảo lưu mọi quyền. Ghi rõ nguồn "www.Team13.com" khi sử dụng
+                lại thông tin từ website này</p>
+            <p>Số GPKD: 0300465937 do Sở Kế Hoạch và Đầu Tư Thành Phố Hồ Chí Minh cấp ngày 27/09/2010</p>
+            <p>Giấy phép số: 239/GP-TTĐT do Cục Quản Lý Phát Thanh, Truyền Hình và Thông Tin Điện Tử cấp ngày
+                31/12/2008 </p>
+        </div>
+    </div>
+
+
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- my js-->
+    <script src="../../js/library.js" type="text/javascript"></script>
+    <script src="../../js/booking_tour.js" type="text/javascript"></script>
+</body>
+
+</html>

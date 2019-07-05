@@ -77,7 +77,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $user = User::findOrFail($id);
+        // $user = User::find($id);
         // $this->validate($request,[
         //     'name' => 'required|string|max:191',
         //     'email' => 'required|string|email|max:191|unique:users,email,'.$user->id,
@@ -96,7 +96,7 @@ class UserController extends Controller
     public function destroy($id)
     {
         $this->authorize('isAdmin');
-        $user = User::findOrFail($id);
+        $user = User::find($id);
         // delete the user
         $user->delete();
         return ['message' => 'User Deleted'];
@@ -154,8 +154,7 @@ class UserController extends Controller
     public function search(){
         if ($search = \Request::get('q')) {
             $users = User::where(function($query) use ($search){
-                $query->where('name','LIKE',"%$search%")
-                        ->orWhere('email','LIKE',"%$search%");
+                $query->where('name','LIKE',"%$search%");
             })->paginate(20);
         }else{
             $users = User::latest()->paginate(5);
