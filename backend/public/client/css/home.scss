@@ -60,11 +60,13 @@ $margin: (
 
 body {
   #content {
-    a {
-      width: 100%;
-      color: #fff;
-      text-decoration: none;
-      text-align: center;
+    .btn-booking, .tour-time-remain{
+      a {
+        width: 100%;
+        color: #fff;
+        text-decoration: none;
+        text-align: center;
+      }
     }
   }
 }

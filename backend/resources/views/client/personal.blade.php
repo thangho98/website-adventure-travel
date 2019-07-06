@@ -62,244 +62,88 @@
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th scope="col">STT</th>
                                         <th scope="col">Mã tour</th>
                                         <th scope="col">Tên tour</th>
                                         <th scope="col">Ngày khởi hành</th>
+                                        <th scope="col">Ngày đặt</th>
                                         <th scope="col">Tình trạng</th>
                                         <th scope="col">Công cụ</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @foreach($booked as $item)
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>05/07/2019</td>
-                                        <td>Không có</td>
-                                        <td>11,990,000 đ</td>
-                                        <td>Đã đặt</td>
-                                        <td><button class="btn btn-info">Chi tiết</button><button class="btn btn-danger">Hủy</button></td>
+                                        <td>{{$item->tour_code}}</td>
+                                        <td>{{$item->tr_name}}</td>
+                                        <td>{{\Carbon\Carbon::parse($item->tour_time_start)->format('d/m/Y')}}</td>
+                                        <td>{{\Carbon\Carbon::parse($item->bt_date)->format('d/m/Y')}}</td>
+                                        <td>
+                                            @if($item->bt_status == 0)
+                                                Chưa thanh toán
+                                            @elseif($item->bt_status == 1)
+                                                Đã thanh toán
+                                            @endif
+                                        </td>
+                                        <td><button class="btn btn-info"><a href="{{asset('clients/tour/'.$item->tour_code)}}" style="color: #fff; text-decoration: none;">Chi tiết</a></button>
+                                        <!-- <button class="btn btn-danger">Hủy</button> -->
+                                    </td>
                                     </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>10/07/2019</td>
-                                        <td>Đã đi</td>
-                                        <td>11,990,000 đ</td>
-                                        <td>Đã đi</td>
-                                        <td><button class="btn btn-info">Chi tiết</button><button class="btn btn-danger" disabled>Hủy</button></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>15/07/2019</td>
-                                        <td>Giảm 2,000,000 đ</td>
-                                        <td>11,990,000 đ</td>
-                                        <td>Đã hủy</td>
-                                        <td><button class="btn btn-info">Chi tiết</button><button class="btn btn-danger" disabled>Hủy</button></td>
-                                    </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
                     </div>
 
-                    <div id="tour-favorite" class="tour-table">
-                        <div class="title">
-                            Tour yêu thích
-                        </div>
-                        <div class="content">
-                            <table class="table table-striped">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">STT</th>
-                                        <th scope="col">Mã tour</th>
-                                        <th scope="col">Tên tour</th>
-                                        <th scope="col">Ngày khởi hành</th>
-                                        <th scope="col">Tình trạng</th>
-                                        <th scope="col">Công cụ</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>05/07/2019</td>
-                                        <td>Không có</td>
-                                        <td>11,990,000 đ</td>
-                                        <td>Đã đặt</td>
-                                        <td><button class="btn btn-info">Chi tiết</button><button class="btn btn-danger">Book</button></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>10/07/2019</td>
-                                        <td>Đã đi</td>
-                                        <td>11,990,000 đ</td>
-                                        <td>Đã đi</td>
-                                        <td><button class="btn btn-info">Chi tiết</button><button class="btn btn-danger">Book</button></td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>15/07/2019</td>
-                                        <td>Giảm 2,000,000 đ</td>
-                                        <td>11,990,000 đ</td>
-                                        <td>Đã hủy</td>
-                                        <td><button class="btn btn-info">Chi tiết</button><button class="btn btn-danger">Book</button></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
                 </div>
             </div>
 
             <div class="content-right col-lg-3">
-                <div id="suggestions">
-                    <div class="title">CÓ THỂ BẠN SẼ THÍCH</div>
+            <div id="suggestions">
+                    <div class="title">CÁC TOUR ĐANG HOT</div>
                     <div class="tours">
                         <div class="tours-list">
                             <div class="row">
+                                @foreach($tours_hot as $item)
                                 <div class="tour-item col-lg-12 col-md-6">
                                     <div class="tour-item-wrapper">
                                         <div class="tour-header">
-                                            <a href=""><img class="ani-img-zoom" src="/client/imgs/1.jpg" alt=""></a>
+                                            <a href="{{asset('clients/tour/'.$item->tour_code)}}"><img class="ani-img-zoom" src="{{asset('../img/tourist-route/poster/'.$item->tr_poster)}}" alt="{{$item->tr_name}}"></a>
                                             <div class="tour-meta">
-                                                <div class="tour-tag">Leo núi</div>
+                                                <div class="tour-tag">{{$item->cate_name}}</div>
                                             </div>
                                         </div>
                                         <div class="tour-content">
                                             <div class="tour-title">
-                                                <h5><a href="">Tour Hà Nội - Nga - Pháp - Anh</a></h5>
+                                                <h5><a href="{{asset('clients/tour/'.$item->tour_code)}}">{{$item->tr_name}}</a></h5>
                                             </div>
                                             <div class="tour-info">
                                                 <div class="left">
                                                     <div class="tour-start">
-                                                        01/07/2019 07:00
+                                                        {{\Carbon\Carbon::parse($item->tour_time_start)->format('d/m/Y')}}
                                                     </div>
 
                                                     <div class="tour-price">
-                                                        <span>4.500.000</span> 3.500.000 đ
+                                                        <span>{{number_format($item->tr_original_price,0,',','.')}} đ</span> {{number_format($item->tour_price,0,',','.')}} đ
                                                     </div>
                                                 </div>
                                                 <div class="right">
                                                     <div class="tour-time">
-                                                        3 ngày
+                                                        {{$item->tr_time}} ngày
                                                     </div>
                                                     <div class="tour-slot">
-                                                        5 chổ
+                                                        {{$item->tr_max_slot - $item->tour_slot_book}} chổ
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tour-item col-lg-12 col-md-6">
-                                    <div class="tour-item-wrapper">
-                                        <div class="tour-header">
-                                            <a href=""><img class="ani-img-zoom" src="/client/imgs/5.jpg" alt=""></a>
-                                            <div class="tour-meta">
-                                                <div class="tour-tag">Leo núi</div>
-                                            </div>
-                                        </div>
-                                        <div class="tour-content">
-                                            <div class="tour-title">
-                                                <h5><a href="">Tour Hà Nội - Nga - Pháp - Anh</a></h5>
-                                            </div>
-                                            <div class="tour-info">
-                                                <div class="left">
-                                                    <div class="tour-start">
-                                                        01/07/2019 07:00
-                                                    </div>
-
-                                                    <div class="tour-price">
-                                                        <span>4.500.000</span> 3.500.000 đ
-                                                    </div>
-                                                </div>
-                                                <div class="right">
-                                                    <div class="tour-time">
-                                                        3 ngày
-                                                    </div>
-                                                    <div class="tour-slot">
-                                                        5 chổ
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tour-item col-lg-12 col-md-6">
-                                    <div class="tour-item-wrapper">
-                                        <div class="tour-header">
-                                            <a href=""><img class="ani-img-zoom" src="/client/imgs/6.jpg" alt=""></a>
-                                            <div class="tour-meta">
-                                                <div class="tour-tag">Leo núi</div>
-                                            </div>
-                                        </div>
-                                        <div class="tour-content">
-                                            <div class="tour-title">
-                                                <h5><a href="">Tour Hà Nội - Nga - Pháp - Anh</a></h5>
-                                            </div>
-                                            <div class="tour-info">
-                                                <div class="left">
-                                                    <div class="tour-start">
-                                                        01/07/2019 07:00
-                                                    </div>
-
-                                                    <div class="tour-price">
-                                                        <span>4.500.000</span> 3.500.000 đ
-                                                    </div>
-                                                </div>
-                                                <div class="right">
-                                                    <div class="tour-time">
-                                                        3 ngày
-                                                    </div>
-                                                    <div class="tour-slot">
-                                                        5 chổ
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tour-item col-lg-12 col-md-6">
-                                    <div class="tour-item-wrapper">
-                                        <div class="tour-header">
-                                            <a href=""><img class="ani-img-zoom" src="/client/imgs/3.jpg" alt=""></a>
-                                            <div class="tour-meta">
-                                                <div class="tour-tag">Leo núi</div>
-                                            </div>
-                                        </div>
-                                        <div class="tour-content">
-                                            <div class="tour-title">
-                                                <h5><a href="">Tour Hà Nội - Nga - Pháp - Anh</a></h5>
-                                            </div>
-                                            <div class="tour-info">
-                                                <div class="left">
-                                                    <div class="tour-start">
-                                                        01/07/2019 07:00
-                                                    </div>
-
-                                                    <div class="tour-price">
-                                                        <span>4.500.000</span> 3.500.000 đ
-                                                    </div>
-                                                </div>
-                                                <div class="right">
-                                                    <div class="tour-time">
-                                                        3 ngày
-                                                    </div>
-                                                    <div class="tour-slot">
-                                                        5 chổ
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
 
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

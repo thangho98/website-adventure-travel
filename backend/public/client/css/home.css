@@ -1,4 +1,4 @@
-body #content a {
+body #content .btn-booking a, body #content .tour-time-remain a, .btn-more a {
   width: 100%;
   color: #fff;
   text-decoration: none;
@@ -1955,8 +1955,9 @@ body #news .new-first .body .time {
   font-size: 13px;
 }
 
-body #news .new-first .body .title:hover {
+body #news .new-first .body a:hover {
   color: #19a1e5;
+  text-decoration: none;
 }
 
 body #news .new-first .body .des {
@@ -1999,8 +2000,9 @@ body #news .new-second .body .time {
   font-size: 13px;
 }
 
-body #news .new-second .body .title:hover {
+body #news .new-second .body a:hover {
   color: #19a1e5;
+  text-decoration: none;
 }
 
 body #news .new-second .body .des {
@@ -2028,7 +2030,7 @@ body #news .new .head {
 }
 
 body #news .new .head img {
-  width: 100%;
+  width: 290px;
   height: 170px;
   -o-object-fit: cover;
      object-fit: cover;
@@ -2036,6 +2038,8 @@ body #news .new .head img {
 
 body #news .new .body {
   padding: 10px 20px 0px 20px;
+  width: 100%;
+
 }
 
 body #news .new .body .title {
@@ -2049,8 +2053,9 @@ body #news .new .body .time {
   font-size: 13px;
 }
 
-body #news .new .body .title:hover {
+body #news .new .body a:hover{
   color: #19a1e5;
+  text-decoration: none;
 }
 
 body #news .new .body .des {

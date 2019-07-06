@@ -693,7 +693,7 @@
                             </div> -->
                         </div>
                     </div>
-
+<!-- 
                     <div class="nav-page">
                         <nav aria-label="Page navigation example">
                             <ul class="pagination">
@@ -714,7 +714,7 @@
                                 </li>
                             </ul>
                         </nav>
-                    </div>
+                    </div> -->
 
                 </div>
             </div>
@@ -731,20 +731,20 @@
                             </div>
                             <div class="body">
                                 <div class="group">
-                                    <select name="" id="">
+                                    <!-- <select name="" id="">
                                         <option value="1">---</option>
                                         <option value="2">dưới 5 triệu</option>
                                         <option value="3">5 - 10 triệu</option>
                                         <option value="4">10 - 15 triệu</option>
                                         <option value="5">15 - 20 triệu</option>
                                         <option value="6">trên 20 triệu</option>
-                                    </select>
+                                    </select> -->
                                     <div><input type="radio">Tăng dần</div>
                                     <div><input type="radio">Giảm dần</div>
                                 </div>
                             </div>
                         </div>
-
+<!-- 
                         <div class="item">
                             <div class="head">
                                 HOẠT ĐỘNG
@@ -771,7 +771,7 @@
                                     <div><input type="radio">Giảm dần</div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="item">
                             <div class="head">TÌNH TRẠNG</div>
