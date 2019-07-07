@@ -242,7 +242,7 @@
 
         </header>
 
-        @yield('content');
+        @yield('content')
 
     </div>
 

@@ -13,7 +13,7 @@
                 <div class="list-tours">
                     <div class="tours">
                         <div class="tour">
-                            <div class="title">{{$tour_detail[0]->tr_name}}</div>
+                            <div class="title">{{$tour_detail->tr_name}}</div>
                             <div class="row">
                                 <div class="col-lg-3">
                                     <div class="tour-img">
@@ -34,12 +34,12 @@
 
                                             <div class="info">
                                                 <div class="row">
-                                                    <div class="col-sm-6">Khởi hành: {{\Carbon\Carbon::parse($tour_detail[0]->tour_time_start)->format('d/m/Y')}}</div>
-                                                    <div class="col-sm-6">Hoạt động: {{$tour_detail[0]->cate_name}}</div>
+                                                    <div class="col-sm-6">Khởi hành: {{\Carbon\Carbon::parse($tour_detail->tour_time_start)->format('d/m/Y')}}</div>
+                                                    <div class="col-sm-6">Hoạt động: {{$tour_detail->cate_name}}</div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-sm-6">Nơi khởi hành: {{$tour_detail[0]->loca_name}}</div>
-                                                    <div class="col-sm-6">Thời gian: {{$tour_detail[0]->tr_time}} ngày
+                                                    <div class="col-sm-6">Nơi khởi hành: {{$tour_detail->loca_name}}</div>
+                                                    <div class="col-sm-6">Thời gian: {{$tour_detail->tr_time}} ngày
                                                     </div>
                                                 </div>
                                             </div>
@@ -48,15 +48,15 @@
                                                 <div class="row">
                                                     <div class="col-sm-6">Khuyến mãi:
                                                         <span>
-                                                            @if($tour_detail[0]->tour_promotion == 0)
+                                                            @if($tour_detail->tour_promotion == 0)
                                                                 Không có
                                                             @else
-                                                                GIẢM {{$tour_detail[0]->prom_percent_promotion}}%
+                                                                GIẢM {{$tour_detail->prom_percent_promotion}}%
                                                             @endif
                                                         </span>
                                                     </div>
                                                     <div class="col-sm-6 slot">Số chổ còn nhận:
-                                                        <span id="slot-free">{{$tour_detail[0]->tr_max_slot - $tour_detail[0]->tour_slot_book}}</span>
+                                                        <span id="slot-free">{{$tour_detail->tr_max_slot - $tour_detail->tour_slot_book}}</span>
                                                     </div>
                                                 </div>
                                             </div>
@@ -65,11 +65,11 @@
                                         <div class="col-md-4 right">
                                             <div class="booking">
                                                 <div class="price">
-                                                {{number_format($tour_detail[0]->tour_price)}} đ
-                                                    <div>{{number_format($tour_detail[0]->tr_original_price)}} đ</div>
+                                                {{number_format($tour_detail->tour_price)}} đ
+                                                    <div>{{number_format($tour_detail->tr_original_price)}} đ</div>
                                                 </div>
 
-                                                <div class="btn-booking"><a href="{{asset('clients/tour/'.$tour_detail[0]->tour_code)}}">CHI TIẾT</a></div>
+                                                <div class="btn-booking"><a href="{{asset('clients/tour/'.$tour_detail->tour_code)}}">CHI TIẾT</a></div>
                                             </div>
                                         </div>
                                     </div>
@@ -78,7 +78,7 @@
                         </div>
                     </div>
 
-                    <form action="{{asset('clients/booking/book/'.$tour_detail[0]->tour_code)}}" method="post">
+                    <form action="{{asset('clients/booking/book/'.$tour_detail->tour_code)}}" method="post">
                         <div class="row">
 
                             <div class="col-lg-6">
@@ -138,7 +138,7 @@
                                 </div>
 
                                 <!-- <div id="price-sum">TỔNG CỘNG: <span>20,500,000 đ</span></div> -->
-                                <button style="margin-top: 55px" id="btn-book" type="submit">BOOK</button>
+                                <button style="margin-top: 55px" id="btn-book" type="submit">BOOK <i class="fab fa-cc-paypal"></i></button>
                             </div>
                         </div>
                         {{csrf_field()}}

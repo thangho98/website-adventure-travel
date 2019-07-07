@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.4
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th7 05, 2019 lúc 12:14 AM
--- Phiên bản máy phục vụ: 10.1.37-MariaDB
--- Phiên bản PHP: 7.3.0
+-- Thời gian đã tạo: Th7 07, 2019 lúc 03:40 PM
+-- Phiên bản máy phục vụ: 10.3.15-MariaDB
+-- Phiên bản PHP: 7.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -30,8 +30,8 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `booking_tours` (
   `bt_id` int(10) UNSIGNED NOT NULL,
-  `bt_num_child` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `bt_num_adult` date NOT NULL,
+  `bt_num_child` int(255) NOT NULL,
+  `bt_num_adult` int(11) NOT NULL,
   `bt_total_price` int(11) NOT NULL,
   `bt_date` date NOT NULL,
   `bt_status` int(11) NOT NULL,
@@ -46,8 +46,9 @@ CREATE TABLE `booking_tours` (
 --
 
 INSERT INTO `booking_tours` (`bt_id`, `bt_num_child`, `bt_num_adult`, `bt_total_price`, `bt_date`, `bt_status`, `bt_user_client`, `bt_tour`, `created_at`, `updated_at`) VALUES
-(4, '0', '0000-00-00', 13600000, '2019-07-05', 0, 2, 2, '2019-07-04 21:19:32', '2019-07-04 21:19:32'),
-(5, '0', '0000-00-00', 13600000, '2019-07-05', 0, 2, 2, '2019-07-04 21:21:20', '2019-07-04 21:21:20');
+(4, 0, 1, 13600000, '2019-07-05', 0, 2, 2, '2019-07-04 21:19:32', '2019-07-04 21:19:32'),
+(5, 0, 1, 13600000, '2019-07-05', 0, 2, 2, '2019-07-04 21:21:20', '2019-07-04 21:21:20'),
+(6, 0, 1, 18000000, '2019-07-07', 0, 2, 1, '2019-07-07 05:38:12', '2019-07-07 05:38:12');
 
 -- --------------------------------------------------------
 
@@ -255,7 +256,7 @@ INSERT INTO `news` (`news_id`, `news_title`, `news_description`, `news_poster`, 
 (3, 'Khám phá hòn Đá Bạc ở Cà Mau', 'Đoạn đường dài hơn 80km từ thành phố Cà Mau về đến xã Khánh Bình Tây (thuộc huyện Trần Văn Thời, tỉnh Cà Mau)', '1562267490.jpeg', '<p>Nối liền vàm Đá Bạc của xã Khánh Bình Tây với hòn Đá Bạc nằm chơ vơ ngoài biển bây giờ là một cây cầu đúc bằng xi măng có 2 làn đường &nbsp;cùng hệ thống đèn điện thẳng tắp dài hơn 1.000m rất kiên cố và không kém phần hoành tráng. Ít ai biết, trước đây hòn Đá Bạc nằm cách xa bờ xã Khánh Bình Tây đến hơn 4,2km; người dân huyện Trần Văn Thời muốn ra ngoài hòn phải có tàu, ghe. Những năm gần đây, vàm Đá Bạc được bồi tụ, lấn dần ra biển hình thành thêm một ấp chài mới, níu gần ra hòn Đá Bạc.</p><p>Với diện tích không lớn lắm, chỉ 6,34ha, hòn Đá Bạc bao gồm: hòn Ông Ngộ, hòn Sân Tiên và Đá Bạc với đỉnh nhô cao nhất lên đến 22,7m được bao phủ bởi thảm thực vật xanh tươi quanh năm và được “bọc lót” chung quanh bởi những tảng đá khổng lồ kê san sát bên nhau tạo ra nhiều khe nước trong xanh thu hút các loài rong rêu, cá, hàu, tôm, cua… sinh sống; tạo nên một vùng sinh cảnh khá là hấp dẫn.</p><p>Xác định hòn Đá Bạc là điểm du lịch sinh thái, văn hóa và lịch sử, ngành thương mại và du lịch tỉnh Cà Mau đã đầu tư xây dựng trên hòn một khách sạn, nhà hàng rất bề thế, đặc biệt là thiết kế xây dựng một cặp rồng khổng lồ bằng xi măng cốt sắt rất uy nghi, hoành tráng đang trườn mình qua dãy Yên Ngựa nối liền hòn Sân Tiên với hòn Đá Bạc. Để việc đi vào Khu du lịch Hòn Đá Bạc được thuận tiện, dễ dàng; một chiếc cầu xi măng dài gần 2.000m được xây dựng đã nối liền vàm Đá Bạc với hòn Đá Bạc tạo thành con đường trên biển lồng lộng gió, thu hút nam thanh nữ tú các nơi đi xe gắn máy ra tận ngoài hòn ngao du, thưởng lãm. Cây cầu đầu tiên “nối hai bờ vui” này đã bị cơn bão số 5 (năm 1997) đổ bộ vào Cà Mau đánh gãy sập thành nhiều khúc. Nay trên hòn vẫn còn giữ lại mấy khúc cầu đã gãy lại để làm “nhân chứng thiên tai”. Tuy nhiên, ngay sau sự cố cây cầu bị sập, Cà Mau&nbsp; nhanh chóng xây lại cây cầu mới kiên cố, đẹp đẽ hơn để “ welcome” du khách bốn phương.</p><p>Hấp dẫn dân sành điệu là nguồn hải sản tươi sống và rất phong phú được đánh bắt quanh hòn Đá Bạc; trong đó hàu là sản vật ngon của vùng biển này từng được hai tác giả Nghê Văn Lương và Huỳnh Minh đưa vào cuốn sách sưu khảo “Cà Mau xưa”.</p><p>Theo quy hoạch, hòn Đá Bạc sẽ bao gồm: khu dịch vụ du lịch, khu tưởng niệm (để nhớ đến những người đã khuất trong cơn bão lịch sử số 5), khu vực bia chiến thắng (Chuyên án CM12 và địa điểm bố trí 2 khẩu pháo 105 ly của quân Mỹ nguỵ nhằm khống chế toàn bộ vùng biển Tây Cà Mau trước năm 1975), nhà trưng bày, giới thiệu đặc điểm tự nhiên, lịch sử hình thành cùng các truyền thuyết về dấu Chân Tiên, Hang Hòn… Khai thác đặc điểm tự nhiên cùng các di tích lịch sử, văn hóa, hòn Đá Bạc còn liên kết với Vồ Dơi - đầm Thị Trường - mũi Cà Mau hình thành tuyến du lịch xanh khá độc đáo của miền cực Nam Tổ quốc. &nbsp;</p>', '2019-07-05', 1, '2019-07-04 19:11:30', '2019-07-04 19:11:30'),
 (4, 'Khám phá những viên ngọc vùng Đông Âu', 'Đông Âu là vùng đất có lịch sử nhiều thăng trầm, sở hữu di sản văn hóa, cảnh quan đa dạng…', '1562267551.jpeg', '<p>Rất ít thành phố nào trên thế giới có được nét đẹp duyên dáng, lãng mạn như Venice, nơi được mệnh danh là thiên đường tình yêu của châu Âu. Ngồi trên thuyền đi qua những con kênh đào dày đặc, những cây cầu nổi tiếng mang tên cầu Than Thở, cầu Rialto là trải nghiệm đáng nhớ mà ai cũng phải thử một lần khi đã đặt chân đến Venice.</p><p>Venice còn hấp dẫn du khách bởi chất cổ điển được lưu giữ nguyên vẹn từ hàng trăm năm với khu phố cổ tuyệt đẹp phủ màu gạch đỏ truyền thống của vùng Địa Trung Hải, quảng trường thánh Marco <strong>-</strong> quảng trường quan trọng nhất, nổi tiếng nhất và đồng thời là trung tâm của Venice.&nbsp;Nơi đây từng được Napoléon gọi là&nbsp;“phòng khách của châu Âu” bởi kiến trúc tuyệt mỹ.</p>', '2019-07-05', 1, '2019-07-04 19:12:31', '2019-07-04 19:12:31'),
 (5, 'Hồ Đa Tôn - điểm du lịch sinh thái hấp dẫn tại Đồng Nai', 'goài khu du lịch Vườn Quốc gia Nam Cát Tiên, công viên Suối Mơ (huyện Tân Phú, Đồng Nai)', '1562267614.jpeg', '<p>Chính vì sở hữu khung cảnh hữu tình từ sự hào quyện giữa màu xanh của núi đồi và sắc xanh của mặt hồ và nét chấm phá của ánh nắng mặt trời lúc bình minh lên hay hoàng hôn xuống đã tạo nên cho hồ Đa Tôn một khu cảnh thiên nhiên tuyệt đẹp và được xem là viên ngọc bích giữa núi rừng đã làm say lòng biết bao du khách khi đặt chân đến nơi này.</p><p>Bỏ lại những lo toan bộn bề của cuộc sống thường nhật để tìm đến hồ Đa Tôn, du khách sẽ dần dần bị chinh phục bởi nét đẹp tinh tế bởi sự giao hoà giữa cảnh vật thiên nhiên nơi đây.</p><p>Đến đây, để chiêm ngưỡng vẻ đẹp của hồ Đa Tôn du khách có thể đi thuyền máy trên sông lúc bình minh vừa bắt đầu hé lên hay lúc chiều tà để tận hưởng được những khung cảnh thiên nhiên tuyệt vời nhất.</p>', '2019-07-05', 1, '2019-07-04 19:13:34', '2019-07-04 19:13:34'),
-(6, 'Thăm Quảng Châu – nhớ Bác', 'Những ngày đầu khi đến Quảng Châu, Bác ở trong trụ sở của phái đoàn cố vấn Liên Xô', '1562267669.jpeg', '<p>Có thể nói đây là cái nôi, là nơi tập họp và đào tạo nên những người lãnh đạo cách mạng đầu tiên của Việt Nam như Trần Phú, Lê Hồng Phong, Phạm Văn Đồng, Nguyễn Lương Bằng, Phan Trọng Bình, Lê Thiết Hùng… Tổ chức Việt Nam Thanh niên Cách mạng đồng chí Hội từ đây lan tỏa về Việt Nam, có cơ sở ở khắp ba miền Trung, Nam, Bắc và cả trong lực lượng Việt kiều ở Thái Lan. Hội có quan hệ với Đảng Cộng sản Trung Quốc, Đảng Cộng sản Pháp và Quốc tế Cộng sản. Bác cũng chọn lọc những người ưu tú để cử đi học Đại học Phương Đông Liên Xô và vào học Trường quân sự Hoàng Phố (do Chu Ân Lai và Diệp Kiếm Anh phụ trách) nhằm chuẩn bị lực lượng nòng cốt cho Đảng và cho công tác quân sự sau này như: Trần Phú, Lê Hồng Phong, Bùi Công Trừng, Phùng Chí Kiên, Nguyễn Sơn, Lê Quảng Đạt, Lê Thiết Hùng… Cũng tại đây, Bác cho ra đời tờ báo “Thanh Niên”, mỗi tuần ra một số bằng cách in Ronéo, trên trang nhất luôn có hình ngôi sao năm cánh bên cạnh tít báo bằng chữ Việt và chữ Hán. Số báo đầu tiên ra ngày 21 tháng 6 năm 1925 và ra được 88 số. Báo Thanh Niên chính là tiền thân sớm nhất của báo chí cách mạng Việt Nam ngày nay lấy ngày 21 tháng 6 làm ngày báo chí Việt Nam cũng bắt nguồn từ đây. Bác đã tập hợp các bài giảng cho các lớp học và các bài báo để tu chỉnh thành cuốn sách giáo khoa cách mạng đầu tiên mang tên “Đường Kách Mệnh” (Đường Cách mạng). Năm 1927, sách được xuất bản công khai. Cũng tại Quảng Châu, Người đã vận động thành lập Hội liên hiệp các dân tộc bị áp bức gồm các nước Việt Nam, Trung Quốc, Triều Tiên, Ấn Độ, Indonesia và Myanmar. Bác là người viết tuyên ngôn, trong đó có câu: “Chúng ta nên sớm đoàn kết lại, hãy hợp lực để đòi quyền lợi và tự do của chúng ta! Hãy hợp lực để cứu lấy nòi giống của chúng ta”. Chính từ các hoạt động này đã giúp Bác nhanh chóng quyết định hợp nhất các tổ chức Đảng ở Việt Nam, để ngày 3 tháng 2 năm 1930 (tức ngày 6 tháng 1 âm lịch) thành lập nên Đảng Cộng sản Việt Nam, chính đảng đầu tiên của cách mạng Việt Nam.</p>', '2019-07-05', 1, '2019-07-04 19:14:29', '2019-07-04 20:04:18');
+(6, 'Thăm Quảng Châu – nhớ Bác', 'Những ngày đầu khi đến Quảng Châu, Bác ở trong trụ sở của phái đoàn cố vấn Liên Xô', '1562267669.jpeg', '<p>Có thể nói đây là cái nôi, là nơi tập họp và đào tạo nên những người lãnh đạo cách mạng đầu tiên của Việt Nam như Trần Phú, Lê Hồng Phong, Phạm Văn Đồng, Nguyễn Lương Bằng, Phan Trọng Bình, Lê Thiết Hùng… Tổ chức Việt Nam Thanh niên Cách mạng đồng chí Hội từ đây lan tỏa về Việt Nam, có cơ sở ở khắp ba miền Trung, Nam, Bắc và cả trong lực lượng Việt kiều ở Thái Lan. Hội có quan hệ với Đảng Cộng sản Trung Quốc, Đảng Cộng sản Pháp và Quốc tế Cộng sản. Bác cũng chọn lọc những người ưu tú để cử đi học Đại học Phương Đông Liên Xô và vào học Trường quân sự Hoàng Phố (do Chu Ân Lai và Diệp Kiếm Anh phụ trách) nhằm chuẩn bị lực lượng nòng cốt cho Đảng và cho công tác quân sự sau này như: Trần Phú, Lê Hồng Phong, Bùi Công Trừng, Phùng Chí Kiên, Nguyễn Sơn, Lê Quảng Đạt, Lê Thiết Hùng…&nbsp;</p><figure class=\"image image-style-side\"><img src=\"http://localhost:8000/userfiles/images/langbiang4.jpg\"></figure><p>Cũng tại đây, Bác cho ra đời tờ báo “Thanh Niên”, mỗi tuần ra một số bằng cách in Ronéo, trên trang nhất luôn có hình ngôi sao năm cánh bên cạnh tít báo bằng chữ Việt và chữ Hán. Số báo đầu tiên ra ngày 21 tháng 6 năm 1925 và ra được 88 số. Báo Thanh Niên chính là tiền thân sớm nhất của báo chí cách mạng Việt Nam ngày nay lấy ngày 21 tháng 6 làm ngày báo chí Việt Nam cũng bắt nguồn từ đây. Bác đã tập hợp các bài giảng cho các lớp học và các bài báo để tu chỉnh thành cuốn sách giáo khoa cách mạng đầu tiên mang tên “Đường Kách Mệnh” (Đường Cách mạng). Năm 1927, sách được xuất bản công khai. Cũng tại Quảng Châu, Người đã vận động thành lập Hội liên hiệp các dân tộc bị áp bức gồm các nước Việt Nam, Trung Quốc, Triều Tiên, Ấn Độ, Indonesia và Myanmar. Bác là người viết tuyên ngôn, trong đó có câu: “Chúng ta nên sớm đoàn kết lại, hãy hợp lực để đòi quyền lợi và tự do của chúng ta! Hãy hợp lực để cứu lấy nòi giống của chúng ta”. Chính từ các hoạt động này đã giúp Bác nhanh chóng quyết định hợp nhất các tổ chức Đảng ở Việt Nam, để ngày 3 tháng 2 năm 1930 (tức ngày 6 tháng 1 âm lịch) thành lập nên Đảng Cộng sản Việt Nam, chính đảng đầu tiên của cách mạng Việt Nam.</p>', '2019-07-05', 1, '2019-07-04 19:14:29', '2019-07-06 03:46:03');
 
 -- --------------------------------------------------------
 
@@ -268,7 +269,7 @@ CREATE TABLE `oauth_access_tokens` (
   `user_id` int(11) DEFAULT NULL,
   `client_id` int(10) UNSIGNED NOT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `scopes` text COLLATE utf8_unicode_ci,
+  `scopes` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `revoked` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -285,7 +286,7 @@ CREATE TABLE `oauth_auth_codes` (
   `id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `user_id` int(11) NOT NULL,
   `client_id` int(10) UNSIGNED NOT NULL,
-  `scopes` text COLLATE utf8_unicode_ci,
+  `scopes` text COLLATE utf8_unicode_ci DEFAULT NULL,
   `revoked` tinyint(1) NOT NULL,
   `expires_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -465,10 +466,10 @@ CREATE TABLE `tours` (
   `tour_id` int(10) UNSIGNED NOT NULL,
   `tour_code` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `tour_time_start` date NOT NULL,
-  `tour_slot_book` int(11) DEFAULT '0',
+  `tour_slot_book` int(11) DEFAULT 0,
   `tour_price` double NOT NULL,
   `tour_tourist_route` int(11) NOT NULL,
-  `tour_promotion` int(11) DEFAULT '0',
+  `tour_promotion` int(11) DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -478,7 +479,7 @@ CREATE TABLE `tours` (
 --
 
 INSERT INTO `tours` (`tour_id`, `tour_code`, `tour_time_start`, `tour_slot_book`, `tour_price`, `tour_tourist_route`, `tour_promotion`, `created_at`, `updated_at`) VALUES
-(1, '120190822', '2019-07-10', 0, 18000000, 3, 0, '2019-07-01 04:16:33', '2019-07-01 04:16:33'),
+(1, '120190822', '2019-07-10', 1, 18000000, 3, 0, '2019-07-01 04:16:33', '2019-07-01 04:16:33'),
 (2, '120190925', '2019-09-20', 2, 6800000, 1, 1, '2019-07-01 04:16:33', '2019-07-01 06:51:53'),
 (3, '120191211', '2019-09-20', 0, 18000000, 3, 0, '2019-07-01 04:16:33', '2019-07-01 04:16:33'),
 (4, '120200108', '2020-01-08', 0, 21000000, 2, 0, '2019-07-01 04:16:33', '2019-07-01 04:16:33');
@@ -496,7 +497,7 @@ CREATE TABLE `users` (
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `type` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'user',
-  `bio` mediumtext COLLATE utf8_unicode_ci,
+  `bio` mediumtext COLLATE utf8_unicode_ci DEFAULT NULL,
   `photo` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'profile.png',
   `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -689,7 +690,7 @@ ALTER TABLE `user_clients`
 -- AUTO_INCREMENT cho bảng `booking_tours`
 --
 ALTER TABLE `booking_tours`
-  MODIFY `bt_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `bt_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT cho bảng `categories`

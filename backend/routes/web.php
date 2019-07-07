@@ -12,10 +12,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 // Authentication Routes...
 Route::get('admin/login', 'Auth\LoginController@showLoginForm')->name('login');
 Route::post('admin/login', 'Auth\LoginController@login');
@@ -99,6 +95,8 @@ Route::group(['namespace' => 'Client'], function () {
         Route::get('/personal', 'PersonalController@Index')->name('personal');
         Route::get('/news', 'NewsController@Index')->name('news');
         Route::get('/news/{id}', 'NewsController@IndexNew');
+
+        Route::get('status/{code}', 'BookingController@getPaymentStatus');
     });
 });
 

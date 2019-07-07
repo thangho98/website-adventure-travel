@@ -40,7 +40,7 @@
         </div>
         <div class="block-content">
           <div class="table-responsive">
-            <table class="table table-bordered table-striped table-vcenter">
+            <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
               <thead>
                 <tr>
                   <th>ID</th>
@@ -145,7 +145,7 @@ export default {
           this.form
             .delete(this.$Api + "/booking-tour/" + id)
             .then(() => {
-              Swal.fire("Đã xóa!", "Vé đặt đã hủy thành công", "success");
+              Swal.fire("Đã hủy!", "Vé đặt đã hủy thành công", "success");
               Fire.$emit("reloadData");
             })
             .catch(() => {
@@ -170,7 +170,7 @@ export default {
             .put(this.$Api + "/booking-tour/" + id)
             .then(() => {
               Swal.fire(
-                "Đã xóa!",
+                "Đã cập nhật!",
                 "Vé đặt đã được cập nhật thanh toán",
                 "success"
               );
