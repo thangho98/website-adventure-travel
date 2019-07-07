@@ -21,7 +21,7 @@
                                 </div>
                                 <div class="body">
                                     <a class="title" href="{{asset('/clients/news/'.$news[0]->news_id)}}">{{$news[0]->news_title}}</a>
-                                    <div class="time"><i class="far fa-clock"></i> {{$news[0]->news_time_post}}</div>
+                                    <div class="time"><i class="far fa-clock"></i> {{date("d/m/Y", strtotime($news[0]->news_time_post))}}</div>
                                     <p class="des">{{$news[0]->news_description}}</p>
                                     <div class="author"><i class="fas fa-user-edit"></i>{{$news[0]->name}}</div>
                                 </div>
@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="body">
                                     <a class="title" href="{{asset('/clients/news/'.$news[1]->news_id)}}">{{$news[1]->news_title}}</a>
-                                    <div class="time"><i class="far fa-clock"></i> {{$news[1]->news_time_post}}</div>
+                                    <div class="time"><i class="far fa-clock"></i> {{date("d/m/Y", strtotime($news[1]->news_time_post))}}</div>
                                     <p class="des">{{$news[1]->news_description}}</p>
                                     <div class="author"><i class="fas fa-user-edit"></i>{{$news[1]->name}}</div>
                                 </div>
@@ -47,7 +47,7 @@
                         </div>
                         <div class="body">
                             <a class="title" href="{{asset('/clients/news/'.$news[$i]->news_id)}}">{{$news[$i]->news_title}}</a>
-                            <div class="time"><i class="far fa-clock"></i> {{$news[$i]->news_time_post}}</div>
+                            <div class="time"><i class="far fa-clock"></i> {{date("d/m/Y", strtotime($news[$i]->news_time_post))}}</div>
                             <p class="des">{{$news[$i]->news_description}}</p>
                             <div class="author"><i class="fas fa-user-edit"></i>{{$news[$i]->name}}</div>
                         </div>

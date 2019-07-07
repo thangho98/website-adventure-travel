@@ -140,7 +140,7 @@
                     @if( $tour_detail[0]->tr_max_slot != $tour_detail[0]->tour_slot_book)
                         <a class="booking nav-link" href="{{asset('clients/booking/'.$code)}}">ĐẶT NGAY</a>
                     @else
-                    <a class="booking nav-link">ĐẶT NGAY</a>
+                        <a class="booking nav-link">ĐẶT NGAY</a>
                     @endif  
                     </li>
                 </ul>

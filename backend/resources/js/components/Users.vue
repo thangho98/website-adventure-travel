@@ -43,7 +43,7 @@
         </div>
         <div class="block-content">
           <div class="table-responsive">
-            <table class="table table-bordered table-striped table-vcenter">
+            <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
               <thead>
                 <tr>
                   <th>ID</th>
@@ -61,11 +61,11 @@
                   <td>{{user.email}}</td>
                   <td>{{user.type | upText}}</td>
                   <td>{{user.created_at | myDate}}</td>
-                  <td>
-                    <a href="#" @click="editModal(user)">
+                  <td class="text-center">
+                    <!-- <a href="#" @click="editModal(user)">
                       <i class="fa fa-edit blue"></i>
                     </a>
-                    /
+                    /-->
                     <a href="#" @click="deleteUser(user.id)">
                       <i class="fa fa-trash red"></i>
                     </a>

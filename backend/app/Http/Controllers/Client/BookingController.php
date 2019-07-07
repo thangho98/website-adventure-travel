@@ -12,9 +12,46 @@ use App\Models\UserClient;
 use App\Models\BookingTour;
 use App\Models\Tour;
 
+
+use Illuminate\Support\Facades\Input;
+use PayPal\Api\Amount;
+use PayPal\Api\Details;
+use PayPal\Api\Item;
+/** All Paypal Details class **/
+use PayPal\Api\ItemList;
+use PayPal\Api\Payer;
+use PayPal\Api\Payment;
+use PayPal\Api\PaymentExecution;
+use PayPal\Api\RedirectUrls;
+use PayPal\Api\Transaction;
+use PayPal\Auth\OAuthTokenCredential;
+use PayPal\Rest\ApiContext;
+
+use Session;
+use Illuminate\Support\Facades\URL;
+use Redirect;
 class BookingController extends Controller
 {
-    //
+    
+    private $_api_context;
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+
+        /** PayPal api context **/
+        $paypal_conf = \Config::get('paypal');
+        $this->_api_context = new ApiContext(new OAuthTokenCredential(
+            $paypal_conf['client_id'],
+            $paypal_conf['secret'])
+        );
+        $this->_api_context->setConfig($paypal_conf['settings']);
+
+    }
+    
     public function Index($code)
     {
         $data['user'] = $this->getProfile();
@@ -39,7 +76,7 @@ class BookingController extends Controller
             ->join('categories', 'tr_category', 'cate_id')
             ->join('locations', 'tr_location', 'loca_id')
             ->leftJoin('promotions', 'tour_promotion', 'prom_id')
-            ->get();
+            ->first();
         return $data;
     }
 
@@ -66,27 +103,96 @@ class BookingController extends Controller
 
     public function BookTour(Request $request, $code)
     {
-        $book = new BookingTour;
-        $book->bt_num_child = $request->num_child;
-        $book->bt_num_adult = $request->num_adult;
-        $book->bt_date = Carbon::now()->toDateTimeString();
-        $book->bt_status = 0;
-        $book->bt_user_client = $this->getProfile()->user_id;
-        $book->bt_tour = $this->getDetail($code)->first()->tour_id;
+        
+        $json = file_get_contents('http://www.apilayer.net/api/live?access_key=6a03554aed894187d3efc69c243dd703');
+        $obj = json_decode($json, true);
 
-        $priceOrigin = $this->getDetail($code)->first()->tour_price;
-        $book->bt_total_price = $request->num_child * $priceOrigin / 2 + $request->num_adult * $priceOrigin;
+        $USDVND = $obj["quotes"]["USDVND"];
 
-        $book->save();
+        //dd($USDVND);
 
-        $tour = Tour::find($this->getDetail($code)->first()->tour_id);
-        $slot = $tour->tour_slot_book + $book->bt_num_child + $book->bt_num_adult;
+        $priceOrigin = $this->getDetail($code)->tour_price;
+        $bt_total_price = ($request->num_child * $priceOrigin / 2 + $request->num_adult * $priceOrigin)/$USDVND;
 
-        DB::table('tours')
-        ->where('tour_code', $code)
-        ->update(['tour_slot_book' => $slot]);
+        $payer = new Payer();
+        $payer->setPaymentMethod('paypal');
 
-        return redirect(route('personal'));
+        $item_1 = new Item();
+        
+        $tour_detail = $this->getDetail($code);
+        $name = " Tour du lịch ".$tour_detail->tr_name.", Mã Tour:  ".$code.
+        ", Ngày khởi hành: ".date("d/m/Y", strtotime($tour_detail->tour_time_start));
+
+        $item_1->setName($name) /** item name **/
+            ->setCurrency('USD')
+            ->setQuantity($request->num_child +  $request->num_adult)
+            ->setPrice($bt_total_price); /** unit price **/
+
+        $item_list = new ItemList();
+        $item_list->setItems(array($item_1));
+
+        $amount = new Amount();
+        $amount->setCurrency('USD')
+            ->setTotal($bt_total_price);
+
+        $transaction = new Transaction();
+        $transaction->setAmount($amount)
+            ->setItemList($item_list)
+            ->setDescription('Your transaction description');
+
+        $redirect_urls = new RedirectUrls();
+        $redirect_urls->setReturnUrl(URL::to('clients/status/'.$code.'?num_child='.$request->num_child.'&num_adult='.$request->num_adult)) /** Specify return URL **/
+            ->setCancelUrl(URL::to('clients/status/'.$code.'?num_child='.$request->num_child.'&num_adult='.$request->num_adult));
+
+        $payment = new Payment();
+        $payment->setIntent('Sale')
+            ->setPayer($payer)
+            ->setRedirectUrls($redirect_urls)
+            ->setTransactions(array($transaction));
+        /** dd($payment->create($this->_api_context));exit; **/
+        try {
+
+            $payment->create($this->_api_context);
+
+        } catch (\PayPal\Exception\PPConnectionException $ex) {
+
+            if (\Config::get('app.debug')) {
+
+                \Session::put('error', 'Connection timeout');
+                return Redirect::to('/clients/booking/'.$code);
+
+            } else {
+
+                \Session::put('error', 'Some error occur, sorry for inconvenient');
+                return Redirect::to('/clients/booking/'.$code);
+
+            }
+
+        }
+
+        foreach ($payment->getLinks() as $link) {
+
+            if ($link->getRel() == 'approval_url') {
+
+                $redirect_url = $link->getHref();
+                break;
+
+            }
+
+        }
+
+        /** add payment ID to session **/
+        Session::put('paypal_payment_id', $payment->getId());
+
+        if (isset($redirect_url)) {
+
+            /** redirect to paypal **/
+            return Redirect::away($redirect_url);
+
+        }
+
+        \Session::put('error', 'Unknown error occurred');
+        return Redirect::to('/clients/booking/'.$code);
     }
 
     public function getToursHot()
@@ -104,5 +210,57 @@ class BookingController extends Controller
             ->get();
 
         return $data;
+    }
+
+    public function getPaymentStatus(Request $request, $code)
+    {
+        /** Get the payment ID before session clear **/
+        $payment_id = Session::get('paypal_payment_id');
+
+        /** clear the session payment ID **/
+        Session::forget('paypal_payment_id');
+        if (empty(Input::get('PayerID')) || empty(Input::get('token'))) {
+
+            \Session::put('error', 'Payment failed');
+            return Redirect::to('/clients/booking/'.$code);
+
+        }
+
+        $payment = Payment::get($payment_id, $this->_api_context);
+        $execution = new PaymentExecution();
+        $execution->setPayerId(Input::get('PayerID'));
+
+        /**Execute the payment **/
+        $result = $payment->execute($execution, $this->_api_context);
+
+        if ($result->getState() == 'approved') {
+
+            $book = new BookingTour;
+            $book->bt_num_child = $request->num_child;
+            $book->bt_num_adult = $request->num_adult;
+            $book->bt_date = Carbon::now()->toDateTimeString();
+            $book->bt_status = 1;
+            $book->bt_user_client = $this->getProfile()->user_id;
+            $book->bt_tour = $this->getDetail($code)->tour_id;
+
+            $priceOrigin = $this->getDetail($code)->tour_price;
+            $book->bt_total_price = $request->num_child * $priceOrigin / 2 + $request->num_adult * $priceOrigin;
+
+            $book->save();
+
+            $tour = Tour::find($this->getDetail($code)->tour_id);
+            $slot = $tour->tour_slot_book + $book->bt_num_child + $book->bt_num_adult;
+
+            DB::table('tours')
+            ->where('tour_code', $code)
+            ->update(['tour_slot_book' => $slot]);
+
+            return redirect(route('personal'));
+
+        }
+
+        \Session::put('error', 'Payment failed');
+        return Redirect::to('/clients/booking/'.$code);
+
     }
 }

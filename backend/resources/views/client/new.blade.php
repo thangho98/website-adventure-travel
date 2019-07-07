@@ -3,7 +3,7 @@
 @section('title', 'Team13.com - Mạng bán tour du lịch mạo hiểm trực tuyến')
 
 @section('content')
-<div id="content">
+<div id="content" class="pb-5">
     <div style="display: none">
         <h1>Du lịch</h1>
     </div>
@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="content-left col-lg-9">
                     <div class="title">{{$new->news_title}}</div>
-                    <div class="time" style="font-size: 13px; font-weight: 600; padding: 10px;"><i class="far fa-clock"></i> Ngày đăng: {{$new->news_time_post}}</div>
+                    <div class="time" style="font-size: 13px; font-weight: 600; padding: 10px;"><i class="far fa-clock"></i> Ngày đăng: {{date("d/m/Y", strtotime($new->news_time_post))}}</div>
                     <div style="font-size: 15px; font-weight: 600; margin-bottom: 10px; padding: 10px;">{{$new->news_description}}</div>
 
                     <div style="text-align: center; padding: 10px;">
@@ -24,11 +24,8 @@
                     <div id="new-content" style="text-align: justify; padding: 5px;">
                         {!!$new->news_content!!}
                     </div>
-
                     <div class="author" style="text-align: right; font-size: 13px;"><i class="fas fa-user-edit"></i>{{$new->name}}</div>
                 </div>
-
-
                 <div class="content-right col-lg-3">
                 <div id="suggestions">
                     <div class="title">CÁC TOUR ĐANG HOT</div>
