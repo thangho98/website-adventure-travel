@@ -36,7 +36,7 @@ class TourController extends Controller
                     ->join('tourist_routes','tours.tour_tourist_route','tourist_routes.tr_id')
                     ->leftJoin('promotions','tours.tour_promotion','promotions.prom_id')
                     ->orderBy('tr_id','desc')
-                    ->paginate(5);
+                    ->get();
 
             // foreach ($list->data as $key => $value) {
             //     # code...
@@ -106,6 +106,9 @@ class TourController extends Controller
         $tour_tourist_route = $request['tour_tourist_route'];
 
         $tour =  Tour::find($id);
+        if($tour->tour_status != 0){
+            return response()->json(['message' => 'Cannot update item'], 403);
+        }
         $tour->tour_code = $tour_tourist_route['tr_id'].date_format(date_create($date),"Ymd");;
         $tour->tour_tourist_route = $tour_tourist_route['tr_id'];
         $tour->tour_time_start = $date;
@@ -115,6 +118,7 @@ class TourController extends Controller
             $tour->tour_price = $tour->tour_price - $tour->tour_price*$tour_promotion['prom_percent_promotion']/100;
         }
         $tour->save();
+        return ['message' => 'Tour updated'];
     }
 
     /**
@@ -127,7 +131,37 @@ class TourController extends Controller
     {
         $this->authorize('isAdmin');
         $tour = Tour::find($id);
+        if($tour->tour_status != 1){
+            return response()->json(['message' => 'Cannot delete item'], 403);
+        }
         $tour->delete();
-        return ['message' => 'Tour Deleted'];
+        return ['message' => 'Tour deleted'];
+    }
+
+    public function updateTourCost(Request $request, $id)
+    {
+        $this->validate($request,[
+            'tour_cost' => 'required|numeric'
+        ]);
+        //$this->authorize('isAdmin');
+        $tour = Tour::find($id);
+        if($tour->tour_status != 2){
+            return response()->json(['message' => 'Cannot update item'], 403);
+        }
+        $tour->tour_cost = $request['tour_cost'];
+        $tour->save();
+        return ['message' => 'Tour updated'];
+    }
+
+    public function approvedTour(Request $request, $id)
+    {
+        $this->authorize('isAdmin');
+        $tour = Tour::find($id);
+        if($tour->tour_status != 2 && $tour->tour_cost != 0){
+            return response()->json(['message' => 'Cannot update item'], 403);
+        }
+        $tour->tour_status = 3;
+        $tour->save();
+        return ['message' => 'Tour updated'];
     }
 }

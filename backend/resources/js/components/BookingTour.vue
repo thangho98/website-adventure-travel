@@ -56,7 +56,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="book in bookings.data" :key="book.bt_id">
+                <tr v-for="book in bookings" :key="book.bt_id">
                   <td>{{book.bt_id}}</td>
                   <td>{{book.tour_code}}</td>
                   <td>{{book.tr_name}}</td>
@@ -94,9 +94,6 @@
               </tbody>
             </table>
           </div>
-          <div class="card-footer">
-            <pagination :data="bookings" @pagination-change-page="getResults"></pagination>
-          </div>
         </div>
       </div>
       <!-- END Full Table -->
@@ -113,21 +110,17 @@
 export default {
   data() {
     return {
-      bookings: {},
+      bookings: [],
       form: new Form({})
     };
   },
   methods: {
-    getResults(page = 1) {
-      axios.get(this.$Api + "/booking-tour?page=" + page).then(response => {
-        this.bookings = response.data;
-      });
-    },
     loadData() {
       if (this.$gate.isAdminOrAuthor()) {
-        axios
-          .get(this.$Api + "/booking-tour")
-          .then(({ data }) => (this.bookings = data));
+        axios.get(this.$Api + "/booking-tour").then(({ data }) => {
+          this.bookings = data;
+          this.$root.initDatatables();
+        });
       }
     },
     updateStatusCancel: function(id) {

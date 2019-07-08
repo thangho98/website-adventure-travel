@@ -35,7 +35,7 @@ class BookingTourController extends Controller
                     ->join('tours','tours.tour_id','booking_tours.bt_tour')
                     ->join('tourist_routes','tourist_routes.tr_id','tours.tour_tourist_route')
                     ->orderBy('bt_id','desc')
-                    ->paginate(5);
+                    ->get();
 
             return $list;
         }

@@ -27,7 +27,7 @@ class PromotionController extends Controller
     public function index()
     {
         if (\Gate::allows('isAdmin') || \Gate::allows('isAuthor')) {
-            return Promotion::latest()->paginate(5);
+            return Promotion::latest()->get();
         }
         else
             return ["message"=>"fail"];

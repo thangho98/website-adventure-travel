@@ -221,13 +221,17 @@ const app = new Vue({
     data: {
         search: ''
     },
-    // methods: {
-    //     searchit: _.debounce(() => {
-    //         Fire.$emit('searching');
-    //     }, 1000),
+    methods: {
+        // searchit: _.debounce(() => {
+        //     Fire.$emit('searching');
+        // }, 1000),
 
-    //     printme() {
-    //         window.print();
-    //     }
-    // }
+        // printme() {
+        //     window.print();
+        // }
+
+        initDatatables() {
+            //$('#js-datatables').DataTable();
+        }
+    }
 });

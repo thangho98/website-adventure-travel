@@ -30,6 +30,7 @@ use PayPal\Rest\ApiContext;
 use Session;
 use Illuminate\Support\Facades\URL;
 use Redirect;
+use Mail;
 class BookingController extends Controller
 {
     
@@ -254,6 +255,20 @@ class BookingController extends Controller
             DB::table('tours')
             ->where('tour_code', $code)
             ->update(['tour_slot_book' => $slot]);
+
+            // $email = $req->cus_email;
+            // $data['carts'] = $carts;
+            // $data['info'] = $req->all();
+            
+            // Mail::send('abcstore.email', $data, function ($message) use($email) {
+            //     $message->from('thanglong2098@gmail.com', 'ABCStore');
+    
+            //     $message->to($email, $email);
+    
+            //     $message->cc('16521484@gm.uit.edu.vn', 'ABCStore');
+    
+            //     $message->subject('Xác nhận hóa đơn mua hàng ABCStore');
+            // });
 
             return redirect(route('personal'));
 

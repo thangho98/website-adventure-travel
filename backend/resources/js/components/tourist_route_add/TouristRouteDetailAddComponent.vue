@@ -7,7 +7,17 @@
         name="trd_date"
         class="form-control text-center"
         readonly
-      >
+      />
+    </td>
+    <td class="text-left">
+      <input
+        v-model="trd.trd_title"
+        type="text"
+        name="trd_title"
+        class="form-control"
+        required
+        @keyup="updateData"
+      />
     </td>
     <td class="text-left">
       <textarea

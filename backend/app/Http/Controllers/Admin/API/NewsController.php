@@ -32,7 +32,7 @@ class NewsController extends Controller
             $list = DB::table('news')
                     ->join('users','news.news_user_admin','users.id')
                     ->orderBy('news_id','desc')
-                    ->paginate(5);
+                    ->get();
 
             return $list;
         }

@@ -36,7 +36,7 @@
         </div>
         <div class="block-content">
           <div class="table-responsive">
-             <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
+            <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
               <thead>
                 <tr>
                   <th>ID</th>
@@ -50,7 +50,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="userClient in user_clients.data" :key="userClient.user_id">
+                <tr v-for="userClient in user_clients" :key="userClient.user_id">
                   <td>{{userClient.user_id}}</td>
                   <td>{{userClient.user_name}}</td>
                   <td>{{userClient.user_email}}</td>
@@ -88,9 +88,6 @@
                 </tr>
               </tbody>
             </table>
-          </div>
-          <div class="card-footer">
-            <pagination :data="user_clients" @pagination-change-page="getResults"></pagination>
           </div>
         </div>
       </div>
@@ -237,7 +234,7 @@ export default {
   data() {
     return {
       user_info: {},
-      user_clients: {}
+      user_clients: []
     };
   },
   methods: {
@@ -250,11 +247,6 @@ export default {
         $("#progressModal").on("hidden.bs.modal", function() {
           $("#showInfo").modal("show");
         });
-      });
-    },
-    getResults(page = 1) {
-      axios.get(this.$Api + "/user-client?page=" + page).then(response => {
-        this.user_clients = response.data;
       });
     },
     loadData() {

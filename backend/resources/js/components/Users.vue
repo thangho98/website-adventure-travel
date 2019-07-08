@@ -43,7 +43,7 @@
         </div>
         <div class="block-content">
           <div class="table-responsive">
-            <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
+            <table id="js-datatables" class="table table-bordered table-striped table-vcenter">
               <thead>
                 <tr>
                   <th>ID</th>
@@ -55,7 +55,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="user in users.data" :key="user.id">
+                <tr v-for="user in users" :key="user.id">
                   <td>{{user.id}}</td>
                   <td>{{user.name}}</td>
                   <td>{{user.email}}</td>
@@ -155,7 +155,7 @@ export default {
   data() {
     return {
       editmode: false,
-      users: {},
+      users: [],
       form: new Form({
         id: "",
         name: "",
@@ -168,11 +168,6 @@ export default {
     };
   },
   methods: {
-    getResults(page = 1) {
-      axios.get(this.$Api + "/user?page=" + page).then(response => {
-        this.users = response.data;
-      });
-    },
     loadUsers() {
       if (this.$gate.isAdminOrAuthor()) {
         axios.get(this.$Api + "/user").then(({ data }) => (this.users = data));
