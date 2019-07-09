@@ -100,12 +100,17 @@
                                         <div class="price"><span>{{number_format($tour_detail[0]->tr_original_price,0,',','.')}} đ</span> {{number_format($tour_detail[0]->tour_price,0,',','.')}} đ</div>
                                         <div class="slot">Số chổ còn nhận: <span>{{$tour_detail[0]->tr_max_slot - $tour_detail[0]->tour_slot_book}}</span></div>
                                     </div>
-                                    @if( $tour_detail[0]->tr_max_slot != $tour_detail[0]->tour_slot_book)
-                                        <div class="btn-booking col-sm-5"><a href="{{asset('clients/booking/'.$code)}}">ĐẶT NGAY</a></div>
-                                    @else
-                                       <div class="btn-booking col-sm-5"><a>ĐẶT NGAY</a></div>
+                                    @if(Route::has('login'))
+                                        @if(Auth::guard('client')->check())
+                                            @if( $tour_detail[0]->tr_max_slot != $tour_detail[0]->tour_slot_book)
+                                            <div class="btn-booking col-sm-5"><a href="{{asset('clients/booking/'.$code)}}">ĐẶT NGAY</a></div>
+                                            @else
+                                            <div class="btn-booking col-sm-5"><a>ĐẶT NGAY</a></div>
+                                            @endif
+                                        @else
+                                            <div class="btn-booking btn-show-signin col-sm-5"><a>ĐẶT NGAY</a></div>
+                                        @endif
                                     @endif
-
                                 </div>
                             </div>
 
@@ -137,11 +142,18 @@
 
                 <ul class="right navbar-nav">
                     <li class="nav-item">
-                    @if( $tour_detail[0]->tr_max_slot != $tour_detail[0]->tour_slot_book)
-                        <a class="booking nav-link" href="{{asset('clients/booking/'.$code)}}">ĐẶT NGAY</a>
-                    @else
-                        <a class="booking nav-link">ĐẶT NGAY</a>
-                    @endif  
+                    @if(Route::has('login'))
+                        @if(Auth::guard('client')->check())
+                            @if( $tour_detail[0]->tr_max_slot != $tour_detail[0]->tour_slot_book)
+                                <a class="booking nav-link" href="{{asset('clients/booking/'.$code)}}">ĐẶT NGAY</a>
+                            @else
+                                <a class="booking nav-link">ĐẶT NGAY</a>
+                            @endif  
+                        @else
+                            <a class="booking nav-link btn-show-signin">ĐẶT NGAY</a>
+                        @endif
+                    @endif
+                    
                     </li>
                 </ul>
             </nav>
