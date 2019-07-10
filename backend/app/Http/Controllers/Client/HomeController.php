@@ -13,8 +13,8 @@ class HomeController extends Controller
     public function Index()
     {
         $data['categories'] = $this->getCategory();
-        $data['tours_hot'] = $this->getToursHot();
-        $data['tours_latest'] = $this->getToursLatest();
+        $data['tours_hot'] = $this->getToursHot()->take(4);
+        $data['tours_latest'] = $this->getToursLatest()->take(4);
         $data['tours_last_hour'] = $this->getToursLastHour();
         return view('client.home', $data);
     }

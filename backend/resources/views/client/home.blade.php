@@ -125,7 +125,7 @@
         <div class="tours-list">
             <div class="wrapper">
                 <div class="row">
-                    @for($i = 0; $i < 4; $i++) <div class="tour-item col-lg-3 col-md-6">
+                    @for($i = 0; $i < count($tours_hot); $i++) <div class="tour-item col-lg-3 col-md-6">
                         <div class="tour-item-wrapper">
                             <div class="tour-header">
                                 <a href="{{asset('clients/tour/'.$tours_hot[$i]->tour_code)}}"><img class="ani-img-zoom" src="{{asset('/img/tourist-route/poster/'.$tours_hot[$i]->tr_poster)}}" alt="{{$tours_hot[$i]->tr_name}}"></a>
@@ -177,7 +177,7 @@
     <div class="tours-list">
         <div class="wrapper">
             <div class="row">
-                @for($i = 0; $i < 4; $i++) <div class="tour-item col-lg-3 col-md-6">
+                @for($i = 0; $i < count($tours_latest); $i++) <div class="tour-item col-lg-3 col-md-6">
                     <div class="tour-item-wrapper">
                         <div class="tour-header">
                             <a href="{{asset('clients/tour/'.$tours_latest[$i]->tour_code)}}"><img class="ani-img-zoom" src="{{asset('/img/tourist-route/poster/'.$tours_latest[$i]->tr_poster)}}" alt="{{$tours_latest[$i]->tr_name}}"></a>

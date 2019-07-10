@@ -8,16 +8,16 @@
           class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center"
         >
           <h1 class="flex-sm-fill h3 my-2">
-            Vé đặt book
+            Vé đặt tour
             <small
               class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted"
-            >Danh sách vé đặt book</small>
+            >Danh sách vé đặt tour</small>
           </h1>
           <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
             <ol class="breadcrumb breadcrumb-alt">
               <li class="breadcrumb-item">Quản lý</li>
               <li class="breadcrumb-item" aria-current="page">
-                <a class="link-fx" href>Vé đặt book</a>
+                <a class="link-fx" href>Vé đặt tour</a>
               </li>
             </ol>
           </nav>
@@ -30,14 +30,14 @@
     <div class="content">
       <!-- Full Table -->
       <div class="block">
-        <div class="block-header">
+        <!-- <div class="block-header">
           <h3 class="block-title"></h3>
           <div class="block-options">
-            <router-link to="/admin/book/add" class="btn btn-success">
+            <router-link to="/admin/booking-tour/add" class="btn btn-success">
               <i class="fas fa-plus white fa-fw"></i>
             </router-link>
           </div>
-        </div>
+        </div>-->
         <div class="block-content">
           <div class="table-responsive">
             <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons">

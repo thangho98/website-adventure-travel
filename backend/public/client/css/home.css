@@ -1723,9 +1723,7 @@ body #content #booking-tour .list-tours .item label {
 }
 
 body #content #booking-tour .list-tours .item input {
-  width: -webkit-min-content;
-  width: -moz-min-content;
-  width: min-content;
+  width: 70%;
   font-size: 14px;
   border: solid 1px #19a1e5;
   padding: 0 5px;
@@ -1775,7 +1773,7 @@ body #content #booking-tour .list-tours #price-sum span {
   color: #b40000;
 }
 
-body #content #booking-tour .list-tours #btn-book {
+body #content #booking-tour .list-tours #btn-book-paypal {
   border: none;
   background: #19a1e5;
   color: #fff;
@@ -1785,8 +1783,22 @@ body #content #booking-tour .list-tours #btn-book {
   margin: 5px 5px;
 }
 
-body #content #booking-tour .list-tours #btn-book:hover {
+body #content #booking-tour .list-tours #btn-book-paypal:hover {
   background: #0080c0;
+}
+
+body #content #booking-tour .list-tours #btn-book {
+  border: none;
+  background: #02ee02;
+  color: #fff;
+  line-height: 50px;
+  font-size: 20px;
+  width: 100%;
+  margin: 5px 5px;
+}
+
+body #content #booking-tour .list-tours #btn-book:hover {
+  background: #00c010;
 }
 
 body #content #booking-tour .list-tours .tours .tour {
