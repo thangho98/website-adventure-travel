@@ -29,6 +29,7 @@ Route::apiResources([
     'promotion'=>'Admin\API\PromotionController',
     'news'=>'Admin\API\NewsController',
     'booking-tour'=>'Admin\API\BookingTourController',
+    'revenue'=>'Admin\API\RevenueController',
 ]);
 
 Route::get('profile', 'Admin\API\UserController@profile');

@@ -219,11 +219,11 @@
                         </a>
                         <ul class="nav-main-submenu">
                             <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_pages_error_all.html">
+                                <router-link to="/admin/revenue" class="nav-main-link">
                                     <span class="nav-main-link-name">Doanh thu</span>
-                                </a>
+                                </router-link>
                             </li>
-                            <li class="nav-main-item">
+                            {{-- <li class="nav-main-item">
                                 <a class="nav-main-link" href="op_error_400.html">
                                     <span class="nav-main-link-name">Sản phẩm</span>
                                 </a>
@@ -247,7 +247,7 @@
                                 <a class="nav-main-link" href="op_error_404.html">
                                     <span class="nav-main-link-name">Trạng thái</span>
                                 </a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </li>
                     <li class="nav-main-heading">Nhân viên</li>
@@ -444,7 +444,7 @@
     <script src="{{asset('assets/js/plugins/datatables/buttons/buttons.colVis.min.js')}}"></script>
     
     <!-- Page JS Code -->
-    <script src="{{asset('assets/js/pages/be_tables_datatables.min.js')}}"></script>
+    {{-- <script src="{{asset('assets/js/pages/be_tables_datatables.min.js')}}"></script> --}}
 </body>
 
 </html>

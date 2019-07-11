@@ -49,6 +49,7 @@ const routes = [
     { path: '/admin/news/add', component: require('./components/NewsAdd.vue').default },
     { path: '/admin/news/edit/:news_id', name: 'editNews', component: require('./components/NewsEdit.vue').default },
     { path: '/admin/booking-tour', component: require('./components/BookingTour.vue').default },
+    { path: '/admin/revenue', component: require('./components/Revenue.vue').default },
     { path: '/admin/*', component: require('./components/NotFound.vue').default }
 ]
 
@@ -231,7 +232,7 @@ const app = new Vue({
         // }
 
         initDatatables() {
-            //$('#js-datatables').DataTable();
+            $('#js-datatables').DataTable();
         }
     }
 });

@@ -43,7 +43,7 @@
         </div>
         <div class="block-content">
           <div class="table-responsive">
-            <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
+            <table id="js-datatables" class="table table-bordered table-striped table-vcenter">
               <thead>
                 <tr>
                   <th>ID</th>
@@ -323,6 +323,11 @@ export default {
       this.loadData();
     });
     //setInterval(()=>this.loadData(), 3000);
+  },
+  updated: function() {
+    this.$nextTick(function() {
+      this.$root.initDatatables();
+    });
   }
 };
 </script>
