@@ -62,15 +62,15 @@
                   <td>{{tour.tour_time_start | myDate}}</td>
                   <td>{{tour.tour_slot_book}}/{{tour.tr_max_slot}}</td>
                   <td>{{tour.tour_price | formatPrice}} VNĐ</td>
-                  <td v-show="tour.prom_name != null">{{tour.prom_name}}</td>
-                  <td v-show="tour.prom_name == null">Không có khuyến mãi</td>
+                  <td v-if="tour.prom_name != null">{{tour.prom_name}}</td>
+                  <td v-if="tour.prom_name == null">Không có khuyến mãi</td>
                   <td>{{tour.tour_total_fare | formatPrice}} VNĐ</td>
                   <td>{{tour.tour_cost | formatPrice}} VNĐ</td>
-                  <td v-show="tour.tour_status == 0">Chưa khởi hành</td>
-                  <td v-show="tour.tour_status == 1">Chốt danh sách</td>
-                  <td v-show="tour.tour_status == 2">Đã kết thúc</td>
-                  <td v-show="tour.tour_status == 3">Đã duyệt chi phí</td>
-                  <td class="text-center" v-show="tour.tour_status == 0">
+                  <td v-if="tour.tour_status == 0">Chưa khởi hành</td>
+                  <td v-if="tour.tour_status == 1">Chốt danh sách</td>
+                  <td v-if="tour.tour_status == 2">Đã kết thúc</td>
+                  <td v-if="tour.tour_status == 3">Đã duyệt chi phí</td>
+                  <td class="text-center" v-if="tour.tour_status == 0">
                     <a href="#" data-toggle="tooltip" title="Duyệt chi phí">
                       <i class="fa fa-check yellow"></i>
                     </a>
@@ -94,7 +94,7 @@
                       <i class="fa fa-trash red"></i>
                     </a>
                   </td>
-                  <td class="text-center" v-show="tour.tour_status == 1">
+                  <td class="text-center" v-if="tour.tour_status == 1">
                     <a href="#" data-toggle="tooltip" title="Duyệt chi phí">
                       <i class="fa fa-check yellow"></i>
                     </a>
@@ -109,10 +109,10 @@
                       <i class="fa fa-trash red"></i>
                     </a>
                   </td>
-                  <td class="text-center" v-show="tour.tour_status == 2">
+                  <td class="text-center" v-if="tour.tour_status == 2">
                     <a
                       href="#"
-                      v-show="!$gate.isAdmin() || tour.tour_cost == 0"
+                      v-if="!$gate.isAdmin() || tour.tour_cost == 0"
                       data-toggle="tooltip"
                       title="Duyệt chi phí"
                     >
@@ -120,7 +120,7 @@
                     </a>
                     <a
                       href="#"
-                      v-show="$gate.isAdmin() && tour.tour_cost != 0"
+                      v-if="$gate.isAdmin() && tour.tour_cost != 0"
                       data-toggle="tooltip"
                       title="Duyệt chi phí"
                       @click="approvedTour(tour.tour_id)"
@@ -143,7 +143,7 @@
                       <i class="fa fa-trash red"></i>
                     </a>
                   </td>
-                  <td class="text-center" v-show="tour.tour_status == 3">
+                  <td class="text-center" v-if="tour.tour_status == 3">
                     <a href="#" data-toggle="tooltip" title="Duyệt chi phí">
                       <i class="fa fa-check yellow"></i>
                     </a>

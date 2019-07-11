@@ -55,10 +55,10 @@
                   <td>{{userClient.user_name}}</td>
                   <td>{{userClient.user_email}}</td>
                   <td>{{userClient.user_phone}}</td>
-                  <td v-show="userClient.user_gender == 1">
+                  <td v-if="userClient.user_gender == 1">
                     <span class="badge badge-primary">Nam</span>
                   </td>
-                  <td v-show="userClient.user_gender != 1">
+                  <td v-else>
                     <span class="badge badge-danger">Nữ</span>
                   </td>
                   <td>{{userClient.user_birthday}}</td>
