@@ -40,7 +40,7 @@
         </div>-->
         <div class="block-content">
           <div class="table-responsive">
-            <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
+            <table id="js-dataTable" class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
               <thead>
                 <tr>
                   <th>ID</th>
@@ -74,7 +74,7 @@
                   <td v-else>
                     <span class="badge badge-danger">Đã hủy</span>
                   </td>
-                  <td v-show="book.bt_status == 0">
+                  <td v-if="book.bt_status == 0">
                     <a href="#" @click="updateStatusPayed(book.bt_id)">
                       <i class="fa fa-check blue"></i>
                     </a>/
@@ -82,7 +82,7 @@
                       <i class="fa fa-times red"></i>
                     </a>
                   </td>
-                  <td v-show="book.bt_status != 0">
+                  <td v-if="book.bt_status != 0">
                     <a href="#" disabled>
                       <i class="fa fa-check blue"></i>
                     </a>/

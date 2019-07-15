@@ -17,7 +17,7 @@
                             <div class="row">
                                 <div class="col-lg-3">
                                     <div class="tour-img">
-                                        <img src="/client/imgs/1.jpg" alt="">
+                                        <img src="/img/tourist-route/poster/{{$tour_detail->tr_poster}}" alt="">
                                     </div>
                                 </div>
                                 <div class="col-lg-9">
@@ -137,9 +137,14 @@
                                     </div>
                                 </div>
 
-                                <!-- <div id="price-sum">TỔNG CỘNG: <span>20,500,000 đ</span></div> -->
-                                <button id="btn-book-paypal" type="submit" value="paypal" name="book">Thanh toán qua <i class="fab fa-cc-paypal"></i></button>
-                                <button id="btn-book" type="submit" value="book" name="book">Đặt vé giữ chỗ</i></button>
+                                @if ($tour_detail->tour_status == 0)
+                                    <!-- <div id="price-sum">TỔNG CỘNG: <span>20,500,000 đ</span></div> -->
+                                    <button id="btn-book-paypal" type="submit" value="paypal" name="book">Thanh toán qua <i class="fab fa-cc-paypal"></i></button>
+                                    <button id="btn-book" type="submit" value="book" name="book">Đặt vé giữ chỗ</i></button>
+                                @else
+                                    <h3 class="text-danger pt-5">Tour hết hạn đăng kí</h3>
+                                @endif
+                                
                             </div>
                         </div>
                         {{csrf_field()}}

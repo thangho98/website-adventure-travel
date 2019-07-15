@@ -128,7 +128,7 @@ class BookingController extends Controller
 
             $item_1->setName($name) /** item name **/
                 ->setCurrency('USD')
-                ->setQuantity($request->num_child +  $request->num_adult)
+                ->setQuantity(1)
                 ->setPrice($bt_total_price); /** unit price **/
 
             $item_list = new ItemList();

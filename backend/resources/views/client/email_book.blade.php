@@ -130,7 +130,7 @@
 																	<tbody>
 																		<tr>
 																			<td>Nhận vé tại văn phòng Y2T Tour<br>Hạn
-																				chót nhận vé : 19:30 ngày {{date("d/m/Y", strtotime($info->bt_date.' -5 days'))}}
+																				chót nhận vé : 19:30 ngày {{date("d/m/Y", strtotime($tour_detail->tour_time_start.' -3 days'))}}
 																			</td>
 																		</tr>
 																	</tbody>

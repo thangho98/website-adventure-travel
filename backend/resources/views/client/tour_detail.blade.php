@@ -272,9 +272,17 @@
                                     </td>
                                     <td>{{number_format($orther_days[$i]->tour_price,0,',','.')}} đ</td>
                                     <td>Còn {{$orther_days[$i]->tr_max_slot - $orther_days[$i]->tour_slot_book}} chổ</td>
-                                    <td><a href="{{asset('clients/booking/'.$orther_days[$i]->tour_code)}}"><button class="btn btn-danger">Book</button></a></td>
+                                    @if ($orther_days[$i]->tour_status == 0)
+                                        @if(Auth::guard('client')->check())
+                                            <td><a href="{{asset('clients/booking/'.$orther_days[$i]->tour_code)}}"><button class="btn btn-success">Book</button></a></td>
+                                        @else
+                                            <td><a><button class="btn btn-success btn-show-signin">Book</button></a></td>
+                                        @endif
+                                    @else
+                                        <td><a><button class="btn btn-danger" disabled>Hết hạn</button></a></td>
+                                    @endif
                                     </tr>
-                                    @endfor
+                                @endfor
                             </tbody>
                         </table>
                     </div>

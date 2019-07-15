@@ -40,7 +40,10 @@
         </div>
         <div class="block-content">
           <div class="table-responsive">
-            <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
+            <table
+              id="js-dataTable"
+              class="table table-bordered table-striped table-vcenter js-dataTable-buttons"
+            >
               <thead>
                 <tr>
                   <th>ID</th>
