@@ -43,7 +43,7 @@
         </div>
         <div class="block-content">
           <div class="table-responsive">
-             <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
+            <table id="js-dataTable" class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
               <thead>
                 <tr>
                   <th>ID</th>
@@ -54,7 +54,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="location in locations.data" :key="location.loca_id">
+                <tr v-for="location in locations" :key="location.loca_id">
                   <td>{{location.loca_id}}</td>
                   <td v-if="location.loca_poster.length > 0">
                     <a data-fancybox="gallery" :href="loadImage(location.loca_poster)">
@@ -81,9 +81,6 @@
                 </tr>
               </tbody>
             </table>
-          </div>
-          <div class="card-footer">
-            <pagination :data="locations" @pagination-change-page="getResults"></pagination>
           </div>
         </div>
       </div>
@@ -173,7 +170,7 @@ export default {
   data() {
     return {
       editMode: false,
-      locations: {},
+      locations: [],
       form: new Form({
         loca_id: "",
         loca_name: "",
@@ -214,11 +211,6 @@ export default {
         this.form.loca_poster = reader.result;
       };
       reader.readAsDataURL(file);
-    },
-    getResults(page = 1) {
-      axios.get(this.$Api + "/location?page=" + page).then(response => {
-        this.locations = response.data;
-      });
     },
     loadData() {
       if (this.$gate.isAdminOrAuthor()) {
@@ -309,6 +301,11 @@ export default {
       this.loadData();
     });
     //setInterval(()=>this.loadData(), 3000);
+  },
+  updated: function ()  {
+    this.$nextTick(function() {
+      this.$root.initDatatables();
+    });
   }
 };
 </script>

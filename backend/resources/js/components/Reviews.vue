@@ -36,7 +36,7 @@
         </div>
         <div class="block-content">
           <div class="table-responsive">
-             <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
+            <table id="js-dataTable" class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
               <thead>
                 <tr>
                   <th>ID</th>
@@ -49,7 +49,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="review in reviews.data" :key="review.revi_id">
+                <tr v-for="review in reviews" :key="review.revi_id">
                   <td>{{review.revi_id}}</td>
                   <td>{{review.user_name}}</td>
                   <td>{{review.revi_time | myDate}}</td>
@@ -66,9 +66,6 @@
                 </tr>
               </tbody>
             </table>
-          </div>
-          <div class="card-footer">
-            <pagination :data="reviews" @pagination-change-page="getResults"></pagination>
           </div>
         </div>
       </div>
@@ -87,15 +84,10 @@ export default {
   data() {
     return {
       user_info: {},
-      reviews: {}
+      reviews: []
     };
   },
   methods: {
-    getResults(page = 1) {
-      axios.get(this.$Api + "/review?page=" + page).then(response => {
-        this.reviews = response.data;
-      });
-    },
     loadData() {
       if (this.$gate.isAdminOrAuthor()) {
         axios
@@ -134,6 +126,11 @@ export default {
       this.loadData();
     });
     //setInterval(()=>this.loadData(), 3000);
+  },
+  updated: function ()  {
+    this.$nextTick(function() {
+      this.$root.initDatatables();
+    });
   }
 };
 </script>

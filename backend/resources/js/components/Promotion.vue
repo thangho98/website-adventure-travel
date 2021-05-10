@@ -43,7 +43,7 @@
         </div>
         <div class="block-content">
           <div class="table-responsive">
-             <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
+            <table id="js-dataTable" class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
               <thead>
                 <tr>
                   <th>ID</th>
@@ -55,7 +55,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="promotion in promotions.data" :key="promotion.prom_id">
+                <tr v-for="promotion in promotions" :key="promotion.prom_id">
                   <td>{{promotion.prom_id}}</td>
                   <td v-if="promotion.prom_banner.length > 0">
                     <a data-fancybox="gallery" :href="loadImage(promotion.prom_banner)">
@@ -83,9 +83,6 @@
                 </tr>
               </tbody>
             </table>
-          </div>
-          <div class="card-footer">
-            <pagination :data="promotions" @pagination-change-page="getResults"></pagination>
           </div>
         </div>
       </div>
@@ -194,7 +191,7 @@ export default {
   data() {
     return {
       editMode: false,
-      promotions: {},
+      promotions: [],
       form: new Form({
         prom_id: "",
         prom_name: "",
@@ -236,11 +233,6 @@ export default {
         this.form.prom_banner = reader.result;
       };
       reader.readAsDataURL(file);
-    },
-    getResults(page = 1) {
-      axios.get(this.$Api + "/promotion?page=" + page).then(response => {
-        this.promotions = response.data;
-      });
     },
     loadData() {
       if (this.$gate.isAdminOrAuthor()) {
@@ -331,6 +323,11 @@ export default {
       this.loadData();
     });
     //setInterval(()=>this.loadData(), 3000);
+  },
+  updated: function ()  {
+    this.$nextTick(function() {
+      this.$root.initDatatables();
+    });
   }
 };
 </script>

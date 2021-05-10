@@ -8,16 +8,16 @@
           class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center"
         >
           <h1 class="flex-sm-fill h3 my-2">
-            Vé đặt book
+            Vé đặt tour
             <small
               class="d-block d-sm-inline-block mt-2 mt-sm-0 font-size-base font-w400 text-muted"
-            >Danh sách vé đặt book</small>
+            >Danh sách vé đặt tour</small>
           </h1>
           <nav class="flex-sm-00-auto ml-sm-3" aria-label="breadcrumb">
             <ol class="breadcrumb breadcrumb-alt">
               <li class="breadcrumb-item">Quản lý</li>
               <li class="breadcrumb-item" aria-current="page">
-                <a class="link-fx" href>Vé đặt book</a>
+                <a class="link-fx" href>Vé đặt tour</a>
               </li>
             </ol>
           </nav>
@@ -30,17 +30,17 @@
     <div class="content">
       <!-- Full Table -->
       <div class="block">
-        <div class="block-header">
+        <!-- <div class="block-header">
           <h3 class="block-title"></h3>
           <div class="block-options">
-            <router-link to="/admin/book/add" class="btn btn-success">
+            <router-link to="/admin/booking-tour/add" class="btn btn-success">
               <i class="fas fa-plus white fa-fw"></i>
             </router-link>
           </div>
-        </div>
+        </div>-->
         <div class="block-content">
           <div class="table-responsive">
-            <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
+            <table id="js-dataTable" class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
               <thead>
                 <tr>
                   <th>ID</th>
@@ -56,7 +56,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="book in bookings.data" :key="book.bt_id">
+                <tr v-for="book in bookings" :key="book.bt_id">
                   <td>{{book.bt_id}}</td>
                   <td>{{book.tour_code}}</td>
                   <td>{{book.tr_name}}</td>
@@ -74,7 +74,7 @@
                   <td v-else>
                     <span class="badge badge-danger">Đã hủy</span>
                   </td>
-                  <td v-show="book.bt_status == 0">
+                  <td v-if="book.bt_status == 0">
                     <a href="#" @click="updateStatusPayed(book.bt_id)">
                       <i class="fa fa-check blue"></i>
                     </a>/
@@ -82,7 +82,7 @@
                       <i class="fa fa-times red"></i>
                     </a>
                   </td>
-                  <td v-show="book.bt_status != 0">
+                  <td v-if="book.bt_status != 0">
                     <a href="#" disabled>
                       <i class="fa fa-check blue"></i>
                     </a>/
@@ -93,9 +93,6 @@
                 </tr>
               </tbody>
             </table>
-          </div>
-          <div class="card-footer">
-            <pagination :data="bookings" @pagination-change-page="getResults"></pagination>
           </div>
         </div>
       </div>
@@ -113,21 +110,16 @@
 export default {
   data() {
     return {
-      bookings: {},
+      bookings: [],
       form: new Form({})
     };
   },
   methods: {
-    getResults(page = 1) {
-      axios.get(this.$Api + "/booking-tour?page=" + page).then(response => {
-        this.bookings = response.data;
-      });
-    },
     loadData() {
       if (this.$gate.isAdminOrAuthor()) {
-        axios
-          .get(this.$Api + "/booking-tour")
-          .then(({ data }) => (this.bookings = data));
+        axios.get(this.$Api + "/booking-tour").then(({ data }) => {
+          this.bookings = data;
+        });
       }
     },
     updateStatusCancel: function(id) {
@@ -189,6 +181,11 @@ export default {
       this.loadData();
     });
     //setInterval(()=>this.loadData(), 3000);
+  },
+  updated: function() {
+    this.$nextTick(function() {
+      this.$root.initDatatables();
+    });
   }
 };
 </script>

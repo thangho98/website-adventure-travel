@@ -43,7 +43,7 @@
         </div>
         <div class="block-content">
           <div class="table-responsive">
-             <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
+            <table id="js-dataTable" class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
               <thead>
                 <tr>
                   <th>ID</th>
@@ -53,7 +53,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="cate in categories.data" :key="cate.cate_id">
+                <tr v-for="cate in categories" :key="cate.cate_id">
                   <td>{{cate.cate_id}}</td>
                   <td v-if="cate.cate_image.length > 0">
                     <a data-fancybox="gallery" :href="loadImage(cate.cate_image)">
@@ -79,9 +79,6 @@
                 </tr>
               </tbody>
             </table>
-          </div>
-          <div class="card-footer">
-            <pagination :data="categories" @pagination-change-page="getResults"></pagination>
           </div>
         </div>
       </div>
@@ -161,7 +158,7 @@ export default {
   data() {
     return {
       editMode: false,
-      categories: {},
+      categories: [],
       form: new Form({
         cate_id: "",
         cate_name: "",
@@ -201,11 +198,6 @@ export default {
         this.form.cate_image = reader.result;
       };
       reader.readAsDataURL(file);
-    },
-    getResults(page = 1) {
-      axios.get(this.$Api + "/category?page=" + page).then(response => {
-        this.categories = response.data;
-      });
     },
     loadData() {
       if (this.$gate.isAdminOrAuthor()) {
@@ -291,21 +283,16 @@ export default {
     }
   },
   created() {
-    Fire.$on("searching", () => {
-      let query = this.$parent.search;
-      axios
-        .get(this.$Api + "/findUser?q=" + query)
-        .then(data => {
-          this.categories = data.data;
-        })
-        .catch(() => {});
-    });
-
     this.loadData();
     Fire.$on("reloadData", () => {
       this.loadData();
     });
     //setInterval(()=>this.loadData(), 3000);
+  },
+  updated: function() {
+    this.$nextTick(function() {
+      this.$root.initDatatables();
+    });
   }
 };
 </script>

@@ -28,7 +28,7 @@ class UserClientController extends Controller
     public function index()
     {
         if (\Gate::allows('isAdmin') || \Gate::allows('isAuthor')) {
-            return UserClient::latest()->paginate(5);
+            return UserClient::latest()->get();
         }
         else
             return ["message"=>"fail"];

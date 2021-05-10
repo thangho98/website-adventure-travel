@@ -100,12 +100,17 @@
                                         <div class="price"><span>{{number_format($tour_detail[0]->tr_original_price,0,',','.')}} đ</span> {{number_format($tour_detail[0]->tour_price,0,',','.')}} đ</div>
                                         <div class="slot">Số chổ còn nhận: <span>{{$tour_detail[0]->tr_max_slot - $tour_detail[0]->tour_slot_book}}</span></div>
                                     </div>
-                                    @if( $tour_detail[0]->tr_max_slot != $tour_detail[0]->tour_slot_book)
-                                        <div class="btn-booking col-sm-5"><a href="{{asset('clients/booking/'.$code)}}">ĐẶT NGAY</a></div>
-                                    @else
-                                       <div class="btn-booking col-sm-5"><a>ĐẶT NGAY</a></div>
+                                    @if(Route::has('login'))
+                                        @if(Auth::guard('client')->check())
+                                            @if( $tour_detail[0]->tr_max_slot != $tour_detail[0]->tour_slot_book)
+                                            <div class="btn-booking col-sm-5"><a href="{{asset('clients/booking/'.$code)}}">ĐẶT NGAY</a></div>
+                                            @else
+                                            <div class="btn-booking col-sm-5"><a>ĐẶT NGAY</a></div>
+                                            @endif
+                                        @else
+                                            <div class="btn-booking btn-show-signin col-sm-5"><a>ĐẶT NGAY</a></div>
+                                        @endif
                                     @endif
-
                                 </div>
                             </div>
 
@@ -137,11 +142,18 @@
 
                 <ul class="right navbar-nav">
                     <li class="nav-item">
-                    @if( $tour_detail[0]->tr_max_slot != $tour_detail[0]->tour_slot_book)
-                        <a class="booking nav-link" href="{{asset('clients/booking/'.$code)}}">ĐẶT NGAY</a>
-                    @else
-                        <a class="booking nav-link">ĐẶT NGAY</a>
-                    @endif  
+                    @if(Route::has('login'))
+                        @if(Auth::guard('client')->check())
+                            @if( $tour_detail[0]->tr_max_slot != $tour_detail[0]->tour_slot_book)
+                                <a class="booking nav-link" href="{{asset('clients/booking/'.$code)}}">ĐẶT NGAY</a>
+                            @else
+                                <a class="booking nav-link">ĐẶT NGAY</a>
+                            @endif  
+                        @else
+                            <a class="booking nav-link btn-show-signin">ĐẶT NGAY</a>
+                        @endif
+                    @endif
+                    
                     </li>
                 </ul>
             </nav>
@@ -260,9 +272,17 @@
                                     </td>
                                     <td>{{number_format($orther_days[$i]->tour_price,0,',','.')}} đ</td>
                                     <td>Còn {{$orther_days[$i]->tr_max_slot - $orther_days[$i]->tour_slot_book}} chổ</td>
-                                    <td><a href="{{asset('clients/booking/'.$orther_days[$i]->tour_code)}}"><button class="btn btn-danger">Book</button></a></td>
+                                    @if ($orther_days[$i]->tour_status == 0)
+                                        @if(Auth::guard('client')->check())
+                                            <td><a href="{{asset('clients/booking/'.$orther_days[$i]->tour_code)}}"><button class="btn btn-success">Book</button></a></td>
+                                        @else
+                                            <td><a><button class="btn btn-success btn-show-signin">Book</button></a></td>
+                                        @endif
+                                    @else
+                                        <td><a><button class="btn btn-danger" disabled>Hết hạn</button></a></td>
+                                    @endif
                                     </tr>
-                                    @endfor
+                                @endfor
                             </tbody>
                         </table>
                     </div>

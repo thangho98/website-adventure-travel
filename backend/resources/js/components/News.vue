@@ -40,7 +40,7 @@
         </div>
         <div class="block-content">
           <div class="table-responsive">
-             <table class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
+            <table id="js-dataTable" class="table table-bordered table-striped table-vcenter js-dataTable-buttons">
               <thead>
                 <tr>
                   <th>ID</th>
@@ -53,7 +53,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="newz in newzs.data" :key="newz.news_id">
+                <tr v-for="newz in newzs" :key="newz.news_id">
                   <td>{{newz.news_id}}</td>
                   <td>{{newz.news_title}}</td>
                   <td v-if="newz.news_poster.length > 0">
@@ -88,9 +88,6 @@
               </tbody>
             </table>
           </div>
-          <div class="card-footer">
-            <pagination :data="newzs" @pagination-change-page="getResults"></pagination>
-          </div>
         </div>
       </div>
       <!-- END Full Table -->
@@ -107,18 +104,13 @@
 export default {
   data() {
     return {
-      newzs: {},
+      newzs: [],
       form: new Form({})
     };
   },
   methods: {
     loadImage(imageName) {
       return this.$Host + "/img/news/" + imageName;
-    },
-    getResults(page = 1) {
-      axios.get(this.$Api + "/news?page=" + page).then(response => {
-        this.newzs = response.data;
-      });
     },
     loadData() {
       if (this.$gate.isAdminOrAuthor()) {
@@ -156,6 +148,11 @@ export default {
       this.loadData();
     });
     //setInterval(()=>this.loadData(), 3000);
+  },
+  updated: function ()  {
+    this.$nextTick(function() {
+      this.$root.initDatatables();
+    });
   }
 };
 </script>

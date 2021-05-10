@@ -265,7 +265,8 @@
                 <table id="images" class="table table-striped table-bordered table-hover">
                   <thead>
                     <tr>
-                      <td style="width: 20%;">Ngày thứ</td>
+                      <td style="width: 10%;">Ngày thứ</td>
+                      <td style="width: 30%;">Tiêu đề</td>
                       <td>Mô tả</td>
                     </tr>
                   </thead>
@@ -400,6 +401,7 @@ export default {
         for (let index = 0; index < n; index++) {
           temp[start + index] = {
             trd_date: start + index + 1,
+            trd_title: "",
             trd_description: ""
           };
         }

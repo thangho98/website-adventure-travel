@@ -27,7 +27,7 @@ class LocationController extends Controller
     public function index()
     {
         if (\Gate::allows('isAdmin') || \Gate::allows('isAuthor')) {
-            return Location::latest()->paginate(5);
+            return Location::latest()->get();
         }
         else
             return ["message"=>"fail"];

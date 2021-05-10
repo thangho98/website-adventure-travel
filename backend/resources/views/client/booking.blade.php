@@ -17,7 +17,7 @@
                             <div class="row">
                                 <div class="col-lg-3">
                                     <div class="tour-img">
-                                        <img src="/client/imgs/1.jpg" alt="">
+                                        <img src="/img/tourist-route/poster/{{$tour_detail->tr_poster}}" alt="">
                                     </div>
                                 </div>
                                 <div class="col-lg-9">
@@ -89,23 +89,23 @@
                                     <div class="content">
                                         <div class="item">
                                             <label for="user_info_name">Họ và tên</label>
-                                            <input type="text" name="name" placeholder="Nhập tên" value="{{$user->user_name}}">
+                                            <input readonly type="text" name="name" placeholder="Nhập tên" value="{{$user->user_name}}">
                                         </div>
                                         <div class="item">
                                             <label for="user_info_name">Ngày sinh</label>
-                                            <input type="date" name="birthday" value="{{$user->user_birthday}}" style="width: 175.2px;">
+                                            <input readonly type="date" name="birthday" value="{{$user->user_birthday}}">
                                         </div>
                                         <div class="item">
                                             <label for="user_info_name">Email</label>
-                                            <input type="text" name="email" placeholder="Nhập email" value="{{$user->email}}">
+                                            <input readonly type="text" name="email" placeholder="Nhập email" value="{{$user->email}}">
                                         </div>
                                         <div class="item">
                                             <label for="user_info_name">Điện thoại</label>
-                                            <input type="text" name="phone" placeholder="Nhập số điện thoại" value="{{$user->user_phone}}">
+                                            <input readonly type="text" name="phone" placeholder="Nhập số điện thoại" value="{{$user->user_phone}}">
                                         </div>
                                         <div class="item">
                                             <label for="user_info_name">Địa chỉ</label>
-                                            <input type="text" name="address" placeholder="Nhập địa chỉ" value="{{$user->user_address}}">
+                                            <input readonly type="text" name="address" placeholder="Nhập địa chỉ" value="{{$user->user_address}}">
                                         </div>
                                     </div>
                                 </div>
@@ -137,8 +137,14 @@
                                     </div>
                                 </div>
 
-                                <!-- <div id="price-sum">TỔNG CỘNG: <span>20,500,000 đ</span></div> -->
-                                <button style="margin-top: 55px" id="btn-book" type="submit">BOOK <i class="fab fa-cc-paypal"></i></button>
+                                @if ($tour_detail->tour_status == 0)
+                                    <!-- <div id="price-sum">TỔNG CỘNG: <span>20,500,000 đ</span></div> -->
+                                    <button id="btn-book-paypal" type="submit" value="paypal" name="book">Thanh toán qua <i class="fab fa-cc-paypal"></i></button>
+                                    <button id="btn-book" type="submit" value="book" name="book">Đặt vé giữ chỗ</i></button>
+                                @else
+                                    <h3 class="text-danger pt-5">Tour hết hạn đăng kí</h3>
+                                @endif
+                                
                             </div>
                         </div>
                         {{csrf_field()}}

@@ -29,6 +29,7 @@ Route::apiResources([
     'promotion'=>'Admin\API\PromotionController',
     'news'=>'Admin\API\NewsController',
     'booking-tour'=>'Admin\API\BookingTourController',
+    'revenue'=>'Admin\API\RevenueController',
 ]);
 
 Route::get('profile', 'Admin\API\UserController@profile');
@@ -43,3 +44,7 @@ Route::get('location/select/search', 'Admin\API\LocationController@searchSelect'
 Route::get('tourist-route/select/search', 'Admin\API\TouristRouteController@searchSelect');
 
 Route::get('promotion/select/search', 'Admin\API\PromotionController@searchSelect');
+
+Route::put('tour/update/cost/{tour}', 'Admin\API\TourController@updateTourCost');
+
+Route::put('tour/update/approved/{tour}', 'Admin\API\TourController@approvedTour');

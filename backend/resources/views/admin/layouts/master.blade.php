@@ -22,6 +22,7 @@
     <meta property="og:image" content="">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <link rel="stylesheet" href="{{asset('assets/js/plugins/datatables/dataTables.bootstrap4.css')}}">
     <!-- Icons -->
     <!-- The following icons can be replaced with your own, they are used by desktop and mobile browsers -->
     <link rel="shortcut icon" href="{{asset('assets/media/favicons/favicon.png')}}">
@@ -214,15 +215,15 @@
                         <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
                             aria-expanded="false" href="#">
                             <i class="nav-main-link-icon si si-chart"></i>
-                            <span class="nav-main-link-name">Báo cáo</span>
+                            <span class="nav-main-link-name">Thống kê</span>
                         </a>
                         <ul class="nav-main-submenu">
                             <li class="nav-main-item">
-                                <a class="nav-main-link" href="be_pages_error_all.html">
+                                <router-link to="/admin/revenue" class="nav-main-link">
                                     <span class="nav-main-link-name">Doanh thu</span>
-                                </a>
+                                </router-link>
                             </li>
-                            <li class="nav-main-item">
+                            {{-- <li class="nav-main-item">
                                 <a class="nav-main-link" href="op_error_400.html">
                                     <span class="nav-main-link-name">Sản phẩm</span>
                                 </a>
@@ -246,7 +247,7 @@
                                 <a class="nav-main-link" href="op_error_404.html">
                                     <span class="nav-main-link-name">Trạng thái</span>
                                 </a>
-                            </li>
+                            </li> --}}
                         </ul>
                     </li>
                     <li class="nav-main-heading">Nhân viên</li>
@@ -284,7 +285,7 @@
                         </ul>
                     </li>
 
-                    <li class="nav-main-item">
+                    {{-- <li class="nav-main-item">
                         <a class="nav-main-link nav-main-link-submenu" data-toggle="submenu" aria-haspopup="true"
                             aria-expanded="false" href="#">
                             <i class="nav-main-link-icon si si-lock"></i>
@@ -307,7 +308,7 @@
                                 </a>
                             </li>
                         </ul>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
             <!-- END Side Navigation -->
@@ -441,9 +442,9 @@
     <script src="{{asset('assets/js/plugins/datatables/buttons/buttons.html5.min.js')}}"></script>
     <script src="{{asset('assets/js/plugins/datatables/buttons/buttons.flash.min.js')}}"></script>
     <script src="{{asset('assets/js/plugins/datatables/buttons/buttons.colVis.min.js')}}"></script>
-
+    
     <!-- Page JS Code -->
-    <script src="{{asset('assets/js/pages/be_tables_datatables.min.js')}}"></script>
+    {{-- <script src="{{asset('assets/js/pages/be_tables_datatables.min.js')}}"></script> --}}
 </body>
 
 </html>

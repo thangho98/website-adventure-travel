@@ -26,7 +26,7 @@ class CategoryController extends Controller
     public function index()
     {
         if (\Gate::allows('isAdmin') || \Gate::allows('isAuthor')) {
-            return Category::latest()->paginate(5);
+            return Category::latest()->get();
         }
     }
 

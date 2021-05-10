@@ -30,7 +30,7 @@ class ReviewController extends Controller
                     ->join('tourist_routes','reviews.revi_tourist_route','tourist_routes.tr_id')
                     ->select(DB::raw('revi_id, revi_star, revi_content, revi_time, revi_tourist_route, tr_name, revi_user_client, user_name'))
                     ->orderBy('tr_id','desc')
-                    ->paginate(5);
+                    ->get();
             return $list;
         }
     }

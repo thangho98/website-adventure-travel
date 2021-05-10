@@ -70,7 +70,8 @@ class SearchController extends Controller
                     ->join('tourist_routes','tourist_routes.tr_id','tours.tour_tourist_route')
                     ->join('destinations','destinations.dest_tourist_route','tourist_routes.tr_id')
                     ->join('locations','locations.loca_id','destinations.dest_location')
-                    ->where('tour_time_start','>=',$date_query);
+                    ->where('tour_time_start','>=',$date_query)
+                    ->where('tour_status', 0);
                     
         $data['starting_gate'] = $starting_gate;
         $data['destination'] = $destination;

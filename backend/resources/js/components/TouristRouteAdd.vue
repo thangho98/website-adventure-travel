@@ -275,7 +275,8 @@
                 <table id="images" class="table table-striped table-bordered table-hover">
                   <thead>
                     <tr>
-                      <td style="width: 20%;">Ngày thứ</td>
+                      <td style="width: 10%;">Ngày thứ</td>
+                      <td style="width: 30%;">Tiêu đề</td>
                       <td>Mô tả</td>
                     </tr>
                   </thead>
@@ -383,13 +384,34 @@ export default {
         });
     },
     changeTime() {
+      let temp = this.form.tr_listTouristRouteDetails;
       this.form.tr_listTouristRouteDetails = [];
-      for (let index = 0; index < this.form.tr_time; index++) {
-        this.form.tr_listTouristRouteDetails[index] = {
-          trd_date: index + 1,
-          trd_description: ""
-        };
+      console.log(
+        this.form.tr_time,
+        this.form.tr_listTouristRouteDetails.length
+      );
+
+      if (this.form.tr_time > temp.length) {
+        let n = this.form.tr_time - temp.length;
+        let start = temp.length;
+        for (let index = 0; index < n; index++) {
+          temp[start + index] = {
+            trd_date: start + index + 1,
+            trd_title: "",
+            trd_description: ""
+          };
+        }
+      } else if (this.form.tr_time < temp) {
+        let n = temp.length - this.form.tr_time;
+        for (let index = 0; index < n; index++) {
+          temp.pop();
+        }
       }
+      this.form.tr_listTouristRouteDetails = temp;
+      console.log(
+        this.form.tr_time,
+        this.form.tr_listTouristRouteDetails.length
+      );
     },
     uploadImageSuccess(formData, index, fileList) {
       console.log("data", formData, index, fileList);

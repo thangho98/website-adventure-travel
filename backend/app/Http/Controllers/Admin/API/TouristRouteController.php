@@ -40,7 +40,7 @@ class TouristRouteController extends Controller
                     ->join('locations','tourist_routes.tr_location','locations.loca_id')
                     ->select(DB::raw('tr_id, tr_name, tr_category, cate_name, tr_time, tr_original_price, tr_max_slot, tr_poster, tr_location, loca_name'))
                     ->orderBy('tr_id','desc')
-                    ->paginate(5);
+                    ->get();
 
             // foreach ($list->data as $key => $value) {
             //     # code...
@@ -108,6 +108,7 @@ class TouristRouteController extends Controller
         foreach ($listTouristRouteDetails as $key => $value) {
             $trd = new TouristRouteDetail;
             $trd->trd_date = $value['trd_date'];
+            $trd->trd_title = $value['trd_title'];
             $trd->trd_description = $value['trd_description'];
             $trd->trd_tourist_route =$touristRoute->tr_id;
             $trd->save();
@@ -144,7 +145,7 @@ class TouristRouteController extends Controller
         $data['tourist_route']->tr_location = Location::find($location);
        
         $data['list_tourist_route_details'] = TouristRouteDetail::where('trd_tourist_route',$id)
-        ->select(DB::raw('trd_date, trd_description'))
+        ->select(DB::raw('trd_date, trd_title, trd_description'))
         ->get();
         
         $listDes = Destination::where('dest_tourist_route',$id)->get();
@@ -229,6 +230,7 @@ class TouristRouteController extends Controller
         foreach ($listTouristRouteDetails as $key => $value) {
             $trd = new TouristRouteDetail;
             $trd->trd_date = $value['trd_date'];
+            $trd->trd_title = $value['trd_title'];
             $trd->trd_description = $value['trd_description'];
             $trd->trd_tourist_route =$touristRoute->tr_id;
             $trd->save();
@@ -238,53 +240,57 @@ class TouristRouteController extends Controller
             ->get();
         
         $images = $request['tr_fileList'];
-        foreach ($images as $key => $value) {
-            if(!empty($value['itr_id'])){
-
-                //lưu vết lại những đối tượng đã được chỉnh sửa
-                $his[$key] = $value['itr_id'];
-
-                $imageTouristRoute = ImageTouristRoute::find($value['itr_id']);
-
-                $currentImage = $imageTouristRoute->itr_name;
-                //kiem tra chuoi mot co chua chuoi hai khong
-                if(strpos($value['path'], $currentImage) == false){
-                    $nameImage = time().'.' . explode('/', explode(':', substr($value['path'], 0, strpos($value['path'], ';')))[1])[1];
-                    \Image::make($value['path'])->save(public_path('img/tourist-route/').$nameImage);
-
-                    $img = public_path('img/tourist-route/').$currentImage;
-                    if(file_exists($img)){
-                        @unlink($img);
+        if(!empty($images)){
+            foreach ($images as $key => $value) {
+                if(!empty($value['itr_id'])){
+    
+                    //lưu vết lại những đối tượng đã được chỉnh sửa
+                    $his[$key] = $value['itr_id'];
+    
+                    $imageTouristRoute = ImageTouristRoute::find($value['itr_id']);
+    
+                    $currentImage = $imageTouristRoute->itr_name;
+                    //kiem tra chuoi mot co chua chuoi hai khong
+                    if(strpos($value['path'], $currentImage) == false){
+                        $nameImage = time().'.' . explode('/', explode(':', substr($value['path'], 0, strpos($value['path'], ';')))[1])[1];
+                        \Image::make($value['path'])->save(public_path('img/tourist-route/').$nameImage);
+    
+                        $img = public_path('img/tourist-route/').$currentImage;
+                        if(file_exists($img)){
+                            @unlink($img);
+                        }
+    
+                        $imageTouristRoute->itr_name = $nameImage;
                     }
-
-                    $imageTouristRoute->itr_name = $nameImage;
+                    $imageTouristRoute->itr_highlight = $value['highlight'];
+                    $imageTouristRoute->itr_default = $value['default'];
+                    $imageTouristRoute->save();
                 }
-                $imageTouristRoute->itr_highlight = $value['highlight'];
-                $imageTouristRoute->itr_default = $value['default'];
-                $imageTouristRoute->save();
-            }
-            else{
-                $name = (time().microtime(true)*10000).'.' . explode('/', explode(':', substr($value['path'], 0, strpos($value['path'], ';')))[1])[1];
-                \Image::make($value['path'])->save(public_path('img/tourist-route/').$name);
-
-                $imageTouristRoute = new ImageTouristRoute;
-                $imageTouristRoute->itr_name = $name;
-                $imageTouristRoute->itr_tourist_route = $touristRoute->tr_id;
-                $imageTouristRoute->itr_highlight = $value['highlight'];
-                $imageTouristRoute->itr_default = $value['default'];
-                $imageTouristRoute->save();
+                else{
+                    $name = (time().microtime(true)*10000).'.' . explode('/', explode(':', substr($value['path'], 0, strpos($value['path'], ';')))[1])[1];
+                    \Image::make($value['path'])->save(public_path('img/tourist-route/').$name);
+    
+                    $imageTouristRoute = new ImageTouristRoute;
+                    $imageTouristRoute->itr_name = $name;
+                    $imageTouristRoute->itr_tourist_route = $touristRoute->tr_id;
+                    $imageTouristRoute->itr_highlight = $value['highlight'];
+                    $imageTouristRoute->itr_default = $value['default'];
+                    $imageTouristRoute->save();
+                }
             }
         }
-
-        foreach ($listImage as $key => $value) {
-            $isDelete = true;
-            foreach ($his as $key1 => $value1) {
-               if($value['itr_id'] == $value1){
-                $isDelete = false;
-               }
-            }
-            if($isDelete){
-                ImageTouristRoute::destroy($value['itr_id']);
+        
+        if(!empty($his)){
+            foreach ($listImage as $key => $value) {
+                $isDelete = true;
+                foreach ($his as $key1 => $value1) {
+                if($value['itr_id'] == $value1){
+                    $isDelete = false;
+                }
+                }
+                if($isDelete){
+                    ImageTouristRoute::destroy($value['itr_id']);
+                }
             }
         }
         

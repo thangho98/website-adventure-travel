@@ -32,8 +32,8 @@
                     <input type="text" id="signin-email" name="email" placeholder="Nhập email">
                     <label for="sigin-password">Mật khẩu</label>
                     <input type="password" id="signin-password" name="password" placeholder="Nhập password">
-                    <div>Bạn chưa có tài khoản? <span class="signup-now">Đăng ký ngay</span></div>
-                    <div>Quên mật khẩu? <span class="reset-password">Lấy lại mật khẩu</span></div>
+                    <div class="btn-show-signup">Bạn chưa có tài khoản? <span class="signup-now">Đăng ký ngay</span></div>
+                    {{-- <div>Quên mật khẩu? <span class="reset-password">Lấy lại mật khẩu</span></div> --}}
                     <button type="submit" class="btn-submit">Đăng nhập</button>
                 </div>
                 {{csrf_field()}}
@@ -113,8 +113,8 @@
                                 </div>
                             </div>
                             @else
-                            <div id="signin" class="user-item">Đăng nhập</div>
-                            <div id="signup" class="user-item">Đăng ký</div>
+                            <div id="signin" class="user-item btn-show-signin">Đăng nhập</div>
+                            <div id="signup" class="user-item btn-show-signup">Đăng ký</div>
                             @endif
                         </div>
                         @endif

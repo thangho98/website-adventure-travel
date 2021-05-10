@@ -86,8 +86,15 @@ class SearchForm {
 
 class User {
     Init() {
-        this.btnUsers = document.getElementsByClassName("user-item");
-        this.userForms = document.getElementsByClassName("user-form");
+        // this.btnUsers = document.getElementsByClassName("user-item");
+        // this.userForms = document.getElementsByClassName("user-form");
+
+        this.btnShowSignIn = document.getElementsByClassName("btn-show-signin");
+        this.btnShowSignUp = document.getElementsByClassName("btn-show-signup");
+
+        this.formSignIn = document.getElementById("signin-form");
+        this.formSignUp = document.getElementById("signup-form");
+
         this.backgroundBlur = document.getElementById("background-blur");
         this.btnCloses = document.getElementsByClassName("btn-close");
 
@@ -95,24 +102,24 @@ class User {
         this.menuUser = document.getElementById("menu-user");
 
 
-        this.AddEvents(this.btnUsers, this.userForms, this.backgroundBlur, this.btnCloses, this.welcomeUser, this.menuUser);
+        this.AddEvents(this.btnShowSignIn, this.btnShowSignUp, this.formSignIn, this.formSignUp, this.backgroundBlur, this.btnCloses, this.welcomeUser, this.menuUser);
     }
 
-    AddEvents(btnUsers, userForms, backgroundBlur, btnCloses, welcomeUser, menuUser) {
+    AddEvents(btnShowSignIn, btnShowSignUp, formSignIn, formSignUp, backgroundBlur, btnCloses, welcomeUser, menuUser) {
 
         AddEventBtnUser();
         AddEventBackgroundBlur();
         AddEventBtnClose();
-        if(welcomeUser!=null)
+        if (welcomeUser != null)
             AddEventWelcomeUser()
 
         var isMenuUserShow = false;
-        function AddEventWelcomeUser(){
-            welcomeUser.addEventListener('click', function(){
-                if(!isMenuUserShow){
+        function AddEventWelcomeUser() {
+            welcomeUser.addEventListener('click', function () {
+                if (!isMenuUserShow) {
                     ShowMenuUser();
                     isMenuUserShow = true;
-                }else{
+                } else {
                     HideMenuUser();
                     isMenuUserShow = false;
                 }
@@ -120,9 +127,14 @@ class User {
         }
 
         function AddEventBtnUser() {
-            for (let i = 0; i < btnUsers.length; i++) {
-                btnUsers[i].addEventListener('click', function () { BtnUserClick(userForms[i]); });
+            for (let i = 0; i < btnShowSignIn.length; i++) {
+                btnShowSignIn[i].addEventListener('click', function () { BtnUserClick(formSignIn); });
             }
+
+            for (let i = 0; i < btnShowSignUp.length; i++) {
+                btnShowSignUp[i].addEventListener('click', function () { BtnUserClick(formSignUp); });
+            }
+
 
             function BtnUserClick(form) {
                 ShowSignInForm(form);
@@ -131,16 +143,16 @@ class User {
 
         function AddEventBackgroundBlur() {
             backgroundBlur.addEventListener('click', function () {
-                for (let i = 0; i < userForms.length; i++) {
-                    HideFormUser(userForms[i]);
-                }
+                HideFormUser(formSignIn);
+                HideFormUser(formSignUp);
             });
         }
 
         function AddEventBtnClose() {
             for (let i = 0; i < btnCloses.length; i++) {
                 btnCloses[i].addEventListener('click', function () {
-                    HideFormUser(userForms[i]);
+                    HideFormUser(formSignIn);
+                    HideFormUser(formSignUp);
                 });
             }
         }
@@ -160,12 +172,12 @@ class User {
             form.style.zIndex = 1;
         }
 
-        function ShowMenuUser(){
+        function ShowMenuUser() {
             menuUser.style.display = 'flex';
             Effects.fadeIn(menuUser);
         }
 
-        function HideMenuUser(){
+        function HideMenuUser() {
             Effects.fadeOut(menuUser);
             menuUser.style.display = 'none';
         }
@@ -257,11 +269,11 @@ class TourDetails {
         this.CreateStars(document.getElementsByClassName("review-star"));
     }
 
-  
+
 }
 
-class BooingTour{
-    Init(){
+class BooingTour {
+    Init() {
         this.btnMinus = document.getElementsByClassName('btn-minus');
         this.btnAdds = document.getElementsByClassName('btn-add');
         this.inputCounts = document.getElementsByClassName('input-count');
@@ -270,28 +282,28 @@ class BooingTour{
         this.AddEvents(this.btnAdds, this.btnMinus, this.inputCounts, this.slotFree);
     }
 
-    AddEvents(btnAdds, btnMinus, inputCounts, slotFree){
+    AddEvents(btnAdds, btnMinus, inputCounts, slotFree) {
         AddEventBtn()
 
-        function AddEventBtn(){
-            for(let i = 0; i < btnAdds.length; i++){
-                btnAdds[i].addEventListener('click', function(){
+        function AddEventBtn() {
+            for (let i = 0; i < btnAdds.length; i++) {
+                btnAdds[i].addEventListener('click', function () {
                     btnAddOnClick(inputCounts[i], slotFree);
                 });
 
-                btnMinus[i].addEventListener('click', function(){
+                btnMinus[i].addEventListener('click', function () {
                     btnMinuOnClick(inputCounts[i]);
                 });
             }
         }
 
-        function btnAddOnClick(input, slot){
-            if(input.value < Number(slot.innerHTML))
+        function btnAddOnClick(input, slot) {
+            if (input.value < Number(slot.innerHTML))
                 input.value = Number(input.value) + 1;
         }
 
-        function btnMinuOnClick(input){
-            if(input.value > 0)
+        function btnMinuOnClick(input) {
+            if (input.value > 0)
                 input.value = Number(input.value) - 1;
         }
     }
