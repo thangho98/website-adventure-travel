@@ -29,7 +29,7 @@
         "@ckeditor/ckeditor5-build-decoupled-document": "^12.2.0",
         "@ckeditor/ckeditor5-vue": "^1.0.0-beta.2",
         "laravel-vue-pagination": "^2.3.0",
-        "moment": "^2.24.0",
+        "moment": "^2.29.2",
         "sweetalert2": "^8.12.1",
         "v-calendar": "^1.0.0-beta.14",
         "vform": "^1.0.1",
